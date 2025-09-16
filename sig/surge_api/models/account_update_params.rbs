@@ -1,15 +1,49 @@
 module SurgeAPI
   module Models
     type account_update_params =
-      {  } & SurgeAPI::Internal::Type::request_parameters
+      {
+        brand_name: String,
+        name: String,
+        organization: SurgeAPI::OrganizationParams,
+        time_zone: String?
+      }
+      & SurgeAPI::Internal::Type::request_parameters
 
-    class AccountUpdateParams < SurgeAPI::Models::AccountUpdateParams
+    class AccountUpdateParams < SurgeAPI::Internal::Type::BaseModel
       extend SurgeAPI::Internal::Type::RequestParameters::Converter
       include SurgeAPI::Internal::Type::RequestParameters
 
-      def initialize: (?request_options: SurgeAPI::request_opts) -> void
+      attr_reader brand_name: String?
 
-      def to_hash: -> { request_options: SurgeAPI::RequestOptions }
+      def brand_name=: (String) -> String
+
+      attr_reader name: String?
+
+      def name=: (String) -> String
+
+      attr_reader organization: SurgeAPI::OrganizationParams?
+
+      def organization=: (
+        SurgeAPI::OrganizationParams
+      ) -> SurgeAPI::OrganizationParams
+
+      attr_accessor time_zone: String?
+
+      def initialize: (
+        ?brand_name: String,
+        ?name: String,
+        ?organization: SurgeAPI::OrganizationParams,
+        ?time_zone: String?,
+        ?request_options: SurgeAPI::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        brand_name: String,
+        name: String,
+        organization: SurgeAPI::OrganizationParams,
+        time_zone: String?,
+        request_options: SurgeAPI::RequestOptions
+      }
     end
   end
 end
