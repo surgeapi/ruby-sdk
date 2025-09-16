@@ -1,9 +1,0 @@
-module Surge
-  module Internal
-    extend Surge::Internal::Util::SorbetRuntimeSupport
-
-    type file_input = Pathname | StringIO | IO | String | Surge::FilePart
-
-    OMIT: Object
-  end
-end

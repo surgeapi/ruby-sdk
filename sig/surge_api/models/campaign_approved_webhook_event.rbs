@@ -1,0 +1,77 @@
+module SurgeAPI
+  module Models
+    type campaign_approved_webhook_event =
+      {
+        account_id: String,
+        data: SurgeAPI::CampaignApprovedWebhookEvent::Data,
+        timestamp: Time,
+        type: SurgeAPI::Models::CampaignApprovedWebhookEvent::type_
+      }
+
+    class CampaignApprovedWebhookEvent < SurgeAPI::Internal::Type::BaseModel
+      attr_accessor account_id: String
+
+      attr_accessor data: SurgeAPI::CampaignApprovedWebhookEvent::Data
+
+      attr_accessor timestamp: Time
+
+      attr_accessor type: SurgeAPI::Models::CampaignApprovedWebhookEvent::type_
+
+      def initialize: (
+        account_id: String,
+        data: SurgeAPI::CampaignApprovedWebhookEvent::Data,
+        timestamp: Time,
+        type: SurgeAPI::Models::CampaignApprovedWebhookEvent::type_
+      ) -> void
+
+      def to_hash: -> {
+        account_id: String,
+        data: SurgeAPI::CampaignApprovedWebhookEvent::Data,
+        timestamp: Time,
+        type: SurgeAPI::Models::CampaignApprovedWebhookEvent::type_
+      }
+
+      type data =
+        {
+          id: String,
+          status: SurgeAPI::Models::CampaignApprovedWebhookEvent::Data::status
+        }
+
+      class Data < SurgeAPI::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor status: SurgeAPI::Models::CampaignApprovedWebhookEvent::Data::status
+
+        def initialize: (
+          id: String,
+          status: SurgeAPI::Models::CampaignApprovedWebhookEvent::Data::status
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          status: SurgeAPI::Models::CampaignApprovedWebhookEvent::Data::status
+        }
+
+        type status = :active
+
+        module Status
+          extend SurgeAPI::Internal::Type::Enum
+
+          ACTIVE: :active
+
+          def self?.values: -> ::Array[SurgeAPI::Models::CampaignApprovedWebhookEvent::Data::status]
+        end
+      end
+
+      type type_ = :"campaign.approved"
+
+      module Type
+        extend SurgeAPI::Internal::Type::Enum
+
+        CAMPAIGN_APPROVED: :"campaign.approved"
+
+        def self?.values: -> ::Array[SurgeAPI::Models::CampaignApprovedWebhookEvent::type_]
+      end
+    end
+  end
+end

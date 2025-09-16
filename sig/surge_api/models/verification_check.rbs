@@ -1,0 +1,45 @@
+module SurgeAPI
+  module Models
+    type verification_check =
+      {
+        result: SurgeAPI::Models::VerificationCheck::result,
+        verification: SurgeAPI::Verification
+      }
+
+    class VerificationCheck < SurgeAPI::Internal::Type::BaseModel
+      attr_reader result: SurgeAPI::Models::VerificationCheck::result?
+
+      def result=: (
+        SurgeAPI::Models::VerificationCheck::result
+      ) -> SurgeAPI::Models::VerificationCheck::result
+
+      attr_reader verification: SurgeAPI::Verification?
+
+      def verification=: (SurgeAPI::Verification) -> SurgeAPI::Verification
+
+      def initialize: (
+        ?result: SurgeAPI::Models::VerificationCheck::result,
+        ?verification: SurgeAPI::Verification
+      ) -> void
+
+      def to_hash: -> {
+        result: SurgeAPI::Models::VerificationCheck::result,
+        verification: SurgeAPI::Verification
+      }
+
+      type result = :ok | :incorrect | :exhausted | :expired | :already_verified
+
+      module Result
+        extend SurgeAPI::Internal::Type::Enum
+
+        OK: :ok
+        INCORRECT: :incorrect
+        EXHAUSTED: :exhausted
+        EXPIRED: :expired
+        ALREADY_VERIFIED: :already_verified
+
+        def self?.values: -> ::Array[SurgeAPI::Models::VerificationCheck::result]
+      end
+    end
+  end
+end

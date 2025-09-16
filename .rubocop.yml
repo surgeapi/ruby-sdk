@@ -40,9 +40,9 @@ Layout/LineLength:
   AllowedPatterns:
     - "^\\s*#.*$"
     - ^require(_relative)?
-    - "Surge::Internal::Type::BaseModel$"
+    - "SurgeAPI::Internal::Type::BaseModel$"
     - "^\\s*[A-Z0-9_]+ = :"
-    - "Surge::(Models|Resources|Test)::"
+    - "SurgeAPI::(Models|Resources|Test)::"
   Max: 110
 
 Layout/MultilineArrayLineBreaks:

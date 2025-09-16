@@ -1,0 +1,40 @@
+module SurgeAPI
+  module Models
+    type account_retrieve_status_params =
+      {
+        capabilities: ::Array[SurgeAPI::Models::AccountRetrieveStatusParams::capability]
+      }
+      & SurgeAPI::Internal::Type::request_parameters
+
+    class AccountRetrieveStatusParams < SurgeAPI::Internal::Type::BaseModel
+      extend SurgeAPI::Internal::Type::RequestParameters::Converter
+      include SurgeAPI::Internal::Type::RequestParameters
+
+      attr_reader capabilities: ::Array[SurgeAPI::Models::AccountRetrieveStatusParams::capability]?
+
+      def capabilities=: (
+        ::Array[SurgeAPI::Models::AccountRetrieveStatusParams::capability]
+      ) -> ::Array[SurgeAPI::Models::AccountRetrieveStatusParams::capability]
+
+      def initialize: (
+        ?capabilities: ::Array[SurgeAPI::Models::AccountRetrieveStatusParams::capability],
+        ?request_options: SurgeAPI::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        capabilities: ::Array[SurgeAPI::Models::AccountRetrieveStatusParams::capability],
+        request_options: SurgeAPI::RequestOptions
+      }
+
+      type capability = :local_messaging
+
+      module Capability
+        extend SurgeAPI::Internal::Type::Enum
+
+        LOCAL_MESSAGING: :local_messaging
+
+        def self?.values: -> ::Array[SurgeAPI::Models::AccountRetrieveStatusParams::capability]
+      end
+    end
+  end
+end

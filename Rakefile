@@ -150,7 +150,7 @@ multitask(:"build:gem") do
     sig/*
   GLOB
 
-  sh(*%w[gem build -- surge.gemspec])
+  sh(*%w[gem build -- surge_api.gemspec])
   rm_rf(ignore_file)
 end
 

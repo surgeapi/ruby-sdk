@@ -6,7 +6,7 @@ It is generated with [Stainless](https://www.stainless.com/).
 
 ## Documentation
 
-Documentation for releases of this gem can be found [on RubyDoc](https://gemdocs.org/gems/surge).
+Documentation for releases of this gem can be found [on RubyDoc](https://gemdocs.org/gems/surge_api).
 
 The REST API documentation can be found on [docs.surge.app](https://docs.surge.app).
 
@@ -15,16 +15,16 @@ The REST API documentation can be found on [docs.surge.app](https://docs.surge.a
 To use this gem, install via Bundler by adding the following to your application's `Gemfile`:
 
 ```ruby
-gem "surge", "~> 0.0.1"
+gem "surge_api", "~> 0.0.1"
 ```
 
 ## Usage
 
 ```ruby
 require "bundler/setup"
-require "surge"
+require "surge_api"
 
-surge = Surge::Client.new(
+surge = SurgeAPI::Client.new(
   api_key: ENV["SURGE_API_KEY"] # This is the default and can be omitted
 )
 
@@ -35,17 +35,17 @@ puts(message.id)
 
 ### Handling errors
 
-When the library is unable to connect to the API, or if the API returns a non-success status code (i.e., 4xx or 5xx response), a subclass of `Surge::Errors::APIError` will be thrown:
+When the library is unable to connect to the API, or if the API returns a non-success status code (i.e., 4xx or 5xx response), a subclass of `SurgeAPI::Errors::APIError` will be thrown:
 
 ```ruby
 begin
   message = surge.messages.create("acct_01j9a43avnfqzbjfch6pygv1td")
-rescue Surge::Errors::APIConnectionError => e
+rescue SurgeAPI::Errors::APIConnectionError => e
   puts("The server could not be reached")
   puts(e.cause)  # an underlying Exception, likely raised within `net/http`
-rescue Surge::Errors::RateLimitError => e
+rescue SurgeAPI::Errors::RateLimitError => e
   puts("A 429 status code was received; we should back off a bit.")
-rescue Surge::Errors::APIStatusError => e
+rescue SurgeAPI::Errors::APIStatusError => e
   puts("Another non-200-range status code was received")
   puts(e.status)
 end
@@ -77,7 +77,7 @@ You can use the `max_retries` option to configure or disable this:
 
 ```ruby
 # Configure the default for all requests:
-surge = Surge::Client.new(
+surge = SurgeAPI::Client.new(
   max_retries: 0 # default is 2
 )
 
@@ -91,7 +91,7 @@ By default, requests will time out after 60 seconds. You can use the timeout opt
 
 ```ruby
 # Configure the default for all requests:
-surge = Surge::Client.new(
+surge = SurgeAPI::Client.new(
   timeout: nil # default is 60
 )
 
@@ -99,7 +99,7 @@ surge = Surge::Client.new(
 surge.messages.create("acct_01j9a43avnfqzbjfch6pygv1td", request_options: {timeout: 5})
 ```
 
-On timeout, `Surge::Errors::APITimeoutError` is raised.
+On timeout, `SurgeAPI::Errors::APITimeoutError` is raised.
 
 Note that requests that time out are retried by default.
 
@@ -107,7 +107,7 @@ Note that requests that time out are retried by default.
 
 ### BaseModel
 
-All parameter and response objects inherit from `Surge::Internal::Type::BaseModel`, which provides several conveniences, including:
+All parameter and response objects inherit from `SurgeAPI::Internal::Type::BaseModel`, which provides several conveniences, including:
 
 1. All fields, including unknown ones, are accessible with `obj[:prop]` syntax, and can be destructured with `obj => {prop: prop}` or pattern-matching syntax.
 
@@ -159,9 +159,9 @@ response = client.request(
 
 ### Concurrency & connection pooling
 
-The `Surge::Client` instances are threadsafe, but are only are fork-safe when there are no in-flight HTTP requests.
+The `SurgeAPI::Client` instances are threadsafe, but are only are fork-safe when there are no in-flight HTTP requests.
 
-Each instance of `Surge::Client` has its own HTTP connection pool with a default size of 99. As such, we recommend instantiating the client once per application in most settings.
+Each instance of `SurgeAPI::Client` has its own HTTP connection pool with a default size of 99. As such, we recommend instantiating the client once per application in most settings.
 
 When all available connections from the pool are checked out, requests wait for a new connection to become available, with queue time counting towards the request timeout.
 
@@ -184,7 +184,7 @@ Or, equivalently:
 surge.messages.create("acct_01j9a43avnfqzbjfch6pygv1td")
 
 # You can also splat a full Params class:
-params = Surge::MessageCreateParams.new
+params = SurgeAPI::MessageCreateParams.new
 surge.messages.create("acct_01j9a43avnfqzbjfch6pygv1td", **params)
 ```
 
@@ -194,10 +194,10 @@ Since this library does not depend on `sorbet-runtime`, it cannot provide [`T::E
 
 ```ruby
 # :high
-puts(Surge::CampaignParams::Volume::HIGH)
+puts(SurgeAPI::CampaignParams::Volume::HIGH)
 
-# Revealed type: `T.all(Surge::CampaignParams::Volume, Symbol)`
-T.reveal_type(Surge::CampaignParams::Volume::HIGH)
+# Revealed type: `T.all(SurgeAPI::CampaignParams::Volume, Symbol)`
+T.reveal_type(SurgeAPI::CampaignParams::Volume::HIGH)
 ```
 
 Enum parameters have a "relaxed" type, so you can either pass in enum constants or their literal value:
@@ -205,7 +205,7 @@ Enum parameters have a "relaxed" type, so you can either pass in enum constants 
 ```ruby
 # Using the enum constants preserves the tagged type information:
 surge.campaigns.create(
-  volume: Surge::CampaignParams::Volume::HIGH,
+  volume: SurgeAPI::CampaignParams::Volume::HIGH,
   # …
 )
 

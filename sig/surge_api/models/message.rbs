@@ -1,0 +1,138 @@
+module SurgeAPI
+  module Models
+    type message =
+      {
+        id: String,
+        attachments: ::Array[SurgeAPI::Message::Attachment],
+        body: String,
+        conversation: SurgeAPI::Message::Conversation
+      }
+
+    class Message < SurgeAPI::Internal::Type::BaseModel
+      attr_reader id: String?
+
+      def id=: (String) -> String
+
+      attr_reader attachments: ::Array[SurgeAPI::Message::Attachment]?
+
+      def attachments=: (
+        ::Array[SurgeAPI::Message::Attachment]
+      ) -> ::Array[SurgeAPI::Message::Attachment]
+
+      attr_reader body: String?
+
+      def body=: (String) -> String
+
+      attr_reader conversation: SurgeAPI::Message::Conversation?
+
+      def conversation=: (
+        SurgeAPI::Message::Conversation
+      ) -> SurgeAPI::Message::Conversation
+
+      def initialize: (
+        ?id: String,
+        ?attachments: ::Array[SurgeAPI::Message::Attachment],
+        ?body: String,
+        ?conversation: SurgeAPI::Message::Conversation
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        attachments: ::Array[SurgeAPI::Message::Attachment],
+        body: String,
+        conversation: SurgeAPI::Message::Conversation
+      }
+
+      type attachment = { id: String, type: String, url: String }
+
+      class Attachment < SurgeAPI::Internal::Type::BaseModel
+        attr_reader id: String?
+
+        def id=: (String) -> String
+
+        attr_reader type: String?
+
+        def type=: (String) -> String
+
+        attr_reader url: String?
+
+        def url=: (String) -> String
+
+        def initialize: (?id: String, ?type: String, ?url: String) -> void
+
+        def to_hash: -> { id: String, type: String, url: String }
+      end
+
+      type conversation =
+        {
+          id: String,
+          contact: SurgeAPI::Contact,
+          phone_number: SurgeAPI::Message::Conversation::PhoneNumber
+        }
+
+      class Conversation < SurgeAPI::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor contact: SurgeAPI::Contact
+
+        attr_reader phone_number: SurgeAPI::Message::Conversation::PhoneNumber?
+
+        def phone_number=: (
+          SurgeAPI::Message::Conversation::PhoneNumber
+        ) -> SurgeAPI::Message::Conversation::PhoneNumber
+
+        def initialize: (
+          id: String,
+          contact: SurgeAPI::Contact,
+          ?phone_number: SurgeAPI::Message::Conversation::PhoneNumber
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          contact: SurgeAPI::Contact,
+          phone_number: SurgeAPI::Message::Conversation::PhoneNumber
+        }
+
+        type phone_number =
+          {
+            id: String,
+            number: String,
+            type: SurgeAPI::Models::Message::Conversation::PhoneNumber::type_
+          }
+
+        class PhoneNumber < SurgeAPI::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor number: String
+
+          attr_accessor type: SurgeAPI::Models::Message::Conversation::PhoneNumber::type_
+
+          def initialize: (
+            id: String,
+            number: String,
+            type: SurgeAPI::Models::Message::Conversation::PhoneNumber::type_
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            number: String,
+            type: SurgeAPI::Models::Message::Conversation::PhoneNumber::type_
+          }
+
+          type type_ = :local | :toll_free | :short_code | :demo
+
+          module Type
+            extend SurgeAPI::Internal::Type::Enum
+
+            LOCAL: :local
+            TOLL_FREE: :toll_free
+            SHORT_CODE: :short_code
+            DEMO: :demo
+
+            def self?.values: -> ::Array[SurgeAPI::Models::Message::Conversation::PhoneNumber::type_]
+          end
+        end
+      end
+    end
+  end
+end

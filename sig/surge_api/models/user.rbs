@@ -1,0 +1,48 @@
+module SurgeAPI
+  module Models
+    type user =
+      {
+        first_name: String,
+        id: String,
+        last_name: String,
+        metadata: ::Hash[Symbol, String],
+        photo_url: String
+      }
+
+    class User < SurgeAPI::Internal::Type::BaseModel
+      attr_accessor first_name: String
+
+      attr_reader id: String?
+
+      def id=: (String) -> String
+
+      attr_reader last_name: String?
+
+      def last_name=: (String) -> String
+
+      attr_reader metadata: ::Hash[Symbol, String]?
+
+      def metadata=: (::Hash[Symbol, String]) -> ::Hash[Symbol, String]
+
+      attr_reader photo_url: String?
+
+      def photo_url=: (String) -> String
+
+      def initialize: (
+        first_name: String,
+        ?id: String,
+        ?last_name: String,
+        ?metadata: ::Hash[Symbol, String],
+        ?photo_url: String
+      ) -> void
+
+      def to_hash: -> {
+        first_name: String,
+        id: String,
+        last_name: String,
+        metadata: ::Hash[Symbol, String],
+        photo_url: String
+      }
+    end
+  end
+end

@@ -1,0 +1,30 @@
+module SurgeAPI
+  module Resources
+    class Accounts
+      def create: (
+        name: String,
+        ?brand_name: String?,
+        ?organization: SurgeAPI::OrganizationParams,
+        ?time_zone: String,
+        ?request_options: SurgeAPI::request_opts
+      ) -> SurgeAPI::Account
+
+      def update: (
+        String id,
+        ?brand_name: String,
+        ?name: String,
+        ?organization: SurgeAPI::OrganizationParams,
+        ?time_zone: String?,
+        ?request_options: SurgeAPI::request_opts
+      ) -> SurgeAPI::Account
+
+      def retrieve_status: (
+        String account_id,
+        ?capabilities: ::Array[SurgeAPI::Models::AccountRetrieveStatusParams::capability],
+        ?request_options: SurgeAPI::request_opts
+      ) -> SurgeAPI::AccountStatus
+
+      def initialize: (client: SurgeAPI::Client) -> void
+    end
+  end
+end

@@ -1,0 +1,28 @@
+module SurgeAPI
+  module Models
+    type message_create_params =
+      { message_params: SurgeAPI::Models::message_params }
+      & SurgeAPI::Internal::Type::request_parameters
+
+    class MessageCreateParams < SurgeAPI::Internal::Type::BaseModel
+      extend SurgeAPI::Internal::Type::RequestParameters::Converter
+      include SurgeAPI::Internal::Type::RequestParameters
+
+      def message_params: -> SurgeAPI::Models::message_params
+
+      def message_params=: (
+        SurgeAPI::Models::message_params _
+      ) -> SurgeAPI::Models::message_params
+
+      def initialize: (
+        message_params: SurgeAPI::Models::message_params,
+        ?request_options: SurgeAPI::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        message_params: SurgeAPI::Models::message_params,
+        request_options: SurgeAPI::RequestOptions
+      }
+    end
+  end
+end

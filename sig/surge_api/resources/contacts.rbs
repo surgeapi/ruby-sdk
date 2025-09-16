@@ -1,0 +1,32 @@
+module SurgeAPI
+  module Resources
+    class Contacts
+      def create: (
+        String account_id,
+        phone_number: String,
+        ?email: String,
+        ?first_name: String,
+        ?last_name: String,
+        ?metadata: ::Hash[Symbol, String],
+        ?request_options: SurgeAPI::request_opts
+      ) -> SurgeAPI::Contact
+
+      def retrieve: (
+        String id,
+        ?request_options: SurgeAPI::request_opts
+      ) -> SurgeAPI::Contact
+
+      def update: (
+        String id,
+        phone_number: String,
+        ?email: String,
+        ?first_name: String,
+        ?last_name: String,
+        ?metadata: ::Hash[Symbol, String],
+        ?request_options: SurgeAPI::request_opts
+      ) -> SurgeAPI::Contact
+
+      def initialize: (client: SurgeAPI::Client) -> void
+    end
+  end
+end

@@ -1,0 +1,66 @@
+module SurgeAPI
+  module Models
+    type blast_params =
+      {
+        attachments: ::Array[SurgeAPI::AttachmentParams],
+        body: String,
+        contacts: ::Array[String],
+        name: String,
+        segments: ::Array[String],
+        send_at: Time,
+        to: ::Array[String]
+      }
+
+    class BlastParams < SurgeAPI::Internal::Type::BaseModel
+      attr_reader attachments: ::Array[SurgeAPI::AttachmentParams]?
+
+      def attachments=: (
+        ::Array[SurgeAPI::AttachmentParams]
+      ) -> ::Array[SurgeAPI::AttachmentParams]
+
+      attr_reader body: String?
+
+      def body=: (String) -> String
+
+      attr_reader contacts: ::Array[String]?
+
+      def contacts=: (::Array[String]) -> ::Array[String]
+
+      attr_reader name: String?
+
+      def name=: (String) -> String
+
+      attr_reader segments: ::Array[String]?
+
+      def segments=: (::Array[String]) -> ::Array[String]
+
+      attr_reader send_at: Time?
+
+      def send_at=: (Time) -> Time
+
+      attr_reader to: ::Array[String]?
+
+      def to=: (::Array[String]) -> ::Array[String]
+
+      def initialize: (
+        ?attachments: ::Array[SurgeAPI::AttachmentParams],
+        ?body: String,
+        ?contacts: ::Array[String],
+        ?name: String,
+        ?segments: ::Array[String],
+        ?send_at: Time,
+        ?to: ::Array[String]
+      ) -> void
+
+      def to_hash: -> {
+        attachments: ::Array[SurgeAPI::AttachmentParams],
+        body: String,
+        contacts: ::Array[String],
+        name: String,
+        segments: ::Array[String],
+        send_at: Time,
+        to: ::Array[String]
+      }
+    end
+  end
+end

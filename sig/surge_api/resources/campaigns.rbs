@@ -1,0 +1,21 @@
+module SurgeAPI
+  module Resources
+    class Campaigns
+      def create: (
+        String account_id,
+        consent_flow: String,
+        description: String,
+        message_samples: ::Array[String],
+        privacy_policy_url: String,
+        use_cases: ::Array[SurgeAPI::Models::CampaignParams::use_case],
+        volume: SurgeAPI::Models::CampaignParams::volume,
+        ?includes: ::Array[SurgeAPI::Models::CampaignParams::include_],
+        ?link_sample: String,
+        ?terms_and_conditions_url: String,
+        ?request_options: SurgeAPI::request_opts
+      ) -> SurgeAPI::Campaign
+
+      def initialize: (client: SurgeAPI::Client) -> void
+    end
+  end
+end

@@ -1,0 +1,16 @@
+module SurgeAPI
+  module Resources
+    class PhoneNumbers
+      def purchase: (
+        String account_id,
+        ?area_code: String,
+        ?latitude: Float,
+        ?longitude: Float,
+        ?type: SurgeAPI::Models::PhoneNumberPurchaseParams::type_,
+        ?request_options: SurgeAPI::request_opts
+      ) -> SurgeAPI::PhoneNumber
+
+      def initialize: (client: SurgeAPI::Client) -> void
+    end
+  end
+end

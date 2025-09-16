@@ -1,0 +1,3 @@
+module SurgeAPI
+  VERSION: String
+end

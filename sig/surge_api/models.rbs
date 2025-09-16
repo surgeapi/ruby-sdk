@@ -1,0 +1,97 @@
+module SurgeAPI
+  class Account = SurgeAPI::Models::Account
+
+  class AccountCreateParams = SurgeAPI::Models::AccountCreateParams
+
+  class AccountParams = SurgeAPI::Models::AccountParams
+
+  class AccountRetrieveStatusParams = SurgeAPI::Models::AccountRetrieveStatusParams
+
+  class AccountStatus = SurgeAPI::Models::AccountStatus
+
+  class AccountUpdateParams = SurgeAPI::Models::AccountUpdateParams
+
+  class AttachmentParams = SurgeAPI::Models::AttachmentParams
+
+  class Blast = SurgeAPI::Models::Blast
+
+  class BlastCreateParams = SurgeAPI::Models::BlastCreateParams
+
+  class BlastParams = SurgeAPI::Models::BlastParams
+
+  class CallEndedWebhookEvent = SurgeAPI::Models::CallEndedWebhookEvent
+
+  class Campaign = SurgeAPI::Models::Campaign
+
+  class CampaignApprovedWebhookEvent = SurgeAPI::Models::CampaignApprovedWebhookEvent
+
+  class CampaignCreateParams = SurgeAPI::Models::CampaignCreateParams
+
+  class CampaignParams = SurgeAPI::Models::CampaignParams
+
+  class Contact = SurgeAPI::Models::Contact
+
+  class ContactCreateParams = SurgeAPI::Models::ContactCreateParams
+
+  class ContactParams = SurgeAPI::Models::ContactParams
+
+  class ContactRetrieveParams = SurgeAPI::Models::ContactRetrieveParams
+
+  class ContactUpdateParams = SurgeAPI::Models::ContactUpdateParams
+
+  class ConversationCreatedWebhookEvent = SurgeAPI::Models::ConversationCreatedWebhookEvent
+
+  class Error = SurgeAPI::Models::Error
+
+  class Message = SurgeAPI::Models::Message
+
+  class MessageCreateParams = SurgeAPI::Models::MessageCreateParams
+
+  class MessageDeliveredWebhookEvent = SurgeAPI::Models::MessageDeliveredWebhookEvent
+
+  class MessageFailedWebhookEvent = SurgeAPI::Models::MessageFailedWebhookEvent
+
+  module MessageParams = SurgeAPI::Models::MessageParams
+
+  class MessageReceivedWebhookEvent = SurgeAPI::Models::MessageReceivedWebhookEvent
+
+  class MessageSentWebhookEvent = SurgeAPI::Models::MessageSentWebhookEvent
+
+  class Organization = SurgeAPI::Models::Organization
+
+  class OrganizationParams = SurgeAPI::Models::OrganizationParams
+
+  class PhoneNumber = SurgeAPI::Models::PhoneNumber
+
+  class PhoneNumberPurchaseParams = SurgeAPI::Models::PhoneNumberPurchaseParams
+
+  module UnwrapWebhookEvent = SurgeAPI::Models::UnwrapWebhookEvent
+
+  class User = SurgeAPI::Models::User
+
+  class UserCreateParams = SurgeAPI::Models::UserCreateParams
+
+  class UserCreateTokenParams = SurgeAPI::Models::UserCreateTokenParams
+
+  class UserParams = SurgeAPI::Models::UserParams
+
+  class UserRetrieveParams = SurgeAPI::Models::UserRetrieveParams
+
+  class UserTokenParams = SurgeAPI::Models::UserTokenParams
+
+  class UserTokenResponse = SurgeAPI::Models::UserTokenResponse
+
+  class UserUpdateParams = SurgeAPI::Models::UserUpdateParams
+
+  class Verification = SurgeAPI::Models::Verification
+
+  class VerificationCheck = SurgeAPI::Models::VerificationCheck
+
+  class VerificationCheckParams = SurgeAPI::Models::VerificationCheckParams
+
+  class VerificationCreateParams = SurgeAPI::Models::VerificationCreateParams
+
+  class VerificationParams = SurgeAPI::Models::VerificationParams
+
+  class WebhookUnwrapParams = SurgeAPI::Models::WebhookUnwrapParams
+end
