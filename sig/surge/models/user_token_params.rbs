@@ -1,0 +1,15 @@
+module Surge
+  module Models
+    type user_token_params = { duration_seconds: Integer }
+
+    class UserTokenParams < Surge::Internal::Type::BaseModel
+      attr_reader duration_seconds: Integer?
+
+      def duration_seconds=: (Integer) -> Integer
+
+      def initialize: (?duration_seconds: Integer) -> void
+
+      def to_hash: -> { duration_seconds: Integer }
+    end
+  end
+end

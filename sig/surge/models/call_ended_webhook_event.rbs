@@ -1,0 +1,109 @@
+module Surge
+  module Models
+    type call_ended_webhook_event =
+      {
+        account_id: String,
+        data: Surge::CallEndedWebhookEvent::Data,
+        timestamp: Time,
+        type: Surge::Models::CallEndedWebhookEvent::type_
+      }
+
+    class CallEndedWebhookEvent < Surge::Internal::Type::BaseModel
+      attr_accessor account_id: String
+
+      attr_accessor data: Surge::CallEndedWebhookEvent::Data
+
+      attr_accessor timestamp: Time
+
+      attr_accessor type: Surge::Models::CallEndedWebhookEvent::type_
+
+      def initialize: (
+        account_id: String,
+        data: Surge::CallEndedWebhookEvent::Data,
+        timestamp: Time,
+        type: Surge::Models::CallEndedWebhookEvent::type_
+      ) -> void
+
+      def to_hash: -> {
+        account_id: String,
+        data: Surge::CallEndedWebhookEvent::Data,
+        timestamp: Time,
+        type: Surge::Models::CallEndedWebhookEvent::type_
+      }
+
+      type data =
+        {
+          id: String,
+          contact: Surge::Contact,
+          duration: Integer,
+          initiated_at: Time,
+          status: Surge::Models::CallEndedWebhookEvent::Data::status
+        }
+
+      class Data < Surge::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor contact: Surge::Contact
+
+        attr_accessor duration: Integer
+
+        attr_accessor initiated_at: Time
+
+        attr_accessor status: Surge::Models::CallEndedWebhookEvent::Data::status
+
+        def initialize: (
+          id: String,
+          contact: Surge::Contact,
+          duration: Integer,
+          initiated_at: Time,
+          status: Surge::Models::CallEndedWebhookEvent::Data::status
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          contact: Surge::Contact,
+          duration: Integer,
+          initiated_at: Time,
+          status: Surge::Models::CallEndedWebhookEvent::Data::status
+        }
+
+        type status =
+          :busy
+          | :canceled
+          | :completed
+          | :failed
+          | :in_progress
+          | :missed
+          | :no_answer
+          | :queued
+          | :ringing
+
+        module Status
+          extend Surge::Internal::Type::Enum
+
+          BUSY: :busy
+          CANCELED: :canceled
+          COMPLETED: :completed
+          FAILED: :failed
+          IN_PROGRESS: :in_progress
+          MISSED: :missed
+          NO_ANSWER: :no_answer
+          QUEUED: :queued
+          RINGING: :ringing
+
+          def self?.values: -> ::Array[Surge::Models::CallEndedWebhookEvent::Data::status]
+        end
+      end
+
+      type type_ = :"call.ended"
+
+      module Type
+        extend Surge::Internal::Type::Enum
+
+        CALL_ENDED: :"call.ended"
+
+        def self?.values: -> ::Array[Surge::Models::CallEndedWebhookEvent::type_]
+      end
+    end
+  end
+end

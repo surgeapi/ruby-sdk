@@ -1,0 +1,3 @@
+module Surge
+  VERSION: String
+end

@@ -1,0 +1,15 @@
+module Surge
+  module Models
+    type account_update_params =
+      {  } & Surge::Internal::Type::request_parameters
+
+    class AccountUpdateParams < Surge::Models::AccountUpdateParams
+      extend Surge::Internal::Type::RequestParameters::Converter
+      include Surge::Internal::Type::RequestParameters
+
+      def initialize: (?request_options: Surge::request_opts) -> void
+
+      def to_hash: -> { request_options: Surge::RequestOptions }
+    end
+  end
+end

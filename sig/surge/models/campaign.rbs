@@ -1,0 +1,122 @@
+module Surge
+  module Models
+    type campaign =
+      {
+        id: String,
+        consent_flow: String,
+        description: String,
+        includes: ::Array[Surge::Models::Campaign::include_],
+        message_samples: ::Array[String],
+        privacy_policy_url: String,
+        use_cases: ::Array[Surge::Models::Campaign::use_case],
+        volume: Surge::Models::Campaign::volume,
+        link_sample: String,
+        terms_and_conditions_url: String
+      }
+
+    class Campaign < Surge::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor consent_flow: String
+
+      attr_accessor description: String
+
+      attr_accessor includes: ::Array[Surge::Models::Campaign::include_]
+
+      attr_accessor message_samples: ::Array[String]
+
+      attr_accessor privacy_policy_url: String
+
+      attr_accessor use_cases: ::Array[Surge::Models::Campaign::use_case]
+
+      attr_accessor volume: Surge::Models::Campaign::volume
+
+      attr_reader link_sample: String?
+
+      def link_sample=: (String) -> String
+
+      attr_reader terms_and_conditions_url: String?
+
+      def terms_and_conditions_url=: (String) -> String
+
+      def initialize: (
+        id: String,
+        consent_flow: String,
+        description: String,
+        includes: ::Array[Surge::Models::Campaign::include_],
+        message_samples: ::Array[String],
+        privacy_policy_url: String,
+        use_cases: ::Array[Surge::Models::Campaign::use_case],
+        volume: Surge::Models::Campaign::volume,
+        ?link_sample: String,
+        ?terms_and_conditions_url: String
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        consent_flow: String,
+        description: String,
+        includes: ::Array[Surge::Models::Campaign::include_],
+        message_samples: ::Array[String],
+        privacy_policy_url: String,
+        use_cases: ::Array[Surge::Models::Campaign::use_case],
+        volume: Surge::Models::Campaign::volume,
+        link_sample: String,
+        terms_and_conditions_url: String
+      }
+
+      type include_ = :links | :phone_numbers | :age_gated | :direct_lending
+
+      module Include
+        extend Surge::Internal::Type::Enum
+
+        LINKS: :links
+        PHONE_NUMBERS: :phone_numbers
+        AGE_GATED: :age_gated
+        DIRECT_LENDING: :direct_lending
+
+        def self?.values: -> ::Array[Surge::Models::Campaign::include_]
+      end
+
+      type use_case =
+        :account_notification
+        | :customer_care
+        | :delivery_notification
+        | :fraud_alert
+        | :higher_education
+        | :marketing
+        | :polling_voting
+        | :public_service_announcement
+        | :security_alert
+        | :two_factor_authentication
+
+      module UseCase
+        extend Surge::Internal::Type::Enum
+
+        ACCOUNT_NOTIFICATION: :account_notification
+        CUSTOMER_CARE: :customer_care
+        DELIVERY_NOTIFICATION: :delivery_notification
+        FRAUD_ALERT: :fraud_alert
+        HIGHER_EDUCATION: :higher_education
+        MARKETING: :marketing
+        POLLING_VOTING: :polling_voting
+        PUBLIC_SERVICE_ANNOUNCEMENT: :public_service_announcement
+        SECURITY_ALERT: :security_alert
+        TWO_FACTOR_AUTHENTICATION: :two_factor_authentication
+
+        def self?.values: -> ::Array[Surge::Models::Campaign::use_case]
+      end
+
+      type volume = :high | :low
+
+      module Volume
+        extend Surge::Internal::Type::Enum
+
+        HIGH: :high
+        LOW: :low
+
+        def self?.values: -> ::Array[Surge::Models::Campaign::volume]
+      end
+    end
+  end
+end

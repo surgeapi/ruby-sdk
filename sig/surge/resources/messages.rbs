@@ -1,0 +1,13 @@
+module Surge
+  module Resources
+    class Messages
+      def create: (
+        String account_id,
+        message_params: Surge::Models::MessageParams,
+        ?request_options: Surge::request_opts
+      ) -> Surge::Message
+
+      def initialize: (client: Surge::Client) -> void
+    end
+  end
+end

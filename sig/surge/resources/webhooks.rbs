@@ -1,0 +1,17 @@
+module Surge
+  module Resources
+    class Webhooks
+      def unwrap: (
+        String payload
+      ) -> (Surge::CallEndedWebhookEvent
+      | Surge::CampaignApprovedWebhookEvent
+      | Surge::ConversationCreatedWebhookEvent
+      | Surge::MessageDeliveredWebhookEvent
+      | Surge::MessageFailedWebhookEvent
+      | Surge::MessageReceivedWebhookEvent
+      | Surge::MessageSentWebhookEvent)
+
+      def initialize: (client: Surge::Client) -> void
+    end
+  end
+end

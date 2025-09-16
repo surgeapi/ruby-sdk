@@ -1,0 +1,19 @@
+module Surge
+  module Resources
+    class Blasts
+      def create: (
+        String account_id,
+        ?attachments: ::Array[Surge::AttachmentParams],
+        ?body: String,
+        ?contacts: ::Array[String],
+        ?name: String,
+        ?segments: ::Array[String],
+        ?send_at: Time,
+        ?to: ::Array[String],
+        ?request_options: Surge::request_opts
+      ) -> Surge::Blast
+
+      def initialize: (client: Surge::Client) -> void
+    end
+  end
+end

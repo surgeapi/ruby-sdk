@@ -1,0 +1,71 @@
+module Surge
+  module Models
+    type account_status =
+      { capabilities: ::Hash[Symbol, Surge::AccountStatus::Capability] }
+
+    class AccountStatus < Surge::Internal::Type::BaseModel
+      attr_accessor capabilities: ::Hash[Symbol, Surge::AccountStatus::Capability]
+
+      def initialize: (
+        capabilities: ::Hash[Symbol, Surge::AccountStatus::Capability]
+      ) -> void
+
+      def to_hash: -> {
+        capabilities: ::Hash[Symbol, Surge::AccountStatus::Capability]
+      }
+
+      type capability =
+        {
+          errors: ::Array[Surge::AccountStatus::Capability::Error],
+          fields_needed: ::Array[String],
+          status: Surge::Models::AccountStatus::Capability::status
+        }
+
+      class Capability < Surge::Internal::Type::BaseModel
+        attr_accessor errors: ::Array[Surge::AccountStatus::Capability::Error]
+
+        attr_accessor fields_needed: ::Array[String]
+
+        attr_accessor status: Surge::Models::AccountStatus::Capability::status
+
+        def initialize: (
+          errors: ::Array[Surge::AccountStatus::Capability::Error],
+          fields_needed: ::Array[String],
+          status: Surge::Models::AccountStatus::Capability::status
+        ) -> void
+
+        def to_hash: -> {
+          errors: ::Array[Surge::AccountStatus::Capability::Error],
+          fields_needed: ::Array[String],
+          status: Surge::Models::AccountStatus::Capability::status
+        }
+
+        type error = { field: String, message: String, type: String }
+
+        class Error < Surge::Internal::Type::BaseModel
+          attr_accessor field: String
+
+          attr_accessor message: String
+
+          attr_accessor type: String
+
+          def initialize: (field: String, message: String, type: String) -> void
+
+          def to_hash: -> { field: String, message: String, type: String }
+        end
+
+        type status = :error | :incomplete | :ready
+
+        module Status
+          extend Surge::Internal::Type::Enum
+
+          ERROR: :error
+          INCOMPLETE: :incomplete
+          READY: :ready
+
+          def self?.values: -> ::Array[Surge::Models::AccountStatus::Capability::status]
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,27 @@
+module Surge
+  module Models
+    type error = { message: String, type: String, detail: ::Hash[Symbol, top] }
+
+    class Error < Surge::Internal::Type::BaseModel
+      attr_accessor message: String
+
+      attr_accessor type: String
+
+      attr_reader detail: ::Hash[Symbol, top]?
+
+      def detail=: (::Hash[Symbol, top]) -> ::Hash[Symbol, top]
+
+      def initialize: (
+        message: String,
+        type: String,
+        ?detail: ::Hash[Symbol, top]
+      ) -> void
+
+      def to_hash: -> {
+        message: String,
+        type: String,
+        detail: ::Hash[Symbol, top]
+      }
+    end
+  end
+end
