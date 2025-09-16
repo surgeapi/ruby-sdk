@@ -1,0 +1,389 @@
+module Surge
+  module Models
+    type organization_params =
+      {
+        address: Surge::OrganizationParams::Address,
+        contact: Surge::OrganizationParams::Contact?,
+        country: String?,
+        email: String?,
+        identifier: String?,
+        identifier_type: Surge::Models::OrganizationParams::identifier_type?,
+        industry: Surge::Models::OrganizationParams::industry?,
+        mobile_number: String?,
+        regions_of_operation: ::Array[Surge::Models::OrganizationParams::regions_of_operation]?,
+        registered_name: String?,
+        stock_exchange: Surge::Models::OrganizationParams::stock_exchange?,
+        stock_symbol: String?,
+        type: Surge::Models::OrganizationParams::type_?,
+        website: String?
+      }
+
+    class OrganizationParams < Surge::Internal::Type::BaseModel
+      attr_reader address: Surge::OrganizationParams::Address?
+
+      def address=: (
+        Surge::OrganizationParams::Address
+      ) -> Surge::OrganizationParams::Address
+
+      attr_accessor contact: Surge::OrganizationParams::Contact?
+
+      attr_accessor country: String?
+
+      attr_accessor email: String?
+
+      attr_accessor identifier: String?
+
+      attr_accessor identifier_type: Surge::Models::OrganizationParams::identifier_type?
+
+      attr_accessor industry: Surge::Models::OrganizationParams::industry?
+
+      attr_accessor mobile_number: String?
+
+      attr_accessor regions_of_operation: ::Array[Surge::Models::OrganizationParams::regions_of_operation]?
+
+      attr_accessor registered_name: String?
+
+      attr_accessor stock_exchange: Surge::Models::OrganizationParams::stock_exchange?
+
+      attr_accessor stock_symbol: String?
+
+      attr_accessor type: Surge::Models::OrganizationParams::type_?
+
+      attr_accessor website: String?
+
+      def initialize: (
+        ?address: Surge::OrganizationParams::Address,
+        ?contact: Surge::OrganizationParams::Contact?,
+        ?country: String?,
+        ?email: String?,
+        ?identifier: String?,
+        ?identifier_type: Surge::Models::OrganizationParams::identifier_type?,
+        ?industry: Surge::Models::OrganizationParams::industry?,
+        ?mobile_number: String?,
+        ?regions_of_operation: ::Array[Surge::Models::OrganizationParams::regions_of_operation]?,
+        ?registered_name: String?,
+        ?stock_exchange: Surge::Models::OrganizationParams::stock_exchange?,
+        ?stock_symbol: String?,
+        ?type: Surge::Models::OrganizationParams::type_?,
+        ?website: String?
+      ) -> void
+
+      def to_hash: -> {
+        address: Surge::OrganizationParams::Address,
+        contact: Surge::OrganizationParams::Contact?,
+        country: String?,
+        email: String?,
+        identifier: String?,
+        identifier_type: Surge::Models::OrganizationParams::identifier_type?,
+        industry: Surge::Models::OrganizationParams::industry?,
+        mobile_number: String?,
+        regions_of_operation: ::Array[Surge::Models::OrganizationParams::regions_of_operation]?,
+        registered_name: String?,
+        stock_exchange: Surge::Models::OrganizationParams::stock_exchange?,
+        stock_symbol: String?,
+        type: Surge::Models::OrganizationParams::type_?,
+        website: String?
+      }
+
+      type address =
+        {
+          country: String?,
+          :line1 => String?,
+          :line2 => String?,
+          locality: String?,
+          name: String?,
+          postal_code: String?,
+          region: String?
+        }
+
+      class Address < Surge::Internal::Type::BaseModel
+        attr_accessor country: String?
+
+        attr_accessor line1: String?
+
+        attr_accessor line2: String?
+
+        attr_accessor locality: String?
+
+        attr_accessor name: String?
+
+        attr_accessor postal_code: String?
+
+        attr_accessor region: String?
+
+        def initialize: (
+          ?country: String?,
+          ?line1: String?,
+          ?line2: String?,
+          ?locality: String?,
+          ?name: String?,
+          ?postal_code: String?,
+          ?region: String?
+        ) -> void
+
+        def to_hash: -> {
+          country: String?,
+          :line1 => String?,
+          :line2 => String?,
+          locality: String?,
+          name: String?,
+          postal_code: String?,
+          region: String?
+        }
+      end
+
+      type contact =
+        {
+          email: String?,
+          first_name: String?,
+          last_name: String?,
+          phone_number: String?,
+          title: Surge::Models::OrganizationParams::Contact::title?,
+          title_other: String?
+        }
+
+      class Contact < Surge::Internal::Type::BaseModel
+        attr_accessor email: String?
+
+        attr_accessor first_name: String?
+
+        attr_accessor last_name: String?
+
+        attr_accessor phone_number: String?
+
+        attr_accessor title: Surge::Models::OrganizationParams::Contact::title?
+
+        attr_accessor title_other: String?
+
+        def initialize: (
+          ?email: String?,
+          ?first_name: String?,
+          ?last_name: String?,
+          ?phone_number: String?,
+          ?title: Surge::Models::OrganizationParams::Contact::title?,
+          ?title_other: String?
+        ) -> void
+
+        def to_hash: -> {
+          email: String?,
+          first_name: String?,
+          last_name: String?,
+          phone_number: String?,
+          title: Surge::Models::OrganizationParams::Contact::title?,
+          title_other: String?
+        }
+
+        type title =
+          :ceo | :cfo | :director | :gm | :vp | :general_counsel | :other
+
+        module Title
+          extend Surge::Internal::Type::Enum
+
+          CEO: :ceo
+          CFO: :cfo
+          DIRECTOR: :director
+          GM: :gm
+          VP: :vp
+          GENERAL_COUNSEL: :general_counsel
+          OTHER: :other
+
+          def self?.values: -> ::Array[Surge::Models::OrganizationParams::Contact::title]
+        end
+      end
+
+      type identifier_type = :ein
+
+      module IdentifierType
+        extend Surge::Internal::Type::Enum
+
+        EIN: :ein
+
+        def self?.values: -> ::Array[Surge::Models::OrganizationParams::identifier_type]
+      end
+
+      type industry =
+        :agriculture
+        | :automotive
+        | :banking
+        | :construction
+        | :consumer
+        | :education
+        | :electronics
+        | :energy
+        | :engineering
+        | :fast_moving_consumer_goods
+        | :financial
+        | :fintech
+        | :food_and_beverage
+        | :government
+        | :healthcare
+        | :hospitality
+        | :insurance
+        | :jewelry
+        | :legal
+        | :manufacturing
+        | :media
+        | :not_for_profit
+        | :oil_and_gas
+        | :online
+        | :professional_services
+        | :raw_materials
+        | :real_estate
+        | :religion
+        | :retail
+        | :technology
+        | :telecommunications
+        | :transportation
+        | :travel
+
+      module Industry
+        extend Surge::Internal::Type::Enum
+
+        AGRICULTURE: :agriculture
+        AUTOMOTIVE: :automotive
+        BANKING: :banking
+        CONSTRUCTION: :construction
+        CONSUMER: :consumer
+        EDUCATION: :education
+        ELECTRONICS: :electronics
+        ENERGY: :energy
+        ENGINEERING: :engineering
+        FAST_MOVING_CONSUMER_GOODS: :fast_moving_consumer_goods
+        FINANCIAL: :financial
+        FINTECH: :fintech
+        FOOD_AND_BEVERAGE: :food_and_beverage
+        GOVERNMENT: :government
+        HEALTHCARE: :healthcare
+        HOSPITALITY: :hospitality
+        INSURANCE: :insurance
+        JEWELRY: :jewelry
+        LEGAL: :legal
+        MANUFACTURING: :manufacturing
+        MEDIA: :media
+        NOT_FOR_PROFIT: :not_for_profit
+        OIL_AND_GAS: :oil_and_gas
+        ONLINE: :online
+        PROFESSIONAL_SERVICES: :professional_services
+        RAW_MATERIALS: :raw_materials
+        REAL_ESTATE: :real_estate
+        RELIGION: :religion
+        RETAIL: :retail
+        TECHNOLOGY: :technology
+        TELECOMMUNICATIONS: :telecommunications
+        TRANSPORTATION: :transportation
+        TRAVEL: :travel
+
+        def self?.values: -> ::Array[Surge::Models::OrganizationParams::industry]
+      end
+
+      type regions_of_operation =
+        :africa
+        | :asia
+        | :australia
+        | :europe
+        | :latin_america
+        | :usa_and_canada
+
+      module RegionsOfOperation
+        extend Surge::Internal::Type::Enum
+
+        AFRICA: :africa
+        ASIA: :asia
+        AUSTRALIA: :australia
+        EUROPE: :europe
+        LATIN_AMERICA: :latin_america
+        USA_AND_CANADA: :usa_and_canada
+
+        def self?.values: -> ::Array[Surge::Models::OrganizationParams::regions_of_operation]
+      end
+
+      type stock_exchange =
+        :amex
+        | :amx
+        | :asx
+        | :b3
+        | :bme
+        | :bse
+        | :fra
+        | :icex
+        | :jpx
+        | :jse
+        | :krx
+        | :lon
+        | :nasdaq
+        | :none
+        | :nyse
+        | :nse
+        | :omx
+        | :other
+        | :sehk
+        | :sgx
+        | :sse
+        | :sto
+        | :swx
+        | :szse
+        | :tsx
+        | :twse
+        | :vse
+
+      module StockExchange
+        extend Surge::Internal::Type::Enum
+
+        AMEX: :amex
+        AMX: :amx
+        ASX: :asx
+        B3: :b3
+        BME: :bme
+        BSE: :bse
+        FRA: :fra
+        ICEX: :icex
+        JPX: :jpx
+        JSE: :jse
+        KRX: :krx
+        LON: :lon
+        NASDAQ: :nasdaq
+        NONE: :none
+        NYSE: :nyse
+        NSE: :nse
+        OMX: :omx
+        OTHER: :other
+        SEHK: :sehk
+        SGX: :sgx
+        SSE: :sse
+        STO: :sto
+        SWX: :swx
+        SZSE: :szse
+        TSX: :tsx
+        TWSE: :twse
+        VSE: :vse
+
+        def self?.values: -> ::Array[Surge::Models::OrganizationParams::stock_exchange]
+      end
+
+      type type_ =
+        :co_op
+        | :government
+        | :llc
+        | :non_profit
+        | :partnership
+        | :private_corporation
+        | :public_corporation
+        | :sole_proprietor
+
+      module Type
+        extend Surge::Internal::Type::Enum
+
+        CO_OP: :co_op
+        GOVERNMENT: :government
+        LLC: :llc
+        NON_PROFIT: :non_profit
+        PARTNERSHIP: :partnership
+        PRIVATE_CORPORATION: :private_corporation
+        PUBLIC_CORPORATION: :public_corporation
+        SOLE_PROPRIETOR: :sole_proprietor
+
+        def self?.values: -> ::Array[Surge::Models::OrganizationParams::type_]
+      end
+    end
+  end
+end

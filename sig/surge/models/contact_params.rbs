@@ -1,0 +1,48 @@
+module Surge
+  module Models
+    type contact_params =
+      {
+        phone_number: String,
+        email: String,
+        first_name: String,
+        last_name: String,
+        metadata: ::Hash[Symbol, String]
+      }
+
+    class ContactParams < Surge::Internal::Type::BaseModel
+      attr_accessor phone_number: String
+
+      attr_reader email: String?
+
+      def email=: (String) -> String
+
+      attr_reader first_name: String?
+
+      def first_name=: (String) -> String
+
+      attr_reader last_name: String?
+
+      def last_name=: (String) -> String
+
+      attr_reader metadata: ::Hash[Symbol, String]?
+
+      def metadata=: (::Hash[Symbol, String]) -> ::Hash[Symbol, String]
+
+      def initialize: (
+        phone_number: String,
+        ?email: String,
+        ?first_name: String,
+        ?last_name: String,
+        ?metadata: ::Hash[Symbol, String]
+      ) -> void
+
+      def to_hash: -> {
+        phone_number: String,
+        email: String,
+        first_name: String,
+        last_name: String,
+        metadata: ::Hash[Symbol, String]
+      }
+    end
+  end
+end

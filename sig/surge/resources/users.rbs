@@ -1,0 +1,36 @@
+module Surge
+  module Resources
+    class Users
+      def create: (
+        String account_id,
+        first_name: String,
+        ?last_name: String,
+        ?metadata: ::Hash[Symbol, String],
+        ?photo_url: String,
+        ?request_options: Surge::request_opts
+      ) -> Surge::User
+
+      def retrieve: (
+        String id,
+        ?request_options: Surge::request_opts
+      ) -> Surge::User
+
+      def update: (
+        String id,
+        first_name: String,
+        ?last_name: String,
+        ?metadata: ::Hash[Symbol, String],
+        ?photo_url: String,
+        ?request_options: Surge::request_opts
+      ) -> Surge::User
+
+      def create_token: (
+        String user_id,
+        ?duration_seconds: Integer,
+        ?request_options: Surge::request_opts
+      ) -> Surge::UserTokenResponse
+
+      def initialize: (client: Surge::Client) -> void
+    end
+  end
+end

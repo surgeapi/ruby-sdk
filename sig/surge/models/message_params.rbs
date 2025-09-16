@@ -1,0 +1,121 @@
+module Surge
+  module Models
+    type message_params =
+      Surge::MessageParams::MessageParamsWithConversation
+      | Surge::MessageParams::SimpleMessageParams
+
+    module MessageParams
+      extend Surge::Internal::Type::Union
+
+      type message_params_with_conversation =
+        {
+          conversation: Surge::MessageParams::MessageParamsWithConversation::Conversation,
+          attachments: ::Array[Surge::AttachmentParams],
+          body: String,
+          send_at: Time
+        }
+
+      class MessageParamsWithConversation < Surge::Internal::Type::BaseModel
+        attr_accessor conversation: Surge::MessageParams::MessageParamsWithConversation::Conversation
+
+        attr_reader attachments: ::Array[Surge::AttachmentParams]?
+
+        def attachments=: (
+          ::Array[Surge::AttachmentParams]
+        ) -> ::Array[Surge::AttachmentParams]
+
+        attr_reader body: String?
+
+        def body=: (String) -> String
+
+        attr_reader send_at: Time?
+
+        def send_at=: (Time) -> Time
+
+        def initialize: (
+          conversation: Surge::MessageParams::MessageParamsWithConversation::Conversation,
+          ?attachments: ::Array[Surge::AttachmentParams],
+          ?body: String,
+          ?send_at: Time
+        ) -> void
+
+        def to_hash: -> {
+          conversation: Surge::MessageParams::MessageParamsWithConversation::Conversation,
+          attachments: ::Array[Surge::AttachmentParams],
+          body: String,
+          send_at: Time
+        }
+
+        type conversation =
+          { contact: Surge::ContactParams, phone_number: String }
+
+        class Conversation < Surge::Internal::Type::BaseModel
+          attr_accessor contact: Surge::ContactParams
+
+          attr_reader phone_number: String?
+
+          def phone_number=: (String) -> String
+
+          def initialize: (
+            contact: Surge::ContactParams,
+            ?phone_number: String
+          ) -> void
+
+          def to_hash: -> {
+            contact: Surge::ContactParams,
+            phone_number: String
+          }
+        end
+      end
+
+      type simple_message_params =
+        {
+          to: String,
+          attachments: ::Array[Surge::AttachmentParams],
+          body: String,
+          from: String,
+          send_at: Time
+        }
+
+      class SimpleMessageParams < Surge::Internal::Type::BaseModel
+        attr_accessor to: String
+
+        attr_reader attachments: ::Array[Surge::AttachmentParams]?
+
+        def attachments=: (
+          ::Array[Surge::AttachmentParams]
+        ) -> ::Array[Surge::AttachmentParams]
+
+        attr_reader body: String?
+
+        def body=: (String) -> String
+
+        attr_reader from: String?
+
+        def from=: (String) -> String
+
+        attr_reader send_at: Time?
+
+        def send_at=: (Time) -> Time
+
+        def initialize: (
+          to: String,
+          ?attachments: ::Array[Surge::AttachmentParams],
+          ?body: String,
+          ?from: String,
+          ?send_at: Time
+        ) -> void
+
+        def to_hash: -> {
+          to: String,
+          attachments: ::Array[Surge::AttachmentParams],
+          body: String,
+          from: String,
+          send_at: Time
+        }
+      end
+
+      def self?.variants: -> ::Array[Surge::Models::message_params]
+    end
+  end
+end
