@@ -1,0 +1,158 @@
+module SurgeAPI
+  module Models
+    type message_failed_webhook_event =
+      {
+        account_id: String,
+        data: SurgeAPI::MessageFailedWebhookEvent::Data,
+        timestamp: Time,
+        type: SurgeAPI::Models::MessageFailedWebhookEvent::type_
+      }
+
+    class MessageFailedWebhookEvent < SurgeAPI::Internal::Type::BaseModel
+      attr_accessor account_id: String
+
+      attr_accessor data: SurgeAPI::MessageFailedWebhookEvent::Data
+
+      attr_accessor timestamp: Time
+
+      attr_accessor type: SurgeAPI::Models::MessageFailedWebhookEvent::type_
+
+      def initialize: (
+        account_id: String,
+        data: SurgeAPI::MessageFailedWebhookEvent::Data,
+        timestamp: Time,
+        type: SurgeAPI::Models::MessageFailedWebhookEvent::type_
+      ) -> void
+
+      def to_hash: -> {
+        account_id: String,
+        data: SurgeAPI::MessageFailedWebhookEvent::Data,
+        timestamp: Time,
+        type: SurgeAPI::Models::MessageFailedWebhookEvent::type_
+      }
+
+      type data =
+        {
+          id: String,
+          body: String,
+          conversation: SurgeAPI::MessageFailedWebhookEvent::Data::Conversation,
+          failed_at: Time,
+          failure_reason: String,
+          attachments: ::Array[SurgeAPI::MessageFailedWebhookEvent::Data::Attachment]
+        }
+
+      class Data < SurgeAPI::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor body: String
+
+        attr_accessor conversation: SurgeAPI::MessageFailedWebhookEvent::Data::Conversation
+
+        attr_accessor failed_at: Time
+
+        attr_accessor failure_reason: String
+
+        attr_reader attachments: ::Array[SurgeAPI::MessageFailedWebhookEvent::Data::Attachment]?
+
+        def attachments=: (
+          ::Array[SurgeAPI::MessageFailedWebhookEvent::Data::Attachment]
+        ) -> ::Array[SurgeAPI::MessageFailedWebhookEvent::Data::Attachment]
+
+        def initialize: (
+          id: String,
+          body: String,
+          conversation: SurgeAPI::MessageFailedWebhookEvent::Data::Conversation,
+          failed_at: Time,
+          failure_reason: String,
+          ?attachments: ::Array[SurgeAPI::MessageFailedWebhookEvent::Data::Attachment]
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          body: String,
+          conversation: SurgeAPI::MessageFailedWebhookEvent::Data::Conversation,
+          failed_at: Time,
+          failure_reason: String,
+          attachments: ::Array[SurgeAPI::MessageFailedWebhookEvent::Data::Attachment]
+        }
+
+        type conversation =
+          {
+            id: String,
+            contact: SurgeAPI::Contact,
+            phone_number: SurgeAPI::PhoneNumber
+          }
+
+        class Conversation < SurgeAPI::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor contact: SurgeAPI::Contact
+
+          attr_accessor phone_number: SurgeAPI::PhoneNumber
+
+          def initialize: (
+            id: String,
+            contact: SurgeAPI::Contact,
+            phone_number: SurgeAPI::PhoneNumber
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            contact: SurgeAPI::Contact,
+            phone_number: SurgeAPI::PhoneNumber
+          }
+        end
+
+        type attachment =
+          {
+            id: String,
+            type: SurgeAPI::Models::MessageFailedWebhookEvent::Data::Attachment::type_,
+            url: String
+          }
+
+        class Attachment < SurgeAPI::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor type: SurgeAPI::Models::MessageFailedWebhookEvent::Data::Attachment::type_
+
+          attr_accessor url: String
+
+          def initialize: (
+            id: String,
+            type: SurgeAPI::Models::MessageFailedWebhookEvent::Data::Attachment::type_,
+            url: String
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            type: SurgeAPI::Models::MessageFailedWebhookEvent::Data::Attachment::type_,
+            url: String
+          }
+
+          type type_ = :file | :image | :link | :video
+
+          module Type
+            extend SurgeAPI::Internal::Type::Enum
+
+            FILE: :file
+            IMAGE: :image
+            LINK: :link
+            VIDEO: :video
+
+            def self?.values: -> ::Array[SurgeAPI::Models::MessageFailedWebhookEvent::Data::Attachment::type_]
+          end
+        end
+      end
+
+      type type_ = :"message.failed"
+
+      module Type
+        extend SurgeAPI::Internal::Type::Enum
+
+        MESSAGE_FAILED: :"message.failed"
+
+        def self?.values: -> ::Array[SurgeAPI::Models::MessageFailedWebhookEvent::type_]
+      end
+    end
+  end
+end

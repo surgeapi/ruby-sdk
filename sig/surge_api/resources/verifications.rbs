@@ -1,0 +1,18 @@
+module SurgeAPI
+  module Resources
+    class Verifications
+      def create: (
+        phone_number: String,
+        ?request_options: SurgeAPI::request_opts
+      ) -> SurgeAPI::Verification
+
+      def check: (
+        String id,
+        code: String,
+        ?request_options: SurgeAPI::request_opts
+      ) -> SurgeAPI::VerificationCheck
+
+      def initialize: (client: SurgeAPI::Client) -> void
+    end
+  end
+end

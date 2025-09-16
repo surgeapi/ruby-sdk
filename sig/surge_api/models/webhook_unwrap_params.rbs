@@ -1,0 +1,15 @@
+module SurgeAPI
+  module Models
+    type webhook_unwrap_params =
+      {  } & SurgeAPI::Internal::Type::request_parameters
+
+    class WebhookUnwrapParams < SurgeAPI::Internal::Type::BaseModel
+      extend SurgeAPI::Internal::Type::RequestParameters::Converter
+      include SurgeAPI::Internal::Type::RequestParameters
+
+      def initialize: (?request_options: SurgeAPI::request_opts) -> void
+
+      def to_hash: -> { request_options: SurgeAPI::RequestOptions }
+    end
+  end
+end

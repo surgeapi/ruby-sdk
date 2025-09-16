@@ -11,7 +11,7 @@ GIT
 PATH
   remote: .
   specs:
-    surge (0.0.1)
+    surge_api (0.0.1)
       connection_pool
 
 GEM
@@ -214,7 +214,7 @@ DEPENDENCIES
   rubocop
   sorbet
   steep
-  surge!
+  surge_api!
   syntax_tree
   syntax_tree-rbs!
   tapioca

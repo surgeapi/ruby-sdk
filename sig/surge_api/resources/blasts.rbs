@@ -1,0 +1,19 @@
+module SurgeAPI
+  module Resources
+    class Blasts
+      def create: (
+        String account_id,
+        ?attachments: ::Array[SurgeAPI::AttachmentParams],
+        ?body: String,
+        ?contacts: ::Array[String],
+        ?name: String,
+        ?segments: ::Array[String],
+        ?send_at: Time,
+        ?to: ::Array[String],
+        ?request_options: SurgeAPI::request_opts
+      ) -> SurgeAPI::Blast
+
+      def initialize: (client: SurgeAPI::Client) -> void
+    end
+  end
+end

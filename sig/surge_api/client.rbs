@@ -1,0 +1,42 @@
+module SurgeAPI
+  class Client < SurgeAPI::Internal::Transport::BaseClient
+    DEFAULT_MAX_RETRIES: 2
+
+    DEFAULT_TIMEOUT_IN_SECONDS: Float
+
+    DEFAULT_INITIAL_RETRY_DELAY: Float
+
+    DEFAULT_MAX_RETRY_DELAY: Float
+
+    attr_reader api_key: String
+
+    attr_reader accounts: SurgeAPI::Resources::Accounts
+
+    attr_reader blasts: SurgeAPI::Resources::Blasts
+
+    attr_reader campaigns: SurgeAPI::Resources::Campaigns
+
+    attr_reader contacts: SurgeAPI::Resources::Contacts
+
+    attr_reader messages: SurgeAPI::Resources::Messages
+
+    attr_reader phone_numbers: SurgeAPI::Resources::PhoneNumbers
+
+    attr_reader users: SurgeAPI::Resources::Users
+
+    attr_reader verifications: SurgeAPI::Resources::Verifications
+
+    attr_reader webhooks: SurgeAPI::Resources::Webhooks
+
+    private def auth_headers: -> ::Hash[String, String]
+
+    def initialize: (
+      ?api_key: String?,
+      ?base_url: String?,
+      ?max_retries: Integer,
+      ?timeout: Float,
+      ?initial_retry_delay: Float,
+      ?max_retry_delay: Float
+    ) -> void
+  end
+end

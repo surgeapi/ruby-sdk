@@ -1,0 +1,72 @@
+module SurgeAPI
+  module Models
+    type conversation_created_webhook_event =
+      {
+        account_id: String,
+        data: SurgeAPI::ConversationCreatedWebhookEvent::Data,
+        timestamp: Time,
+        type: SurgeAPI::Models::ConversationCreatedWebhookEvent::type_
+      }
+
+    class ConversationCreatedWebhookEvent < SurgeAPI::Internal::Type::BaseModel
+      attr_accessor account_id: String
+
+      attr_accessor data: SurgeAPI::ConversationCreatedWebhookEvent::Data
+
+      attr_accessor timestamp: Time
+
+      attr_accessor type: SurgeAPI::Models::ConversationCreatedWebhookEvent::type_
+
+      def initialize: (
+        account_id: String,
+        data: SurgeAPI::ConversationCreatedWebhookEvent::Data,
+        timestamp: Time,
+        type: SurgeAPI::Models::ConversationCreatedWebhookEvent::type_
+      ) -> void
+
+      def to_hash: -> {
+        account_id: String,
+        data: SurgeAPI::ConversationCreatedWebhookEvent::Data,
+        timestamp: Time,
+        type: SurgeAPI::Models::ConversationCreatedWebhookEvent::type_
+      }
+
+      type data =
+        {
+          id: String,
+          contact: SurgeAPI::Contact,
+          phone_number: SurgeAPI::PhoneNumber
+        }
+
+      class Data < SurgeAPI::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor contact: SurgeAPI::Contact
+
+        attr_accessor phone_number: SurgeAPI::PhoneNumber
+
+        def initialize: (
+          id: String,
+          contact: SurgeAPI::Contact,
+          phone_number: SurgeAPI::PhoneNumber
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          contact: SurgeAPI::Contact,
+          phone_number: SurgeAPI::PhoneNumber
+        }
+      end
+
+      type type_ = :"conversation.created"
+
+      module Type
+        extend SurgeAPI::Internal::Type::Enum
+
+        CONVERSATION_CREATED: :"conversation.created"
+
+        def self?.values: -> ::Array[SurgeAPI::Models::ConversationCreatedWebhookEvent::type_]
+      end
+    end
+  end
+end

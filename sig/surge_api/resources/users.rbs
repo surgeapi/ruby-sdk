@@ -1,0 +1,36 @@
+module SurgeAPI
+  module Resources
+    class Users
+      def create: (
+        String account_id,
+        first_name: String,
+        ?last_name: String,
+        ?metadata: ::Hash[Symbol, String],
+        ?photo_url: String,
+        ?request_options: SurgeAPI::request_opts
+      ) -> SurgeAPI::User
+
+      def retrieve: (
+        String id,
+        ?request_options: SurgeAPI::request_opts
+      ) -> SurgeAPI::User
+
+      def update: (
+        String id,
+        first_name: String,
+        ?last_name: String,
+        ?metadata: ::Hash[Symbol, String],
+        ?photo_url: String,
+        ?request_options: SurgeAPI::request_opts
+      ) -> SurgeAPI::User
+
+      def create_token: (
+        String user_id,
+        ?duration_seconds: Integer,
+        ?request_options: SurgeAPI::request_opts
+      ) -> SurgeAPI::UserTokenResponse
+
+      def initialize: (client: SurgeAPI::Client) -> void
+    end
+  end
+end

@@ -1,0 +1,40 @@
+module SurgeAPI
+  module Models
+    type account =
+      {
+        id: String,
+        brand_name: String?,
+        name: String,
+        organization: SurgeAPI::Organization,
+        time_zone: String?
+      }
+
+    class Account < SurgeAPI::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor brand_name: String?
+
+      attr_accessor name: String
+
+      attr_accessor organization: SurgeAPI::Organization
+
+      attr_accessor time_zone: String?
+
+      def initialize: (
+        id: String,
+        brand_name: String?,
+        name: String,
+        organization: SurgeAPI::Organization,
+        time_zone: String?
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        brand_name: String?,
+        name: String,
+        organization: SurgeAPI::Organization,
+        time_zone: String?
+      }
+    end
+  end
+end

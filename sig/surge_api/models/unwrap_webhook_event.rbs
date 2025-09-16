@@ -1,0 +1,18 @@
+module SurgeAPI
+  module Models
+    type unwrap_webhook_event =
+      SurgeAPI::CallEndedWebhookEvent
+      | SurgeAPI::CampaignApprovedWebhookEvent
+      | SurgeAPI::ConversationCreatedWebhookEvent
+      | SurgeAPI::MessageDeliveredWebhookEvent
+      | SurgeAPI::MessageFailedWebhookEvent
+      | SurgeAPI::MessageReceivedWebhookEvent
+      | SurgeAPI::MessageSentWebhookEvent
+
+    module UnwrapWebhookEvent
+      extend SurgeAPI::Internal::Type::Union
+
+      def self?.variants: -> ::Array[SurgeAPI::Models::unwrap_webhook_event]
+    end
+  end
+end

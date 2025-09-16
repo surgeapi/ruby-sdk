@@ -1,0 +1,37 @@
+module SurgeAPI
+  module Models
+    type phone_number =
+      { id: String, number: String, type: SurgeAPI::Models::PhoneNumber::type_ }
+
+    class PhoneNumber < SurgeAPI::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor number: String
+
+      attr_accessor type: SurgeAPI::Models::PhoneNumber::type_
+
+      def initialize: (
+        id: String,
+        number: String,
+        type: SurgeAPI::Models::PhoneNumber::type_
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        number: String,
+        type: SurgeAPI::Models::PhoneNumber::type_
+      }
+
+      type type_ = :local | :toll_free
+
+      module Type
+        extend SurgeAPI::Internal::Type::Enum
+
+        LOCAL: :local
+        TOLL_FREE: :toll_free
+
+        def self?.values: -> ::Array[SurgeAPI::Models::PhoneNumber::type_]
+      end
+    end
+  end
+end
