@@ -73,7 +73,7 @@ module SurgeAPI
       #
       # @param account_id [String] ID of the account to check
       #
-      # @param capabilities [Array<Symbol, SurgeAPI::Models::AccountRetrieveStatusParams::Capability>]
+      # @param capabilities [Array<Symbol, SurgeAPI::Models::AccountRetrieveStatusParams::Capability>] capabilities about which to check the status
       #
       # @param request_options [SurgeAPI::RequestOptions, Hash{Symbol=>Object}, nil]
       #

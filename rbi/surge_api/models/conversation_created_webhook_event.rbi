@@ -31,22 +31,15 @@ module SurgeAPI
       attr_accessor :timestamp
 
       # The type of the event. Always `conversation.created` for this event.
-      sig do
-        returns(SurgeAPI::ConversationCreatedWebhookEvent::Type::TaggedSymbol)
-      end
+      sig { returns(Symbol) }
       attr_accessor :type
 
-      # The `conversation.created` event is delivered whenever a new conversation is
-      # started with a contact. This could be when either the contact sends a message to
-      # your Surge number or when you create a conversation, whether by sending an
-      # initial message to the contact or by manually creating the conversation using
-      # the API.
       sig do
         params(
           account_id: String,
           data: SurgeAPI::ConversationCreatedWebhookEvent::Data::OrHash,
           timestamp: Time,
-          type: SurgeAPI::ConversationCreatedWebhookEvent::Type::OrSymbol
+          type: Symbol
         ).returns(T.attached_class)
       end
       def self.new(
@@ -57,7 +50,7 @@ module SurgeAPI
         # The timestamp when this event occurred, in ISO8601 format
         timestamp:,
         # The type of the event. Always `conversation.created` for this event.
-        type:
+        type: :"conversation.created"
       )
       end
 
@@ -67,7 +60,7 @@ module SurgeAPI
             account_id: String,
             data: SurgeAPI::ConversationCreatedWebhookEvent::Data,
             timestamp: Time,
-            type: SurgeAPI::ConversationCreatedWebhookEvent::Type::TaggedSymbol
+            type: Symbol
           }
         )
       end
@@ -129,33 +122,6 @@ module SurgeAPI
           )
         end
         def to_hash
-        end
-      end
-
-      # The type of the event. Always `conversation.created` for this event.
-      module Type
-        extend SurgeAPI::Internal::Type::Enum
-
-        TaggedSymbol =
-          T.type_alias do
-            T.all(Symbol, SurgeAPI::ConversationCreatedWebhookEvent::Type)
-          end
-        OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-        CONVERSATION_CREATED =
-          T.let(
-            :"conversation.created",
-            SurgeAPI::ConversationCreatedWebhookEvent::Type::TaggedSymbol
-          )
-
-        sig do
-          override.returns(
-            T::Array[
-              SurgeAPI::ConversationCreatedWebhookEvent::Type::TaggedSymbol
-            ]
-          )
-        end
-        def self.values
         end
       end
     end

@@ -29,17 +29,15 @@ module SurgeAPI
       attr_accessor :timestamp
 
       # The type of the event. Always `message.failed` for this event.
-      sig { returns(SurgeAPI::MessageFailedWebhookEvent::Type::TaggedSymbol) }
+      sig { returns(Symbol) }
       attr_accessor :type
 
-      # The `message.failed` event is delivered whenever a message sent from your Surge
-      # number fails to be delivered.
       sig do
         params(
           account_id: String,
           data: SurgeAPI::MessageFailedWebhookEvent::Data::OrHash,
           timestamp: Time,
-          type: SurgeAPI::MessageFailedWebhookEvent::Type::OrSymbol
+          type: Symbol
         ).returns(T.attached_class)
       end
       def self.new(
@@ -50,7 +48,7 @@ module SurgeAPI
         # The timestamp when this event occurred, in ISO8601 format
         timestamp:,
         # The type of the event. Always `message.failed` for this event.
-        type:
+        type: :"message.failed"
       )
       end
 
@@ -60,7 +58,7 @@ module SurgeAPI
             account_id: String,
             data: SurgeAPI::MessageFailedWebhookEvent::Data,
             timestamp: Time,
-            type: SurgeAPI::MessageFailedWebhookEvent::Type::TaggedSymbol
+            type: Symbol
           }
         )
       end
@@ -330,31 +328,6 @@ module SurgeAPI
             def self.values
             end
           end
-        end
-      end
-
-      # The type of the event. Always `message.failed` for this event.
-      module Type
-        extend SurgeAPI::Internal::Type::Enum
-
-        TaggedSymbol =
-          T.type_alias do
-            T.all(Symbol, SurgeAPI::MessageFailedWebhookEvent::Type)
-          end
-        OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-        MESSAGE_FAILED =
-          T.let(
-            :"message.failed",
-            SurgeAPI::MessageFailedWebhookEvent::Type::TaggedSymbol
-          )
-
-        sig do
-          override.returns(
-            T::Array[SurgeAPI::MessageFailedWebhookEvent::Type::TaggedSymbol]
-          )
-        end
-        def self.values
         end
       end
     end

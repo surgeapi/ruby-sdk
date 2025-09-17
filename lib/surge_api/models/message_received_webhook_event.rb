@@ -24,20 +24,17 @@ module SurgeAPI
       # @!attribute type
       #   The type of the event. Always `message.received` for this event.
       #
-      #   @return [Symbol, SurgeAPI::Models::MessageReceivedWebhookEvent::Type]
-      required :type, enum: -> { SurgeAPI::MessageReceivedWebhookEvent::Type }
+      #   @return [Symbol, :"message.received"]
+      required :type, const: :"message.received"
 
-      # @!method initialize(account_id:, data:, timestamp:, type:)
-      #   The `message.received` event is delivered whenever a message is received at a
-      #   Surge number from a contact.
-      #
+      # @!method initialize(account_id:, data:, timestamp:, type: :"message.received")
       #   @param account_id [String] The ID of the account in which this event occurred
       #
       #   @param data [SurgeAPI::Models::MessageReceivedWebhookEvent::Data] The data associated with the event
       #
       #   @param timestamp [Time] The timestamp when this event occurred, in ISO8601 format
       #
-      #   @param type [Symbol, SurgeAPI::Models::MessageReceivedWebhookEvent::Type] The type of the event. Always `message.received` for this event.
+      #   @param type [Symbol, :"message.received"] The type of the event. Always `message.received` for this event.
 
       # @see SurgeAPI::Models::MessageReceivedWebhookEvent#data
       class Data < SurgeAPI::Internal::Type::BaseModel
@@ -156,18 +153,6 @@ module SurgeAPI
             #   @return [Array<Symbol>]
           end
         end
-      end
-
-      # The type of the event. Always `message.received` for this event.
-      #
-      # @see SurgeAPI::Models::MessageReceivedWebhookEvent#type
-      module Type
-        extend SurgeAPI::Internal::Type::Enum
-
-        MESSAGE_RECEIVED = :"message.received"
-
-        # @!method self.values
-        #   @return [Array<Symbol>]
       end
     end
   end

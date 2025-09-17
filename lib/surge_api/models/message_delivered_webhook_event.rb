@@ -24,24 +24,17 @@ module SurgeAPI
       # @!attribute type
       #   The type of the event. Always `message.delivered` for this event.
       #
-      #   @return [Symbol, SurgeAPI::Models::MessageDeliveredWebhookEvent::Type]
-      required :type, enum: -> { SurgeAPI::MessageDeliveredWebhookEvent::Type }
+      #   @return [Symbol, :"message.delivered"]
+      required :type, const: :"message.delivered"
 
-      # @!method initialize(account_id:, data:, timestamp:, type:)
-      #   The `message.delivered` event is delivered whenever a message sent from a Surge
-      #   number is successfully delivered to the recipient. When the message is sent from
-      #   a short code or toll-free number, this means that the message arrived on the
-      #   recipient's device. When sent from a local number, this means that the message
-      #   was successfully handed off to the recipient's mobile carrier, but does not
-      #   guarantee that it arrived on the recipient's device.
-      #
+      # @!method initialize(account_id:, data:, timestamp:, type: :"message.delivered")
       #   @param account_id [String] The ID of the account in which this event occurred
       #
       #   @param data [SurgeAPI::Models::MessageDeliveredWebhookEvent::Data] The data associated with the event
       #
       #   @param timestamp [Time] The timestamp when this event occurred, in ISO8601 format
       #
-      #   @param type [Symbol, SurgeAPI::Models::MessageDeliveredWebhookEvent::Type] The type of the event. Always `message.delivered` for this event.
+      #   @param type [Symbol, :"message.delivered"] The type of the event. Always `message.delivered` for this event.
 
       # @see SurgeAPI::Models::MessageDeliveredWebhookEvent#data
       class Data < SurgeAPI::Internal::Type::BaseModel
@@ -160,18 +153,6 @@ module SurgeAPI
             #   @return [Array<Symbol>]
           end
         end
-      end
-
-      # The type of the event. Always `message.delivered` for this event.
-      #
-      # @see SurgeAPI::Models::MessageDeliveredWebhookEvent#type
-      module Type
-        extend SurgeAPI::Internal::Type::Enum
-
-        MESSAGE_DELIVERED = :"message.delivered"
-
-        # @!method self.values
-        #   @return [Array<Symbol>]
       end
     end
   end

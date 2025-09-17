@@ -24,17 +24,15 @@ module SurgeAPI
       attr_accessor :timestamp
 
       # The type of the event. Always `call.ended` for this event.
-      sig { returns(SurgeAPI::CallEndedWebhookEvent::Type::TaggedSymbol) }
+      sig { returns(Symbol) }
       attr_accessor :type
 
-      # The `call.ended` event is delivered whenever a call is completed between a Surge
-      # number you own and another phone number.
       sig do
         params(
           account_id: String,
           data: SurgeAPI::CallEndedWebhookEvent::Data::OrHash,
           timestamp: Time,
-          type: SurgeAPI::CallEndedWebhookEvent::Type::OrSymbol
+          type: Symbol
         ).returns(T.attached_class)
       end
       def self.new(
@@ -45,7 +43,7 @@ module SurgeAPI
         # The timestamp when this event occurred, in ISO8601 format
         timestamp:,
         # The type of the event. Always `call.ended` for this event.
-        type:
+        type: :"call.ended"
       )
       end
 
@@ -55,7 +53,7 @@ module SurgeAPI
             account_id: String,
             data: SurgeAPI::CallEndedWebhookEvent::Data,
             timestamp: Time,
-            type: SurgeAPI::CallEndedWebhookEvent::Type::TaggedSymbol
+            type: Symbol
           }
         )
       end
@@ -200,29 +198,6 @@ module SurgeAPI
           end
           def self.values
           end
-        end
-      end
-
-      # The type of the event. Always `call.ended` for this event.
-      module Type
-        extend SurgeAPI::Internal::Type::Enum
-
-        TaggedSymbol =
-          T.type_alias { T.all(Symbol, SurgeAPI::CallEndedWebhookEvent::Type) }
-        OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-        CALL_ENDED =
-          T.let(
-            :"call.ended",
-            SurgeAPI::CallEndedWebhookEvent::Type::TaggedSymbol
-          )
-
-        sig do
-          override.returns(
-            T::Array[SurgeAPI::CallEndedWebhookEvent::Type::TaggedSymbol]
-          )
-        end
-        def self.values
         end
       end
     end

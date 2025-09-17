@@ -8,13 +8,15 @@ module SurgeAPI
       include SurgeAPI::Internal::Type::RequestParameters
 
       # @!attribute capabilities
+      #   capabilities about which to check the status
       #
       #   @return [Array<Symbol, SurgeAPI::Models::AccountRetrieveStatusParams::Capability>, nil]
       optional :capabilities,
                -> { SurgeAPI::Internal::Type::ArrayOf[enum: SurgeAPI::AccountRetrieveStatusParams::Capability] }
 
       # @!method initialize(capabilities: nil, request_options: {})
-      #   @param capabilities [Array<Symbol, SurgeAPI::Models::AccountRetrieveStatusParams::Capability>]
+      #   @param capabilities [Array<Symbol, SurgeAPI::Models::AccountRetrieveStatusParams::Capability>] capabilities about which to check the status
+      #
       #   @param request_options [SurgeAPI::RequestOptions, Hash{Symbol=>Object}]
 
       module Capability

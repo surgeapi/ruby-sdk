@@ -2,8 +2,6 @@
 
 module SurgeAPI
   module Models
-    # The `call.ended` event is delivered whenever a call is completed between a Surge
-    # number you own and another phone number.
     module UnwrapWebhookEvent
       extend SurgeAPI::Internal::Type::Union
 

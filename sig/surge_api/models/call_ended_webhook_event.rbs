@@ -5,7 +5,7 @@ module SurgeAPI
         account_id: String,
         data: SurgeAPI::CallEndedWebhookEvent::Data,
         timestamp: Time,
-        type: SurgeAPI::Models::CallEndedWebhookEvent::type_
+        type: :"call.ended"
       }
 
     class CallEndedWebhookEvent < SurgeAPI::Internal::Type::BaseModel
@@ -15,20 +15,20 @@ module SurgeAPI
 
       attr_accessor timestamp: Time
 
-      attr_accessor type: SurgeAPI::Models::CallEndedWebhookEvent::type_
+      attr_accessor type: :"call.ended"
 
       def initialize: (
         account_id: String,
         data: SurgeAPI::CallEndedWebhookEvent::Data,
         timestamp: Time,
-        type: SurgeAPI::Models::CallEndedWebhookEvent::type_
+        ?type: :"call.ended"
       ) -> void
 
       def to_hash: -> {
         account_id: String,
         data: SurgeAPI::CallEndedWebhookEvent::Data,
         timestamp: Time,
-        type: SurgeAPI::Models::CallEndedWebhookEvent::type_
+        type: :"call.ended"
       }
 
       type data =
@@ -93,16 +93,6 @@ module SurgeAPI
 
           def self?.values: -> ::Array[SurgeAPI::Models::CallEndedWebhookEvent::Data::status]
         end
-      end
-
-      type type_ = :"call.ended"
-
-      module Type
-        extend SurgeAPI::Internal::Type::Enum
-
-        CALL_ENDED: :"call.ended"
-
-        def self?.values: -> ::Array[SurgeAPI::Models::CallEndedWebhookEvent::type_]
       end
     end
   end

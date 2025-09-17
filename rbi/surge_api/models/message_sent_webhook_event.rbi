@@ -24,17 +24,15 @@ module SurgeAPI
       attr_accessor :timestamp
 
       # The type of the event. Always `message.sent` for this event.
-      sig { returns(SurgeAPI::MessageSentWebhookEvent::Type::TaggedSymbol) }
+      sig { returns(Symbol) }
       attr_accessor :type
 
-      # The `message.sent` event is delivered whenever a message is sent from a Surge
-      # number to a contact.
       sig do
         params(
           account_id: String,
           data: SurgeAPI::MessageSentWebhookEvent::Data::OrHash,
           timestamp: Time,
-          type: SurgeAPI::MessageSentWebhookEvent::Type::OrSymbol
+          type: Symbol
         ).returns(T.attached_class)
       end
       def self.new(
@@ -45,7 +43,7 @@ module SurgeAPI
         # The timestamp when this event occurred, in ISO8601 format
         timestamp:,
         # The type of the event. Always `message.sent` for this event.
-        type:
+        type: :"message.sent"
       )
       end
 
@@ -55,7 +53,7 @@ module SurgeAPI
             account_id: String,
             data: SurgeAPI::MessageSentWebhookEvent::Data,
             timestamp: Time,
-            type: SurgeAPI::MessageSentWebhookEvent::Type::TaggedSymbol
+            type: Symbol
           }
         )
       end
@@ -317,31 +315,6 @@ module SurgeAPI
             def self.values
             end
           end
-        end
-      end
-
-      # The type of the event. Always `message.sent` for this event.
-      module Type
-        extend SurgeAPI::Internal::Type::Enum
-
-        TaggedSymbol =
-          T.type_alias do
-            T.all(Symbol, SurgeAPI::MessageSentWebhookEvent::Type)
-          end
-        OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-        MESSAGE_SENT =
-          T.let(
-            :"message.sent",
-            SurgeAPI::MessageSentWebhookEvent::Type::TaggedSymbol
-          )
-
-        sig do
-          override.returns(
-            T::Array[SurgeAPI::MessageSentWebhookEvent::Type::TaggedSymbol]
-          )
-        end
-        def self.values
         end
       end
     end

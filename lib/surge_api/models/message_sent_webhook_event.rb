@@ -24,20 +24,17 @@ module SurgeAPI
       # @!attribute type
       #   The type of the event. Always `message.sent` for this event.
       #
-      #   @return [Symbol, SurgeAPI::Models::MessageSentWebhookEvent::Type]
-      required :type, enum: -> { SurgeAPI::MessageSentWebhookEvent::Type }
+      #   @return [Symbol, :"message.sent"]
+      required :type, const: :"message.sent"
 
-      # @!method initialize(account_id:, data:, timestamp:, type:)
-      #   The `message.sent` event is delivered whenever a message is sent from a Surge
-      #   number to a contact.
-      #
+      # @!method initialize(account_id:, data:, timestamp:, type: :"message.sent")
       #   @param account_id [String] The ID of the account in which this event occurred
       #
       #   @param data [SurgeAPI::Models::MessageSentWebhookEvent::Data] The data associated with the event
       #
       #   @param timestamp [Time] The timestamp when this event occurred, in ISO8601 format
       #
-      #   @param type [Symbol, SurgeAPI::Models::MessageSentWebhookEvent::Type] The type of the event. Always `message.sent` for this event.
+      #   @param type [Symbol, :"message.sent"] The type of the event. Always `message.sent` for this event.
 
       # @see SurgeAPI::Models::MessageSentWebhookEvent#data
       class Data < SurgeAPI::Internal::Type::BaseModel
@@ -156,18 +153,6 @@ module SurgeAPI
             #   @return [Array<Symbol>]
           end
         end
-      end
-
-      # The type of the event. Always `message.sent` for this event.
-      #
-      # @see SurgeAPI::Models::MessageSentWebhookEvent#type
-      module Type
-        extend SurgeAPI::Internal::Type::Enum
-
-        MESSAGE_SENT = :"message.sent"
-
-        # @!method self.values
-        #   @return [Array<Symbol>]
       end
     end
   end

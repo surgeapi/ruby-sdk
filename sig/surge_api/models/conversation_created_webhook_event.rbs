@@ -5,7 +5,7 @@ module SurgeAPI
         account_id: String,
         data: SurgeAPI::ConversationCreatedWebhookEvent::Data,
         timestamp: Time,
-        type: SurgeAPI::Models::ConversationCreatedWebhookEvent::type_
+        type: :"conversation.created"
       }
 
     class ConversationCreatedWebhookEvent < SurgeAPI::Internal::Type::BaseModel
@@ -15,20 +15,20 @@ module SurgeAPI
 
       attr_accessor timestamp: Time
 
-      attr_accessor type: SurgeAPI::Models::ConversationCreatedWebhookEvent::type_
+      attr_accessor type: :"conversation.created"
 
       def initialize: (
         account_id: String,
         data: SurgeAPI::ConversationCreatedWebhookEvent::Data,
         timestamp: Time,
-        type: SurgeAPI::Models::ConversationCreatedWebhookEvent::type_
+        ?type: :"conversation.created"
       ) -> void
 
       def to_hash: -> {
         account_id: String,
         data: SurgeAPI::ConversationCreatedWebhookEvent::Data,
         timestamp: Time,
-        type: SurgeAPI::Models::ConversationCreatedWebhookEvent::type_
+        type: :"conversation.created"
       }
 
       type data =
@@ -56,16 +56,6 @@ module SurgeAPI
           contact: SurgeAPI::Contact,
           phone_number: SurgeAPI::PhoneNumber
         }
-      end
-
-      type type_ = :"conversation.created"
-
-      module Type
-        extend SurgeAPI::Internal::Type::Enum
-
-        CONVERSATION_CREATED: :"conversation.created"
-
-        def self?.values: -> ::Array[SurgeAPI::Models::ConversationCreatedWebhookEvent::type_]
       end
     end
   end

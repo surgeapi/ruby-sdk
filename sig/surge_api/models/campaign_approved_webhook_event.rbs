@@ -5,7 +5,7 @@ module SurgeAPI
         account_id: String,
         data: SurgeAPI::CampaignApprovedWebhookEvent::Data,
         timestamp: Time,
-        type: SurgeAPI::Models::CampaignApprovedWebhookEvent::type_
+        type: :"campaign.approved"
       }
 
     class CampaignApprovedWebhookEvent < SurgeAPI::Internal::Type::BaseModel
@@ -15,20 +15,20 @@ module SurgeAPI
 
       attr_accessor timestamp: Time
 
-      attr_accessor type: SurgeAPI::Models::CampaignApprovedWebhookEvent::type_
+      attr_accessor type: :"campaign.approved"
 
       def initialize: (
         account_id: String,
         data: SurgeAPI::CampaignApprovedWebhookEvent::Data,
         timestamp: Time,
-        type: SurgeAPI::Models::CampaignApprovedWebhookEvent::type_
+        ?type: :"campaign.approved"
       ) -> void
 
       def to_hash: -> {
         account_id: String,
         data: SurgeAPI::CampaignApprovedWebhookEvent::Data,
         timestamp: Time,
-        type: SurgeAPI::Models::CampaignApprovedWebhookEvent::type_
+        type: :"campaign.approved"
       }
 
       type data =
@@ -61,16 +61,6 @@ module SurgeAPI
 
           def self?.values: -> ::Array[SurgeAPI::Models::CampaignApprovedWebhookEvent::Data::status]
         end
-      end
-
-      type type_ = :"campaign.approved"
-
-      module Type
-        extend SurgeAPI::Internal::Type::Enum
-
-        CAMPAIGN_APPROVED: :"campaign.approved"
-
-        def self?.values: -> ::Array[SurgeAPI::Models::CampaignApprovedWebhookEvent::type_]
       end
     end
   end
