@@ -32,11 +32,21 @@ module SurgeAPI
       # `conversation` field, and `conversation.phone_number` should be specified
       # instead.
       #
-      # @overload create(account_id, message_params:, request_options: {})
+      # @overload create(account_id, conversation:, to:, attachments: nil, body: nil, send_at: nil, from: nil, request_options: {})
       #
       # @param account_id [String] The account from which the message should be sent.
       #
-      # @param message_params [SurgeAPI::MessageParams] Payload for creating a message. Either an attachment or the body must be given.
+      # @param conversation [SurgeAPI::Models::MessageCreateParams::Conversation] Params for selecting or creating a new conversation. Either the id or the Contac
+      #
+      # @param to [String] The recipient's phone number in E.164 format. Cannot be used together with 'conv
+      #
+      # @param attachments [Array<SurgeAPI::Models::MessageCreateParams::Attachment>]
+      #
+      # @param body [String] The message body.
+      #
+      # @param send_at [Time] An optional datetime for scheduling message up to a couple of months in the futu
+      #
+      # @param from [String] The sender's phone number in E.164 format or phone number ID. If omitted, uses t
       #
       # @param request_options [SurgeAPI::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -45,11 +55,6 @@ module SurgeAPI
       # @see SurgeAPI::Models::MessageCreateParams
       def create(account_id, params)
         parsed, options = SurgeAPI::MessageCreateParams.dump_request(params)
-        case parsed
-        in {message_params: Hash => union, **rest}
-          parsed = {**rest, **union}
-        else
-        end
         @client.request(
           method: :post,
           path: ["accounts/%1$s/messages", account_id],

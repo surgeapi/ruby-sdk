@@ -2,7 +2,7 @@
 
 module SurgeAPI
   module Models
-    class VerificationCreateParams < SurgeAPI::Models::VerificationParams
+    class VerificationCreateParams < SurgeAPI::Internal::Type::BaseModel
       extend SurgeAPI::Internal::Type::RequestParameters::Converter
       include SurgeAPI::Internal::Type::RequestParameters
 
@@ -11,15 +11,28 @@ module SurgeAPI
           T.any(SurgeAPI::VerificationCreateParams, SurgeAPI::Internal::AnyHash)
         end
 
+      # The phone number to be verified. In E.164 format.
+      sig { returns(String) }
+      attr_accessor :phone_number
+
       sig do
-        params(request_options: SurgeAPI::RequestOptions::OrHash).returns(
-          T.attached_class
-        )
+        params(
+          phone_number: String,
+          request_options: SurgeAPI::RequestOptions::OrHash
+        ).returns(T.attached_class)
       end
-      def self.new(request_options: {})
+      def self.new(
+        # The phone number to be verified. In E.164 format.
+        phone_number:,
+        request_options: {}
+      )
       end
 
-      sig { override.returns({ request_options: SurgeAPI::RequestOptions }) }
+      sig do
+        override.returns(
+          { phone_number: String, request_options: SurgeAPI::RequestOptions }
+        )
+      end
       def to_hash
       end
     end

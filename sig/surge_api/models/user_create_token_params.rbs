@@ -1,15 +1,26 @@
 module SurgeAPI
   module Models
     type user_create_token_params =
-      {  } & SurgeAPI::Internal::Type::request_parameters
+      { duration_seconds: Integer }
+      & SurgeAPI::Internal::Type::request_parameters
 
-    class UserCreateTokenParams < SurgeAPI::Models::UserTokenParams
+    class UserCreateTokenParams < SurgeAPI::Internal::Type::BaseModel
       extend SurgeAPI::Internal::Type::RequestParameters::Converter
       include SurgeAPI::Internal::Type::RequestParameters
 
-      def initialize: (?request_options: SurgeAPI::request_opts) -> void
+      attr_reader duration_seconds: Integer?
 
-      def to_hash: -> { request_options: SurgeAPI::RequestOptions }
+      def duration_seconds=: (Integer) -> Integer
+
+      def initialize: (
+        ?duration_seconds: Integer,
+        ?request_options: SurgeAPI::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        duration_seconds: Integer,
+        request_options: SurgeAPI::RequestOptions
+      }
     end
   end
 end

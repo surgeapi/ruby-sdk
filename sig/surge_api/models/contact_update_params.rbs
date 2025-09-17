@@ -1,15 +1,54 @@
 module SurgeAPI
   module Models
     type contact_update_params =
-      {  } & SurgeAPI::Internal::Type::request_parameters
+      {
+        phone_number: String,
+        email: String,
+        first_name: String,
+        last_name: String,
+        metadata: ::Hash[Symbol, String]
+      }
+      & SurgeAPI::Internal::Type::request_parameters
 
-    class ContactUpdateParams < SurgeAPI::Models::ContactParams
+    class ContactUpdateParams < SurgeAPI::Internal::Type::BaseModel
       extend SurgeAPI::Internal::Type::RequestParameters::Converter
       include SurgeAPI::Internal::Type::RequestParameters
 
-      def initialize: (?request_options: SurgeAPI::request_opts) -> void
+      attr_accessor phone_number: String
 
-      def to_hash: -> { request_options: SurgeAPI::RequestOptions }
+      attr_reader email: String?
+
+      def email=: (String) -> String
+
+      attr_reader first_name: String?
+
+      def first_name=: (String) -> String
+
+      attr_reader last_name: String?
+
+      def last_name=: (String) -> String
+
+      attr_reader metadata: ::Hash[Symbol, String]?
+
+      def metadata=: (::Hash[Symbol, String]) -> ::Hash[Symbol, String]
+
+      def initialize: (
+        phone_number: String,
+        ?email: String,
+        ?first_name: String,
+        ?last_name: String,
+        ?metadata: ::Hash[Symbol, String],
+        ?request_options: SurgeAPI::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        phone_number: String,
+        email: String,
+        first_name: String,
+        last_name: String,
+        metadata: ::Hash[Symbol, String],
+        request_options: SurgeAPI::RequestOptions
+      }
     end
   end
 end

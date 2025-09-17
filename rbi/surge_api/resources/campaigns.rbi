@@ -11,9 +11,10 @@ module SurgeAPI
           description: String,
           message_samples: T::Array[String],
           privacy_policy_url: String,
-          use_cases: T::Array[SurgeAPI::CampaignParams::UseCase::OrSymbol],
-          volume: SurgeAPI::CampaignParams::Volume::OrSymbol,
-          includes: T::Array[SurgeAPI::CampaignParams::Include::OrSymbol],
+          use_cases:
+            T::Array[SurgeAPI::CampaignCreateParams::UseCase::OrSymbol],
+          volume: SurgeAPI::CampaignCreateParams::Volume::OrSymbol,
+          includes: T::Array[SurgeAPI::CampaignCreateParams::Include::OrSymbol],
           link_sample: String,
           terms_and_conditions_url: String,
           request_options: SurgeAPI::RequestOptions::OrHash

@@ -20,11 +20,11 @@ module SurgeAPI
       #
       # @param privacy_policy_url [String] The URL of the privacy policy for the brand in question. This may be a shared pr
       #
-      # @param use_cases [Array<Symbol, SurgeAPI::Models::CampaignParams::UseCase>] A list containing 1-5 types of messages that will be sent with this campaign.
+      # @param use_cases [Array<Symbol, SurgeAPI::Models::CampaignCreateParams::UseCase>] A list containing 1-5 types of messages that will be sent with this campaign.
       #
-      # @param volume [Symbol, SurgeAPI::Models::CampaignParams::Volume] This will be one of the following:
+      # @param volume [Symbol, SurgeAPI::Models::CampaignCreateParams::Volume] This will be one of the following:
       #
-      # @param includes [Array<Symbol, SurgeAPI::Models::CampaignParams::Include>] A list of properties that this campaign should include. These properties can be
+      # @param includes [Array<Symbol, SurgeAPI::Models::CampaignCreateParams::Include>] A list of properties that this campaign should include. These properties can be
       #
       # @param link_sample [String] A sample link that might be sent by this campaign. If links from other domains a
       #

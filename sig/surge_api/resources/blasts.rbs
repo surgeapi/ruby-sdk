@@ -3,7 +3,7 @@ module SurgeAPI
     class Blasts
       def create: (
         String account_id,
-        ?attachments: ::Array[SurgeAPI::AttachmentParams],
+        ?attachments: ::Array[SurgeAPI::BlastCreateParams::Attachment],
         ?body: String,
         ?contacts: ::Array[String],
         ?name: String,

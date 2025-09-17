@@ -28,7 +28,12 @@ surge = SurgeAPI::Client.new(
   api_key: ENV["SURGE_API_KEY"] # This is the default and can be omitted
 )
 
-message = surge.messages.create("acct_01j9a43avnfqzbjfch6pygv1td")
+message = surge.messages.create(
+  "acct_01j9a43avnfqzbjfch6pygv1td",
+  conversation: {contact: {first_name: "Dom", last_name: "Toretto", phone_number: "+13235556439"}},
+  attachments: [{url: "https://toretto.family/coronas.gif"}],
+  body: "Thought you could leave without saying goodbye?"
+)
 
 puts(message.id)
 ```
@@ -39,7 +44,12 @@ When the library is unable to connect to the API, or if the API returns a non-su
 
 ```ruby
 begin
-  message = surge.messages.create("acct_01j9a43avnfqzbjfch6pygv1td")
+  message = surge.messages.create(
+    "acct_01j9a43avnfqzbjfch6pygv1td",
+    conversation: {contact: {first_name: "Dom", last_name: "Toretto", phone_number: "+13235556439"}},
+    attachments: [{url: "https://toretto.family/coronas.gif"}],
+    body: "Thought you could leave without saying goodbye?"
+  )
 rescue SurgeAPI::Errors::APIConnectionError => e
   puts("The server could not be reached")
   puts(e.cause)  # an underlying Exception, likely raised within `net/http`
@@ -82,7 +92,13 @@ surge = SurgeAPI::Client.new(
 )
 
 # Or, configure per-request:
-surge.messages.create("acct_01j9a43avnfqzbjfch6pygv1td", request_options: {max_retries: 5})
+surge.messages.create(
+  "acct_01j9a43avnfqzbjfch6pygv1td",
+  conversation: {contact: {first_name: "Dom", last_name: "Toretto", phone_number: "+13235556439"}},
+  attachments: [{url: "https://toretto.family/coronas.gif"}],
+  body: "Thought you could leave without saying goodbye?",
+  request_options: {max_retries: 5}
+)
 ```
 
 ### Timeouts
@@ -96,7 +112,13 @@ surge = SurgeAPI::Client.new(
 )
 
 # Or, configure per-request:
-surge.messages.create("acct_01j9a43avnfqzbjfch6pygv1td", request_options: {timeout: 5})
+surge.messages.create(
+  "acct_01j9a43avnfqzbjfch6pygv1td",
+  conversation: {contact: {first_name: "Dom", last_name: "Toretto", phone_number: "+13235556439"}},
+  attachments: [{url: "https://toretto.family/coronas.gif"}],
+  body: "Thought you could leave without saying goodbye?",
+  request_options: {timeout: 5}
+)
 ```
 
 On timeout, `SurgeAPI::Errors::APITimeoutError` is raised.
@@ -129,6 +151,9 @@ Note: the `extra_` parameters of the same name overrides the documented paramete
 message =
   surge.messages.create(
     "acct_01j9a43avnfqzbjfch6pygv1td",
+    conversation: {contact: {first_name: "Dom", last_name: "Toretto", phone_number: "+13235556439"}},
+    attachments: [{url: "https://toretto.family/coronas.gif"}],
+    body: "Thought you could leave without saying goodbye?",
     request_options: {
       extra_query: {my_query_parameter: value},
       extra_body: {my_body_parameter: value},
@@ -174,17 +199,43 @@ This library provides comprehensive [RBI](https://sorbet.org/docs/rbi) definitio
 You can provide typesafe request parameters like so:
 
 ```ruby
-surge.messages.create("acct_01j9a43avnfqzbjfch6pygv1td")
+surge.messages.create(
+  "acct_01j9a43avnfqzbjfch6pygv1td",
+  conversation: SurgeAPI::MessageCreateParams::Conversation.new(
+    contact: SurgeAPI::MessageCreateParams::Conversation::Contact.new(
+      first_name: "Dom",
+      last_name: "Toretto",
+      phone_number: "+13235556439"
+    )
+  ),
+  attachments: [SurgeAPI::MessageCreateParams::Attachment.new(url: "https://toretto.family/coronas.gif")],
+  body: "Thought you could leave without saying goodbye?"
+)
 ```
 
 Or, equivalently:
 
 ```ruby
 # Hashes work, but are not typesafe:
-surge.messages.create("acct_01j9a43avnfqzbjfch6pygv1td")
+surge.messages.create(
+  "acct_01j9a43avnfqzbjfch6pygv1td",
+  conversation: {contact: {first_name: "Dom", last_name: "Toretto", phone_number: "+13235556439"}},
+  attachments: [{url: "https://toretto.family/coronas.gif"}],
+  body: "Thought you could leave without saying goodbye?"
+)
 
 # You can also splat a full Params class:
-params = SurgeAPI::MessageCreateParams.new
+params = SurgeAPI::MessageCreateParams.new(
+  conversation: SurgeAPI::MessageCreateParams::Conversation.new(
+    contact: SurgeAPI::MessageCreateParams::Conversation::Contact.new(
+      first_name: "Dom",
+      last_name: "Toretto",
+      phone_number: "+13235556439"
+    )
+  ),
+  attachments: [SurgeAPI::MessageCreateParams::Attachment.new(url: "https://toretto.family/coronas.gif")],
+  body: "Thought you could leave without saying goodbye?"
+)
 surge.messages.create("acct_01j9a43avnfqzbjfch6pygv1td", **params)
 ```
 
@@ -194,10 +245,10 @@ Since this library does not depend on `sorbet-runtime`, it cannot provide [`T::E
 
 ```ruby
 # :high
-puts(SurgeAPI::CampaignParams::Volume::HIGH)
+puts(SurgeAPI::CampaignCreateParams::Volume::HIGH)
 
-# Revealed type: `T.all(SurgeAPI::CampaignParams::Volume, Symbol)`
-T.reveal_type(SurgeAPI::CampaignParams::Volume::HIGH)
+# Revealed type: `T.all(SurgeAPI::CampaignCreateParams::Volume, Symbol)`
+T.reveal_type(SurgeAPI::CampaignCreateParams::Volume::HIGH)
 ```
 
 Enum parameters have a "relaxed" type, so you can either pass in enum constants or their literal value:
@@ -205,7 +256,7 @@ Enum parameters have a "relaxed" type, so you can either pass in enum constants 
 ```ruby
 # Using the enum constants preserves the tagged type information:
 surge.campaigns.create(
-  volume: SurgeAPI::CampaignParams::Volume::HIGH,
+  volume: SurgeAPI::CampaignCreateParams::Volume::HIGH,
   # …
 )
 
