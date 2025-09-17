@@ -1,15 +1,47 @@
 module SurgeAPI
   module Models
     type user_update_params =
-      {  } & SurgeAPI::Internal::Type::request_parameters
+      {
+        first_name: String,
+        last_name: String,
+        metadata: ::Hash[Symbol, String],
+        photo_url: String
+      }
+      & SurgeAPI::Internal::Type::request_parameters
 
-    class UserUpdateParams < SurgeAPI::Models::UserParams
+    class UserUpdateParams < SurgeAPI::Internal::Type::BaseModel
       extend SurgeAPI::Internal::Type::RequestParameters::Converter
       include SurgeAPI::Internal::Type::RequestParameters
 
-      def initialize: (?request_options: SurgeAPI::request_opts) -> void
+      attr_accessor first_name: String
 
-      def to_hash: -> { request_options: SurgeAPI::RequestOptions }
+      attr_reader last_name: String?
+
+      def last_name=: (String) -> String
+
+      attr_reader metadata: ::Hash[Symbol, String]?
+
+      def metadata=: (::Hash[Symbol, String]) -> ::Hash[Symbol, String]
+
+      attr_reader photo_url: String?
+
+      def photo_url=: (String) -> String
+
+      def initialize: (
+        first_name: String,
+        ?last_name: String,
+        ?metadata: ::Hash[Symbol, String],
+        ?photo_url: String,
+        ?request_options: SurgeAPI::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        first_name: String,
+        last_name: String,
+        metadata: ::Hash[Symbol, String],
+        photo_url: String,
+        request_options: SurgeAPI::RequestOptions
+      }
     end
   end
 end

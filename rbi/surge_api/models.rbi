@@ -5,21 +5,15 @@ module SurgeAPI
 
   AccountCreateParams = SurgeAPI::Models::AccountCreateParams
 
-  AccountParams = SurgeAPI::Models::AccountParams
-
   AccountRetrieveStatusParams = SurgeAPI::Models::AccountRetrieveStatusParams
 
   AccountStatus = SurgeAPI::Models::AccountStatus
 
   AccountUpdateParams = SurgeAPI::Models::AccountUpdateParams
 
-  AttachmentParams = SurgeAPI::Models::AttachmentParams
-
   Blast = SurgeAPI::Models::Blast
 
   BlastCreateParams = SurgeAPI::Models::BlastCreateParams
-
-  BlastParams = SurgeAPI::Models::BlastParams
 
   CallEndedWebhookEvent = SurgeAPI::Models::CallEndedWebhookEvent
 
@@ -29,13 +23,9 @@ module SurgeAPI
 
   CampaignCreateParams = SurgeAPI::Models::CampaignCreateParams
 
-  CampaignParams = SurgeAPI::Models::CampaignParams
-
   Contact = SurgeAPI::Models::Contact
 
   ContactCreateParams = SurgeAPI::Models::ContactCreateParams
-
-  ContactParams = SurgeAPI::Models::ContactParams
 
   ContactRetrieveParams = SurgeAPI::Models::ContactRetrieveParams
 
@@ -54,15 +44,11 @@ module SurgeAPI
 
   MessageFailedWebhookEvent = SurgeAPI::Models::MessageFailedWebhookEvent
 
-  MessageParams = SurgeAPI::Models::MessageParams
-
   MessageReceivedWebhookEvent = SurgeAPI::Models::MessageReceivedWebhookEvent
 
   MessageSentWebhookEvent = SurgeAPI::Models::MessageSentWebhookEvent
 
   Organization = SurgeAPI::Models::Organization
-
-  OrganizationParams = SurgeAPI::Models::OrganizationParams
 
   PhoneNumber = SurgeAPI::Models::PhoneNumber
 
@@ -76,11 +62,7 @@ module SurgeAPI
 
   UserCreateTokenParams = SurgeAPI::Models::UserCreateTokenParams
 
-  UserParams = SurgeAPI::Models::UserParams
-
   UserRetrieveParams = SurgeAPI::Models::UserRetrieveParams
-
-  UserTokenParams = SurgeAPI::Models::UserTokenParams
 
   UserTokenResponse = SurgeAPI::Models::UserTokenResponse
 
@@ -93,8 +75,6 @@ module SurgeAPI
   VerificationCheckParams = SurgeAPI::Models::VerificationCheckParams
 
   VerificationCreateParams = SurgeAPI::Models::VerificationCreateParams
-
-  VerificationParams = SurgeAPI::Models::VerificationParams
 
   WebhookUnwrapParams = SurgeAPI::Models::WebhookUnwrapParams
 end

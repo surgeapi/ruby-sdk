@@ -4,7 +4,7 @@ module SurgeAPI
       def create: (
         name: String,
         ?brand_name: String?,
-        ?organization: SurgeAPI::OrganizationParams,
+        ?organization: SurgeAPI::AccountCreateParams::Organization,
         ?time_zone: String,
         ?request_options: SurgeAPI::request_opts
       ) -> SurgeAPI::Account
@@ -13,7 +13,7 @@ module SurgeAPI
         String id,
         ?brand_name: String,
         ?name: String,
-        ?organization: SurgeAPI::OrganizationParams,
+        ?organization: SurgeAPI::AccountUpdateParams::Organization,
         ?time_zone: String?,
         ?request_options: SurgeAPI::request_opts
       ) -> SurgeAPI::Account

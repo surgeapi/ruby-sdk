@@ -7,7 +7,8 @@ module SurgeAPI
       sig do
         params(
           account_id: String,
-          attachments: T::Array[SurgeAPI::AttachmentParams::OrHash],
+          attachments:
+            T::Array[SurgeAPI::BlastCreateParams::Attachment::OrHash],
           body: String,
           contacts: T::Array[String],
           name: String,

@@ -1,15 +1,62 @@
 module SurgeAPI
   module Models
     type phone_number_purchase_params =
-      {  } & SurgeAPI::Internal::Type::request_parameters
+      {
+        area_code: String,
+        latitude: Float,
+        longitude: Float,
+        type: SurgeAPI::Models::PhoneNumberPurchaseParams::type_
+      }
+      & SurgeAPI::Internal::Type::request_parameters
 
-    class PhoneNumberPurchaseParams < SurgeAPI::Models::PhoneNumberPurchaseParams
+    class PhoneNumberPurchaseParams < SurgeAPI::Internal::Type::BaseModel
       extend SurgeAPI::Internal::Type::RequestParameters::Converter
       include SurgeAPI::Internal::Type::RequestParameters
 
-      def initialize: (?request_options: SurgeAPI::request_opts) -> void
+      attr_reader area_code: String?
 
-      def to_hash: -> { request_options: SurgeAPI::RequestOptions }
+      def area_code=: (String) -> String
+
+      attr_reader latitude: Float?
+
+      def latitude=: (Float) -> Float
+
+      attr_reader longitude: Float?
+
+      def longitude=: (Float) -> Float
+
+      attr_reader type: SurgeAPI::Models::PhoneNumberPurchaseParams::type_?
+
+      def type=: (
+        SurgeAPI::Models::PhoneNumberPurchaseParams::type_
+      ) -> SurgeAPI::Models::PhoneNumberPurchaseParams::type_
+
+      def initialize: (
+        ?area_code: String,
+        ?latitude: Float,
+        ?longitude: Float,
+        ?type: SurgeAPI::Models::PhoneNumberPurchaseParams::type_,
+        ?request_options: SurgeAPI::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        area_code: String,
+        latitude: Float,
+        longitude: Float,
+        type: SurgeAPI::Models::PhoneNumberPurchaseParams::type_,
+        request_options: SurgeAPI::RequestOptions
+      }
+
+      type type_ = :local | :toll_free
+
+      module Type
+        extend SurgeAPI::Internal::Type::Enum
+
+        LOCAL: :local
+        TOLL_FREE: :toll_free
+
+        def self?.values: -> ::Array[SurgeAPI::Models::PhoneNumberPurchaseParams::type_]
+      end
     end
   end
 end

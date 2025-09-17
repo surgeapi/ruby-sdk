@@ -7,9 +7,9 @@ module SurgeAPI
         description: String,
         message_samples: ::Array[String],
         privacy_policy_url: String,
-        use_cases: ::Array[SurgeAPI::Models::CampaignParams::use_case],
-        volume: SurgeAPI::Models::CampaignParams::volume,
-        ?includes: ::Array[SurgeAPI::Models::CampaignParams::include_],
+        use_cases: ::Array[SurgeAPI::Models::CampaignCreateParams::use_case],
+        volume: SurgeAPI::Models::CampaignCreateParams::volume,
+        ?includes: ::Array[SurgeAPI::Models::CampaignCreateParams::include_],
         ?link_sample: String,
         ?terms_and_conditions_url: String,
         ?request_options: SurgeAPI::request_opts

@@ -12,7 +12,7 @@ module SurgeAPI
       #
       # @param account_id [String] The account for which the blast should be sent.
       #
-      # @param attachments [Array<SurgeAPI::Models::AttachmentParams>]
+      # @param attachments [Array<SurgeAPI::Models::BlastCreateParams::Attachment>]
       #
       # @param body [String] The message body.
       #
