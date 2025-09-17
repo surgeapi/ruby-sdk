@@ -14,6 +14,7 @@ module SurgeAPI
           )
         end
 
+      # capabilities about which to check the status
       sig do
         returns(
           T.nilable(
@@ -44,7 +45,11 @@ module SurgeAPI
           request_options: SurgeAPI::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
-      def self.new(capabilities: nil, request_options: {})
+      def self.new(
+        # capabilities about which to check the status
+        capabilities: nil,
+        request_options: {}
+      )
       end
 
       sig do

@@ -29,17 +29,15 @@ module SurgeAPI
       attr_accessor :timestamp
 
       # The type of the event. Always `message.received` for this event.
-      sig { returns(SurgeAPI::MessageReceivedWebhookEvent::Type::TaggedSymbol) }
+      sig { returns(Symbol) }
       attr_accessor :type
 
-      # The `message.received` event is delivered whenever a message is received at a
-      # Surge number from a contact.
       sig do
         params(
           account_id: String,
           data: SurgeAPI::MessageReceivedWebhookEvent::Data::OrHash,
           timestamp: Time,
-          type: SurgeAPI::MessageReceivedWebhookEvent::Type::OrSymbol
+          type: Symbol
         ).returns(T.attached_class)
       end
       def self.new(
@@ -50,7 +48,7 @@ module SurgeAPI
         # The timestamp when this event occurred, in ISO8601 format
         timestamp:,
         # The type of the event. Always `message.received` for this event.
-        type:
+        type: :"message.received"
       )
       end
 
@@ -60,7 +58,7 @@ module SurgeAPI
             account_id: String,
             data: SurgeAPI::MessageReceivedWebhookEvent::Data,
             timestamp: Time,
-            type: SurgeAPI::MessageReceivedWebhookEvent::Type::TaggedSymbol
+            type: Symbol
           }
         )
       end
@@ -326,31 +324,6 @@ module SurgeAPI
             def self.values
             end
           end
-        end
-      end
-
-      # The type of the event. Always `message.received` for this event.
-      module Type
-        extend SurgeAPI::Internal::Type::Enum
-
-        TaggedSymbol =
-          T.type_alias do
-            T.all(Symbol, SurgeAPI::MessageReceivedWebhookEvent::Type)
-          end
-        OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-        MESSAGE_RECEIVED =
-          T.let(
-            :"message.received",
-            SurgeAPI::MessageReceivedWebhookEvent::Type::TaggedSymbol
-          )
-
-        sig do
-          override.returns(
-            T::Array[SurgeAPI::MessageReceivedWebhookEvent::Type::TaggedSymbol]
-          )
-        end
-        def self.values
         end
       end
     end

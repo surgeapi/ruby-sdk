@@ -5,7 +5,7 @@ module SurgeAPI
         account_id: String,
         data: SurgeAPI::MessageSentWebhookEvent::Data,
         timestamp: Time,
-        type: SurgeAPI::Models::MessageSentWebhookEvent::type_
+        type: :"message.sent"
       }
 
     class MessageSentWebhookEvent < SurgeAPI::Internal::Type::BaseModel
@@ -15,20 +15,20 @@ module SurgeAPI
 
       attr_accessor timestamp: Time
 
-      attr_accessor type: SurgeAPI::Models::MessageSentWebhookEvent::type_
+      attr_accessor type: :"message.sent"
 
       def initialize: (
         account_id: String,
         data: SurgeAPI::MessageSentWebhookEvent::Data,
         timestamp: Time,
-        type: SurgeAPI::Models::MessageSentWebhookEvent::type_
+        ?type: :"message.sent"
       ) -> void
 
       def to_hash: -> {
         account_id: String,
         data: SurgeAPI::MessageSentWebhookEvent::Data,
         timestamp: Time,
-        type: SurgeAPI::Models::MessageSentWebhookEvent::type_
+        type: :"message.sent"
       }
 
       type data =
@@ -137,16 +137,6 @@ module SurgeAPI
             def self?.values: -> ::Array[SurgeAPI::Models::MessageSentWebhookEvent::Data::Attachment::type_]
           end
         end
-      end
-
-      type type_ = :"message.sent"
-
-      module Type
-        extend SurgeAPI::Internal::Type::Enum
-
-        MESSAGE_SENT: :"message.sent"
-
-        def self?.values: -> ::Array[SurgeAPI::Models::MessageSentWebhookEvent::type_]
       end
     end
   end

@@ -29,19 +29,15 @@ module SurgeAPI
       attr_accessor :timestamp
 
       # The type of the event. Always `campaign.approved` for this event.
-      sig do
-        returns(SurgeAPI::CampaignApprovedWebhookEvent::Type::TaggedSymbol)
-      end
+      sig { returns(Symbol) }
       attr_accessor :type
 
-      # The `campaign.approved` event is delivered whenever a campaign is approved by
-      # all of the US carriers and able to start sending text messages.
       sig do
         params(
           account_id: String,
           data: SurgeAPI::CampaignApprovedWebhookEvent::Data::OrHash,
           timestamp: Time,
-          type: SurgeAPI::CampaignApprovedWebhookEvent::Type::OrSymbol
+          type: Symbol
         ).returns(T.attached_class)
       end
       def self.new(
@@ -52,7 +48,7 @@ module SurgeAPI
         # The timestamp when this event occurred, in ISO8601 format
         timestamp:,
         # The type of the event. Always `campaign.approved` for this event.
-        type:
+        type: :"campaign.approved"
       )
       end
 
@@ -62,7 +58,7 @@ module SurgeAPI
             account_id: String,
             data: SurgeAPI::CampaignApprovedWebhookEvent::Data,
             timestamp: Time,
-            type: SurgeAPI::CampaignApprovedWebhookEvent::Type::TaggedSymbol
+            type: Symbol
           }
         )
       end
@@ -146,31 +142,6 @@ module SurgeAPI
           end
           def self.values
           end
-        end
-      end
-
-      # The type of the event. Always `campaign.approved` for this event.
-      module Type
-        extend SurgeAPI::Internal::Type::Enum
-
-        TaggedSymbol =
-          T.type_alias do
-            T.all(Symbol, SurgeAPI::CampaignApprovedWebhookEvent::Type)
-          end
-        OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-        CAMPAIGN_APPROVED =
-          T.let(
-            :"campaign.approved",
-            SurgeAPI::CampaignApprovedWebhookEvent::Type::TaggedSymbol
-          )
-
-        sig do
-          override.returns(
-            T::Array[SurgeAPI::CampaignApprovedWebhookEvent::Type::TaggedSymbol]
-          )
-        end
-        def self.values
         end
       end
     end

@@ -24,20 +24,17 @@ module SurgeAPI
       # @!attribute type
       #   The type of the event. Always `call.ended` for this event.
       #
-      #   @return [Symbol, SurgeAPI::Models::CallEndedWebhookEvent::Type]
-      required :type, enum: -> { SurgeAPI::CallEndedWebhookEvent::Type }
+      #   @return [Symbol, :"call.ended"]
+      required :type, const: :"call.ended"
 
-      # @!method initialize(account_id:, data:, timestamp:, type:)
-      #   The `call.ended` event is delivered whenever a call is completed between a Surge
-      #   number you own and another phone number.
-      #
+      # @!method initialize(account_id:, data:, timestamp:, type: :"call.ended")
       #   @param account_id [String] The ID of the account in which this event occurred
       #
       #   @param data [SurgeAPI::Models::CallEndedWebhookEvent::Data] The data associated with the event
       #
       #   @param timestamp [Time] The timestamp when this event occurred, in ISO8601 format
       #
-      #   @param type [Symbol, SurgeAPI::Models::CallEndedWebhookEvent::Type] The type of the event. Always `call.ended` for this event.
+      #   @param type [Symbol, :"call.ended"] The type of the event. Always `call.ended` for this event.
 
       # @see SurgeAPI::Models::CallEndedWebhookEvent#data
       class Data < SurgeAPI::Internal::Type::BaseModel
@@ -103,18 +100,6 @@ module SurgeAPI
           # @!method self.values
           #   @return [Array<Symbol>]
         end
-      end
-
-      # The type of the event. Always `call.ended` for this event.
-      #
-      # @see SurgeAPI::Models::CallEndedWebhookEvent#type
-      module Type
-        extend SurgeAPI::Internal::Type::Enum
-
-        CALL_ENDED = :"call.ended"
-
-        # @!method self.values
-        #   @return [Array<Symbol>]
       end
     end
   end

@@ -24,20 +24,17 @@ module SurgeAPI
       # @!attribute type
       #   The type of the event. Always `message.failed` for this event.
       #
-      #   @return [Symbol, SurgeAPI::Models::MessageFailedWebhookEvent::Type]
-      required :type, enum: -> { SurgeAPI::MessageFailedWebhookEvent::Type }
+      #   @return [Symbol, :"message.failed"]
+      required :type, const: :"message.failed"
 
-      # @!method initialize(account_id:, data:, timestamp:, type:)
-      #   The `message.failed` event is delivered whenever a message sent from your Surge
-      #   number fails to be delivered.
-      #
+      # @!method initialize(account_id:, data:, timestamp:, type: :"message.failed")
       #   @param account_id [String] The ID of the account in which this event occurred
       #
       #   @param data [SurgeAPI::Models::MessageFailedWebhookEvent::Data] The data associated with the event
       #
       #   @param timestamp [Time] The timestamp when this event occurred, in ISO8601 format
       #
-      #   @param type [Symbol, SurgeAPI::Models::MessageFailedWebhookEvent::Type] The type of the event. Always `message.failed` for this event.
+      #   @param type [Symbol, :"message.failed"] The type of the event. Always `message.failed` for this event.
 
       # @see SurgeAPI::Models::MessageFailedWebhookEvent#data
       class Data < SurgeAPI::Internal::Type::BaseModel
@@ -164,18 +161,6 @@ module SurgeAPI
             #   @return [Array<Symbol>]
           end
         end
-      end
-
-      # The type of the event. Always `message.failed` for this event.
-      #
-      # @see SurgeAPI::Models::MessageFailedWebhookEvent#type
-      module Type
-        extend SurgeAPI::Internal::Type::Enum
-
-        MESSAGE_FAILED = :"message.failed"
-
-        # @!method self.values
-        #   @return [Array<Symbol>]
       end
     end
   end

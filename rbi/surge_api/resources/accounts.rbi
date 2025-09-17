@@ -79,6 +79,7 @@ module SurgeAPI
       def retrieve_status(
         # ID of the account to check
         account_id,
+        # capabilities about which to check the status
         capabilities: nil,
         request_options: {}
       )

@@ -24,20 +24,17 @@ module SurgeAPI
       # @!attribute type
       #   The type of the event. Always `campaign.approved` for this event.
       #
-      #   @return [Symbol, SurgeAPI::Models::CampaignApprovedWebhookEvent::Type]
-      required :type, enum: -> { SurgeAPI::CampaignApprovedWebhookEvent::Type }
+      #   @return [Symbol, :"campaign.approved"]
+      required :type, const: :"campaign.approved"
 
-      # @!method initialize(account_id:, data:, timestamp:, type:)
-      #   The `campaign.approved` event is delivered whenever a campaign is approved by
-      #   all of the US carriers and able to start sending text messages.
-      #
+      # @!method initialize(account_id:, data:, timestamp:, type: :"campaign.approved")
       #   @param account_id [String] The ID of the account in which this event occurred
       #
       #   @param data [SurgeAPI::Models::CampaignApprovedWebhookEvent::Data] The data associated with the event
       #
       #   @param timestamp [Time] The timestamp when this event occurred, in ISO8601 format
       #
-      #   @param type [Symbol, SurgeAPI::Models::CampaignApprovedWebhookEvent::Type] The type of the event. Always `campaign.approved` for this event.
+      #   @param type [Symbol, :"campaign.approved"] The type of the event. Always `campaign.approved` for this event.
 
       # @see SurgeAPI::Models::CampaignApprovedWebhookEvent#data
       class Data < SurgeAPI::Internal::Type::BaseModel
@@ -71,18 +68,6 @@ module SurgeAPI
           # @!method self.values
           #   @return [Array<Symbol>]
         end
-      end
-
-      # The type of the event. Always `campaign.approved` for this event.
-      #
-      # @see SurgeAPI::Models::CampaignApprovedWebhookEvent#type
-      module Type
-        extend SurgeAPI::Internal::Type::Enum
-
-        CAMPAIGN_APPROVED = :"campaign.approved"
-
-        # @!method self.values
-        #   @return [Array<Symbol>]
       end
     end
   end

@@ -29,23 +29,15 @@ module SurgeAPI
       attr_accessor :timestamp
 
       # The type of the event. Always `message.delivered` for this event.
-      sig do
-        returns(SurgeAPI::MessageDeliveredWebhookEvent::Type::TaggedSymbol)
-      end
+      sig { returns(Symbol) }
       attr_accessor :type
 
-      # The `message.delivered` event is delivered whenever a message sent from a Surge
-      # number is successfully delivered to the recipient. When the message is sent from
-      # a short code or toll-free number, this means that the message arrived on the
-      # recipient's device. When sent from a local number, this means that the message
-      # was successfully handed off to the recipient's mobile carrier, but does not
-      # guarantee that it arrived on the recipient's device.
       sig do
         params(
           account_id: String,
           data: SurgeAPI::MessageDeliveredWebhookEvent::Data::OrHash,
           timestamp: Time,
-          type: SurgeAPI::MessageDeliveredWebhookEvent::Type::OrSymbol
+          type: Symbol
         ).returns(T.attached_class)
       end
       def self.new(
@@ -56,7 +48,7 @@ module SurgeAPI
         # The timestamp when this event occurred, in ISO8601 format
         timestamp:,
         # The type of the event. Always `message.delivered` for this event.
-        type:
+        type: :"message.delivered"
       )
       end
 
@@ -66,7 +58,7 @@ module SurgeAPI
             account_id: String,
             data: SurgeAPI::MessageDeliveredWebhookEvent::Data,
             timestamp: Time,
-            type: SurgeAPI::MessageDeliveredWebhookEvent::Type::TaggedSymbol
+            type: Symbol
           }
         )
       end
@@ -332,31 +324,6 @@ module SurgeAPI
             def self.values
             end
           end
-        end
-      end
-
-      # The type of the event. Always `message.delivered` for this event.
-      module Type
-        extend SurgeAPI::Internal::Type::Enum
-
-        TaggedSymbol =
-          T.type_alias do
-            T.all(Symbol, SurgeAPI::MessageDeliveredWebhookEvent::Type)
-          end
-        OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-        MESSAGE_DELIVERED =
-          T.let(
-            :"message.delivered",
-            SurgeAPI::MessageDeliveredWebhookEvent::Type::TaggedSymbol
-          )
-
-        sig do
-          override.returns(
-            T::Array[SurgeAPI::MessageDeliveredWebhookEvent::Type::TaggedSymbol]
-          )
-        end
-        def self.values
         end
       end
     end
