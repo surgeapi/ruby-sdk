@@ -1,0 +1,41 @@
+module SurgeAPI
+  module Models
+    type account_params =
+      {
+        name: String,
+        brand_name: String?,
+        organization: SurgeAPI::OrganizationParams,
+        time_zone: String
+      }
+
+    class AccountParams < SurgeAPI::Internal::Type::BaseModel
+      attr_accessor name: String
+
+      attr_accessor brand_name: String?
+
+      attr_reader organization: SurgeAPI::OrganizationParams?
+
+      def organization=: (
+        SurgeAPI::OrganizationParams
+      ) -> SurgeAPI::OrganizationParams
+
+      attr_reader time_zone: String?
+
+      def time_zone=: (String) -> String
+
+      def initialize: (
+        name: String,
+        ?brand_name: String?,
+        ?organization: SurgeAPI::OrganizationParams,
+        ?time_zone: String
+      ) -> void
+
+      def to_hash: -> {
+        name: String,
+        brand_name: String?,
+        organization: SurgeAPI::OrganizationParams,
+        time_zone: String
+      }
+    end
+  end
+end

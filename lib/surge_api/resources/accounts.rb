@@ -14,7 +14,7 @@ module SurgeAPI
       #
       # @param brand_name [String, nil] The name by which the people this account communicates with know it. If not prov
       #
-      # @param organization [SurgeAPI::Models::AccountCreateParams::Organization] Parameters describing the legal entity on whose behalf the account will be opera
+      # @param organization [SurgeAPI::Models::OrganizationParams] Parameters describing the legal entity on whose behalf the account will be opera
       #
       # @param time_zone [String] This is the time zone in which the account is headquartered. This time zone may
       #
@@ -47,7 +47,7 @@ module SurgeAPI
       #
       # @param name [String] The name of the account that will be visible for your internal organizational pu
       #
-      # @param organization [SurgeAPI::Models::AccountUpdateParams::Organization] Parameters describing the legal entity on whose behalf the account will be opera
+      # @param organization [SurgeAPI::Models::OrganizationParams] Parameters describing the legal entity on whose behalf the account will be opera
       #
       # @param time_zone [String, nil] The time zone for the account
       #
