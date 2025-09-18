@@ -3,6 +3,8 @@ module SurgeAPI
 
   class AccountCreateParams = SurgeAPI::Models::AccountCreateParams
 
+  class AccountParams = SurgeAPI::Models::AccountParams
+
   class AccountRetrieveStatusParams = SurgeAPI::Models::AccountRetrieveStatusParams
 
   class AccountStatus = SurgeAPI::Models::AccountStatus
@@ -46,6 +48,8 @@ module SurgeAPI
   class MessageSentWebhookEvent = SurgeAPI::Models::MessageSentWebhookEvent
 
   class Organization = SurgeAPI::Models::Organization
+
+  class OrganizationParams = SurgeAPI::Models::OrganizationParams
 
   class PhoneNumber = SurgeAPI::Models::PhoneNumber
 

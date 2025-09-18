@@ -8,7 +8,7 @@ module SurgeAPI
         params(
           name: String,
           brand_name: T.nilable(String),
-          organization: SurgeAPI::AccountCreateParams::Organization::OrHash,
+          organization: SurgeAPI::OrganizationParams::OrHash,
           time_zone: String,
           request_options: SurgeAPI::RequestOptions::OrHash
         ).returns(SurgeAPI::Account)
@@ -39,7 +39,7 @@ module SurgeAPI
           id: String,
           brand_name: String,
           name: String,
-          organization: SurgeAPI::AccountUpdateParams::Organization::OrHash,
+          organization: SurgeAPI::OrganizationParams::OrHash,
           time_zone: T.nilable(String),
           request_options: SurgeAPI::RequestOptions::OrHash
         ).returns(SurgeAPI::Account)
