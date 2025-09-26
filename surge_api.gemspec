@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.email = "support@surge.app"
   s.homepage = "https://gemdocs.org/gems/surge_api"
   s.metadata["homepage_uri"] = s.homepage
-  s.metadata["source_code_uri"] = "https://github.com/stainless-sdks/surge-ruby"
+  s.metadata["source_code_uri"] = "https://github.com/surgeapi/ruby-sdk"
   s.metadata["rubygems_mfa_required"] = false.to_s
   s.required_ruby_version = ">= 3.2.0"
 
