@@ -227,20 +227,24 @@ class SurgeAPI::Test::UtilFormDataEncodingTest < Minitest::Test
 
   def test_file_encode
     file = Pathname(__FILE__)
+    fileinput = SurgeAPI::Internal::Type::Converter.dump(SurgeAPI::Internal::Type::FileInput, "abc")
     headers = {"content-type" => "multipart/form-data"}
     cases = {
-      "abc" => "abc",
-      StringIO.new("abc") => "abc",
-      SurgeAPI::FilePart.new("abc") => "abc",
-      SurgeAPI::FilePart.new(StringIO.new("abc")) => "abc",
-      file => /^class SurgeAPI/,
-      SurgeAPI::FilePart.new(file) => /^class SurgeAPI/
+      "abc" => ["", "abc"],
+      StringIO.new("abc") => ["", "abc"],
+      fileinput => %w[upload abc],
+      SurgeAPI::FilePart.new(StringIO.new("abc")) => ["", "abc"],
+      file => [file.basename.to_path, /^class SurgeAPI/],
+      SurgeAPI::FilePart.new(file, filename: "d o g") => ["d%20o%20g", /^class SurgeAPI/]
     }
-    cases.each do |body, val|
+    cases.each do |body, testcase|
+      filename, val = testcase
       encoded = SurgeAPI::Internal::Util.encode_content(headers, body)
       cgi = FakeCGI.new(*encoded)
+      io = cgi[""]
       assert_pattern do
-        cgi[""].read => ^val
+        io.original_filename => ^filename
+        io.read => ^val
       end
     end
   end
@@ -261,7 +265,14 @@ class SurgeAPI::Test::UtilFormDataEncodingTest < Minitest::Test
       cgi = FakeCGI.new(*encoded)
       testcase.each do |key, val|
         assert_pattern do
-          cgi[key] => ^val
+          parsed =
+            case (p = cgi[key])
+            in StringIO
+              p.read
+            else
+              p
+            end
+          parsed => ^val
         end
       end
     end
@@ -299,6 +310,31 @@ class SurgeAPI::Test::UtilIOAdapterTest < Minitest::Test
 end
 
 class SurgeAPI::Test::UtilFusedEnumTest < Minitest::Test
+  def test_rewind_closing
+    touched = false
+    once = 0
+    steps = 0
+    enum = Enumerator.new do |y|
+      next if touched
+
+      10.times do
+        steps = _1
+        y << _1
+      end
+    ensure
+      once = once.succ
+    end
+
+    fused = SurgeAPI::Internal::Util.fused_enum(enum, external: true) do
+      touched = true
+      loop { enum.next }
+    end
+    SurgeAPI::Internal::Util.close_fused!(fused)
+
+    assert_equal(1, once)
+    assert_equal(0, steps)
+  end
+
   def test_closing
     arr = [1, 2, 3]
     once = 0

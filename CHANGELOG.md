@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.1.1 (2025-10-01)
+
+Full Changelog: [v0.1.0...v0.1.1](https://github.com/surgeapi/ruby-sdk/compare/v0.1.0...v0.1.1)
+
+### Bug Fixes
+
+* always send `filename=...` for multipart requests where a file is expected ([28bdedf](https://github.com/surgeapi/ruby-sdk/commit/28bdedfba8e9bef43abf39e08169bc2bf2edb0e8))
+* coroutine leaks from connection pool ([239043f](https://github.com/surgeapi/ruby-sdk/commit/239043f74e12856fb8e6b2a477ea9bf35945f2f2))
+
 ## 0.1.0 (2025-09-26)
 
 Full Changelog: [v0.0.1...v0.1.0](https://github.com/surgeapi/ruby-sdk/compare/v0.0.1...v0.1.0)
