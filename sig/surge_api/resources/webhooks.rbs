@@ -5,6 +5,8 @@ module SurgeAPI
         String payload
       ) -> (SurgeAPI::CallEndedWebhookEvent
       | SurgeAPI::CampaignApprovedWebhookEvent
+      | SurgeAPI::ContactOptedInWebhookEvent
+      | SurgeAPI::ContactOptedOutWebhookEvent
       | SurgeAPI::ConversationCreatedWebhookEvent
       | SurgeAPI::MessageDeliveredWebhookEvent
       | SurgeAPI::MessageFailedWebhookEvent
