@@ -1,5 +1,24 @@
 # Changelog
 
+## 0.2.0 (2025-10-09)
+
+Full Changelog: [v0.1.0...v0.2.0](https://github.com/surgeapi/ruby-sdk/compare/v0.1.0...v0.2.0)
+
+### Features
+
+* **api:** api update ([8a7eeeb](https://github.com/surgeapi/ruby-sdk/commit/8a7eeeb4c5248d0f0aa4da399c45d2763b98ba3b))
+
+
+### Bug Fixes
+
+* always send `filename=...` for multipart requests where a file is expected ([28bdedf](https://github.com/surgeapi/ruby-sdk/commit/28bdedfba8e9bef43abf39e08169bc2bf2edb0e8))
+* coroutine leaks from connection pool ([239043f](https://github.com/surgeapi/ruby-sdk/commit/239043f74e12856fb8e6b2a477ea9bf35945f2f2))
+
+
+### Chores
+
+* ignore linter error for tests having large collections ([4d89802](https://github.com/surgeapi/ruby-sdk/commit/4d898024ffae04e4f24591b1c54a922e1b6c51f4))
+
 ## 0.1.0 (2025-09-26)
 
 Full Changelog: [v0.0.1...v0.1.0](https://github.com/surgeapi/ruby-sdk/compare/v0.0.1...v0.1.0)
