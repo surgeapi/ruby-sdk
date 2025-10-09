@@ -9,6 +9,10 @@ module SurgeAPI
 
       variant -> { SurgeAPI::CampaignApprovedWebhookEvent }
 
+      variant -> { SurgeAPI::ContactOptedInWebhookEvent }
+
+      variant -> { SurgeAPI::ContactOptedOutWebhookEvent }
+
       variant -> { SurgeAPI::ConversationCreatedWebhookEvent }
 
       variant -> { SurgeAPI::MessageDeliveredWebhookEvent }
@@ -20,7 +24,7 @@ module SurgeAPI
       variant -> { SurgeAPI::MessageSentWebhookEvent }
 
       # @!method self.variants
-      #   @return [Array(SurgeAPI::Models::CallEndedWebhookEvent, SurgeAPI::Models::CampaignApprovedWebhookEvent, SurgeAPI::Models::ConversationCreatedWebhookEvent, SurgeAPI::Models::MessageDeliveredWebhookEvent, SurgeAPI::Models::MessageFailedWebhookEvent, SurgeAPI::Models::MessageReceivedWebhookEvent, SurgeAPI::Models::MessageSentWebhookEvent)]
+      #   @return [Array(SurgeAPI::Models::CallEndedWebhookEvent, SurgeAPI::Models::CampaignApprovedWebhookEvent, SurgeAPI::Models::ContactOptedInWebhookEvent, SurgeAPI::Models::ContactOptedOutWebhookEvent, SurgeAPI::Models::ConversationCreatedWebhookEvent, SurgeAPI::Models::MessageDeliveredWebhookEvent, SurgeAPI::Models::MessageFailedWebhookEvent, SurgeAPI::Models::MessageReceivedWebhookEvent, SurgeAPI::Models::MessageSentWebhookEvent)]
     end
   end
 end

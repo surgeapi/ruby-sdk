@@ -12,7 +12,7 @@ module SurgeAPI
       #     puts(unwrap_webhook_event.account_id)
       #   when SurgeAPI::CampaignApprovedWebhookEvent
       #     puts(unwrap_webhook_event.data)
-      #   when SurgeAPI::ConversationCreatedWebhookEvent
+      #   when SurgeAPI::ContactOptedInWebhookEvent
       #     puts(unwrap_webhook_event.timestamp)
       #   else
       #     puts(unwrap_webhook_event)
