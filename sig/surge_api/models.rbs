@@ -25,6 +25,10 @@ module SurgeAPI
 
   class ContactCreateParams = SurgeAPI::Models::ContactCreateParams
 
+  class ContactOptedInWebhookEvent = SurgeAPI::Models::ContactOptedInWebhookEvent
+
+  class ContactOptedOutWebhookEvent = SurgeAPI::Models::ContactOptedOutWebhookEvent
+
   class ContactRetrieveParams = SurgeAPI::Models::ContactRetrieveParams
 
   class ContactUpdateParams = SurgeAPI::Models::ContactUpdateParams

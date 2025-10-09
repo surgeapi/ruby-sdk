@@ -1,0 +1,45 @@
+module SurgeAPI
+  module Models
+    type contact_opted_in_webhook_event =
+      {
+        account_id: String,
+        data: SurgeAPI::ContactOptedInWebhookEvent::Data,
+        timestamp: Time,
+        type: :"contact.opted_in"
+      }
+
+    class ContactOptedInWebhookEvent < SurgeAPI::Internal::Type::BaseModel
+      attr_accessor account_id: String
+
+      attr_accessor data: SurgeAPI::ContactOptedInWebhookEvent::Data
+
+      attr_accessor timestamp: Time
+
+      attr_accessor type: :"contact.opted_in"
+
+      def initialize: (
+        account_id: String,
+        data: SurgeAPI::ContactOptedInWebhookEvent::Data,
+        timestamp: Time,
+        ?type: :"contact.opted_in"
+      ) -> void
+
+      def to_hash: -> {
+        account_id: String,
+        data: SurgeAPI::ContactOptedInWebhookEvent::Data,
+        timestamp: Time,
+        type: :"contact.opted_in"
+      }
+
+      type data = { id: String }
+
+      class Data < SurgeAPI::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        def initialize: (id: String) -> void
+
+        def to_hash: -> { id: String }
+      end
+    end
+  end
+end
