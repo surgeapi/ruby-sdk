@@ -124,7 +124,13 @@ module SurgeAPI
       #   @return [String, nil]
       optional :terms_and_conditions_url, String
 
-      # @!method initialize(consent_flow:, description:, message_samples:, privacy_policy_url:, use_cases:, volume:, includes: nil, link_sample: nil, terms_and_conditions_url: nil, request_options: {})
+      # @!attribute tcr_id
+      #   The Campaign Registry (TCR) ID for the externally registered campaign
+      #
+      #   @return [String]
+      required :tcr_id, String
+
+      # @!method initialize(consent_flow:, description:, message_samples:, privacy_policy_url:, use_cases:, volume:, tcr_id:, includes: nil, link_sample: nil, terms_and_conditions_url: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {SurgeAPI::Models::CampaignCreateParams} for more details.
       #
@@ -139,6 +145,8 @@ module SurgeAPI
       #   @param use_cases [Array<Symbol, SurgeAPI::Models::CampaignCreateParams::UseCase>] A list containing 1-5 types of messages that will be sent with this campaign.
       #
       #   @param volume [Symbol, SurgeAPI::Models::CampaignCreateParams::Volume] This will be one of the following:
+      #
+      #   @param tcr_id [String] The Campaign Registry (TCR) ID for the externally registered campaign
       #
       #   @param includes [Array<Symbol, SurgeAPI::Models::CampaignCreateParams::Include>] A list of properties that this campaign should include. These properties can be
       #

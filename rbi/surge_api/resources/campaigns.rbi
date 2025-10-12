@@ -14,6 +14,7 @@ module SurgeAPI
           use_cases:
             T::Array[SurgeAPI::CampaignCreateParams::UseCase::OrSymbol],
           volume: SurgeAPI::CampaignCreateParams::Volume::OrSymbol,
+          tcr_id: String,
           includes: T::Array[SurgeAPI::CampaignCreateParams::Include::OrSymbol],
           link_sample: String,
           terms_and_conditions_url: String,
@@ -81,6 +82,8 @@ module SurgeAPI
         #   volume number upon receipt of the API request, and phone numbers will be
         #   charged as high volume numbers going forward.
         volume:,
+        # The Campaign Registry (TCR) ID for the externally registered campaign
+        tcr_id:,
         # A list of properties that this campaign should include. These properties can be
         # any of the following values:
         #

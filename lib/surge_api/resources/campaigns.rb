@@ -8,7 +8,7 @@ module SurgeAPI
       #
       # Creates a campaign to register account to send text messages.
       #
-      # @overload create(account_id, consent_flow:, description:, message_samples:, privacy_policy_url:, use_cases:, volume:, includes: nil, link_sample: nil, terms_and_conditions_url: nil, request_options: {})
+      # @overload create(account_id, consent_flow:, description:, message_samples:, privacy_policy_url:, use_cases:, volume:, tcr_id:, includes: nil, link_sample: nil, terms_and_conditions_url: nil, request_options: {})
       #
       # @param account_id [String] The account for which the campaign should be created.
       #
@@ -23,6 +23,8 @@ module SurgeAPI
       # @param use_cases [Array<Symbol, SurgeAPI::Models::CampaignCreateParams::UseCase>] A list containing 1-5 types of messages that will be sent with this campaign.
       #
       # @param volume [Symbol, SurgeAPI::Models::CampaignCreateParams::Volume] This will be one of the following:
+      #
+      # @param tcr_id [String] The Campaign Registry (TCR) ID for the externally registered campaign
       #
       # @param includes [Array<Symbol, SurgeAPI::Models::CampaignCreateParams::Include>] A list of properties that this campaign should include. These properties can be
       #

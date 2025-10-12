@@ -10,7 +10,8 @@ module SurgeAPI
         volume: SurgeAPI::Models::CampaignCreateParams::volume,
         includes: ::Array[SurgeAPI::Models::CampaignCreateParams::include_],
         link_sample: String,
-        terms_and_conditions_url: String
+        terms_and_conditions_url: String,
+        tcr_id: String
       }
       & SurgeAPI::Internal::Type::request_parameters
 
@@ -44,6 +45,8 @@ module SurgeAPI
 
       def terms_and_conditions_url=: (String) -> String
 
+      attr_accessor tcr_id: String
+
       def initialize: (
         consent_flow: String,
         description: String,
@@ -51,6 +54,7 @@ module SurgeAPI
         privacy_policy_url: String,
         use_cases: ::Array[SurgeAPI::Models::CampaignCreateParams::use_case],
         volume: SurgeAPI::Models::CampaignCreateParams::volume,
+        tcr_id: String,
         ?includes: ::Array[SurgeAPI::Models::CampaignCreateParams::include_],
         ?link_sample: String,
         ?terms_and_conditions_url: String,
@@ -67,6 +71,7 @@ module SurgeAPI
         includes: ::Array[SurgeAPI::Models::CampaignCreateParams::include_],
         link_sample: String,
         terms_and_conditions_url: String,
+        tcr_id: String,
         request_options: SurgeAPI::RequestOptions
       }
 
