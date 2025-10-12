@@ -21,6 +21,8 @@ module SurgeAPI
 
   class CampaignCreateParams = SurgeAPI::Models::CampaignCreateParams
 
+  module CampaignParams = SurgeAPI::Models::CampaignParams
+
   class Contact = SurgeAPI::Models::Contact
 
   class ContactCreateParams = SurgeAPI::Models::ContactCreateParams
@@ -44,6 +46,8 @@ module SurgeAPI
   class MessageDeliveredWebhookEvent = SurgeAPI::Models::MessageDeliveredWebhookEvent
 
   class MessageFailedWebhookEvent = SurgeAPI::Models::MessageFailedWebhookEvent
+
+  module MessageParams = SurgeAPI::Models::MessageParams
 
   class MessageReceivedWebhookEvent = SurgeAPI::Models::MessageReceivedWebhookEvent
 

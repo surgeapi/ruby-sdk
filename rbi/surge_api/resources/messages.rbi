@@ -31,34 +31,17 @@ module SurgeAPI
       sig do
         params(
           account_id: String,
-          conversation: SurgeAPI::MessageCreateParams::Conversation::OrHash,
-          to: String,
-          attachments:
-            T::Array[SurgeAPI::MessageCreateParams::Attachment::OrHash],
-          body: String,
-          send_at: Time,
-          from: String,
+          message_params: SurgeAPI::MessageParams,
           request_options: SurgeAPI::RequestOptions::OrHash
         ).returns(SurgeAPI::Message)
       end
       def create(
         # The account from which the message should be sent.
         account_id,
-        # Params for selecting or creating a new conversation. Either the id or the
-        # Contact must be given.
-        conversation:,
-        # The recipient's phone number in E.164 format. Cannot be used together with
-        # 'conversation'.
-        to:,
-        attachments: nil,
-        # The message body.
-        body: nil,
-        # An optional datetime for scheduling message up to a couple of months in the
-        # future.
-        send_at: nil,
-        # The sender's phone number in E.164 format or phone number ID. If omitted, uses
-        # the account's default phone number. Cannot be used together with 'conversation'.
-        from: nil,
+        # Payload for creating a message. Either an attachment or the body must be given.
+        # You can specify the recipient either using the 'conversation' parameter or the
+        # 'to'/'from' parameters, but not both.
+        message_params:,
         request_options: {}
       )
       end
