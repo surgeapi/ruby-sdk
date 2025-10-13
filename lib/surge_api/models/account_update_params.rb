@@ -59,8 +59,11 @@ module SurgeAPI
         optional :address, -> { SurgeAPI::AccountUpdateParams::Organization::Address }
 
         # @!attribute contact
-        #   An object representing an individual who can be contacted if the carriers have
-        #   any questions about the business.
+        #   An object representing an individual who can be contacted if Surge or our
+        #   carrier partners have any questions about the business. If you are registering
+        #   on behalf of your customer, this must be a contact from your customer's company
+        #   rather than your own. The individual will likely never be contacted unless there
+        #   are issues with spam.
         #
         #   @return [SurgeAPI::Models::AccountUpdateParams::Organization::Contact, nil]
         optional :contact, -> { SurgeAPI::AccountUpdateParams::Organization::Contact }, nil?: true
@@ -168,7 +171,7 @@ module SurgeAPI
         #
         #   @param address [SurgeAPI::Models::AccountUpdateParams::Organization::Address] The address of the organization's headquarters.
         #
-        #   @param contact [SurgeAPI::Models::AccountUpdateParams::Organization::Contact, nil] An object representing an individual who can be contacted if the carriers have a
+        #   @param contact [SurgeAPI::Models::AccountUpdateParams::Organization::Contact, nil] An object representing an individual who can be contacted if Surge or our carrie
         #
         #   @param country [String, nil] The two character ISO 3166 country code for the country in which the organizatio
         #
@@ -268,7 +271,8 @@ module SurgeAPI
           #   using the same domain name as the website URL will be preferred (e.g. with a
           #   website domain of `https://dtprecisionauto.com`, an email like
           #   `dom@dtprecisionauto.com` will be preferred over one like
-          #   `dom@anothergarage.com` or `dom.toretto@gmail.com`)
+          #   `dom@anothergarage.com` or `dom.toretto@gmail.com`. `dtprecisionauto@gmail.com`
+          #   would also be acceptable, but not preferred)
           #
           #   @return [String, nil]
           optional :email, String, nil?: true
@@ -312,8 +316,11 @@ module SurgeAPI
           #   Some parameter documentations has been truncated, see
           #   {SurgeAPI::Models::AccountUpdateParams::Organization::Contact} for more details.
           #
-          #   An object representing an individual who can be contacted if the carriers have
-          #   any questions about the business.
+          #   An object representing an individual who can be contacted if Surge or our
+          #   carrier partners have any questions about the business. If you are registering
+          #   on behalf of your customer, this must be a contact from your customer's company
+          #   rather than your own. The individual will likely never be contacted unless there
+          #   are issues with spam.
           #
           #   @param email [String, nil] An email address at which the individual can be reached. Typically an email usin
           #
