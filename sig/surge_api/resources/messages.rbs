@@ -3,12 +3,7 @@ module SurgeAPI
     class Messages
       def create: (
         String account_id,
-        conversation: SurgeAPI::MessageCreateParams::Conversation,
-        to: String,
-        ?attachments: ::Array[SurgeAPI::MessageCreateParams::Attachment],
-        ?body: String,
-        ?send_at: Time,
-        ?from: String,
+        params: SurgeAPI::Models::MessageCreateParams::params,
         ?request_options: SurgeAPI::request_opts
       ) -> SurgeAPI::Message
 

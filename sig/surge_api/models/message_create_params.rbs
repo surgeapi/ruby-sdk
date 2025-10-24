@@ -1,139 +1,209 @@
 module SurgeAPI
   module Models
     type message_create_params =
-      {
-        conversation: SurgeAPI::MessageCreateParams::Conversation,
-        attachments: ::Array[SurgeAPI::MessageCreateParams::Attachment],
-        body: String,
-        send_at: Time,
-        to: String,
-        from: String
-      }
+      { params: SurgeAPI::Models::MessageCreateParams::params }
       & SurgeAPI::Internal::Type::request_parameters
 
     class MessageCreateParams < SurgeAPI::Internal::Type::BaseModel
       extend SurgeAPI::Internal::Type::RequestParameters::Converter
       include SurgeAPI::Internal::Type::RequestParameters
 
-      attr_accessor conversation: SurgeAPI::MessageCreateParams::Conversation
-
-      attr_reader attachments: ::Array[SurgeAPI::MessageCreateParams::Attachment]?
-
-      def attachments=: (
-        ::Array[SurgeAPI::MessageCreateParams::Attachment]
-      ) -> ::Array[SurgeAPI::MessageCreateParams::Attachment]
-
-      attr_reader body: String?
-
-      def body=: (String) -> String
-
-      attr_reader send_at: Time?
-
-      def send_at=: (Time) -> Time
-
-      attr_accessor to: String
-
-      attr_reader from: String?
-
-      def from=: (String) -> String
+      attr_accessor params: SurgeAPI::Models::MessageCreateParams::params
 
       def initialize: (
-        conversation: SurgeAPI::MessageCreateParams::Conversation,
-        to: String,
-        ?attachments: ::Array[SurgeAPI::MessageCreateParams::Attachment],
-        ?body: String,
-        ?send_at: Time,
-        ?from: String,
+        params: SurgeAPI::Models::MessageCreateParams::params,
         ?request_options: SurgeAPI::request_opts
       ) -> void
 
       def to_hash: -> {
-        conversation: SurgeAPI::MessageCreateParams::Conversation,
-        attachments: ::Array[SurgeAPI::MessageCreateParams::Attachment],
-        body: String,
-        send_at: Time,
-        to: String,
-        from: String,
+        params: SurgeAPI::Models::MessageCreateParams::params,
         request_options: SurgeAPI::RequestOptions
       }
 
-      type conversation =
-        {
-          contact: SurgeAPI::MessageCreateParams::Conversation::Contact,
-          phone_number: String
-        }
+      type params =
+        SurgeAPI::MessageCreateParams::Params::MessageParamsWithConversation
+        | SurgeAPI::MessageCreateParams::Params::SimpleMessageParams
 
-      class Conversation < SurgeAPI::Internal::Type::BaseModel
-        attr_accessor contact: SurgeAPI::MessageCreateParams::Conversation::Contact
+      module Params
+        extend SurgeAPI::Internal::Type::Union
 
-        attr_reader phone_number: String?
-
-        def phone_number=: (String) -> String
-
-        def initialize: (
-          contact: SurgeAPI::MessageCreateParams::Conversation::Contact,
-          ?phone_number: String
-        ) -> void
-
-        def to_hash: -> {
-          contact: SurgeAPI::MessageCreateParams::Conversation::Contact,
-          phone_number: String
-        }
-
-        type contact =
+        type message_params_with_conversation =
           {
-            phone_number: String,
-            email: String,
-            first_name: String,
-            last_name: String,
-            metadata: ::Hash[Symbol, String]
+            conversation: SurgeAPI::MessageCreateParams::Params::MessageParamsWithConversation::Conversation,
+            attachments: ::Array[SurgeAPI::MessageCreateParams::Params::MessageParamsWithConversation::Attachment],
+            body: String,
+            send_at: Time
           }
 
-        class Contact < SurgeAPI::Internal::Type::BaseModel
-          attr_accessor phone_number: String
+        class MessageParamsWithConversation < SurgeAPI::Internal::Type::BaseModel
+          attr_accessor conversation: SurgeAPI::MessageCreateParams::Params::MessageParamsWithConversation::Conversation
 
-          attr_reader email: String?
+          attr_reader attachments: ::Array[SurgeAPI::MessageCreateParams::Params::MessageParamsWithConversation::Attachment]?
 
-          def email=: (String) -> String
+          def attachments=: (
+            ::Array[SurgeAPI::MessageCreateParams::Params::MessageParamsWithConversation::Attachment]
+          ) -> ::Array[SurgeAPI::MessageCreateParams::Params::MessageParamsWithConversation::Attachment]
 
-          attr_reader first_name: String?
+          attr_reader body: String?
 
-          def first_name=: (String) -> String
+          def body=: (String) -> String
 
-          attr_reader last_name: String?
+          attr_reader send_at: Time?
 
-          def last_name=: (String) -> String
-
-          attr_reader metadata: ::Hash[Symbol, String]?
-
-          def metadata=: (::Hash[Symbol, String]) -> ::Hash[Symbol, String]
+          def send_at=: (Time) -> Time
 
           def initialize: (
-            phone_number: String,
-            ?email: String,
-            ?first_name: String,
-            ?last_name: String,
-            ?metadata: ::Hash[Symbol, String]
+            conversation: SurgeAPI::MessageCreateParams::Params::MessageParamsWithConversation::Conversation,
+            ?attachments: ::Array[SurgeAPI::MessageCreateParams::Params::MessageParamsWithConversation::Attachment],
+            ?body: String,
+            ?send_at: Time
           ) -> void
 
           def to_hash: -> {
-            phone_number: String,
-            email: String,
-            first_name: String,
-            last_name: String,
-            metadata: ::Hash[Symbol, String]
+            conversation: SurgeAPI::MessageCreateParams::Params::MessageParamsWithConversation::Conversation,
+            attachments: ::Array[SurgeAPI::MessageCreateParams::Params::MessageParamsWithConversation::Attachment],
+            body: String,
+            send_at: Time
           }
+
+          type conversation =
+            {
+              contact: SurgeAPI::MessageCreateParams::Params::MessageParamsWithConversation::Conversation::Contact,
+              phone_number: String
+            }
+
+          class Conversation < SurgeAPI::Internal::Type::BaseModel
+            attr_accessor contact: SurgeAPI::MessageCreateParams::Params::MessageParamsWithConversation::Conversation::Contact
+
+            attr_reader phone_number: String?
+
+            def phone_number=: (String) -> String
+
+            def initialize: (
+              contact: SurgeAPI::MessageCreateParams::Params::MessageParamsWithConversation::Conversation::Contact,
+              ?phone_number: String
+            ) -> void
+
+            def to_hash: -> {
+              contact: SurgeAPI::MessageCreateParams::Params::MessageParamsWithConversation::Conversation::Contact,
+              phone_number: String
+            }
+
+            type contact =
+              {
+                phone_number: String,
+                email: String,
+                first_name: String,
+                last_name: String,
+                metadata: ::Hash[Symbol, String]
+              }
+
+            class Contact < SurgeAPI::Internal::Type::BaseModel
+              attr_accessor phone_number: String
+
+              attr_reader email: String?
+
+              def email=: (String) -> String
+
+              attr_reader first_name: String?
+
+              def first_name=: (String) -> String
+
+              attr_reader last_name: String?
+
+              def last_name=: (String) -> String
+
+              attr_reader metadata: ::Hash[Symbol, String]?
+
+              def metadata=: (::Hash[Symbol, String]) -> ::Hash[Symbol, String]
+
+              def initialize: (
+                phone_number: String,
+                ?email: String,
+                ?first_name: String,
+                ?last_name: String,
+                ?metadata: ::Hash[Symbol, String]
+              ) -> void
+
+              def to_hash: -> {
+                phone_number: String,
+                email: String,
+                first_name: String,
+                last_name: String,
+                metadata: ::Hash[Symbol, String]
+              }
+            end
+          end
+
+          type attachment = { url: String }
+
+          class Attachment < SurgeAPI::Internal::Type::BaseModel
+            attr_accessor url: String
+
+            def initialize: (url: String) -> void
+
+            def to_hash: -> { url: String }
+          end
         end
-      end
 
-      type attachment = { url: String }
+        type simple_message_params =
+          {
+            to: String,
+            attachments: ::Array[SurgeAPI::MessageCreateParams::Params::SimpleMessageParams::Attachment],
+            body: String,
+            from: String,
+            send_at: Time
+          }
 
-      class Attachment < SurgeAPI::Internal::Type::BaseModel
-        attr_accessor url: String
+        class SimpleMessageParams < SurgeAPI::Internal::Type::BaseModel
+          attr_accessor to: String
 
-        def initialize: (url: String) -> void
+          attr_reader attachments: ::Array[SurgeAPI::MessageCreateParams::Params::SimpleMessageParams::Attachment]?
 
-        def to_hash: -> { url: String }
+          def attachments=: (
+            ::Array[SurgeAPI::MessageCreateParams::Params::SimpleMessageParams::Attachment]
+          ) -> ::Array[SurgeAPI::MessageCreateParams::Params::SimpleMessageParams::Attachment]
+
+          attr_reader body: String?
+
+          def body=: (String) -> String
+
+          attr_reader from: String?
+
+          def from=: (String) -> String
+
+          attr_reader send_at: Time?
+
+          def send_at=: (Time) -> Time
+
+          def initialize: (
+            to: String,
+            ?attachments: ::Array[SurgeAPI::MessageCreateParams::Params::SimpleMessageParams::Attachment],
+            ?body: String,
+            ?from: String,
+            ?send_at: Time
+          ) -> void
+
+          def to_hash: -> {
+            to: String,
+            attachments: ::Array[SurgeAPI::MessageCreateParams::Params::SimpleMessageParams::Attachment],
+            body: String,
+            from: String,
+            send_at: Time
+          }
+
+          type attachment = { url: String }
+
+          class Attachment < SurgeAPI::Internal::Type::BaseModel
+            attr_accessor url: String
+
+            def initialize: (url: String) -> void
+
+            def to_hash: -> { url: String }
+          end
+        end
+
+        def self?.variants: -> ::Array[SurgeAPI::Models::MessageCreateParams::params]
       end
     end
   end

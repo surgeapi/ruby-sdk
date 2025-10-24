@@ -3,16 +3,7 @@ module SurgeAPI
     class Campaigns
       def create: (
         String account_id,
-        consent_flow: String,
-        description: String,
-        message_samples: ::Array[String],
-        privacy_policy_url: String,
-        use_cases: ::Array[SurgeAPI::Models::CampaignCreateParams::use_case],
-        volume: SurgeAPI::Models::CampaignCreateParams::volume,
-        tcr_id: String,
-        ?includes: ::Array[SurgeAPI::Models::CampaignCreateParams::include_],
-        ?link_sample: String,
-        ?terms_and_conditions_url: String,
+        params: SurgeAPI::Models::CampaignCreateParams::params,
         ?request_options: SurgeAPI::request_opts
       ) -> SurgeAPI::Campaign
 
