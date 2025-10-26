@@ -232,25 +232,25 @@ surge.messages.create("acct_01j9a43avnfqzbjfch6pygv1td", **params)
 Since this library does not depend on `sorbet-runtime`, it cannot provide [`T::Enum`](https://sorbet.org/docs/tenum) instances. Instead, we provide "tagged symbols" instead, which is always a primitive at runtime:
 
 ```ruby
-# :local
-puts(SurgeAPI::PhoneNumberPurchaseParams::Type::LOCAL)
+# :high
+puts(SurgeAPI::CampaignParams::Volume::HIGH)
 
-# Revealed type: `T.all(SurgeAPI::PhoneNumberPurchaseParams::Type, Symbol)`
-T.reveal_type(SurgeAPI::PhoneNumberPurchaseParams::Type::LOCAL)
+# Revealed type: `T.all(SurgeAPI::CampaignParams::Volume, Symbol)`
+T.reveal_type(SurgeAPI::CampaignParams::Volume::HIGH)
 ```
 
 Enum parameters have a "relaxed" type, so you can either pass in enum constants or their literal value:
 
 ```ruby
 # Using the enum constants preserves the tagged type information:
-surge.phone_numbers.purchase(
-  type: SurgeAPI::PhoneNumberPurchaseParams::Type::LOCAL,
+surge.campaigns.create(
+  volume: SurgeAPI::CampaignParams::Volume::HIGH,
   # …
 )
 
 # Literal values are also permissible:
-surge.phone_numbers.purchase(
-  type: :local,
+surge.campaigns.create(
+  volume: :high,
   # …
 )
 ```

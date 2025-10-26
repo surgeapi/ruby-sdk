@@ -8,11 +8,11 @@ module SurgeAPI
       #
       # Creates a campaign to register account to send text messages.
       #
-      # @overload create(account_id, params:, request_options: {})
+      # @overload create(account_id, campaign_params:, request_options: {})
       #
       # @param account_id [String] The account for which the campaign should be created.
       #
-      # @param params [SurgeAPI::Models::CampaignCreateParams::Params::StandardCampaignParams, SurgeAPI::Models::CampaignCreateParams::Params::ExternalCampaignParams] Parameters for creating a new campaign. Either provide full campaign details or
+      # @param campaign_params [SurgeAPI::CampaignParams] Parameters for creating a new campaign. Either provide full campaign details or
       #
       # @param request_options [SurgeAPI::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -21,10 +21,15 @@ module SurgeAPI
       # @see SurgeAPI::Models::CampaignCreateParams
       def create(account_id, params)
         parsed, options = SurgeAPI::CampaignCreateParams.dump_request(params)
+        case parsed
+        in {campaign_params: Hash => union, **rest}
+          parsed = {**rest, **union}
+        else
+        end
         @client.request(
           method: :post,
           path: ["accounts/%1$s/campaigns", account_id],
-          body: parsed[:params],
+          body: parsed,
           model: SurgeAPI::Campaign,
           options: options
         )

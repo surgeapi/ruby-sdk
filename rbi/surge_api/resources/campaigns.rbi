@@ -7,11 +7,7 @@ module SurgeAPI
       sig do
         params(
           account_id: String,
-          params:
-            T.any(
-              SurgeAPI::CampaignCreateParams::Params::StandardCampaignParams::OrHash,
-              SurgeAPI::CampaignCreateParams::Params::ExternalCampaignParams::OrHash
-            ),
+          campaign_params: SurgeAPI::CampaignParams,
           request_options: SurgeAPI::RequestOptions::OrHash
         ).returns(SurgeAPI::Campaign)
       end
@@ -20,7 +16,7 @@ module SurgeAPI
         account_id,
         # Parameters for creating a new campaign. Either provide full campaign details or
         # import using a TCR ID.
-        params:,
+        campaign_params:,
         request_options: {}
       )
       end

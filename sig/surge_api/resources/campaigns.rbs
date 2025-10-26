@@ -3,7 +3,7 @@ module SurgeAPI
     class Campaigns
       def create: (
         String account_id,
-        params: SurgeAPI::Models::CampaignCreateParams::params,
+        campaign_params: SurgeAPI::Models::CampaignParams,
         ?request_options: SurgeAPI::request_opts
       ) -> SurgeAPI::Campaign
 
