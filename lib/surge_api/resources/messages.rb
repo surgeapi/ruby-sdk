@@ -32,11 +32,11 @@ module SurgeAPI
       # `conversation` field, and `conversation.phone_number` should be specified
       # instead.
       #
-      # @overload create(account_id, params:, request_options: {})
+      # @overload create(account_id, message_params:, request_options: {})
       #
       # @param account_id [String] The account from which the message should be sent.
       #
-      # @param params [SurgeAPI::Models::MessageParams::MessageParamsWithConversation, SurgeAPI::Models::MessageParams::SimpleMessageParams] Payload for creating a message. Either an attachment or the body must be given.
+      # @param message_params [SurgeAPI::MessageParams] Payload for creating a message. Either an attachment or the body must be given.
       #
       # @param request_options [SurgeAPI::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -45,10 +45,15 @@ module SurgeAPI
       # @see SurgeAPI::Models::MessageCreateParams
       def create(account_id, params)
         parsed, options = SurgeAPI::MessageCreateParams.dump_request(params)
+        case parsed
+        in {message_params: Hash => union, **rest}
+          parsed = {**rest, **union}
+        else
+        end
         @client.request(
           method: :post,
           path: ["accounts/%1$s/messages", account_id],
-          body: parsed[:params],
+          body: parsed,
           model: SurgeAPI::Message,
           options: options
         )

@@ -31,11 +31,7 @@ module SurgeAPI
       sig do
         params(
           account_id: String,
-          params:
-            T.any(
-              SurgeAPI::MessageParams::MessageParamsWithConversation::OrHash,
-              SurgeAPI::MessageParams::SimpleMessageParams::OrHash
-            ),
+          message_params: SurgeAPI::MessageParams,
           request_options: SurgeAPI::RequestOptions::OrHash
         ).returns(SurgeAPI::Message)
       end
@@ -45,7 +41,7 @@ module SurgeAPI
         # Payload for creating a message. Either an attachment or the body must be given.
         # You can specify the recipient either using the 'conversation' parameter or the
         # 'to'/'from' parameters, but not both.
-        params:,
+        message_params:,
         request_options: {}
       )
       end

@@ -9,7 +9,7 @@ class SurgeAPI::Test::Resources::MessagesTest < SurgeAPI::Test::ResourceTest
     response =
       @surge.messages.create(
         "acct_01j9a43avnfqzbjfch6pygv1td",
-        params: {conversation: {contact: {phone_number: "+18015551234"}}}
+        conversation: {contact: {phone_number: "+18015551234"}}
       )
 
     assert_pattern do
