@@ -33,8 +33,8 @@ module SurgeAPI
           account_id: String,
           params:
             T.any(
-              SurgeAPI::MessageCreateParams::Params::MessageParamsWithConversation::OrHash,
-              SurgeAPI::MessageCreateParams::Params::SimpleMessageParams::OrHash
+              SurgeAPI::MessageParams::MessageParamsWithConversation::OrHash,
+              SurgeAPI::MessageParams::SimpleMessageParams::OrHash
             ),
           request_options: SurgeAPI::RequestOptions::OrHash
         ).returns(SurgeAPI::Message)

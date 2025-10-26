@@ -36,7 +36,7 @@ module SurgeAPI
       #
       # @param account_id [String] The account from which the message should be sent.
       #
-      # @param params [SurgeAPI::Models::MessageCreateParams::Params::MessageParamsWithConversation, SurgeAPI::Models::MessageCreateParams::Params::SimpleMessageParams] Payload for creating a message. Either an attachment or the body must be given.
+      # @param params [SurgeAPI::Models::MessageParams::MessageParamsWithConversation, SurgeAPI::Models::MessageParams::SimpleMessageParams] Payload for creating a message. Either an attachment or the body must be given.
       #
       # @param request_options [SurgeAPI::RequestOptions, Hash{Symbol=>Object}, nil]
       #

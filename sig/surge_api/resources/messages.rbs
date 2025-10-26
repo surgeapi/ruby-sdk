@@ -3,7 +3,7 @@ module SurgeAPI
     class Messages
       def create: (
         String account_id,
-        params: SurgeAPI::Models::MessageCreateParams::params,
+        params: SurgeAPI::Models::message_params,
         ?request_options: SurgeAPI::request_opts
       ) -> SurgeAPI::Message
 

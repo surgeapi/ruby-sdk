@@ -195,9 +195,9 @@ You can provide typesafe request parameters like so:
 ```ruby
 surge.messages.create(
   "acct_01j9a43avnfqzbjfch6pygv1td",
-  params: SurgeAPI::MessageCreateParams::Params::MessageParamsWithConversation.new(
-    conversation: SurgeAPI::MessageCreateParams::Params::MessageParamsWithConversation::Conversation.new(
-      contact: SurgeAPI::MessageCreateParams::Params::MessageParamsWithConversation::Conversation::Contact.new(
+  params: SurgeAPI::MessageParams::MessageParamsWithConversation.new(
+    conversation: SurgeAPI::MessageParams::MessageParamsWithConversation::Conversation.new(
+      contact: SurgeAPI::MessageParams::MessageParamsWithConversation::Conversation::Contact.new(
         phone_number: "+18015551234"
       )
     )
@@ -216,9 +216,9 @@ surge.messages.create(
 
 # You can also splat a full Params class:
 params = SurgeAPI::MessageCreateParams.new(
-  params: SurgeAPI::MessageCreateParams::Params::MessageParamsWithConversation.new(
-    conversation: SurgeAPI::MessageCreateParams::Params::MessageParamsWithConversation::Conversation.new(
-      contact: SurgeAPI::MessageCreateParams::Params::MessageParamsWithConversation::Conversation::Contact.new(
+  params: SurgeAPI::MessageParams::MessageParamsWithConversation.new(
+    conversation: SurgeAPI::MessageParams::MessageParamsWithConversation::Conversation.new(
+      contact: SurgeAPI::MessageParams::MessageParamsWithConversation::Conversation::Contact.new(
         phone_number: "+18015551234"
       )
     )
