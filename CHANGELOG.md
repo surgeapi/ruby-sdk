@@ -1,5 +1,25 @@
 # Changelog
 
+## 0.2.1 (2025-10-31)
+
+Full Changelog: [v0.2.0...v0.2.1](https://github.com/surgeapi/ruby-sdk/compare/v0.2.0...v0.2.1)
+
+### Features
+
+* **api:** create externally registered campaigns ([c01b26e](https://github.com/surgeapi/ruby-sdk/commit/c01b26e3f26a8b827254d128a7c776d79850cbf5))
+* handle thread interrupts in the core HTTP client ([4362499](https://github.com/surgeapi/ruby-sdk/commit/43624993a62c67679d1f5260653517aebd5d687e))
+
+
+### Bug Fixes
+
+* absolutely qualified uris should always override the default ([58fa7be](https://github.com/surgeapi/ruby-sdk/commit/58fa7bea703edecd59fe69630191a9cb83ece9d0))
+* should not reuse buffers for `IO.copy_stream` interop ([52ce0fd](https://github.com/surgeapi/ruby-sdk/commit/52ce0fd6a7039be032e2f884636215ac1fb88223))
+
+
+### Documentation
+
+* **api:** add context around organization contacts ([88c764d](https://github.com/surgeapi/ruby-sdk/commit/88c764d18d70361d1a7f43e22a46d26082f24227))
+
 ## 0.2.0 (2025-10-09)
 
 Full Changelog: [v0.1.0...v0.2.0](https://github.com/surgeapi/ruby-sdk/compare/v0.1.0...v0.2.0)
