@@ -31,7 +31,7 @@ module SurgeAPI
           #
           # Assumes superclass fields are totally defined before fields are accessed /
           # defined on subclasses.
-          sig { params(child: T.self_type).void }
+          sig { params(child: SurgeAPI::Internal::Type::BaseModel).void }
           def inherited(child)
           end
 
@@ -274,9 +274,13 @@ module SurgeAPI
 
         # Create a new instance of a model.
         sig do
-          params(data: T.any(T::Hash[Symbol, T.anything], T.self_type)).returns(
-            T.attached_class
-          )
+          params(
+            data:
+              T.any(
+                T::Hash[Symbol, T.anything],
+                SurgeAPI::Internal::Type::BaseModel
+              )
+          ).returns(T.attached_class)
         end
         def self.new(data = {})
         end
