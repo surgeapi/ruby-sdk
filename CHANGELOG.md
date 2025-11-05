@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.2.2 (2025-11-05)
+
+Full Changelog: [v0.2.1...v0.2.2](https://github.com/surgeapi/ruby-sdk/compare/v0.2.1...v0.2.2)
+
+### Bug Fixes
+
+* better thread safety via early initializing SSL store during HTTP client creation ([0d14e5e](https://github.com/surgeapi/ruby-sdk/commit/0d14e5e73496e95743359c4c8dbab6da1c384a6e))
+
+
+### Chores
+
+* bump dependency version and update sorbet types ([e00a588](https://github.com/surgeapi/ruby-sdk/commit/e00a5886df58170099838c7a2b1ba25fe36588d6))
+
 ## 0.2.1 (2025-10-31)
 
 Full Changelog: [v0.2.0...v0.2.1](https://github.com/surgeapi/ruby-sdk/compare/v0.2.0...v0.2.1)
