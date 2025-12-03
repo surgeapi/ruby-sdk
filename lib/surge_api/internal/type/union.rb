@@ -17,6 +17,18 @@ module SurgeAPI
       #   else
       #     puts(unwrap_webhook_event)
       #   end
+      #
+      # @example
+      #   case unwrap_webhook_event
+      #   in {type: :"call.ended", account_id: account_id, data: data, timestamp: timestamp}
+      #     puts(account_id)
+      #   in {type: :"campaign.approved", account_id: account_id, data: data, timestamp: timestamp}
+      #     puts(data)
+      #   in {type: :"contact.opted_in", account_id: account_id, data: data, timestamp: timestamp}
+      #     puts(timestamp)
+      #   else
+      #     puts(unwrap_webhook_event)
+      #   end
       module Union
         include SurgeAPI::Internal::Type::Converter
         include SurgeAPI::Internal::Util::SorbetRuntimeSupport
