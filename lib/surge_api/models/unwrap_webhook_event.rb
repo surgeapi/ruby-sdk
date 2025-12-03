@@ -5,23 +5,25 @@ module SurgeAPI
     module UnwrapWebhookEvent
       extend SurgeAPI::Internal::Type::Union
 
-      variant -> { SurgeAPI::CallEndedWebhookEvent }
+      discriminator :type
 
-      variant -> { SurgeAPI::CampaignApprovedWebhookEvent }
+      variant :"call.ended", -> { SurgeAPI::CallEndedWebhookEvent }
 
-      variant -> { SurgeAPI::ContactOptedInWebhookEvent }
+      variant :"campaign.approved", -> { SurgeAPI::CampaignApprovedWebhookEvent }
 
-      variant -> { SurgeAPI::ContactOptedOutWebhookEvent }
+      variant :"contact.opted_in", -> { SurgeAPI::ContactOptedInWebhookEvent }
 
-      variant -> { SurgeAPI::ConversationCreatedWebhookEvent }
+      variant :"contact.opted_out", -> { SurgeAPI::ContactOptedOutWebhookEvent }
 
-      variant -> { SurgeAPI::MessageDeliveredWebhookEvent }
+      variant :"conversation.created", -> { SurgeAPI::ConversationCreatedWebhookEvent }
 
-      variant -> { SurgeAPI::MessageFailedWebhookEvent }
+      variant :"message.delivered", -> { SurgeAPI::MessageDeliveredWebhookEvent }
 
-      variant -> { SurgeAPI::MessageReceivedWebhookEvent }
+      variant :"message.failed", -> { SurgeAPI::MessageFailedWebhookEvent }
 
-      variant -> { SurgeAPI::MessageSentWebhookEvent }
+      variant :"message.received", -> { SurgeAPI::MessageReceivedWebhookEvent }
+
+      variant :"message.sent", -> { SurgeAPI::MessageSentWebhookEvent }
 
       # @!method self.variants
       #   @return [Array(SurgeAPI::Models::CallEndedWebhookEvent, SurgeAPI::Models::CampaignApprovedWebhookEvent, SurgeAPI::Models::ContactOptedInWebhookEvent, SurgeAPI::Models::ContactOptedOutWebhookEvent, SurgeAPI::Models::ConversationCreatedWebhookEvent, SurgeAPI::Models::MessageDeliveredWebhookEvent, SurgeAPI::Models::MessageFailedWebhookEvent, SurgeAPI::Models::MessageReceivedWebhookEvent, SurgeAPI::Models::MessageSentWebhookEvent)]
