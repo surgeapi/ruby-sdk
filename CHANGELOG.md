@@ -1,5 +1,26 @@
 # Changelog
 
+## 0.3.0 (2025-12-17)
+
+Full Changelog: [v0.2.1...v0.3.0](https://github.com/surgeapi/ruby-sdk/compare/v0.2.1...v0.3.0)
+
+### Features
+
+* **api:** add retrieve message endpoint ([55df346](https://github.com/surgeapi/ruby-sdk/commit/55df346f91c99fece77d130057afc55b021666c7))
+
+
+### Bug Fixes
+
+* better thread safety via early initializing SSL store during HTTP client creation ([0d14e5e](https://github.com/surgeapi/ruby-sdk/commit/0d14e5e73496e95743359c4c8dbab6da1c384a6e))
+* calling `break` out of streams should be instantaneous ([b43c7e5](https://github.com/surgeapi/ruby-sdk/commit/b43c7e54e9dfaaf31ffa0fe498c53fcc51bbb81c))
+
+
+### Chores
+
+* bump dependency version and update sorbet types ([e00a588](https://github.com/surgeapi/ruby-sdk/commit/e00a5886df58170099838c7a2b1ba25fe36588d6))
+* explicitly require "base64" gem ([a25ee53](https://github.com/surgeapi/ruby-sdk/commit/a25ee53f821df6c2d177b0e41c864e15e4b8bae9))
+* **internal:** codegen related update ([744a068](https://github.com/surgeapi/ruby-sdk/commit/744a0682fa04890d445106232878d0d5be7d7273))
+
 ## 0.2.1 (2025-10-31)
 
 Full Changelog: [v0.2.0...v0.2.1](https://github.com/surgeapi/ruby-sdk/compare/v0.2.0...v0.2.1)
