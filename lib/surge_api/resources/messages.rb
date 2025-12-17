@@ -59,6 +59,26 @@ module SurgeAPI
         )
       end
 
+      # Retrieves a Message object.
+      #
+      # @overload retrieve(id, request_options: {})
+      #
+      # @param id [String] The ID of the message to retrieve.
+      #
+      # @param request_options [SurgeAPI::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [SurgeAPI::Models::Message]
+      #
+      # @see SurgeAPI::Models::MessageRetrieveParams
+      def retrieve(id, params = {})
+        @client.request(
+          method: :get,
+          path: ["messages/%1$s", id],
+          model: SurgeAPI::Message,
+          options: params[:request_options]
+        )
+      end
+
       # @api private
       #
       # @param client [SurgeAPI::Client]

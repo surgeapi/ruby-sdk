@@ -46,6 +46,20 @@ module SurgeAPI
       )
       end
 
+      # Retrieves a Message object.
+      sig do
+        params(
+          id: String,
+          request_options: SurgeAPI::RequestOptions::OrHash
+        ).returns(SurgeAPI::Message)
+      end
+      def retrieve(
+        # The ID of the message to retrieve.
+        id,
+        request_options: {}
+      )
+      end
+
       # @api private
       sig { params(client: SurgeAPI::Client).returns(T.attached_class) }
       def self.new(client:)
