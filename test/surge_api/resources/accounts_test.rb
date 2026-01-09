@@ -43,6 +43,26 @@ class SurgeAPI::Test::Resources::AccountsTest < SurgeAPI::Test::ResourceTest
     end
   end
 
+  def test_archive
+    skip("Prism tests are disabled")
+
+    response = @surge.accounts.archive("acct_01jpqjvfg9enpt7pyxd60pcmxj")
+
+    assert_pattern do
+      response => SurgeAPI::Account
+    end
+
+    assert_pattern do
+      response => {
+        id: String,
+        brand_name: String | nil,
+        name: String,
+        organization: SurgeAPI::Organization,
+        time_zone: String | nil
+      }
+    end
+  end
+
   def test_retrieve_status
     skip("Prism tests are disabled")
 
