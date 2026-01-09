@@ -18,6 +18,11 @@ module SurgeAPI
         ?request_options: SurgeAPI::request_opts
       ) -> SurgeAPI::Account
 
+      def archive: (
+        String id,
+        ?request_options: SurgeAPI::request_opts
+      ) -> SurgeAPI::Account
+
       def retrieve_status: (
         String account_id,
         ?capabilities: ::Array[SurgeAPI::Models::AccountRetrieveStatusParams::capability],
