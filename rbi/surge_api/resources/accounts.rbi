@@ -65,6 +65,29 @@ module SurgeAPI
       )
       end
 
+      # Archives an account and releases all associated resources.
+      #
+      # **Warning**: This action will:
+      #
+      # - Release all phone numbers associated with the account
+      # - Deactivate all campaigns
+      # - Make the account unusable for sending messages
+      #
+      # This operation is irreversible. If you need to send SMS in the future, you will
+      # need to re-register new phone numbers and campaigns.
+      sig do
+        params(
+          id: String,
+          request_options: SurgeAPI::RequestOptions::OrHash
+        ).returns(SurgeAPI::Account)
+      end
+      def archive(
+        # The ID of the account to archive.
+        id,
+        request_options: {}
+      )
+      end
+
       # Check an account's status and capabilities
       sig do
         params(

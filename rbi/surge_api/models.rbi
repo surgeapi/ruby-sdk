@@ -3,6 +3,8 @@
 module SurgeAPI
   Account = SurgeAPI::Models::Account
 
+  AccountArchiveParams = SurgeAPI::Models::AccountArchiveParams
+
   AccountCreateParams = SurgeAPI::Models::AccountCreateParams
 
   AccountRetrieveStatusParams = SurgeAPI::Models::AccountRetrieveStatusParams
