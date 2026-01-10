@@ -1,5 +1,24 @@
 # Changelog
 
+## 0.4.0 (2026-01-10)
+
+Full Changelog: [v0.3.0...v0.4.0](https://github.com/surgeapi/ruby-sdk/compare/v0.3.0...v0.4.0)
+
+### Features
+
+* **api:** add archive account endpoint ([b56a3ac](https://github.com/surgeapi/ruby-sdk/commit/b56a3ac799df5e73cfea5416bb6af32cdeaac64d))
+
+
+### Bug Fixes
+
+* issue where json.parse errors when receiving HTTP 204 with nobody ([a54e6ff](https://github.com/surgeapi/ruby-sdk/commit/a54e6ff310c9d5d146161a33971eb0dc541c9774))
+
+
+### Chores
+
+* **internal:** codegen related update ([6dda266](https://github.com/surgeapi/ruby-sdk/commit/6dda2669de3018139c1ff15a9c23edda513fd899))
+* move `cgi` into dependencies for ruby 4 ([03ce06b](https://github.com/surgeapi/ruby-sdk/commit/03ce06b6a4f4d7f510dee6ece06e89ff93ede89d))
+
 ## 0.3.0 (2025-12-17)
 
 Full Changelog: [v0.2.1...v0.3.0](https://github.com/surgeapi/ruby-sdk/compare/v0.2.1...v0.3.0)
