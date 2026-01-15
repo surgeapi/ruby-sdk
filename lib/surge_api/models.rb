@@ -111,6 +111,8 @@ module SurgeAPI
 
   UserCreateTokenParams = SurgeAPI::Models::UserCreateTokenParams
 
+  UserDeleteParams = SurgeAPI::Models::UserDeleteParams
+
   UserRetrieveParams = SurgeAPI::Models::UserRetrieveParams
 
   UserTokenResponse = SurgeAPI::Models::UserTokenResponse

@@ -83,6 +83,30 @@ module SurgeAPI
         )
       end
 
+      # Deletes a user.
+      #
+      # Once a user has been deleted, they will no longer be permitted to access any of
+      # the embedded components. Attempting to access a deleted user will return a 404
+      # Not Found error.
+      #
+      # @overload delete(id, request_options: {})
+      #
+      # @param id [String] The ID of the user to delete.
+      #
+      # @param request_options [SurgeAPI::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [SurgeAPI::Models::User]
+      #
+      # @see SurgeAPI::Models::UserDeleteParams
+      def delete(id, params = {})
+        @client.request(
+          method: :delete,
+          path: ["users/%1$s", id],
+          model: SurgeAPI::User,
+          options: params[:request_options]
+        )
+      end
+
       # Provides a mechanism for having Surge create a signed token for embeds instead
       # of signing with your own signing key.
       #
