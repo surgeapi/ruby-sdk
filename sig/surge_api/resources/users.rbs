@@ -24,6 +24,11 @@ module SurgeAPI
         ?request_options: SurgeAPI::request_opts
       ) -> SurgeAPI::User
 
+      def delete: (
+        String id,
+        ?request_options: SurgeAPI::request_opts
+      ) -> SurgeAPI::User
+
       def create_token: (
         String user_id,
         ?duration_seconds: Integer,

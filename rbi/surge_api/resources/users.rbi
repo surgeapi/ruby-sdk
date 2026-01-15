@@ -69,6 +69,24 @@ module SurgeAPI
       )
       end
 
+      # Deletes a user.
+      #
+      # Once a user has been deleted, they will no longer be permitted to access any of
+      # the embedded components. Attempting to access a deleted user will return a 404
+      # Not Found error.
+      sig do
+        params(
+          id: String,
+          request_options: SurgeAPI::RequestOptions::OrHash
+        ).returns(SurgeAPI::User)
+      end
+      def delete(
+        # The ID of the user to delete.
+        id,
+        request_options: {}
+      )
+      end
+
       # Provides a mechanism for having Surge create a signed token for embeds instead
       # of signing with your own signing key.
       sig do

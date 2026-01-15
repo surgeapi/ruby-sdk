@@ -63,6 +63,26 @@ class SurgeAPI::Test::Resources::UsersTest < SurgeAPI::Test::ResourceTest
     end
   end
 
+  def test_delete
+    skip("Prism tests are disabled")
+
+    response = @surge.users.delete("usr_01j9dwavghe1ttppewekjjkfrx")
+
+    assert_pattern do
+      response => SurgeAPI::User
+    end
+
+    assert_pattern do
+      response => {
+        first_name: String,
+        id: String | nil,
+        last_name: String | nil,
+        metadata: ^(SurgeAPI::Internal::Type::HashOf[String]) | nil,
+        photo_url: String | nil
+      }
+    end
+  end
+
   def test_create_token
     skip("Prism tests are disabled")
 
