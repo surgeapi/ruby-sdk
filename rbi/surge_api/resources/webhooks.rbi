@@ -11,6 +11,7 @@ module SurgeAPI
             SurgeAPI::ContactOptedInWebhookEvent,
             SurgeAPI::ContactOptedOutWebhookEvent,
             SurgeAPI::ConversationCreatedWebhookEvent,
+            SurgeAPI::LinkFollowedWebhookEvent,
             SurgeAPI::MessageDeliveredWebhookEvent,
             SurgeAPI::MessageFailedWebhookEvent,
             SurgeAPI::MessageReceivedWebhookEvent,
