@@ -5,7 +5,8 @@ module SurgeAPI
         id: String,
         attachments: ::Array[SurgeAPI::Message::Attachment],
         body: String,
-        conversation: SurgeAPI::Message::Conversation
+        conversation: SurgeAPI::Message::Conversation,
+        metadata: ::Hash[Symbol, String]
       }
 
     class Message < SurgeAPI::Internal::Type::BaseModel
@@ -29,18 +30,24 @@ module SurgeAPI
         SurgeAPI::Message::Conversation
       ) -> SurgeAPI::Message::Conversation
 
+      attr_reader metadata: ::Hash[Symbol, String]?
+
+      def metadata=: (::Hash[Symbol, String]) -> ::Hash[Symbol, String]
+
       def initialize: (
         ?id: String,
         ?attachments: ::Array[SurgeAPI::Message::Attachment],
         ?body: String,
-        ?conversation: SurgeAPI::Message::Conversation
+        ?conversation: SurgeAPI::Message::Conversation,
+        ?metadata: ::Hash[Symbol, String]
       ) -> void
 
       def to_hash: -> {
         id: String,
         attachments: ::Array[SurgeAPI::Message::Attachment],
         body: String,
-        conversation: SurgeAPI::Message::Conversation
+        conversation: SurgeAPI::Message::Conversation,
+        metadata: ::Hash[Symbol, String]
       }
 
       type attachment = { id: String, type: String, url: String }

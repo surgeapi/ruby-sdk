@@ -37,13 +37,21 @@ module SurgeAPI
       sig { params(conversation: SurgeAPI::Message::Conversation::OrHash).void }
       attr_writer :conversation
 
+      # Set of key-value pairs that will be stored with the object.
+      sig { returns(T.nilable(T::Hash[Symbol, String])) }
+      attr_reader :metadata
+
+      sig { params(metadata: T::Hash[Symbol, String]).void }
+      attr_writer :metadata
+
       # A Message is a communication sent to a Contact.
       sig do
         params(
           id: String,
           attachments: T::Array[SurgeAPI::Message::Attachment::OrHash],
           body: String,
-          conversation: SurgeAPI::Message::Conversation::OrHash
+          conversation: SurgeAPI::Message::Conversation::OrHash,
+          metadata: T::Hash[Symbol, String]
         ).returns(T.attached_class)
       end
       def self.new(
@@ -53,7 +61,9 @@ module SurgeAPI
         # The message body.
         body: nil,
         # A conversation with a Contact
-        conversation: nil
+        conversation: nil,
+        # Set of key-value pairs that will be stored with the object.
+        metadata: nil
       )
       end
 
@@ -63,7 +73,8 @@ module SurgeAPI
             id: String,
             attachments: T::Array[SurgeAPI::Message::Attachment],
             body: String,
-            conversation: SurgeAPI::Message::Conversation
+            conversation: SurgeAPI::Message::Conversation,
+            metadata: T::Hash[Symbol, String]
           }
         )
       end

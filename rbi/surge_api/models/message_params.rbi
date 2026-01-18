@@ -70,6 +70,13 @@ module SurgeAPI
         sig { params(body: String).void }
         attr_writer :body
 
+        # Set of key-value pairs that will be stored with the object.
+        sig { returns(T.nilable(T::Hash[Symbol, String])) }
+        attr_reader :metadata
+
+        sig { params(metadata: T::Hash[Symbol, String]).void }
+        attr_writer :metadata
+
         # An optional datetime for scheduling message up to a couple of months in the
         # future.
         sig { returns(T.nilable(Time)) }
@@ -89,6 +96,7 @@ module SurgeAPI
                 SurgeAPI::MessageParams::MessageParamsWithConversation::Attachment::OrHash
               ],
             body: String,
+            metadata: T::Hash[Symbol, String],
             send_at: Time
           ).returns(T.attached_class)
         end
@@ -99,6 +107,8 @@ module SurgeAPI
           attachments: nil,
           # The message body.
           body: nil,
+          # Set of key-value pairs that will be stored with the object.
+          metadata: nil,
           # An optional datetime for scheduling message up to a couple of months in the
           # future.
           send_at: nil
@@ -115,6 +125,7 @@ module SurgeAPI
                   SurgeAPI::MessageParams::MessageParamsWithConversation::Attachment
                 ],
               body: String,
+              metadata: T::Hash[Symbol, String],
               send_at: Time
             }
           )
@@ -341,6 +352,13 @@ module SurgeAPI
         sig { params(from: String).void }
         attr_writer :from
 
+        # Set of key-value pairs that will be stored with the object.
+        sig { returns(T.nilable(T::Hash[Symbol, String])) }
+        attr_reader :metadata
+
+        sig { params(metadata: T::Hash[Symbol, String]).void }
+        attr_writer :metadata
+
         # An optional datetime for scheduling message up to a couple of months in the
         # future.
         sig { returns(T.nilable(Time)) }
@@ -359,6 +377,7 @@ module SurgeAPI
               ],
             body: String,
             from: String,
+            metadata: T::Hash[Symbol, String],
             send_at: Time
           ).returns(T.attached_class)
         end
@@ -372,6 +391,8 @@ module SurgeAPI
           # The sender's phone number in E.164 format or phone number ID. If omitted, uses
           # the account's default phone number. Cannot be used together with 'conversation'.
           from: nil,
+          # Set of key-value pairs that will be stored with the object.
+          metadata: nil,
           # An optional datetime for scheduling message up to a couple of months in the
           # future.
           send_at: nil
@@ -388,6 +409,7 @@ module SurgeAPI
                 ],
               body: String,
               from: String,
+              metadata: T::Hash[Symbol, String],
               send_at: Time
             }
           )
