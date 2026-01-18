@@ -21,7 +21,8 @@ class SurgeAPI::Test::Resources::MessagesTest < SurgeAPI::Test::ResourceTest
         id: String | nil,
         attachments: ^(SurgeAPI::Internal::Type::ArrayOf[SurgeAPI::Message::Attachment]) | nil,
         body: String | nil,
-        conversation: SurgeAPI::Message::Conversation | nil
+        conversation: SurgeAPI::Message::Conversation | nil,
+        metadata: ^(SurgeAPI::Internal::Type::HashOf[String]) | nil
       }
     end
   end
@@ -40,7 +41,8 @@ class SurgeAPI::Test::Resources::MessagesTest < SurgeAPI::Test::ResourceTest
         id: String | nil,
         attachments: ^(SurgeAPI::Internal::Type::ArrayOf[SurgeAPI::Message::Attachment]) | nil,
         body: String | nil,
-        conversation: SurgeAPI::Message::Conversation | nil
+        conversation: SurgeAPI::Message::Conversation | nil,
+        metadata: ^(SurgeAPI::Internal::Type::HashOf[String]) | nil
       }
     end
   end

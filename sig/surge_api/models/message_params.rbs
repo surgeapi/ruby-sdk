@@ -12,6 +12,7 @@ module SurgeAPI
           conversation: SurgeAPI::MessageParams::MessageParamsWithConversation::Conversation,
           attachments: ::Array[SurgeAPI::MessageParams::MessageParamsWithConversation::Attachment],
           body: String,
+          metadata: ::Hash[Symbol, String],
           send_at: Time
         }
 
@@ -28,6 +29,10 @@ module SurgeAPI
 
         def body=: (String) -> String
 
+        attr_reader metadata: ::Hash[Symbol, String]?
+
+        def metadata=: (::Hash[Symbol, String]) -> ::Hash[Symbol, String]
+
         attr_reader send_at: Time?
 
         def send_at=: (Time) -> Time
@@ -36,6 +41,7 @@ module SurgeAPI
           conversation: SurgeAPI::MessageParams::MessageParamsWithConversation::Conversation,
           ?attachments: ::Array[SurgeAPI::MessageParams::MessageParamsWithConversation::Attachment],
           ?body: String,
+          ?metadata: ::Hash[Symbol, String],
           ?send_at: Time
         ) -> void
 
@@ -43,6 +49,7 @@ module SurgeAPI
           conversation: SurgeAPI::MessageParams::MessageParamsWithConversation::Conversation,
           attachments: ::Array[SurgeAPI::MessageParams::MessageParamsWithConversation::Attachment],
           body: String,
+          metadata: ::Hash[Symbol, String],
           send_at: Time
         }
 
@@ -132,6 +139,7 @@ module SurgeAPI
           attachments: ::Array[SurgeAPI::MessageParams::SimpleMessageParams::Attachment],
           body: String,
           from: String,
+          metadata: ::Hash[Symbol, String],
           send_at: Time
         }
 
@@ -152,6 +160,10 @@ module SurgeAPI
 
         def from=: (String) -> String
 
+        attr_reader metadata: ::Hash[Symbol, String]?
+
+        def metadata=: (::Hash[Symbol, String]) -> ::Hash[Symbol, String]
+
         attr_reader send_at: Time?
 
         def send_at=: (Time) -> Time
@@ -161,6 +173,7 @@ module SurgeAPI
           ?attachments: ::Array[SurgeAPI::MessageParams::SimpleMessageParams::Attachment],
           ?body: String,
           ?from: String,
+          ?metadata: ::Hash[Symbol, String],
           ?send_at: Time
         ) -> void
 
@@ -169,6 +182,7 @@ module SurgeAPI
           attachments: ::Array[SurgeAPI::MessageParams::SimpleMessageParams::Attachment],
           body: String,
           from: String,
+          metadata: ::Hash[Symbol, String],
           send_at: Time
         }
 
