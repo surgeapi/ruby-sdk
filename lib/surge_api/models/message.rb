@@ -27,7 +27,13 @@ module SurgeAPI
       #   @return [SurgeAPI::Models::Message::Conversation, nil]
       optional :conversation, -> { SurgeAPI::Message::Conversation }
 
-      # @!method initialize(id: nil, attachments: nil, body: nil, conversation: nil)
+      # @!attribute metadata
+      #   Set of key-value pairs that will be stored with the object.
+      #
+      #   @return [Hash{Symbol=>String}, nil]
+      optional :metadata, SurgeAPI::Internal::Type::HashOf[String]
+
+      # @!method initialize(id: nil, attachments: nil, body: nil, conversation: nil, metadata: nil)
       #   A Message is a communication sent to a Contact.
       #
       #   @param id [String] Unique identifier for the object.
@@ -37,6 +43,8 @@ module SurgeAPI
       #   @param body [String] The message body.
       #
       #   @param conversation [SurgeAPI::Models::Message::Conversation] A conversation with a Contact
+      #
+      #   @param metadata [Hash{Symbol=>String}] Set of key-value pairs that will be stored with the object.
 
       class Attachment < SurgeAPI::Internal::Type::BaseModel
         # @!attribute id

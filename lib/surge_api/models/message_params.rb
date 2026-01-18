@@ -34,6 +34,12 @@ module SurgeAPI
         #   @return [String, nil]
         optional :body, String
 
+        # @!attribute metadata
+        #   Set of key-value pairs that will be stored with the object.
+        #
+        #   @return [Hash{Symbol=>String}, nil]
+        optional :metadata, SurgeAPI::Internal::Type::HashOf[String]
+
         # @!attribute send_at
         #   An optional datetime for scheduling message up to a couple of months in the
         #   future.
@@ -41,7 +47,7 @@ module SurgeAPI
         #   @return [Time, nil]
         optional :send_at, Time
 
-        # @!method initialize(conversation:, attachments: nil, body: nil, send_at: nil)
+        # @!method initialize(conversation:, attachments: nil, body: nil, metadata: nil, send_at: nil)
         #   Some parameter documentations has been truncated, see
         #   {SurgeAPI::Models::MessageParams::MessageParamsWithConversation} for more
         #   details.
@@ -54,6 +60,8 @@ module SurgeAPI
         #   @param attachments [Array<SurgeAPI::Models::MessageParams::MessageParamsWithConversation::Attachment>]
         #
         #   @param body [String] The message body.
+        #
+        #   @param metadata [Hash{Symbol=>String}] Set of key-value pairs that will be stored with the object.
         #
         #   @param send_at [Time] An optional datetime for scheduling message up to a couple of months in the futu
 
@@ -172,6 +180,12 @@ module SurgeAPI
         #   @return [String, nil]
         optional :from, String
 
+        # @!attribute metadata
+        #   Set of key-value pairs that will be stored with the object.
+        #
+        #   @return [Hash{Symbol=>String}, nil]
+        optional :metadata, SurgeAPI::Internal::Type::HashOf[String]
+
         # @!attribute send_at
         #   An optional datetime for scheduling message up to a couple of months in the
         #   future.
@@ -179,7 +193,7 @@ module SurgeAPI
         #   @return [Time, nil]
         optional :send_at, Time
 
-        # @!method initialize(to:, attachments: nil, body: nil, from: nil, send_at: nil)
+        # @!method initialize(to:, attachments: nil, body: nil, from: nil, metadata: nil, send_at: nil)
         #   Some parameter documentations has been truncated, see
         #   {SurgeAPI::Models::MessageParams::SimpleMessageParams} for more details.
         #
@@ -192,6 +206,8 @@ module SurgeAPI
         #   @param body [String] The message body.
         #
         #   @param from [String] The sender's phone number in E.164 format or phone number ID. If omitted, uses t
+        #
+        #   @param metadata [Hash{Symbol=>String}] Set of key-value pairs that will be stored with the object.
         #
         #   @param send_at [Time] An optional datetime for scheduling message up to a couple of months in the futu
 
