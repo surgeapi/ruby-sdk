@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.6.0 (2026-01-18)
+
+Full Changelog: [v0.5.0...v0.6.0](https://github.com/surgeapi/ruby-sdk/compare/v0.5.0...v0.6.0)
+
+### Features
+
+* **api:** api update ([be3de20](https://github.com/surgeapi/ruby-sdk/commit/be3de209f18482fa76b1a447fd8e944efb56772f))
+
+
+### Chores
+
+* **internal:** update `actions/checkout` version ([3d4be8e](https://github.com/surgeapi/ruby-sdk/commit/3d4be8e99c4f71d93e66a2d830d23e1008490abc))
+
 ## 0.5.0 (2026-01-15)
 
 Full Changelog: [v0.4.0...v0.5.0](https://github.com/surgeapi/ruby-sdk/compare/v0.4.0...v0.5.0)
