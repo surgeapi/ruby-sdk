@@ -41,6 +41,8 @@ module SurgeAPI
 
   class Error = SurgeAPI::Models::Error
 
+  class LinkFollowedWebhookEvent = SurgeAPI::Models::LinkFollowedWebhookEvent
+
   class Message = SurgeAPI::Models::Message
 
   class MessageCreateParams = SurgeAPI::Models::MessageCreateParams
