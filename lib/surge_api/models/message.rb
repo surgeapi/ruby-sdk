@@ -15,6 +15,13 @@ module SurgeAPI
       #   @return [Array<SurgeAPI::Models::Message::Attachment>, nil]
       optional :attachments, -> { SurgeAPI::Internal::Type::ArrayOf[SurgeAPI::Message::Attachment] }
 
+      # @!attribute blast_id
+      #   The ID of the blast this message belongs to, if any. This can be used to
+      #   attribute messages back to a specific blast.
+      #
+      #   @return [String, nil]
+      optional :blast_id, String
+
       # @!attribute body
       #   The message body.
       #
@@ -33,12 +40,17 @@ module SurgeAPI
       #   @return [Hash{Symbol=>String}, nil]
       optional :metadata, SurgeAPI::Internal::Type::HashOf[String]
 
-      # @!method initialize(id: nil, attachments: nil, body: nil, conversation: nil, metadata: nil)
+      # @!method initialize(id: nil, attachments: nil, blast_id: nil, body: nil, conversation: nil, metadata: nil)
+      #   Some parameter documentations has been truncated, see
+      #   {SurgeAPI::Models::Message} for more details.
+      #
       #   A Message is a communication sent to a Contact.
       #
       #   @param id [String] Unique identifier for the object.
       #
       #   @param attachments [Array<SurgeAPI::Models::Message::Attachment>]
+      #
+      #   @param blast_id [String] The ID of the blast this message belongs to, if any. This can be used to attribu
       #
       #   @param body [String] The message body.
       #

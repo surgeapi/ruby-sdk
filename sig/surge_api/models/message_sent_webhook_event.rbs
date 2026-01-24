@@ -37,7 +37,8 @@ module SurgeAPI
           body: String,
           conversation: SurgeAPI::MessageSentWebhookEvent::Data::Conversation,
           sent_at: Time,
-          attachments: ::Array[SurgeAPI::MessageSentWebhookEvent::Data::Attachment]
+          attachments: ::Array[SurgeAPI::MessageSentWebhookEvent::Data::Attachment],
+          blast_id: String
         }
 
       class Data < SurgeAPI::Internal::Type::BaseModel
@@ -55,12 +56,17 @@ module SurgeAPI
           ::Array[SurgeAPI::MessageSentWebhookEvent::Data::Attachment]
         ) -> ::Array[SurgeAPI::MessageSentWebhookEvent::Data::Attachment]
 
+        attr_reader blast_id: String?
+
+        def blast_id=: (String) -> String
+
         def initialize: (
           id: String,
           body: String,
           conversation: SurgeAPI::MessageSentWebhookEvent::Data::Conversation,
           sent_at: Time,
-          ?attachments: ::Array[SurgeAPI::MessageSentWebhookEvent::Data::Attachment]
+          ?attachments: ::Array[SurgeAPI::MessageSentWebhookEvent::Data::Attachment],
+          ?blast_id: String
         ) -> void
 
         def to_hash: -> {
@@ -68,7 +74,8 @@ module SurgeAPI
           body: String,
           conversation: SurgeAPI::MessageSentWebhookEvent::Data::Conversation,
           sent_at: Time,
-          attachments: ::Array[SurgeAPI::MessageSentWebhookEvent::Data::Attachment]
+          attachments: ::Array[SurgeAPI::MessageSentWebhookEvent::Data::Attachment],
+          blast_id: String
         }
 
         type conversation =

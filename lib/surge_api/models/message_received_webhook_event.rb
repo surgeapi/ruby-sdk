@@ -69,7 +69,17 @@ module SurgeAPI
         optional :attachments,
                  -> { SurgeAPI::Internal::Type::ArrayOf[SurgeAPI::MessageReceivedWebhookEvent::Data::Attachment] }
 
-        # @!method initialize(id:, body:, conversation:, received_at:, attachments: nil)
+        # @!attribute blast_id
+        #   The ID of the blast this message belongs to, if any. This can be used to
+        #   attribute messages back to a specific blast.
+        #
+        #   @return [String, nil]
+        optional :blast_id, String
+
+        # @!method initialize(id:, body:, conversation:, received_at:, attachments: nil, blast_id: nil)
+        #   Some parameter documentations has been truncated, see
+        #   {SurgeAPI::Models::MessageReceivedWebhookEvent::Data} for more details.
+        #
         #   The data associated with the event
         #
         #   @param id [String] The unique identifier for the message
@@ -81,6 +91,8 @@ module SurgeAPI
         #   @param received_at [Time] When the message was received
         #
         #   @param attachments [Array<SurgeAPI::Models::MessageReceivedWebhookEvent::Data::Attachment>] Attachments included with the message
+        #
+        #   @param blast_id [String] The ID of the blast this message belongs to, if any. This can be used to attribu
 
         # @see SurgeAPI::Models::MessageReceivedWebhookEvent::Data#conversation
         class Conversation < SurgeAPI::Internal::Type::BaseModel
