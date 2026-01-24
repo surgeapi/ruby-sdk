@@ -113,6 +113,14 @@ module SurgeAPI
         end
         attr_writer :attachments
 
+        # The ID of the blast this message belongs to, if any. This can be used to
+        # attribute messages back to a specific blast.
+        sig { returns(T.nilable(String)) }
+        attr_reader :blast_id
+
+        sig { params(blast_id: String).void }
+        attr_writer :blast_id
+
         # The data associated with the event
         sig do
           params(
@@ -124,7 +132,8 @@ module SurgeAPI
             attachments:
               T::Array[
                 SurgeAPI::MessageSentWebhookEvent::Data::Attachment::OrHash
-              ]
+              ],
+            blast_id: String
           ).returns(T.attached_class)
         end
         def self.new(
@@ -137,7 +146,10 @@ module SurgeAPI
           # When the message was sent
           sent_at:,
           # Attachments included with the message
-          attachments: nil
+          attachments: nil,
+          # The ID of the blast this message belongs to, if any. This can be used to
+          # attribute messages back to a specific blast.
+          blast_id: nil
         )
         end
 
@@ -150,7 +162,8 @@ module SurgeAPI
                 SurgeAPI::MessageSentWebhookEvent::Data::Conversation,
               sent_at: Time,
               attachments:
-                T::Array[SurgeAPI::MessageSentWebhookEvent::Data::Attachment]
+                T::Array[SurgeAPI::MessageSentWebhookEvent::Data::Attachment],
+              blast_id: String
             }
           )
         end

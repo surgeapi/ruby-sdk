@@ -38,7 +38,8 @@ module SurgeAPI
           conversation: SurgeAPI::MessageFailedWebhookEvent::Data::Conversation,
           failed_at: Time,
           failure_reason: String,
-          attachments: ::Array[SurgeAPI::MessageFailedWebhookEvent::Data::Attachment]
+          attachments: ::Array[SurgeAPI::MessageFailedWebhookEvent::Data::Attachment],
+          blast_id: String
         }
 
       class Data < SurgeAPI::Internal::Type::BaseModel
@@ -58,13 +59,18 @@ module SurgeAPI
           ::Array[SurgeAPI::MessageFailedWebhookEvent::Data::Attachment]
         ) -> ::Array[SurgeAPI::MessageFailedWebhookEvent::Data::Attachment]
 
+        attr_reader blast_id: String?
+
+        def blast_id=: (String) -> String
+
         def initialize: (
           id: String,
           body: String,
           conversation: SurgeAPI::MessageFailedWebhookEvent::Data::Conversation,
           failed_at: Time,
           failure_reason: String,
-          ?attachments: ::Array[SurgeAPI::MessageFailedWebhookEvent::Data::Attachment]
+          ?attachments: ::Array[SurgeAPI::MessageFailedWebhookEvent::Data::Attachment],
+          ?blast_id: String
         ) -> void
 
         def to_hash: -> {
@@ -73,7 +79,8 @@ module SurgeAPI
           conversation: SurgeAPI::MessageFailedWebhookEvent::Data::Conversation,
           failed_at: Time,
           failure_reason: String,
-          attachments: ::Array[SurgeAPI::MessageFailedWebhookEvent::Data::Attachment]
+          attachments: ::Array[SurgeAPI::MessageFailedWebhookEvent::Data::Attachment],
+          blast_id: String
         }
 
         type conversation =

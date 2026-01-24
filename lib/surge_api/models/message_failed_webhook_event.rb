@@ -75,7 +75,17 @@ module SurgeAPI
         optional :attachments,
                  -> { SurgeAPI::Internal::Type::ArrayOf[SurgeAPI::MessageFailedWebhookEvent::Data::Attachment] }
 
-        # @!method initialize(id:, body:, conversation:, failed_at:, failure_reason:, attachments: nil)
+        # @!attribute blast_id
+        #   The ID of the blast this message belongs to, if any. This can be used to
+        #   attribute messages back to a specific blast.
+        #
+        #   @return [String, nil]
+        optional :blast_id, String
+
+        # @!method initialize(id:, body:, conversation:, failed_at:, failure_reason:, attachments: nil, blast_id: nil)
+        #   Some parameter documentations has been truncated, see
+        #   {SurgeAPI::Models::MessageFailedWebhookEvent::Data} for more details.
+        #
         #   The data associated with the event
         #
         #   @param id [String] The unique identifier for the message
@@ -89,6 +99,8 @@ module SurgeAPI
         #   @param failure_reason [String] The reason the message failed to be delivered
         #
         #   @param attachments [Array<SurgeAPI::Models::MessageFailedWebhookEvent::Data::Attachment>] Attachments included with the message
+        #
+        #   @param blast_id [String] The ID of the blast this message belongs to, if any. This can be used to attribu
 
         # @see SurgeAPI::Models::MessageFailedWebhookEvent::Data#conversation
         class Conversation < SurgeAPI::Internal::Type::BaseModel

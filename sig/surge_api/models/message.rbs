@@ -4,6 +4,7 @@ module SurgeAPI
       {
         id: String,
         attachments: ::Array[SurgeAPI::Message::Attachment],
+        blast_id: String,
         body: String,
         conversation: SurgeAPI::Message::Conversation,
         metadata: ::Hash[Symbol, String]
@@ -19,6 +20,10 @@ module SurgeAPI
       def attachments=: (
         ::Array[SurgeAPI::Message::Attachment]
       ) -> ::Array[SurgeAPI::Message::Attachment]
+
+      attr_reader blast_id: String?
+
+      def blast_id=: (String) -> String
 
       attr_reader body: String?
 
@@ -37,6 +42,7 @@ module SurgeAPI
       def initialize: (
         ?id: String,
         ?attachments: ::Array[SurgeAPI::Message::Attachment],
+        ?blast_id: String,
         ?body: String,
         ?conversation: SurgeAPI::Message::Conversation,
         ?metadata: ::Hash[Symbol, String]
@@ -45,6 +51,7 @@ module SurgeAPI
       def to_hash: -> {
         id: String,
         attachments: ::Array[SurgeAPI::Message::Attachment],
+        blast_id: String,
         body: String,
         conversation: SurgeAPI::Message::Conversation,
         metadata: ::Hash[Symbol, String]

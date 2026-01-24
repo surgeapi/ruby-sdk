@@ -23,6 +23,14 @@ module SurgeAPI
       end
       attr_writer :attachments
 
+      # The ID of the blast this message belongs to, if any. This can be used to
+      # attribute messages back to a specific blast.
+      sig { returns(T.nilable(String)) }
+      attr_reader :blast_id
+
+      sig { params(blast_id: String).void }
+      attr_writer :blast_id
+
       # The message body.
       sig { returns(T.nilable(String)) }
       attr_reader :body
@@ -49,6 +57,7 @@ module SurgeAPI
         params(
           id: String,
           attachments: T::Array[SurgeAPI::Message::Attachment::OrHash],
+          blast_id: String,
           body: String,
           conversation: SurgeAPI::Message::Conversation::OrHash,
           metadata: T::Hash[Symbol, String]
@@ -58,6 +67,9 @@ module SurgeAPI
         # Unique identifier for the object.
         id: nil,
         attachments: nil,
+        # The ID of the blast this message belongs to, if any. This can be used to
+        # attribute messages back to a specific blast.
+        blast_id: nil,
         # The message body.
         body: nil,
         # A conversation with a Contact
@@ -72,6 +84,7 @@ module SurgeAPI
           {
             id: String,
             attachments: T::Array[SurgeAPI::Message::Attachment],
+            blast_id: String,
             body: String,
             conversation: SurgeAPI::Message::Conversation,
             metadata: T::Hash[Symbol, String]
