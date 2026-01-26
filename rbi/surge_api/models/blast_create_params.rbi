@@ -37,6 +37,15 @@ module SurgeAPI
       sig { params(contacts: T::Array[String]).void }
       attr_writer :contacts
 
+      # The phone number from which to send the blast. This can be either the phone
+      # number in E.164 format or a Surge phone number id. If not provided, the
+      # account's default phone number is used.
+      sig { returns(T.nilable(String)) }
+      attr_reader :from
+
+      sig { params(from: String).void }
+      attr_writer :from
+
       # Optional name for the blast.
       sig { returns(T.nilable(String)) }
       attr_reader :name
@@ -72,6 +81,7 @@ module SurgeAPI
             T::Array[SurgeAPI::BlastCreateParams::Attachment::OrHash],
           body: String,
           contacts: T::Array[String],
+          from: String,
           name: String,
           segments: T::Array[String],
           send_at: Time,
@@ -85,6 +95,10 @@ module SurgeAPI
         body: nil,
         # Deprecated. Use `to` instead.
         contacts: nil,
+        # The phone number from which to send the blast. This can be either the phone
+        # number in E.164 format or a Surge phone number id. If not provided, the
+        # account's default phone number is used.
+        from: nil,
         # Optional name for the blast.
         name: nil,
         # Deprecated. Use `to` instead.
@@ -104,6 +118,7 @@ module SurgeAPI
             attachments: T::Array[SurgeAPI::BlastCreateParams::Attachment],
             body: String,
             contacts: T::Array[String],
+            from: String,
             name: String,
             segments: T::Array[String],
             send_at: Time,

@@ -5,6 +5,7 @@ module SurgeAPI
         attachments: ::Array[SurgeAPI::BlastCreateParams::Attachment],
         body: String,
         contacts: ::Array[String],
+        from: String,
         name: String,
         segments: ::Array[String],
         send_at: Time,
@@ -30,6 +31,10 @@ module SurgeAPI
 
       def contacts=: (::Array[String]) -> ::Array[String]
 
+      attr_reader from: String?
+
+      def from=: (String) -> String
+
       attr_reader name: String?
 
       def name=: (String) -> String
@@ -50,6 +55,7 @@ module SurgeAPI
         ?attachments: ::Array[SurgeAPI::BlastCreateParams::Attachment],
         ?body: String,
         ?contacts: ::Array[String],
+        ?from: String,
         ?name: String,
         ?segments: ::Array[String],
         ?send_at: Time,
@@ -61,6 +67,7 @@ module SurgeAPI
         attachments: ::Array[SurgeAPI::BlastCreateParams::Attachment],
         body: String,
         contacts: ::Array[String],
+        from: String,
         name: String,
         segments: ::Array[String],
         send_at: Time,
