@@ -59,6 +59,8 @@ module SurgeAPI
         OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         LOCAL = T.let(:local, SurgeAPI::PhoneNumber::Type::TaggedSymbol)
+        SHORT_CODE =
+          T.let(:short_code, SurgeAPI::PhoneNumber::Type::TaggedSymbol)
         TOLL_FREE = T.let(:toll_free, SurgeAPI::PhoneNumber::Type::TaggedSymbol)
 
         sig do

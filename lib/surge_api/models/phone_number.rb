@@ -38,6 +38,7 @@ module SurgeAPI
         extend SurgeAPI::Internal::Type::Enum
 
         LOCAL = :local
+        SHORT_CODE = :short_code
         TOLL_FREE = :toll_free
 
         # @!method self.values
