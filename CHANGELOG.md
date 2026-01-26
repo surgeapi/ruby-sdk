@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.8.0 (2026-01-26)
+
+Full Changelog: [v0.7.0...v0.8.0](https://github.com/surgeapi/ruby-sdk/compare/v0.7.0...v0.8.0)
+
+### Features
+
+* **api:** api update ([37c4efa](https://github.com/surgeapi/ruby-sdk/commit/37c4efa6bdcad247f43f50a49b59a7b4426d6fc8))
+* **api:** api update ([0caf848](https://github.com/surgeapi/ruby-sdk/commit/0caf848fba60e7cda89b326c51bb7c168ad95187))
+* **api:** api update ([f3c40f2](https://github.com/surgeapi/ruby-sdk/commit/f3c40f28c70eb38a08e4021a24230564edab8592))
+
 ## 0.7.0 (2026-01-18)
 
 Full Changelog: [v0.6.0...v0.7.0](https://github.com/surgeapi/ruby-sdk/compare/v0.6.0...v0.7.0)
