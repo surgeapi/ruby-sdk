@@ -6,6 +6,7 @@ module SurgeAPI
         ?attachments: ::Array[SurgeAPI::BlastCreateParams::Attachment],
         ?body: String,
         ?contacts: ::Array[String],
+        ?from: String,
         ?name: String,
         ?segments: ::Array[String],
         ?send_at: Time,

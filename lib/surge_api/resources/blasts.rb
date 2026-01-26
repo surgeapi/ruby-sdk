@@ -8,7 +8,7 @@ module SurgeAPI
       #
       # Sends a Blast.
       #
-      # @overload create(account_id, attachments: nil, body: nil, contacts: nil, name: nil, segments: nil, send_at: nil, to: nil, request_options: {})
+      # @overload create(account_id, attachments: nil, body: nil, contacts: nil, from: nil, name: nil, segments: nil, send_at: nil, to: nil, request_options: {})
       #
       # @param account_id [String] The account for which the blast should be sent.
       #
@@ -17,6 +17,8 @@ module SurgeAPI
       # @param body [String] The message body.
       #
       # @param contacts [Array<String>] Deprecated. Use `to` instead.
+      #
+      # @param from [String] The phone number from which to send the blast. This can be either the phone numb
       #
       # @param name [String] Optional name for the blast.
       #

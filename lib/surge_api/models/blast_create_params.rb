@@ -26,6 +26,14 @@ module SurgeAPI
       #   @return [Array<String>, nil]
       optional :contacts, SurgeAPI::Internal::Type::ArrayOf[String]
 
+      # @!attribute from
+      #   The phone number from which to send the blast. This can be either the phone
+      #   number in E.164 format or a Surge phone number id. If not provided, the
+      #   account's default phone number is used.
+      #
+      #   @return [String, nil]
+      optional :from, String
+
       # @!attribute name
       #   Optional name for the blast.
       #
@@ -53,7 +61,7 @@ module SurgeAPI
       #   @return [Array<String>, nil]
       optional :to, SurgeAPI::Internal::Type::ArrayOf[String]
 
-      # @!method initialize(attachments: nil, body: nil, contacts: nil, name: nil, segments: nil, send_at: nil, to: nil, request_options: {})
+      # @!method initialize(attachments: nil, body: nil, contacts: nil, from: nil, name: nil, segments: nil, send_at: nil, to: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {SurgeAPI::Models::BlastCreateParams} for more details.
       #
@@ -62,6 +70,8 @@ module SurgeAPI
       #   @param body [String] The message body.
       #
       #   @param contacts [Array<String>] Deprecated. Use `to` instead.
+      #
+      #   @param from [String] The phone number from which to send the blast. This can be either the phone numb
       #
       #   @param name [String] Optional name for the blast.
       #
