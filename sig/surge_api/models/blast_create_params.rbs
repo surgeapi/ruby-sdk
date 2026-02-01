@@ -3,7 +3,7 @@ module SurgeAPI
     type blast_create_params =
       {
         attachments: ::Array[SurgeAPI::BlastCreateParams::Attachment],
-        body: String,
+        body: String?,
         contacts: ::Array[String],
         from: String,
         name: String,
@@ -23,9 +23,7 @@ module SurgeAPI
         ::Array[SurgeAPI::BlastCreateParams::Attachment]
       ) -> ::Array[SurgeAPI::BlastCreateParams::Attachment]
 
-      attr_reader body: String?
-
-      def body=: (String) -> String
+      attr_accessor body: String?
 
       attr_reader contacts: ::Array[String]?
 
@@ -53,7 +51,7 @@ module SurgeAPI
 
       def initialize: (
         ?attachments: ::Array[SurgeAPI::BlastCreateParams::Attachment],
-        ?body: String,
+        ?body: String?,
         ?contacts: ::Array[String],
         ?from: String,
         ?name: String,
@@ -65,7 +63,7 @@ module SurgeAPI
 
       def to_hash: -> {
         attachments: ::Array[SurgeAPI::BlastCreateParams::Attachment],
-        body: String,
+        body: String?,
         contacts: ::Array[String],
         from: String,
         name: String,

@@ -4,7 +4,7 @@ module SurgeAPI
       {
         id: String,
         attachments: ::Array[SurgeAPI::Blast::Attachment],
-        body: String,
+        body: String?,
         name: String,
         send_at: Time
       }
@@ -20,9 +20,7 @@ module SurgeAPI
         ::Array[SurgeAPI::Blast::Attachment]
       ) -> ::Array[SurgeAPI::Blast::Attachment]
 
-      attr_reader body: String?
-
-      def body=: (String) -> String
+      attr_accessor body: String?
 
       attr_reader name: String?
 
@@ -35,7 +33,7 @@ module SurgeAPI
       def initialize: (
         ?id: String,
         ?attachments: ::Array[SurgeAPI::Blast::Attachment],
-        ?body: String,
+        ?body: String?,
         ?name: String,
         ?send_at: Time
       ) -> void
@@ -43,7 +41,7 @@ module SurgeAPI
       def to_hash: -> {
         id: String,
         attachments: ::Array[SurgeAPI::Blast::Attachment],
-        body: String,
+        body: String?,
         name: String,
         send_at: Time
       }

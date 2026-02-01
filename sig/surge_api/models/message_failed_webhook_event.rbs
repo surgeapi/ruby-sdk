@@ -34,7 +34,7 @@ module SurgeAPI
       type data =
         {
           id: String,
-          body: String,
+          body: String?,
           conversation: SurgeAPI::MessageFailedWebhookEvent::Data::Conversation,
           failed_at: Time,
           failure_reason: String,
@@ -45,7 +45,7 @@ module SurgeAPI
       class Data < SurgeAPI::Internal::Type::BaseModel
         attr_accessor id: String
 
-        attr_accessor body: String
+        attr_accessor body: String?
 
         attr_accessor conversation: SurgeAPI::MessageFailedWebhookEvent::Data::Conversation
 
@@ -65,7 +65,7 @@ module SurgeAPI
 
         def initialize: (
           id: String,
-          body: String,
+          body: String?,
           conversation: SurgeAPI::MessageFailedWebhookEvent::Data::Conversation,
           failed_at: Time,
           failure_reason: String,
@@ -75,7 +75,7 @@ module SurgeAPI
 
         def to_hash: -> {
           id: String,
-          body: String,
+          body: String?,
           conversation: SurgeAPI::MessageFailedWebhookEvent::Data::Conversation,
           failed_at: Time,
           failure_reason: String,

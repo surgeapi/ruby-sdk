@@ -33,10 +33,7 @@ module SurgeAPI
 
       # The message body.
       sig { returns(T.nilable(String)) }
-      attr_reader :body
-
-      sig { params(body: String).void }
-      attr_writer :body
+      attr_accessor :body
 
       # A conversation with a Contact
       sig { returns(T.nilable(SurgeAPI::Message::Conversation)) }
@@ -58,7 +55,7 @@ module SurgeAPI
           id: String,
           attachments: T::Array[SurgeAPI::Message::Attachment::OrHash],
           blast_id: String,
-          body: String,
+          body: T.nilable(String),
           conversation: SurgeAPI::Message::Conversation::OrHash,
           metadata: T::Hash[Symbol, String]
         ).returns(T.attached_class)
@@ -85,7 +82,7 @@ module SurgeAPI
             id: String,
             attachments: T::Array[SurgeAPI::Message::Attachment],
             blast_id: String,
-            body: String,
+            body: T.nilable(String),
             conversation: SurgeAPI::Message::Conversation,
             metadata: T::Hash[Symbol, String]
           }
