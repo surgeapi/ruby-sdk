@@ -26,6 +26,13 @@ module SurgeAPI
         ?request_options: SurgeAPI::request_opts
       ) -> SurgeAPI::Contact
 
+      def list: (
+        String account_id,
+        ?after: String,
+        ?before: String,
+        ?request_options: SurgeAPI::request_opts
+      ) -> SurgeAPI::Models::ContactListResponse
+
       def initialize: (client: SurgeAPI::Client) -> void
     end
   end
