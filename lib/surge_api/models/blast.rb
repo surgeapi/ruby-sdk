@@ -19,7 +19,7 @@ module SurgeAPI
       #   The message body.
       #
       #   @return [String, nil]
-      optional :body, String
+      optional :body, String, nil?: true
 
       # @!attribute name
       #   Optional name for the blast.
@@ -40,7 +40,7 @@ module SurgeAPI
       #
       #   @param attachments [Array<SurgeAPI::Models::Blast::Attachment>]
       #
-      #   @param body [String] The message body.
+      #   @param body [String, nil] The message body.
       #
       #   @param name [String] Optional name for the blast.
       #

@@ -47,8 +47,8 @@ module SurgeAPI
         # @!attribute body
         #   The content of the message
         #
-        #   @return [String]
-        required :body, String
+        #   @return [String, nil]
+        required :body, String, nil?: true
 
         # @!attribute conversation
         #   The conversation this message belongs to
@@ -84,7 +84,7 @@ module SurgeAPI
         #
         #   @param id [String] The unique identifier for the message
         #
-        #   @param body [String] The content of the message
+        #   @param body [String, nil] The content of the message
         #
         #   @param conversation [SurgeAPI::Models::MessageSentWebhookEvent::Data::Conversation] The conversation this message belongs to
         #

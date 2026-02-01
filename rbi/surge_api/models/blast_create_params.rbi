@@ -25,10 +25,7 @@ module SurgeAPI
 
       # The message body.
       sig { returns(T.nilable(String)) }
-      attr_reader :body
-
-      sig { params(body: String).void }
-      attr_writer :body
+      attr_accessor :body
 
       # Deprecated. Use `to` instead.
       sig { returns(T.nilable(T::Array[String])) }
@@ -79,7 +76,7 @@ module SurgeAPI
         params(
           attachments:
             T::Array[SurgeAPI::BlastCreateParams::Attachment::OrHash],
-          body: String,
+          body: T.nilable(String),
           contacts: T::Array[String],
           from: String,
           name: String,
@@ -116,7 +113,7 @@ module SurgeAPI
         override.returns(
           {
             attachments: T::Array[SurgeAPI::BlastCreateParams::Attachment],
-            body: String,
+            body: T.nilable(String),
             contacts: T::Array[String],
             from: String,
             name: String,

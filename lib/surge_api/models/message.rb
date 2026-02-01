@@ -26,7 +26,7 @@ module SurgeAPI
       #   The message body.
       #
       #   @return [String, nil]
-      optional :body, String
+      optional :body, String, nil?: true
 
       # @!attribute conversation
       #   A conversation with a Contact
@@ -52,7 +52,7 @@ module SurgeAPI
       #
       #   @param blast_id [String] The ID of the blast this message belongs to, if any. This can be used to attribu
       #
-      #   @param body [String] The message body.
+      #   @param body [String, nil] The message body.
       #
       #   @param conversation [SurgeAPI::Models::Message::Conversation] A conversation with a Contact
       #

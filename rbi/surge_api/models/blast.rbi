@@ -23,10 +23,7 @@ module SurgeAPI
 
       # The message body.
       sig { returns(T.nilable(String)) }
-      attr_reader :body
-
-      sig { params(body: String).void }
-      attr_writer :body
+      attr_accessor :body
 
       # Optional name for the blast.
       sig { returns(T.nilable(String)) }
@@ -47,7 +44,7 @@ module SurgeAPI
         params(
           id: String,
           attachments: T::Array[SurgeAPI::Blast::Attachment::OrHash],
-          body: String,
+          body: T.nilable(String),
           name: String,
           send_at: Time
         ).returns(T.attached_class)
@@ -70,7 +67,7 @@ module SurgeAPI
           {
             id: String,
             attachments: T::Array[SurgeAPI::Blast::Attachment],
-            body: String,
+            body: T.nilable(String),
             name: String,
             send_at: Time
           }
