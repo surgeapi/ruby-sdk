@@ -1,6 +1,13 @@
 module SurgeAPI
   module Resources
     class PhoneNumbers
+      def list: (
+        String account_id,
+        ?after: String,
+        ?before: String,
+        ?request_options: SurgeAPI::request_opts
+      ) -> SurgeAPI::Models::PhoneNumberListResponse
+
       def purchase: (
         String account_id,
         ?area_code: String,

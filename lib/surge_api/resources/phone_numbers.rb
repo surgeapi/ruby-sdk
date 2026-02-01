@@ -4,6 +4,35 @@ module SurgeAPI
   module Resources
     class PhoneNumbers
       # Some parameter documentations has been truncated, see
+      # {SurgeAPI::Models::PhoneNumberListParams} for more details.
+      #
+      # List all phone numbers for an account with cursor-based pagination.
+      #
+      # @overload list(account_id, after: nil, before: nil, request_options: {})
+      #
+      # @param account_id [String] The account ID to list phone numbers for.
+      #
+      # @param after [String] Cursor for forward pagination. Use the next_cursor from a previous response.
+      #
+      # @param before [String] Cursor for backward pagination. Use the previous_cursor from a previous response
+      #
+      # @param request_options [SurgeAPI::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [SurgeAPI::Models::PhoneNumberListResponse]
+      #
+      # @see SurgeAPI::Models::PhoneNumberListParams
+      def list(account_id, params = {})
+        parsed, options = SurgeAPI::PhoneNumberListParams.dump_request(params)
+        @client.request(
+          method: :get,
+          path: ["accounts/%1$s/phone_numbers", account_id],
+          query: parsed,
+          model: SurgeAPI::Models::PhoneNumberListResponse,
+          options: options
+        )
+      end
+
+      # Some parameter documentations has been truncated, see
       # {SurgeAPI::Models::PhoneNumberPurchaseParams} for more details.
       #
       # Purchase a new phone number for the account. You can specify search criteria or

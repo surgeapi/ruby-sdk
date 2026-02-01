@@ -63,6 +63,8 @@ module SurgeAPI
 
   class PhoneNumber = SurgeAPI::Models::PhoneNumber
 
+  class PhoneNumberListParams = SurgeAPI::Models::PhoneNumberListParams
+
   class PhoneNumberPurchaseParams = SurgeAPI::Models::PhoneNumberPurchaseParams
 
   module UnwrapWebhookEvent = SurgeAPI::Models::UnwrapWebhookEvent
