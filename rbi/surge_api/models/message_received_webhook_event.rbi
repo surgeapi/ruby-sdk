@@ -79,7 +79,7 @@ module SurgeAPI
         attr_accessor :id
 
         # The content of the message
-        sig { returns(String) }
+        sig { returns(T.nilable(String)) }
         attr_accessor :body
 
         # The conversation this message belongs to
@@ -132,7 +132,7 @@ module SurgeAPI
         sig do
           params(
             id: String,
-            body: String,
+            body: T.nilable(String),
             conversation:
               SurgeAPI::MessageReceivedWebhookEvent::Data::Conversation::OrHash,
             received_at: Time,
@@ -164,7 +164,7 @@ module SurgeAPI
           override.returns(
             {
               id: String,
-              body: String,
+              body: T.nilable(String),
               conversation:
                 SurgeAPI::MessageReceivedWebhookEvent::Data::Conversation,
               received_at: Time,

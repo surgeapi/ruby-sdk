@@ -14,7 +14,7 @@ module SurgeAPI
       #
       # @param attachments [Array<SurgeAPI::Models::BlastCreateParams::Attachment>]
       #
-      # @param body [String] The message body.
+      # @param body [String, nil] The message body.
       #
       # @param contacts [Array<String>] Deprecated. Use `to` instead.
       #

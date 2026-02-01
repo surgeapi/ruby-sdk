@@ -9,7 +9,7 @@ module SurgeAPI
           account_id: String,
           attachments:
             T::Array[SurgeAPI::BlastCreateParams::Attachment::OrHash],
-          body: String,
+          body: T.nilable(String),
           contacts: T::Array[String],
           from: String,
           name: String,
