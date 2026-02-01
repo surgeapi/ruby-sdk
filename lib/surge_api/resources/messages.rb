@@ -79,6 +79,35 @@ module SurgeAPI
         )
       end
 
+      # Some parameter documentations has been truncated, see
+      # {SurgeAPI::Models::MessageListParams} for more details.
+      #
+      # List all messages for an account with cursor-based pagination.
+      #
+      # @overload list(account_id, after: nil, before: nil, request_options: {})
+      #
+      # @param account_id [String] The account ID to list messages for.
+      #
+      # @param after [String] Cursor for forward pagination. Use the next_cursor from a previous response.
+      #
+      # @param before [String] Cursor for backward pagination. Use the previous_cursor from a previous response
+      #
+      # @param request_options [SurgeAPI::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [SurgeAPI::Models::MessageListResponse]
+      #
+      # @see SurgeAPI::Models::MessageListParams
+      def list(account_id, params = {})
+        parsed, options = SurgeAPI::MessageListParams.dump_request(params)
+        @client.request(
+          method: :get,
+          path: ["accounts/%1$s/messages", account_id],
+          query: parsed,
+          model: SurgeAPI::Models::MessageListResponse,
+          options: options
+        )
+      end
+
       # @api private
       #
       # @param client [SurgeAPI::Client]
