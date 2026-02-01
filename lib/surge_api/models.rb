@@ -91,6 +91,8 @@ module SurgeAPI
 
   MessageFailedWebhookEvent = SurgeAPI::Models::MessageFailedWebhookEvent
 
+  MessageListParams = SurgeAPI::Models::MessageListParams
+
   MessageParams = SurgeAPI::Models::MessageParams
 
   MessageReceivedWebhookEvent = SurgeAPI::Models::MessageReceivedWebhookEvent

@@ -48,4 +48,21 @@ class SurgeAPI::Test::Resources::MessagesTest < SurgeAPI::Test::ResourceTest
       }
     end
   end
+
+  def test_list
+    skip("Prism tests are disabled")
+
+    response = @surge.messages.list("acct_01j9a43avnfqzbjfch6pygv1td")
+
+    assert_pattern do
+      response => SurgeAPI::Models::MessageListResponse
+    end
+
+    assert_pattern do
+      response => {
+        data: ^(SurgeAPI::Internal::Type::ArrayOf[SurgeAPI::Message]),
+        pagination: SurgeAPI::Models::MessageListResponse::Pagination
+      }
+    end
+  end
 end

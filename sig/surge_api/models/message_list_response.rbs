@@ -1,0 +1,40 @@
+module SurgeAPI
+  module Models
+    type message_list_response =
+      {
+        data: ::Array[SurgeAPI::Message],
+        pagination: SurgeAPI::Models::MessageListResponse::Pagination
+      }
+
+    class MessageListResponse < SurgeAPI::Internal::Type::BaseModel
+      attr_accessor data: ::Array[SurgeAPI::Message]
+
+      attr_accessor pagination: SurgeAPI::Models::MessageListResponse::Pagination
+
+      def initialize: (
+        data: ::Array[SurgeAPI::Message],
+        pagination: SurgeAPI::Models::MessageListResponse::Pagination
+      ) -> void
+
+      def to_hash: -> {
+        data: ::Array[SurgeAPI::Message],
+        pagination: SurgeAPI::Models::MessageListResponse::Pagination
+      }
+
+      type pagination = { next_cursor: String?, previous_cursor: String? }
+
+      class Pagination < SurgeAPI::Internal::Type::BaseModel
+        attr_accessor next_cursor: String?
+
+        attr_accessor previous_cursor: String?
+
+        def initialize: (
+          ?next_cursor: String?,
+          ?previous_cursor: String?
+        ) -> void
+
+        def to_hash: -> { next_cursor: String?, previous_cursor: String? }
+      end
+    end
+  end
+end

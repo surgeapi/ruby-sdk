@@ -60,6 +60,27 @@ module SurgeAPI
       )
       end
 
+      # List all messages for an account with cursor-based pagination.
+      sig do
+        params(
+          account_id: String,
+          after: String,
+          before: String,
+          request_options: SurgeAPI::RequestOptions::OrHash
+        ).returns(SurgeAPI::Models::MessageListResponse)
+      end
+      def list(
+        # The account ID to list messages for.
+        account_id,
+        # Cursor for forward pagination. Use the next_cursor from a previous response.
+        after: nil,
+        # Cursor for backward pagination. Use the previous_cursor from a previous
+        # response.
+        before: nil,
+        request_options: {}
+      )
+      end
+
       # @api private
       sig { params(client: SurgeAPI::Client).returns(T.attached_class) }
       def self.new(client:)
