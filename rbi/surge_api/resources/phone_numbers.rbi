@@ -3,6 +3,27 @@
 module SurgeAPI
   module Resources
     class PhoneNumbers
+      # List all phone numbers for an account with cursor-based pagination.
+      sig do
+        params(
+          account_id: String,
+          after: String,
+          before: String,
+          request_options: SurgeAPI::RequestOptions::OrHash
+        ).returns(SurgeAPI::Models::PhoneNumberListResponse)
+      end
+      def list(
+        # The account ID to list phone numbers for.
+        account_id,
+        # Cursor for forward pagination. Use the next_cursor from a previous response.
+        after: nil,
+        # Cursor for backward pagination. Use the previous_cursor from a previous
+        # response.
+        before: nil,
+        request_options: {}
+      )
+      end
+
       # Purchase a new phone number for the account. You can specify search criteria or
       # let the system select a random number.
       sig do

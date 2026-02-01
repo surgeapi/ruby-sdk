@@ -1,0 +1,32 @@
+module SurgeAPI
+  module Models
+    type phone_number_list_params =
+      { after: String, before: String }
+      & SurgeAPI::Internal::Type::request_parameters
+
+    class PhoneNumberListParams < SurgeAPI::Internal::Type::BaseModel
+      extend SurgeAPI::Internal::Type::RequestParameters::Converter
+      include SurgeAPI::Internal::Type::RequestParameters
+
+      attr_reader after: String?
+
+      def after=: (String) -> String
+
+      attr_reader before: String?
+
+      def before=: (String) -> String
+
+      def initialize: (
+        ?after: String,
+        ?before: String,
+        ?request_options: SurgeAPI::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        after: String,
+        before: String,
+        request_options: SurgeAPI::RequestOptions
+      }
+    end
+  end
+end
