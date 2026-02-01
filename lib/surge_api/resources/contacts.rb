@@ -88,6 +88,35 @@ module SurgeAPI
         )
       end
 
+      # Some parameter documentations has been truncated, see
+      # {SurgeAPI::Models::ContactListParams} for more details.
+      #
+      # List all contacts for an account with cursor-based pagination.
+      #
+      # @overload list(account_id, after: nil, before: nil, request_options: {})
+      #
+      # @param account_id [String] The account ID to list contacts for.
+      #
+      # @param after [String] Cursor for forward pagination. Use the next_cursor from a previous response.
+      #
+      # @param before [String] Cursor for backward pagination. Use the previous_cursor from a previous response
+      #
+      # @param request_options [SurgeAPI::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [SurgeAPI::Models::ContactListResponse]
+      #
+      # @see SurgeAPI::Models::ContactListParams
+      def list(account_id, params = {})
+        parsed, options = SurgeAPI::ContactListParams.dump_request(params)
+        @client.request(
+          method: :get,
+          path: ["accounts/%1$s/contacts", account_id],
+          query: parsed,
+          model: SurgeAPI::Models::ContactListResponse,
+          options: options
+        )
+      end
+
       # @api private
       #
       # @param client [SurgeAPI::Client]

@@ -65,4 +65,21 @@ class SurgeAPI::Test::Resources::ContactsTest < SurgeAPI::Test::ResourceTest
       }
     end
   end
+
+  def test_list
+    skip("Prism tests are disabled")
+
+    response = @surge.contacts.list("acct_01j9a43avnfqzbjfch6pygv1td")
+
+    assert_pattern do
+      response => SurgeAPI::Models::ContactListResponse
+    end
+
+    assert_pattern do
+      response => {
+        data: ^(SurgeAPI::Internal::Type::ArrayOf[SurgeAPI::Contact]),
+        pagination: SurgeAPI::Models::ContactListResponse::Pagination
+      }
+    end
+  end
 end
