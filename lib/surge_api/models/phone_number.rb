@@ -2,7 +2,7 @@
 
 module SurgeAPI
   module Models
-    # @see SurgeAPI::Resources::PhoneNumbers#purchase
+    # @see SurgeAPI::Resources::PhoneNumbers#list
     class PhoneNumber < SurgeAPI::Internal::Type::BaseModel
       # @!attribute id
       #   Unique identifier for the phone number

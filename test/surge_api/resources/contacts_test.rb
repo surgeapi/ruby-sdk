@@ -72,13 +72,24 @@ class SurgeAPI::Test::Resources::ContactsTest < SurgeAPI::Test::ResourceTest
     response = @surge.contacts.list("acct_01j9a43avnfqzbjfch6pygv1td")
 
     assert_pattern do
-      response => SurgeAPI::Models::ContactListResponse
+      response => SurgeAPI::Internal::Cursor
+    end
+
+    row = response.to_enum.first
+    return if row.nil?
+
+    assert_pattern do
+      row => SurgeAPI::Contact
     end
 
     assert_pattern do
-      response => {
-        data: ^(SurgeAPI::Internal::Type::ArrayOf[SurgeAPI::Contact]),
-        pagination: SurgeAPI::Models::ContactListResponse::Pagination
+      row => {
+        id: String,
+        phone_number: String,
+        email: String | nil,
+        first_name: String | nil,
+        last_name: String | nil,
+        metadata: ^(SurgeAPI::Internal::Type::HashOf[String]) | nil
       }
     end
   end

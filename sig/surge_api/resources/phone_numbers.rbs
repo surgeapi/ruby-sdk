@@ -6,7 +6,7 @@ module SurgeAPI
         ?after: String,
         ?before: String,
         ?request_options: SurgeAPI::request_opts
-      ) -> SurgeAPI::Models::PhoneNumberListResponse
+      ) -> SurgeAPI::Internal::Cursor[SurgeAPI::PhoneNumber]
 
       def purchase: (
         String account_id,

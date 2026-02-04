@@ -9,13 +9,21 @@ class SurgeAPI::Test::Resources::PhoneNumbersTest < SurgeAPI::Test::ResourceTest
     response = @surge.phone_numbers.list("acct_01j9a43avnfqzbjfch6pygv1td")
 
     assert_pattern do
-      response => SurgeAPI::Models::PhoneNumberListResponse
+      response => SurgeAPI::Internal::Cursor
+    end
+
+    row = response.to_enum.first
+    return if row.nil?
+
+    assert_pattern do
+      row => SurgeAPI::PhoneNumber
     end
 
     assert_pattern do
-      response => {
-        data: ^(SurgeAPI::Internal::Type::ArrayOf[SurgeAPI::PhoneNumber]),
-        pagination: SurgeAPI::Models::PhoneNumberListResponse::Pagination
+      row => {
+        id: String,
+        number: String,
+        type: SurgeAPI::PhoneNumber::Type
       }
     end
   end

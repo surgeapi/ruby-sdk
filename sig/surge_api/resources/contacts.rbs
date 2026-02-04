@@ -31,7 +31,7 @@ module SurgeAPI
         ?after: String,
         ?before: String,
         ?request_options: SurgeAPI::request_opts
-      ) -> SurgeAPI::Models::ContactListResponse
+      ) -> SurgeAPI::Internal::Cursor[SurgeAPI::Contact]
 
       def initialize: (client: SurgeAPI::Client) -> void
     end

@@ -83,7 +83,7 @@ module SurgeAPI
           after: String,
           before: String,
           request_options: SurgeAPI::RequestOptions::OrHash
-        ).returns(SurgeAPI::Models::ContactListResponse)
+        ).returns(SurgeAPI::Internal::Cursor[SurgeAPI::Contact])
       end
       def list(
         # The account ID to list contacts for.
