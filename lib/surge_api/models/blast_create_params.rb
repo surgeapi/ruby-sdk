@@ -19,7 +19,7 @@ module SurgeAPI
       optional :body, String, nil?: true
 
       # @!attribute contacts
-      #   @deprecated
+      #   @deprecated Use `to` to specify recipients instead.
       #
       #   Deprecated. Use `to` instead.
       #
@@ -41,7 +41,7 @@ module SurgeAPI
       optional :name, String
 
       # @!attribute segments
-      #   @deprecated
+      #   @deprecated Use `to` to specify recipients instead.
       #
       #   Deprecated. Use `to` instead.
       #
