@@ -67,7 +67,7 @@ module SurgeAPI
           after: String,
           before: String,
           request_options: SurgeAPI::RequestOptions::OrHash
-        ).returns(SurgeAPI::Models::MessageListResponse)
+        ).returns(SurgeAPI::Internal::Cursor[SurgeAPI::Message])
       end
       def list(
         # The account ID to list messages for.

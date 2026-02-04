@@ -37,6 +37,34 @@ message = surge.messages.create("acct_01j9a43avnfqzbjfch6pygv1td")
 puts(message.id)
 ```
 
+### Pagination
+
+List methods in the Surge API are paginated.
+
+This library provides auto-paginating iterators with each list response, so you do not have to request successive pages manually:
+
+```ruby
+page = surge.contacts.list
+
+# Fetch single item from page.
+contact = page.data[0]
+puts(contact.id)
+
+# Automatically fetches more pages as needed.
+page.auto_paging_each do |contact|
+  puts(contact.id)
+end
+```
+
+Alternatively, you can use the `#next_page?` and `#next_page` methods for more granular control working with pages.
+
+```ruby
+if page.next_page?
+  new_page = page.next_page
+  puts(new_page.data[0].id)
+end
+```
+
 ### Handling errors
 
 When the library is unable to connect to the API, or if the API returns a non-success status code (i.e., 4xx or 5xx response), a subclass of `SurgeAPI::Errors::APIError` will be thrown:

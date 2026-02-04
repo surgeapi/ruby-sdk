@@ -55,13 +55,24 @@ class SurgeAPI::Test::Resources::MessagesTest < SurgeAPI::Test::ResourceTest
     response = @surge.messages.list("acct_01j9a43avnfqzbjfch6pygv1td")
 
     assert_pattern do
-      response => SurgeAPI::Models::MessageListResponse
+      response => SurgeAPI::Internal::Cursor
+    end
+
+    row = response.to_enum.first
+    return if row.nil?
+
+    assert_pattern do
+      row => SurgeAPI::Message
     end
 
     assert_pattern do
-      response => {
-        data: ^(SurgeAPI::Internal::Type::ArrayOf[SurgeAPI::Message]),
-        pagination: SurgeAPI::Models::MessageListResponse::Pagination
+      row => {
+        id: String | nil,
+        attachments: ^(SurgeAPI::Internal::Type::ArrayOf[SurgeAPI::Message::Attachment]) | nil,
+        blast_id: String | nil,
+        body: String | nil,
+        conversation: SurgeAPI::Message::Conversation | nil,
+        metadata: ^(SurgeAPI::Internal::Type::HashOf[String]) | nil
       }
     end
   end

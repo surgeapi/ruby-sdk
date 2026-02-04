@@ -18,7 +18,7 @@ module SurgeAPI
       #
       # @param request_options [SurgeAPI::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [SurgeAPI::Models::PhoneNumberListResponse]
+      # @return [SurgeAPI::Internal::Cursor<SurgeAPI::Models::PhoneNumber>]
       #
       # @see SurgeAPI::Models::PhoneNumberListParams
       def list(account_id, params = {})
@@ -27,7 +27,8 @@ module SurgeAPI
           method: :get,
           path: ["accounts/%1$s/phone_numbers", account_id],
           query: parsed,
-          model: SurgeAPI::Models::PhoneNumberListResponse,
+          page: SurgeAPI::Internal::Cursor,
+          model: SurgeAPI::PhoneNumber,
           options: options
         )
       end
