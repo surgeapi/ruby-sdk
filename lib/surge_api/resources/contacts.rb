@@ -103,7 +103,7 @@ module SurgeAPI
       #
       # @param request_options [SurgeAPI::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [SurgeAPI::Models::ContactListResponse]
+      # @return [SurgeAPI::Internal::Cursor<SurgeAPI::Models::Contact>]
       #
       # @see SurgeAPI::Models::ContactListParams
       def list(account_id, params = {})
@@ -112,7 +112,8 @@ module SurgeAPI
           method: :get,
           path: ["accounts/%1$s/contacts", account_id],
           query: parsed,
-          model: SurgeAPI::Models::ContactListResponse,
+          page: SurgeAPI::Internal::Cursor,
+          model: SurgeAPI::Contact,
           options: options
         )
       end

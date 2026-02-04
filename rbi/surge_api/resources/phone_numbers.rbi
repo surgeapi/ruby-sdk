@@ -10,7 +10,7 @@ module SurgeAPI
           after: String,
           before: String,
           request_options: SurgeAPI::RequestOptions::OrHash
-        ).returns(SurgeAPI::Models::PhoneNumberListResponse)
+        ).returns(SurgeAPI::Internal::Cursor[SurgeAPI::PhoneNumber])
       end
       def list(
         # The account ID to list phone numbers for.

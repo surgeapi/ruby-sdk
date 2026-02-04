@@ -94,7 +94,7 @@ module SurgeAPI
       #
       # @param request_options [SurgeAPI::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [SurgeAPI::Models::MessageListResponse]
+      # @return [SurgeAPI::Internal::Cursor<SurgeAPI::Models::Message>]
       #
       # @see SurgeAPI::Models::MessageListParams
       def list(account_id, params = {})
@@ -103,7 +103,8 @@ module SurgeAPI
           method: :get,
           path: ["accounts/%1$s/messages", account_id],
           query: parsed,
-          model: SurgeAPI::Models::MessageListResponse,
+          page: SurgeAPI::Internal::Cursor,
+          model: SurgeAPI::Message,
           options: options
         )
       end
