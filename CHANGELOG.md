@@ -1,5 +1,28 @@
 # Changelog
 
+## 0.9.0 (2026-02-04)
+
+Full Changelog: [v0.8.0...v0.9.0](https://github.com/surgeapi/ruby-sdk/compare/v0.8.0...v0.9.0)
+
+### Features
+
+* **api:** add list contacts endpoint ([fb3eaae](https://github.com/surgeapi/ruby-sdk/commit/fb3eaae32fa15b6b7423b4ae485608e03cf027a7))
+* **api:** add list messages endpoint ([ca51f12](https://github.com/surgeapi/ruby-sdk/commit/ca51f12d83bcebdd706701e8fee9a594313bd767))
+* **api:** add list phone numbers endpoint ([47691df](https://github.com/surgeapi/ruby-sdk/commit/47691dfe6f91a9300c02f3f893fe2af5636f8094))
+* **sdk:** add deprecation messages ([f0e959e](https://github.com/surgeapi/ruby-sdk/commit/f0e959e9a96069670284b7ebd9f9a0a28672b5dc))
+* **sdks:** set up pagination ([08b1393](https://github.com/surgeapi/ruby-sdk/commit/08b13930dd2102f1886c616409f213e62b3137e5))
+
+
+### Bug Fixes
+
+* **api:** make message body nullable ([a329e52](https://github.com/surgeapi/ruby-sdk/commit/a329e5203323524beb725f217d0261193df02ebe))
+* **client:** always add content-length to post body, even when empty ([12467d3](https://github.com/surgeapi/ruby-sdk/commit/12467d365020dafafb0474504042a8e39c5ee2fd))
+
+
+### Chores
+
+* **docs:** remove www prefix ([beaff0c](https://github.com/surgeapi/ruby-sdk/commit/beaff0c151d0e31114c490c09fb4c71196e316d8))
+
 ## 0.8.0 (2026-01-26)
 
 Full Changelog: [v0.7.0...v0.8.0](https://github.com/surgeapi/ruby-sdk/compare/v0.7.0...v0.8.0)
