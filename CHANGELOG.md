@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.9.1 (2026-02-07)
+
+Full Changelog: [v0.9.0...v0.9.1](https://github.com/surgeapi/ruby-sdk/compare/v0.9.0...v0.9.1)
+
+### Bug Fixes
+
+* **client:** loosen json header parsing ([51f4092](https://github.com/surgeapi/ruby-sdk/commit/51f409235dc8e2c377411b3f53595df8fea9b4e4))
+
 ## 0.9.0 (2026-02-04)
 
 Full Changelog: [v0.8.0...v0.9.0](https://github.com/surgeapi/ruby-sdk/compare/v0.8.0...v0.9.0)
