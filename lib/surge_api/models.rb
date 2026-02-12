@@ -111,6 +111,8 @@ module SurgeAPI
 
   PhoneNumberPurchaseParams = SurgeAPI::Models::PhoneNumberPurchaseParams
 
+  RecordingGetFileParams = SurgeAPI::Models::RecordingGetFileParams
+
   UnwrapWebhookEvent = SurgeAPI::Models::UnwrapWebhookEvent
 
   User = SurgeAPI::Models::User

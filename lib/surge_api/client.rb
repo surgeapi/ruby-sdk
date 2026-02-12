@@ -36,6 +36,9 @@ module SurgeAPI
     # @return [SurgeAPI::Resources::PhoneNumbers]
     attr_reader :phone_numbers
 
+    # @return [SurgeAPI::Resources::Recordings]
+    attr_reader :recordings
+
     # @return [SurgeAPI::Resources::Users]
     attr_reader :users
 
@@ -98,6 +101,7 @@ module SurgeAPI
       @contacts = SurgeAPI::Resources::Contacts.new(client: self)
       @messages = SurgeAPI::Resources::Messages.new(client: self)
       @phone_numbers = SurgeAPI::Resources::PhoneNumbers.new(client: self)
+      @recordings = SurgeAPI::Resources::Recordings.new(client: self)
       @users = SurgeAPI::Resources::Users.new(client: self)
       @verifications = SurgeAPI::Resources::Verifications.new(client: self)
       @webhooks = SurgeAPI::Resources::Webhooks.new(client: self)
