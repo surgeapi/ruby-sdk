@@ -15,7 +15,8 @@ module SurgeAPI
             SurgeAPI::MessageDeliveredWebhookEvent,
             SurgeAPI::MessageFailedWebhookEvent,
             SurgeAPI::MessageReceivedWebhookEvent,
-            SurgeAPI::MessageSentWebhookEvent
+            SurgeAPI::MessageSentWebhookEvent,
+            SurgeAPI::VoicemailReceivedWebhookEvent
           )
         )
       end
