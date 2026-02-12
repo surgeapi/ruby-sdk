@@ -20,7 +20,7 @@ module SurgeAPI
       #   attribute messages back to a specific blast.
       #
       #   @return [String, nil]
-      optional :blast_id, String
+      optional :blast_id, String, nil?: true
 
       # @!attribute body
       #   The message body.
@@ -50,7 +50,7 @@ module SurgeAPI
       #
       #   @param attachments [Array<SurgeAPI::Models::Message::Attachment>]
       #
-      #   @param blast_id [String] The ID of the blast this message belongs to, if any. This can be used to attribu
+      #   @param blast_id [String, nil] The ID of the blast this message belongs to, if any. This can be used to attribu
       #
       #   @param body [String, nil] The message body.
       #
