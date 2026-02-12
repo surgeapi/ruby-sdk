@@ -1,0 +1,13 @@
+module SurgeAPI
+  module Models
+    type recording_get_file_response = { error: SurgeAPI::Error }
+
+    class RecordingGetFileResponse < SurgeAPI::Internal::Type::BaseModel
+      attr_accessor error: SurgeAPI::Error
+
+      def initialize: (error: SurgeAPI::Error) -> void
+
+      def to_hash: -> { error: SurgeAPI::Error }
+    end
+  end
+end
