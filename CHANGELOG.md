@@ -1,5 +1,23 @@
 # Changelog
 
+## 0.10.0 (2026-02-12)
+
+Full Changelog: [v0.9.0...v0.10.0](https://github.com/surgeapi/ruby-sdk/compare/v0.9.0...v0.10.0)
+
+### Features
+
+* **api:** add campaign.status field ([f0ab6be](https://github.com/surgeapi/ruby-sdk/commit/f0ab6bef5d1cbca9741b3731189e5a821c6abcb3))
+* **api:** add get campaign endpoint ([511d2b3](https://github.com/surgeapi/ruby-sdk/commit/511d2b3cd36a3e4a1f1737093a02f5c31296c332))
+* **api:** add recording.completed webhook ([9a72a0c](https://github.com/surgeapi/ruby-sdk/commit/9a72a0c754dad51ac7b02e84c3f8ce8e6ba85378))
+* **api:** add voicemail.received webhook ([37edfcd](https://github.com/surgeapi/ruby-sdk/commit/37edfcd3a2d26f42ea5a0fbf5481e046486f4456))
+* **api:** get recording file ([db0184e](https://github.com/surgeapi/ruby-sdk/commit/db0184e171168f74e20d91b65cea452a32aad263))
+
+
+### Bug Fixes
+
+* **api:** make message.blast_id nullable ([9096e75](https://github.com/surgeapi/ruby-sdk/commit/9096e75d5aa6803c4b11aba0fe2c61448abf3f6a))
+* **client:** loosen json header parsing ([51f4092](https://github.com/surgeapi/ruby-sdk/commit/51f409235dc8e2c377411b3f53595df8fea9b4e4))
+
 ## 0.9.0 (2026-02-04)
 
 Full Changelog: [v0.8.0...v0.9.0](https://github.com/surgeapi/ruby-sdk/compare/v0.8.0...v0.9.0)
