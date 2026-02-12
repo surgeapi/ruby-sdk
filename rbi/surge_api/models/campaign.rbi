@@ -50,6 +50,10 @@ module SurgeAPI
       sig { returns(String) }
       attr_accessor :privacy_policy_url
 
+      # The current status of the campaign.
+      sig { returns(SurgeAPI::Campaign::Status::TaggedSymbol) }
+      attr_accessor :status
+
       # A list containing 1-5 types of messages that will be sent with this campaign.
       #
       # The following use cases are typically available to all brands:
@@ -123,6 +127,7 @@ module SurgeAPI
           includes: T::Array[SurgeAPI::Campaign::Include::OrSymbol],
           message_samples: T::Array[String],
           privacy_policy_url: String,
+          status: SurgeAPI::Campaign::Status::OrSymbol,
           use_cases: T::Array[SurgeAPI::Campaign::UseCase::OrSymbol],
           volume: SurgeAPI::Campaign::Volume::OrSymbol,
           link_sample: String,
@@ -162,6 +167,8 @@ module SurgeAPI
         # privacy policy if it's the policy that is displayed to end users when they opt
         # in to messaging.
         privacy_policy_url:,
+        # The current status of the campaign.
+        status:,
         # A list containing 1-5 types of messages that will be sent with this campaign.
         #
         # The following use cases are typically available to all brands:
@@ -223,6 +230,7 @@ module SurgeAPI
             includes: T::Array[SurgeAPI::Campaign::Include::TaggedSymbol],
             message_samples: T::Array[String],
             privacy_policy_url: String,
+            status: SurgeAPI::Campaign::Status::TaggedSymbol,
             use_cases: T::Array[SurgeAPI::Campaign::UseCase::TaggedSymbol],
             volume: SurgeAPI::Campaign::Volume::TaggedSymbol,
             link_sample: String,
@@ -249,6 +257,30 @@ module SurgeAPI
 
         sig do
           override.returns(T::Array[SurgeAPI::Campaign::Include::TaggedSymbol])
+        end
+        def self.values
+        end
+      end
+
+      # The current status of the campaign.
+      module Status
+        extend SurgeAPI::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias { T.all(Symbol, SurgeAPI::Campaign::Status) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        ACTIVE = T.let(:active, SurgeAPI::Campaign::Status::TaggedSymbol)
+        CANCELED = T.let(:canceled, SurgeAPI::Campaign::Status::TaggedSymbol)
+        CREATED = T.let(:created, SurgeAPI::Campaign::Status::TaggedSymbol)
+        DEACTIVATED =
+          T.let(:deactivated, SurgeAPI::Campaign::Status::TaggedSymbol)
+        IN_REVIEW = T.let(:in_review, SurgeAPI::Campaign::Status::TaggedSymbol)
+        PENDING = T.let(:pending, SurgeAPI::Campaign::Status::TaggedSymbol)
+        REJECTED = T.let(:rejected, SurgeAPI::Campaign::Status::TaggedSymbol)
+
+        sig do
+          override.returns(T::Array[SurgeAPI::Campaign::Status::TaggedSymbol])
         end
         def self.values
         end
