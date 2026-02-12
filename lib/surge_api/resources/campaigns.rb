@@ -35,6 +35,26 @@ module SurgeAPI
         )
       end
 
+      # Retrieves a Campaign object.
+      #
+      # @overload retrieve(id, request_options: {})
+      #
+      # @param id [String] The ID of the campaign to retrieve.
+      #
+      # @param request_options [SurgeAPI::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [SurgeAPI::Models::Campaign]
+      #
+      # @see SurgeAPI::Models::CampaignRetrieveParams
+      def retrieve(id, params = {})
+        @client.request(
+          method: :get,
+          path: ["campaigns/%1$s", id],
+          model: SurgeAPI::Campaign,
+          options: params[:request_options]
+        )
+      end
+
       # @api private
       #
       # @param client [SurgeAPI::Client]
