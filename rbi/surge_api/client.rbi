@@ -31,6 +31,9 @@ module SurgeAPI
     sig { returns(SurgeAPI::Resources::PhoneNumbers) }
     attr_reader :phone_numbers
 
+    sig { returns(SurgeAPI::Resources::Recordings) }
+    attr_reader :recordings
+
     sig { returns(SurgeAPI::Resources::Users) }
     attr_reader :users
 

@@ -1,0 +1,12 @@
+module SurgeAPI
+  module Resources
+    class Recordings
+      def get_file: (
+        String recording_id,
+        ?request_options: SurgeAPI::request_opts
+      ) -> SurgeAPI::Models::RecordingGetFileResponse
+
+      def initialize: (client: SurgeAPI::Client) -> void
+    end
+  end
+end
