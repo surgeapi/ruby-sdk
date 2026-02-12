@@ -41,4 +41,30 @@ class SurgeAPI::Test::Resources::CampaignsTest < SurgeAPI::Test::ResourceTest
       }
     end
   end
+
+  def test_retrieve
+    skip("Prism tests are disabled")
+
+    response = @surge.campaigns.retrieve("cpn_01k0qczvhbet4azgn5xm2ccfst")
+
+    assert_pattern do
+      response => SurgeAPI::Campaign
+    end
+
+    assert_pattern do
+      response => {
+        id: String,
+        consent_flow: String,
+        description: String,
+        includes: ^(SurgeAPI::Internal::Type::ArrayOf[enum: SurgeAPI::Campaign::Include]),
+        message_samples: ^(SurgeAPI::Internal::Type::ArrayOf[String]),
+        privacy_policy_url: String,
+        status: SurgeAPI::Campaign::Status,
+        use_cases: ^(SurgeAPI::Internal::Type::ArrayOf[enum: SurgeAPI::Campaign::UseCase]),
+        volume: SurgeAPI::Campaign::Volume,
+        link_sample: String | nil,
+        terms_and_conditions_url: String | nil
+      }
+    end
+  end
 end
