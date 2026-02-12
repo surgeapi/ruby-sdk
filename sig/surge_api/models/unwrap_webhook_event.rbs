@@ -11,6 +11,7 @@ module SurgeAPI
       | SurgeAPI::MessageFailedWebhookEvent
       | SurgeAPI::MessageReceivedWebhookEvent
       | SurgeAPI::MessageSentWebhookEvent
+      | SurgeAPI::VoicemailReceivedWebhookEvent
 
     module UnwrapWebhookEvent
       extend SurgeAPI::Internal::Type::Union

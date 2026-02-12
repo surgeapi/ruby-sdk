@@ -95,5 +95,7 @@ module SurgeAPI
 
   class VerificationCreateParams = SurgeAPI::Models::VerificationCreateParams
 
+  class VoicemailReceivedWebhookEvent = SurgeAPI::Models::VoicemailReceivedWebhookEvent
+
   class WebhookUnwrapParams = SurgeAPI::Models::WebhookUnwrapParams
 end
