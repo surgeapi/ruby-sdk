@@ -76,6 +76,9 @@ module SurgeAPI
 
   PhoneNumberPurchaseParams = SurgeAPI::Models::PhoneNumberPurchaseParams
 
+  RecordingCompletedWebhookEvent =
+    SurgeAPI::Models::RecordingCompletedWebhookEvent
+
   RecordingGetFileParams = SurgeAPI::Models::RecordingGetFileParams
 
   UnwrapWebhookEvent = SurgeAPI::Models::UnwrapWebhookEvent
