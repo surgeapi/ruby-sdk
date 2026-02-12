@@ -21,6 +21,20 @@ module SurgeAPI
       )
       end
 
+      # Retrieves a Campaign object.
+      sig do
+        params(
+          id: String,
+          request_options: SurgeAPI::RequestOptions::OrHash
+        ).returns(SurgeAPI::Campaign)
+      end
+      def retrieve(
+        # The ID of the campaign to retrieve.
+        id,
+        request_options: {}
+      )
+      end
+
       # @api private
       sig { params(client: SurgeAPI::Client).returns(T.attached_class) }
       def self.new(client:)

@@ -7,6 +7,11 @@ module SurgeAPI
         ?request_options: SurgeAPI::request_opts
       ) -> SurgeAPI::Campaign
 
+      def retrieve: (
+        String id,
+        ?request_options: SurgeAPI::request_opts
+      ) -> SurgeAPI::Campaign
+
       def initialize: (client: SurgeAPI::Client) -> void
     end
   end
