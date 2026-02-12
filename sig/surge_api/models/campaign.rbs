@@ -8,6 +8,7 @@ module SurgeAPI
         includes: ::Array[SurgeAPI::Models::Campaign::include_],
         message_samples: ::Array[String],
         privacy_policy_url: String,
+        status: SurgeAPI::Models::Campaign::status,
         use_cases: ::Array[SurgeAPI::Models::Campaign::use_case],
         volume: SurgeAPI::Models::Campaign::volume,
         link_sample: String,
@@ -26,6 +27,8 @@ module SurgeAPI
       attr_accessor message_samples: ::Array[String]
 
       attr_accessor privacy_policy_url: String
+
+      attr_accessor status: SurgeAPI::Models::Campaign::status
 
       attr_accessor use_cases: ::Array[SurgeAPI::Models::Campaign::use_case]
 
@@ -46,6 +49,7 @@ module SurgeAPI
         includes: ::Array[SurgeAPI::Models::Campaign::include_],
         message_samples: ::Array[String],
         privacy_policy_url: String,
+        status: SurgeAPI::Models::Campaign::status,
         use_cases: ::Array[SurgeAPI::Models::Campaign::use_case],
         volume: SurgeAPI::Models::Campaign::volume,
         ?link_sample: String,
@@ -59,6 +63,7 @@ module SurgeAPI
         includes: ::Array[SurgeAPI::Models::Campaign::include_],
         message_samples: ::Array[String],
         privacy_policy_url: String,
+        status: SurgeAPI::Models::Campaign::status,
         use_cases: ::Array[SurgeAPI::Models::Campaign::use_case],
         volume: SurgeAPI::Models::Campaign::volume,
         link_sample: String,
@@ -76,6 +81,29 @@ module SurgeAPI
         DIRECT_LENDING: :direct_lending
 
         def self?.values: -> ::Array[SurgeAPI::Models::Campaign::include_]
+      end
+
+      type status =
+        :active
+        | :canceled
+        | :created
+        | :deactivated
+        | :in_review
+        | :pending
+        | :rejected
+
+      module Status
+        extend SurgeAPI::Internal::Type::Enum
+
+        ACTIVE: :active
+        CANCELED: :canceled
+        CREATED: :created
+        DEACTIVATED: :deactivated
+        IN_REVIEW: :in_review
+        PENDING: :pending
+        REJECTED: :rejected
+
+        def self?.values: -> ::Array[SurgeAPI::Models::Campaign::status]
       end
 
       type use_case =

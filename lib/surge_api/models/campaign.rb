@@ -60,6 +60,12 @@ module SurgeAPI
       #   @return [String]
       required :privacy_policy_url, String
 
+      # @!attribute status
+      #   The current status of the campaign.
+      #
+      #   @return [Symbol, SurgeAPI::Models::Campaign::Status]
+      required :status, enum: -> { SurgeAPI::Campaign::Status }
+
       # @!attribute use_cases
       #   A list containing 1-5 types of messages that will be sent with this campaign.
       #
@@ -125,7 +131,7 @@ module SurgeAPI
       #   @return [String, nil]
       optional :terms_and_conditions_url, String
 
-      # @!method initialize(id:, consent_flow:, description:, includes:, message_samples:, privacy_policy_url:, use_cases:, volume:, link_sample: nil, terms_and_conditions_url: nil)
+      # @!method initialize(id:, consent_flow:, description:, includes:, message_samples:, privacy_policy_url:, status:, use_cases:, volume:, link_sample: nil, terms_and_conditions_url: nil)
       #   Some parameter documentations has been truncated, see
       #   {SurgeAPI::Models::Campaign} for more details.
       #
@@ -144,6 +150,8 @@ module SurgeAPI
       #
       #   @param privacy_policy_url [String] The URL of the privacy policy for the brand in question. This may be a shared pr
       #
+      #   @param status [Symbol, SurgeAPI::Models::Campaign::Status] The current status of the campaign.
+      #
       #   @param use_cases [Array<Symbol, SurgeAPI::Models::Campaign::UseCase>] A list containing 1-5 types of messages that will be sent with this campaign.
       #
       #   @param volume [Symbol, SurgeAPI::Models::Campaign::Volume] This will be one of the following:
@@ -159,6 +167,24 @@ module SurgeAPI
         PHONE_NUMBERS = :phone_numbers
         AGE_GATED = :age_gated
         DIRECT_LENDING = :direct_lending
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
+
+      # The current status of the campaign.
+      #
+      # @see SurgeAPI::Models::Campaign#status
+      module Status
+        extend SurgeAPI::Internal::Type::Enum
+
+        ACTIVE = :active
+        CANCELED = :canceled
+        CREATED = :created
+        DEACTIVATED = :deactivated
+        IN_REVIEW = :in_review
+        PENDING = :pending
+        REJECTED = :rejected
 
         # @!method self.values
         #   @return [Array<Symbol>]

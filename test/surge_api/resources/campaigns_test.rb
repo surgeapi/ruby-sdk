@@ -33,6 +33,7 @@ class SurgeAPI::Test::Resources::CampaignsTest < SurgeAPI::Test::ResourceTest
         includes: ^(SurgeAPI::Internal::Type::ArrayOf[enum: SurgeAPI::Campaign::Include]),
         message_samples: ^(SurgeAPI::Internal::Type::ArrayOf[String]),
         privacy_policy_url: String,
+        status: SurgeAPI::Campaign::Status,
         use_cases: ^(SurgeAPI::Internal::Type::ArrayOf[enum: SurgeAPI::Campaign::UseCase]),
         volume: SurgeAPI::Campaign::Volume,
         link_sample: String | nil,
