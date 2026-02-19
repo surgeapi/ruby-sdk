@@ -3,6 +3,24 @@
 require_relative "../test_helper"
 
 class SurgeAPI::Test::Resources::RecordingsTest < SurgeAPI::Test::ResourceTest
+  def test_delete
+    skip("Prism tests are disabled")
+
+    response = @surge.recordings.delete("rec_01kfyc9dgdec1avkgs7tng8htg")
+
+    assert_pattern do
+      response => SurgeAPI::Models::RecordingDeleteResponse
+    end
+
+    assert_pattern do
+      response => {
+        id: String,
+        call: SurgeAPI::Models::RecordingDeleteResponse::Call,
+        duration: Integer
+      }
+    end
+  end
+
   def test_get_file
     skip("Prism doesn't properly handle redirects")
 

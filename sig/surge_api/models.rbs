@@ -75,6 +75,8 @@ module SurgeAPI
 
   class RecordingCompletedWebhookEvent = SurgeAPI::Models::RecordingCompletedWebhookEvent
 
+  class RecordingDeleteParams = SurgeAPI::Models::RecordingDeleteParams
+
   class RecordingGetFileParams = SurgeAPI::Models::RecordingGetFileParams
 
   module UnwrapWebhookEvent = SurgeAPI::Models::UnwrapWebhookEvent

@@ -3,6 +3,27 @@
 module SurgeAPI
   module Resources
     class Recordings
+      # Deletes a recording. The recording file will be removed from storage
+      # asynchronously.
+      #
+      # @overload delete(id, request_options: {})
+      #
+      # @param id [String] The ID of the recording.
+      #
+      # @param request_options [SurgeAPI::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [SurgeAPI::Models::RecordingDeleteResponse]
+      #
+      # @see SurgeAPI::Models::RecordingDeleteParams
+      def delete(id, params = {})
+        @client.request(
+          method: :delete,
+          path: ["recordings/%1$s", id],
+          model: SurgeAPI::Models::RecordingDeleteResponse,
+          options: params[:request_options]
+        )
+      end
+
       # Redirects to a signed URL where the recording audio file can be downloaded. URL
       # is short-lived, so redirect should be followed immediately.
       #
