@@ -68,8 +68,8 @@ module SurgeAPI
         # @!attribute type
         #   The type of attachment.
         #
-        #   @return [String, nil]
-        optional :type, String
+        #   @return [Symbol, SurgeAPI::Models::Message::Attachment::Type, nil]
+        optional :type, enum: -> { SurgeAPI::Message::Attachment::Type }
 
         # @!attribute url
         #   The URL of the attachment.
@@ -82,9 +82,24 @@ module SurgeAPI
         #
         #   @param id [String] Unique identifier for the object.
         #
-        #   @param type [String] The type of attachment.
+        #   @param type [Symbol, SurgeAPI::Models::Message::Attachment::Type] The type of attachment.
         #
         #   @param url [String] The URL of the attachment.
+
+        # The type of attachment.
+        #
+        # @see SurgeAPI::Models::Message::Attachment#type
+        module Type
+          extend SurgeAPI::Internal::Type::Enum
+
+          FILE = :file
+          IMAGE = :image
+          LINK = :link
+          VIDEO = :video
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
       end
 
       # @see SurgeAPI::Models::Message#conversation
