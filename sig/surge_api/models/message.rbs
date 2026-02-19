@@ -53,24 +53,52 @@ module SurgeAPI
         metadata: ::Hash[Symbol, String]
       }
 
-      type attachment = { id: String, type: String, url: String }
+      type attachment =
+        {
+          id: String,
+          type: SurgeAPI::Models::Message::Attachment::type_,
+          url: String
+        }
 
       class Attachment < SurgeAPI::Internal::Type::BaseModel
         attr_reader id: String?
 
         def id=: (String) -> String
 
-        attr_reader type: String?
+        attr_reader type: SurgeAPI::Models::Message::Attachment::type_?
 
-        def type=: (String) -> String
+        def type=: (
+          SurgeAPI::Models::Message::Attachment::type_
+        ) -> SurgeAPI::Models::Message::Attachment::type_
 
         attr_reader url: String?
 
         def url=: (String) -> String
 
-        def initialize: (?id: String, ?type: String, ?url: String) -> void
+        def initialize: (
+          ?id: String,
+          ?type: SurgeAPI::Models::Message::Attachment::type_,
+          ?url: String
+        ) -> void
 
-        def to_hash: -> { id: String, type: String, url: String }
+        def to_hash: -> {
+          id: String,
+          type: SurgeAPI::Models::Message::Attachment::type_,
+          url: String
+        }
+
+        type type_ = :file | :image | :link | :video
+
+        module Type
+          extend SurgeAPI::Internal::Type::Enum
+
+          FILE: :file
+          IMAGE: :image
+          LINK: :link
+          VIDEO: :video
+
+          def self?.values: -> ::Array[SurgeAPI::Models::Message::Attachment::type_]
+        end
       end
 
       type conversation =

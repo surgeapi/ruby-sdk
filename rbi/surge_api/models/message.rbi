@@ -102,10 +102,12 @@ module SurgeAPI
         attr_writer :id
 
         # The type of attachment.
-        sig { returns(T.nilable(String)) }
+        sig do
+          returns(T.nilable(SurgeAPI::Message::Attachment::Type::TaggedSymbol))
+        end
         attr_reader :type
 
-        sig { params(type: String).void }
+        sig { params(type: SurgeAPI::Message::Attachment::Type::OrSymbol).void }
         attr_writer :type
 
         # The URL of the attachment.
@@ -117,9 +119,11 @@ module SurgeAPI
 
         # An Attachment is a file that can be sent with a message.
         sig do
-          params(id: String, type: String, url: String).returns(
-            T.attached_class
-          )
+          params(
+            id: String,
+            type: SurgeAPI::Message::Attachment::Type::OrSymbol,
+            url: String
+          ).returns(T.attached_class)
         end
         def self.new(
           # Unique identifier for the object.
@@ -131,8 +135,40 @@ module SurgeAPI
         )
         end
 
-        sig { override.returns({ id: String, type: String, url: String }) }
+        sig do
+          override.returns(
+            {
+              id: String,
+              type: SurgeAPI::Message::Attachment::Type::TaggedSymbol,
+              url: String
+            }
+          )
+        end
         def to_hash
+        end
+
+        # The type of attachment.
+        module Type
+          extend SurgeAPI::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias { T.all(Symbol, SurgeAPI::Message::Attachment::Type) }
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          FILE = T.let(:file, SurgeAPI::Message::Attachment::Type::TaggedSymbol)
+          IMAGE =
+            T.let(:image, SurgeAPI::Message::Attachment::Type::TaggedSymbol)
+          LINK = T.let(:link, SurgeAPI::Message::Attachment::Type::TaggedSymbol)
+          VIDEO =
+            T.let(:video, SurgeAPI::Message::Attachment::Type::TaggedSymbol)
+
+          sig do
+            override.returns(
+              T::Array[SurgeAPI::Message::Attachment::Type::TaggedSymbol]
+            )
+          end
+          def self.values
+          end
         end
       end
 
