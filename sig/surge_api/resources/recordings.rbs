@@ -1,6 +1,11 @@
 module SurgeAPI
   module Resources
     class Recordings
+      def delete: (
+        String id,
+        ?request_options: SurgeAPI::request_opts
+      ) -> SurgeAPI::Models::RecordingDeleteResponse
+
       def get_file: (
         String recording_id,
         ?request_options: SurgeAPI::request_opts

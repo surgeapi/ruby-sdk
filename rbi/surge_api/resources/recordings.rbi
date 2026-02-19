@@ -3,6 +3,21 @@
 module SurgeAPI
   module Resources
     class Recordings
+      # Deletes a recording. The recording file will be removed from storage
+      # asynchronously.
+      sig do
+        params(
+          id: String,
+          request_options: SurgeAPI::RequestOptions::OrHash
+        ).returns(SurgeAPI::Models::RecordingDeleteResponse)
+      end
+      def delete(
+        # The ID of the recording.
+        id,
+        request_options: {}
+      )
+      end
+
       # Redirects to a signed URL where the recording audio file can be downloaded. URL
       # is short-lived, so redirect should be followed immediately.
       sig do
