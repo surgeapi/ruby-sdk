@@ -4,7 +4,7 @@ require_relative "../test_helper"
 
 class SurgeAPI::Test::Resources::ContactsTest < SurgeAPI::Test::ResourceTest
   def test_create_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @surge.contacts.create("acct_01j9a43avnfqzbjfch6pygv1td", phone_number: "+18015551234")
 
@@ -25,7 +25,7 @@ class SurgeAPI::Test::Resources::ContactsTest < SurgeAPI::Test::ResourceTest
   end
 
   def test_retrieve
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @surge.contacts.retrieve("ctc_01j9dy8mdzfn3r0e8x1tbdrdrf")
 
@@ -46,7 +46,7 @@ class SurgeAPI::Test::Resources::ContactsTest < SurgeAPI::Test::ResourceTest
   end
 
   def test_update_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @surge.contacts.update("ctc_01j9dy8mdzfn3r0e8x1tbdrdrf", phone_number: "+18015551234")
 
@@ -67,7 +67,7 @@ class SurgeAPI::Test::Resources::ContactsTest < SurgeAPI::Test::ResourceTest
   end
 
   def test_list
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @surge.contacts.list("acct_01j9a43avnfqzbjfch6pygv1td")
 

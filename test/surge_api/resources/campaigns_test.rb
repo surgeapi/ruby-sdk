@@ -4,7 +4,7 @@ require_relative "../test_helper"
 
 class SurgeAPI::Test::Resources::CampaignsTest < SurgeAPI::Test::ResourceTest
   def test_create_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response =
       @surge.campaigns.create(
@@ -43,7 +43,7 @@ class SurgeAPI::Test::Resources::CampaignsTest < SurgeAPI::Test::ResourceTest
   end
 
   def test_retrieve
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @surge.campaigns.retrieve("cpn_01k0qczvhbet4azgn5xm2ccfst")
 

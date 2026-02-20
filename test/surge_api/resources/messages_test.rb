@@ -4,7 +4,7 @@ require_relative "../test_helper"
 
 class SurgeAPI::Test::Resources::MessagesTest < SurgeAPI::Test::ResourceTest
   def test_create_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response =
       @surge.messages.create(
@@ -29,7 +29,7 @@ class SurgeAPI::Test::Resources::MessagesTest < SurgeAPI::Test::ResourceTest
   end
 
   def test_retrieve
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @surge.messages.retrieve("msg_01j9e0m1m6fc38gsv2vkfqgzz2")
 
@@ -50,7 +50,7 @@ class SurgeAPI::Test::Resources::MessagesTest < SurgeAPI::Test::ResourceTest
   end
 
   def test_list
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @surge.messages.list("acct_01j9a43avnfqzbjfch6pygv1td")
 

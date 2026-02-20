@@ -4,7 +4,7 @@ require_relative "../test_helper"
 
 class SurgeAPI::Test::Resources::BlastsTest < SurgeAPI::Test::ResourceTest
   def test_create
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @surge.blasts.create("acct_01j9a43avnfqzbjfch6pygv1td")
 
