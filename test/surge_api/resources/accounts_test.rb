@@ -4,7 +4,7 @@ require_relative "../test_helper"
 
 class SurgeAPI::Test::Resources::AccountsTest < SurgeAPI::Test::ResourceTest
   def test_create_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @surge.accounts.create(name: "Account #2840 - DT Precision Auto")
 
@@ -24,7 +24,7 @@ class SurgeAPI::Test::Resources::AccountsTest < SurgeAPI::Test::ResourceTest
   end
 
   def test_update
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @surge.accounts.update("acct_01jpqjvfg9enpt7pyxd60pcmxj")
 
@@ -44,7 +44,7 @@ class SurgeAPI::Test::Resources::AccountsTest < SurgeAPI::Test::ResourceTest
   end
 
   def test_archive
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @surge.accounts.archive("acct_01jpqjvfg9enpt7pyxd60pcmxj")
 
@@ -64,7 +64,7 @@ class SurgeAPI::Test::Resources::AccountsTest < SurgeAPI::Test::ResourceTest
   end
 
   def test_retrieve_status
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @surge.accounts.retrieve_status("acct_01jpqjvfg9enpt7pyxd60pcmxj")
 
