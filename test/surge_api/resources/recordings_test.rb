@@ -22,7 +22,7 @@ class SurgeAPI::Test::Resources::RecordingsTest < SurgeAPI::Test::ResourceTest
   end
 
   def test_get_file
-    skip("Mock server doesn't properly handle redirects")
+    skip("Mock server tests are disabled")
 
     response = @surge.recordings.get_file("rec_01kfyc9dgdec1avkgs7tng8htg")
 
