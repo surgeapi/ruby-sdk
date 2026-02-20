@@ -4,7 +4,7 @@ require_relative "../test_helper"
 
 class SurgeAPI::Test::Resources::VerificationsTest < SurgeAPI::Test::ResourceTest
   def test_create_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @surge.verifications.create(phone_number: "+18015551234")
 
@@ -23,7 +23,7 @@ class SurgeAPI::Test::Resources::VerificationsTest < SurgeAPI::Test::ResourceTes
   end
 
   def test_check_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @surge.verifications.check("vfn_01jayh15c2f2xamftg0xpyq1nj", code: "123456")
 

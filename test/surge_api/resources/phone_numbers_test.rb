@@ -4,7 +4,7 @@ require_relative "../test_helper"
 
 class SurgeAPI::Test::Resources::PhoneNumbersTest < SurgeAPI::Test::ResourceTest
   def test_list
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @surge.phone_numbers.list("acct_01j9a43avnfqzbjfch6pygv1td")
 
@@ -29,7 +29,7 @@ class SurgeAPI::Test::Resources::PhoneNumbersTest < SurgeAPI::Test::ResourceTest
   end
 
   def test_purchase
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @surge.phone_numbers.purchase("acct_01j9a43avnfqzbjfch6pygv1td")
 

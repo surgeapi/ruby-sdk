@@ -4,7 +4,7 @@ require_relative "../test_helper"
 
 class SurgeAPI::Test::Resources::UsersTest < SurgeAPI::Test::ResourceTest
   def test_create_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @surge.users.create("acct_01j9a43avnfqzbjfch6pygv1td", first_name: "Brian")
 
@@ -24,7 +24,7 @@ class SurgeAPI::Test::Resources::UsersTest < SurgeAPI::Test::ResourceTest
   end
 
   def test_retrieve
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @surge.users.retrieve("usr_01j9dwavghe1ttppewekjjkfrx")
 
@@ -44,7 +44,7 @@ class SurgeAPI::Test::Resources::UsersTest < SurgeAPI::Test::ResourceTest
   end
 
   def test_update_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @surge.users.update("usr_01j9dwavghe1ttppewekjjkfrx", first_name: "Brian")
 
@@ -64,7 +64,7 @@ class SurgeAPI::Test::Resources::UsersTest < SurgeAPI::Test::ResourceTest
   end
 
   def test_delete
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @surge.users.delete("usr_01j9dwavghe1ttppewekjjkfrx")
 
@@ -84,7 +84,7 @@ class SurgeAPI::Test::Resources::UsersTest < SurgeAPI::Test::ResourceTest
   end
 
   def test_create_token
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @surge.users.create_token("usr_01jymgdfrpec2asc5m0z3a6fr9")
 
