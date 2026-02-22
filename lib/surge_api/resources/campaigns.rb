@@ -55,6 +55,36 @@ module SurgeAPI
         )
       end
 
+      # Some parameter documentations has been truncated, see
+      # {SurgeAPI::Models::CampaignListParams} for more details.
+      #
+      # List all campaigns for an account with cursor-based pagination.
+      #
+      # @overload list(account_id, after: nil, before: nil, request_options: {})
+      #
+      # @param account_id [String] The account ID to list campaigns for.
+      #
+      # @param after [String] Cursor for forward pagination. Use the next_cursor from a previous response.
+      #
+      # @param before [String] Cursor for backward pagination. Use the previous_cursor from a previous response
+      #
+      # @param request_options [SurgeAPI::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [SurgeAPI::Internal::Cursor<SurgeAPI::Models::Campaign>]
+      #
+      # @see SurgeAPI::Models::CampaignListParams
+      def list(account_id, params = {})
+        parsed, options = SurgeAPI::CampaignListParams.dump_request(params)
+        @client.request(
+          method: :get,
+          path: ["accounts/%1$s/campaigns", account_id],
+          query: parsed,
+          page: SurgeAPI::Internal::Cursor,
+          model: SurgeAPI::Campaign,
+          options: options
+        )
+      end
+
       # @api private
       #
       # @param client [SurgeAPI::Client]

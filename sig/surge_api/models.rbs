@@ -23,6 +23,8 @@ module SurgeAPI
 
   class CampaignCreateParams = SurgeAPI::Models::CampaignCreateParams
 
+  class CampaignListParams = SurgeAPI::Models::CampaignListParams
+
   module CampaignParams = SurgeAPI::Models::CampaignParams
 
   class CampaignRetrieveParams = SurgeAPI::Models::CampaignRetrieveParams
