@@ -67,4 +67,37 @@ class SurgeAPI::Test::Resources::CampaignsTest < SurgeAPI::Test::ResourceTest
       }
     end
   end
+
+  def test_list
+    skip("Mock server tests are disabled")
+
+    response = @surge.campaigns.list("acct_01j9a43avnfqzbjfch6pygv1td")
+
+    assert_pattern do
+      response => SurgeAPI::Internal::Cursor
+    end
+
+    row = response.to_enum.first
+    return if row.nil?
+
+    assert_pattern do
+      row => SurgeAPI::Campaign
+    end
+
+    assert_pattern do
+      row => {
+        id: String,
+        consent_flow: String,
+        description: String,
+        includes: ^(SurgeAPI::Internal::Type::ArrayOf[enum: SurgeAPI::Campaign::Include]),
+        message_samples: ^(SurgeAPI::Internal::Type::ArrayOf[String]),
+        privacy_policy_url: String,
+        status: SurgeAPI::Campaign::Status,
+        use_cases: ^(SurgeAPI::Internal::Type::ArrayOf[enum: SurgeAPI::Campaign::UseCase]),
+        volume: SurgeAPI::Campaign::Volume,
+        link_sample: String | nil,
+        terms_and_conditions_url: String | nil
+      }
+    end
+  end
 end
