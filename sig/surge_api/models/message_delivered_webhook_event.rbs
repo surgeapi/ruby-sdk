@@ -37,6 +37,7 @@ module SurgeAPI
           body: String?,
           conversation: SurgeAPI::MessageDeliveredWebhookEvent::Data::Conversation,
           delivered_at: Time,
+          metadata: ::Hash[Symbol, String],
           attachments: ::Array[SurgeAPI::MessageDeliveredWebhookEvent::Data::Attachment],
           blast_id: String
         }
@@ -49,6 +50,8 @@ module SurgeAPI
         attr_accessor conversation: SurgeAPI::MessageDeliveredWebhookEvent::Data::Conversation
 
         attr_accessor delivered_at: Time
+
+        attr_accessor metadata: ::Hash[Symbol, String]
 
         attr_reader attachments: ::Array[SurgeAPI::MessageDeliveredWebhookEvent::Data::Attachment]?
 
@@ -65,6 +68,7 @@ module SurgeAPI
           body: String?,
           conversation: SurgeAPI::MessageDeliveredWebhookEvent::Data::Conversation,
           delivered_at: Time,
+          metadata: ::Hash[Symbol, String],
           ?attachments: ::Array[SurgeAPI::MessageDeliveredWebhookEvent::Data::Attachment],
           ?blast_id: String
         ) -> void
@@ -74,6 +78,7 @@ module SurgeAPI
           body: String?,
           conversation: SurgeAPI::MessageDeliveredWebhookEvent::Data::Conversation,
           delivered_at: Time,
+          metadata: ::Hash[Symbol, String],
           attachments: ::Array[SurgeAPI::MessageDeliveredWebhookEvent::Data::Attachment],
           blast_id: String
         }

@@ -100,6 +100,10 @@ module SurgeAPI
         sig { returns(Time) }
         attr_accessor :delivered_at
 
+        # Set of key-value pairs that will be stored with the object.
+        sig { returns(T::Hash[Symbol, String]) }
+        attr_accessor :metadata
+
         # Attachments included with the message
         sig do
           returns(
@@ -136,6 +140,7 @@ module SurgeAPI
             conversation:
               SurgeAPI::MessageDeliveredWebhookEvent::Data::Conversation::OrHash,
             delivered_at: Time,
+            metadata: T::Hash[Symbol, String],
             attachments:
               T::Array[
                 SurgeAPI::MessageDeliveredWebhookEvent::Data::Attachment::OrHash
@@ -152,6 +157,8 @@ module SurgeAPI
           conversation:,
           # When the message was delivered
           delivered_at:,
+          # Set of key-value pairs that will be stored with the object.
+          metadata:,
           # Attachments included with the message
           attachments: nil,
           # The ID of the blast this message belongs to, if any. This can be used to
@@ -168,6 +175,7 @@ module SurgeAPI
               conversation:
                 SurgeAPI::MessageDeliveredWebhookEvent::Data::Conversation,
               delivered_at: Time,
+              metadata: T::Hash[Symbol, String],
               attachments:
                 T::Array[
                   SurgeAPI::MessageDeliveredWebhookEvent::Data::Attachment

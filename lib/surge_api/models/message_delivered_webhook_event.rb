@@ -62,6 +62,12 @@ module SurgeAPI
         #   @return [Time]
         required :delivered_at, Time
 
+        # @!attribute metadata
+        #   Set of key-value pairs that will be stored with the object.
+        #
+        #   @return [Hash{Symbol=>String}]
+        required :metadata, SurgeAPI::Internal::Type::HashOf[String]
+
         # @!attribute attachments
         #   Attachments included with the message
         #
@@ -76,7 +82,7 @@ module SurgeAPI
         #   @return [String, nil]
         optional :blast_id, String
 
-        # @!method initialize(id:, body:, conversation:, delivered_at:, attachments: nil, blast_id: nil)
+        # @!method initialize(id:, body:, conversation:, delivered_at:, metadata:, attachments: nil, blast_id: nil)
         #   Some parameter documentations has been truncated, see
         #   {SurgeAPI::Models::MessageDeliveredWebhookEvent::Data} for more details.
         #
@@ -89,6 +95,8 @@ module SurgeAPI
         #   @param conversation [SurgeAPI::Models::MessageDeliveredWebhookEvent::Data::Conversation] The conversation this message belongs to
         #
         #   @param delivered_at [Time] When the message was delivered
+        #
+        #   @param metadata [Hash{Symbol=>String}] Set of key-value pairs that will be stored with the object.
         #
         #   @param attachments [Array<SurgeAPI::Models::MessageDeliveredWebhookEvent::Data::Attachment>] Attachments included with the message
         #

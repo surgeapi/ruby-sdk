@@ -56,6 +56,12 @@ module SurgeAPI
         #   @return [SurgeAPI::Models::MessageSentWebhookEvent::Data::Conversation]
         required :conversation, -> { SurgeAPI::MessageSentWebhookEvent::Data::Conversation }
 
+        # @!attribute metadata
+        #   Set of key-value pairs that will be stored with the object.
+        #
+        #   @return [Hash{Symbol=>String}]
+        required :metadata, SurgeAPI::Internal::Type::HashOf[String]
+
         # @!attribute sent_at
         #   When the message was sent
         #
@@ -76,7 +82,7 @@ module SurgeAPI
         #   @return [String, nil]
         optional :blast_id, String
 
-        # @!method initialize(id:, body:, conversation:, sent_at:, attachments: nil, blast_id: nil)
+        # @!method initialize(id:, body:, conversation:, metadata:, sent_at:, attachments: nil, blast_id: nil)
         #   Some parameter documentations has been truncated, see
         #   {SurgeAPI::Models::MessageSentWebhookEvent::Data} for more details.
         #
@@ -87,6 +93,8 @@ module SurgeAPI
         #   @param body [String, nil] The content of the message
         #
         #   @param conversation [SurgeAPI::Models::MessageSentWebhookEvent::Data::Conversation] The conversation this message belongs to
+        #
+        #   @param metadata [Hash{Symbol=>String}] Set of key-value pairs that will be stored with the object.
         #
         #   @param sent_at [Time] When the message was sent
         #

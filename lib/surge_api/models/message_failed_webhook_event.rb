@@ -68,6 +68,12 @@ module SurgeAPI
         #   @return [String]
         required :failure_reason, String
 
+        # @!attribute metadata
+        #   Set of key-value pairs that will be stored with the object.
+        #
+        #   @return [Hash{Symbol=>String}]
+        required :metadata, SurgeAPI::Internal::Type::HashOf[String]
+
         # @!attribute attachments
         #   Attachments included with the message
         #
@@ -82,7 +88,7 @@ module SurgeAPI
         #   @return [String, nil]
         optional :blast_id, String
 
-        # @!method initialize(id:, body:, conversation:, failed_at:, failure_reason:, attachments: nil, blast_id: nil)
+        # @!method initialize(id:, body:, conversation:, failed_at:, failure_reason:, metadata:, attachments: nil, blast_id: nil)
         #   Some parameter documentations has been truncated, see
         #   {SurgeAPI::Models::MessageFailedWebhookEvent::Data} for more details.
         #
@@ -97,6 +103,8 @@ module SurgeAPI
         #   @param failed_at [Time] When the message failed
         #
         #   @param failure_reason [String] The reason the message failed to be delivered
+        #
+        #   @param metadata [Hash{Symbol=>String}] Set of key-value pairs that will be stored with the object.
         #
         #   @param attachments [Array<SurgeAPI::Models::MessageFailedWebhookEvent::Data::Attachment>] Attachments included with the message
         #

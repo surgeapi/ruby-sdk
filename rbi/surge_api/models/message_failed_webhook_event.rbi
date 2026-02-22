@@ -102,6 +102,10 @@ module SurgeAPI
         sig { returns(String) }
         attr_accessor :failure_reason
 
+        # Set of key-value pairs that will be stored with the object.
+        sig { returns(T::Hash[Symbol, String]) }
+        attr_accessor :metadata
+
         # Attachments included with the message
         sig do
           returns(
@@ -139,6 +143,7 @@ module SurgeAPI
               SurgeAPI::MessageFailedWebhookEvent::Data::Conversation::OrHash,
             failed_at: Time,
             failure_reason: String,
+            metadata: T::Hash[Symbol, String],
             attachments:
               T::Array[
                 SurgeAPI::MessageFailedWebhookEvent::Data::Attachment::OrHash
@@ -157,6 +162,8 @@ module SurgeAPI
           failed_at:,
           # The reason the message failed to be delivered
           failure_reason:,
+          # Set of key-value pairs that will be stored with the object.
+          metadata:,
           # Attachments included with the message
           attachments: nil,
           # The ID of the blast this message belongs to, if any. This can be used to
@@ -174,6 +181,7 @@ module SurgeAPI
                 SurgeAPI::MessageFailedWebhookEvent::Data::Conversation,
               failed_at: Time,
               failure_reason: String,
+              metadata: T::Hash[Symbol, String],
               attachments:
                 T::Array[SurgeAPI::MessageFailedWebhookEvent::Data::Attachment],
               blast_id: String
