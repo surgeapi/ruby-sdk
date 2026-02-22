@@ -1,5 +1,23 @@
 # Changelog
 
+## 0.11.0 (2026-02-22)
+
+Full Changelog: [v0.10.0...v0.11.0](https://github.com/surgeapi/ruby-sdk/compare/v0.10.0...v0.11.0)
+
+### Features
+
+* **api:** add list campaigns endpoint ([253f71e](https://github.com/surgeapi/ruby-sdk/commit/253f71e0ac6ba81778c59aeddf33a6a80b898ac3))
+* **api:** add metadata to message webhooks ([6827521](https://github.com/surgeapi/ruby-sdk/commit/68275214c295b5b102ef3c05a62ed08a03794ac6))
+* **api:** delete recording endpoint ([64d7bf2](https://github.com/surgeapi/ruby-sdk/commit/64d7bf2f8730fa7a11a4b38c07ade41a850bf5a8))
+* **api:** make attachment type an enum ([2897de1](https://github.com/surgeapi/ruby-sdk/commit/2897de13cd5eb3c95c30b251b7baf7edf5c0b6d7))
+
+
+### Chores
+
+* **internal:** remove mock server code ([1411557](https://github.com/surgeapi/ruby-sdk/commit/1411557864e6741dc576fe5802cbd2bb2dcaa9e6))
+* **test:** update skip reason message ([cbb9e45](https://github.com/surgeapi/ruby-sdk/commit/cbb9e4564283c9b1e733c443bba93cefe10d0f85))
+* update mock server docs ([cd3da3a](https://github.com/surgeapi/ruby-sdk/commit/cd3da3a27ea9d4d5a511ecf8ea82ca4fbe00eaef))
+
 ## 0.10.0 (2026-02-12)
 
 Full Changelog: [v0.9.0...v0.10.0](https://github.com/surgeapi/ruby-sdk/compare/v0.9.0...v0.10.0)
