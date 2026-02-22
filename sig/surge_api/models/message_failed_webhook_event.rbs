@@ -38,6 +38,7 @@ module SurgeAPI
           conversation: SurgeAPI::MessageFailedWebhookEvent::Data::Conversation,
           failed_at: Time,
           failure_reason: String,
+          metadata: ::Hash[Symbol, String],
           attachments: ::Array[SurgeAPI::MessageFailedWebhookEvent::Data::Attachment],
           blast_id: String
         }
@@ -52,6 +53,8 @@ module SurgeAPI
         attr_accessor failed_at: Time
 
         attr_accessor failure_reason: String
+
+        attr_accessor metadata: ::Hash[Symbol, String]
 
         attr_reader attachments: ::Array[SurgeAPI::MessageFailedWebhookEvent::Data::Attachment]?
 
@@ -69,6 +72,7 @@ module SurgeAPI
           conversation: SurgeAPI::MessageFailedWebhookEvent::Data::Conversation,
           failed_at: Time,
           failure_reason: String,
+          metadata: ::Hash[Symbol, String],
           ?attachments: ::Array[SurgeAPI::MessageFailedWebhookEvent::Data::Attachment],
           ?blast_id: String
         ) -> void
@@ -79,6 +83,7 @@ module SurgeAPI
           conversation: SurgeAPI::MessageFailedWebhookEvent::Data::Conversation,
           failed_at: Time,
           failure_reason: String,
+          metadata: ::Hash[Symbol, String],
           attachments: ::Array[SurgeAPI::MessageFailedWebhookEvent::Data::Attachment],
           blast_id: String
         }

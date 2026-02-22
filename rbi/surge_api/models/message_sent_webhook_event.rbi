@@ -89,6 +89,10 @@ module SurgeAPI
         end
         attr_writer :conversation
 
+        # Set of key-value pairs that will be stored with the object.
+        sig { returns(T::Hash[Symbol, String]) }
+        attr_accessor :metadata
+
         # When the message was sent
         sig { returns(Time) }
         attr_accessor :sent_at
@@ -128,6 +132,7 @@ module SurgeAPI
             body: T.nilable(String),
             conversation:
               SurgeAPI::MessageSentWebhookEvent::Data::Conversation::OrHash,
+            metadata: T::Hash[Symbol, String],
             sent_at: Time,
             attachments:
               T::Array[
@@ -143,6 +148,8 @@ module SurgeAPI
           body:,
           # The conversation this message belongs to
           conversation:,
+          # Set of key-value pairs that will be stored with the object.
+          metadata:,
           # When the message was sent
           sent_at:,
           # Attachments included with the message
@@ -160,6 +167,7 @@ module SurgeAPI
               body: T.nilable(String),
               conversation:
                 SurgeAPI::MessageSentWebhookEvent::Data::Conversation,
+              metadata: T::Hash[Symbol, String],
               sent_at: Time,
               attachments:
                 T::Array[SurgeAPI::MessageSentWebhookEvent::Data::Attachment],
