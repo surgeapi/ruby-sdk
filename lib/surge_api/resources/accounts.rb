@@ -111,10 +111,11 @@ module SurgeAPI
       # @see SurgeAPI::Models::AccountRetrieveStatusParams
       def retrieve_status(account_id, params = {})
         parsed, options = SurgeAPI::AccountRetrieveStatusParams.dump_request(params)
+        query = SurgeAPI::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: ["accounts/%1$s/status", account_id],
-          query: parsed,
+          query: query,
           model: SurgeAPI::AccountStatus,
           options: options
         )
