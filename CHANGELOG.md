@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.11.1 (2026-03-03)
+
+Full Changelog: [v0.11.0...v0.11.1](https://github.com/surgeapi/ruby-sdk/compare/v0.11.0...v0.11.1)
+
+### Bug Fixes
+
+* properly mock time in ruby ci tests ([6c75ef3](https://github.com/surgeapi/ruby-sdk/commit/6c75ef31490dc13fb591146b2b27a8a3c8f3495c))
+
+
+### Chores
+
+* **ci:** add build step ([4999f0c](https://github.com/surgeapi/ruby-sdk/commit/4999f0c610b73f42d468fc200aeafe002f4947b0))
+* **internal:** codegen related update ([bd1d5f0](https://github.com/surgeapi/ruby-sdk/commit/bd1d5f019b6ec12acdca6e36af2c46065dab0e70))
+
 ## 0.11.0 (2026-02-22)
 
 Full Changelog: [v0.10.0...v0.11.0](https://github.com/surgeapi/ruby-sdk/compare/v0.10.0...v0.11.0)
