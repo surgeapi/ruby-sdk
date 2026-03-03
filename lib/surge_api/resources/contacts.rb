@@ -108,10 +108,11 @@ module SurgeAPI
       # @see SurgeAPI::Models::ContactListParams
       def list(account_id, params = {})
         parsed, options = SurgeAPI::ContactListParams.dump_request(params)
+        query = SurgeAPI::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: ["accounts/%1$s/contacts", account_id],
-          query: parsed,
+          query: query,
           page: SurgeAPI::Internal::Cursor,
           model: SurgeAPI::Contact,
           options: options
