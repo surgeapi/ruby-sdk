@@ -276,7 +276,6 @@ module SurgeAPI
         DEACTIVATED =
           T.let(:deactivated, SurgeAPI::Campaign::Status::TaggedSymbol)
         IN_REVIEW = T.let(:in_review, SurgeAPI::Campaign::Status::TaggedSymbol)
-        PENDING = T.let(:pending, SurgeAPI::Campaign::Status::TaggedSymbol)
         REJECTED = T.let(:rejected, SurgeAPI::Campaign::Status::TaggedSymbol)
 
         sig do
