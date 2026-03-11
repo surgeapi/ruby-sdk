@@ -1,5 +1,27 @@
 # Changelog
 
+## 0.12.0 (2026-03-11)
+
+Full Changelog: [v0.11.0...v0.12.0](https://github.com/surgeapi/ruby-sdk/compare/v0.11.0...v0.12.0)
+
+### Features
+
+* **api:** add campaign ID to phone numbers ([76e02a6](https://github.com/surgeapi/ruby-sdk/commit/76e02a67b248539548b0bc918178dcb9749ef2aa))
+* **api:** add phoneNumberAttachedToCampaign webhook ([b145691](https://github.com/surgeapi/ruby-sdk/commit/b14569150ea04fd2d74f9f17ff0ab3bbf00d9c19))
+* **api:** remove 'pending' campaign status ([067f38a](https://github.com/surgeapi/ruby-sdk/commit/067f38adf747327111ad032362f5e9faf31dddce))
+* **api:** rename segments to audiences ([69c982c](https://github.com/surgeapi/ruby-sdk/commit/69c982c90af4999babdff64a46ffe5df1d54391a))
+
+
+### Bug Fixes
+
+* properly mock time in ruby ci tests ([6c75ef3](https://github.com/surgeapi/ruby-sdk/commit/6c75ef31490dc13fb591146b2b27a8a3c8f3495c))
+
+
+### Chores
+
+* **ci:** add build step ([4999f0c](https://github.com/surgeapi/ruby-sdk/commit/4999f0c610b73f42d468fc200aeafe002f4947b0))
+* **internal:** codegen related update ([bd1d5f0](https://github.com/surgeapi/ruby-sdk/commit/bd1d5f019b6ec12acdca6e36af2c46065dab0e70))
+
 ## 0.11.0 (2026-02-22)
 
 Full Changelog: [v0.10.0...v0.11.0](https://github.com/surgeapi/ruby-sdk/compare/v0.10.0...v0.11.0)
