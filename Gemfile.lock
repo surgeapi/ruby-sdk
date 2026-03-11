@@ -11,7 +11,7 @@ GIT
 PATH
   remote: .
   specs:
-    surge_api (0.11.0)
+    surge_api (0.12.0)
       cgi
       connection_pool
 
