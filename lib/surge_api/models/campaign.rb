@@ -183,7 +183,6 @@ module SurgeAPI
         CREATED = :created
         DEACTIVATED = :deactivated
         IN_REVIEW = :in_review
-        PENDING = :pending
         REJECTED = :rejected
 
         # @!method self.values
