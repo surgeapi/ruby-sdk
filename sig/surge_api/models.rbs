@@ -71,6 +71,8 @@ module SurgeAPI
 
   class PhoneNumber = SurgeAPI::Models::PhoneNumber
 
+  class PhoneNumberAttachedToCampaignWebhookEvent = SurgeAPI::Models::PhoneNumberAttachedToCampaignWebhookEvent
+
   class PhoneNumberListParams = SurgeAPI::Models::PhoneNumberListParams
 
   class PhoneNumberPurchaseParams = SurgeAPI::Models::PhoneNumberPurchaseParams
