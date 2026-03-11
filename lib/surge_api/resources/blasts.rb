@@ -22,7 +22,7 @@ module SurgeAPI
       #
       # @param name [String] Optional name for the blast.
       #
-      # @param segments [Array<String>] Deprecated. Use `to` instead.
+      # @param segments [Array<String>] Deprecated. Use `to` with audience IDs instead.
       #
       # @param send_at [Time] When to send the blast. If not provided, sends immediately.
       #

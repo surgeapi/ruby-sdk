@@ -41,9 +41,9 @@ module SurgeAPI
       optional :name, String
 
       # @!attribute segments
-      #   @deprecated Use `to` to specify recipients instead.
+      #   @deprecated Use `to` with audience IDs (`aud_...`) to specify audience recipients instead.
       #
-      #   Deprecated. Use `to` instead.
+      #   Deprecated. Use `to` with audience IDs instead.
       #
       #   @return [Array<String>, nil]
       optional :segments, SurgeAPI::Internal::Type::ArrayOf[String]
@@ -56,7 +56,7 @@ module SurgeAPI
 
       # @!attribute to
       #   List of recipients to whom the blast should be sent. This can be a combination
-      #   of contact IDs, segment IDs, and phone numbers.
+      #   of contact IDs, audience IDs, and phone numbers.
       #
       #   @return [Array<String>, nil]
       optional :to, SurgeAPI::Internal::Type::ArrayOf[String]
@@ -75,7 +75,7 @@ module SurgeAPI
       #
       #   @param name [String] Optional name for the blast.
       #
-      #   @param segments [Array<String>] Deprecated. Use `to` instead.
+      #   @param segments [Array<String>] Deprecated. Use `to` with audience IDs instead.
       #
       #   @param send_at [Time] When to send the blast. If not provided, sends immediately.
       #

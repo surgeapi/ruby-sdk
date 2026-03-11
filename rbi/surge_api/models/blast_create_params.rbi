@@ -50,7 +50,7 @@ module SurgeAPI
       sig { params(name: String).void }
       attr_writer :name
 
-      # Deprecated. Use `to` instead.
+      # Deprecated. Use `to` with audience IDs instead.
       sig { returns(T.nilable(T::Array[String])) }
       attr_reader :segments
 
@@ -65,7 +65,7 @@ module SurgeAPI
       attr_writer :send_at
 
       # List of recipients to whom the blast should be sent. This can be a combination
-      # of contact IDs, segment IDs, and phone numbers.
+      # of contact IDs, audience IDs, and phone numbers.
       sig { returns(T.nilable(T::Array[String])) }
       attr_reader :to
 
@@ -98,12 +98,12 @@ module SurgeAPI
         from: nil,
         # Optional name for the blast.
         name: nil,
-        # Deprecated. Use `to` instead.
+        # Deprecated. Use `to` with audience IDs instead.
         segments: nil,
         # When to send the blast. If not provided, sends immediately.
         send_at: nil,
         # List of recipients to whom the blast should be sent. This can be a combination
-        # of contact IDs, segment IDs, and phone numbers.
+        # of contact IDs, audience IDs, and phone numbers.
         to: nil,
         request_options: {}
       )
