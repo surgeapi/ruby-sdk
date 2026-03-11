@@ -22,6 +22,7 @@ class SurgeAPI::Test::Resources::PhoneNumbersTest < SurgeAPI::Test::ResourceTest
     assert_pattern do
       row => {
         id: String,
+        campaign_id: String | nil,
         number: String,
         type: SurgeAPI::PhoneNumber::Type
       }
@@ -40,6 +41,7 @@ class SurgeAPI::Test::Resources::PhoneNumbersTest < SurgeAPI::Test::ResourceTest
     assert_pattern do
       response => {
         id: String,
+        campaign_id: String | nil,
         number: String,
         type: SurgeAPI::PhoneNumber::Type
       }

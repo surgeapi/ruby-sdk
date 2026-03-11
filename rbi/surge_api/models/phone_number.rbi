@@ -12,6 +12,10 @@ module SurgeAPI
       sig { returns(String) }
       attr_accessor :id
 
+      # The unique identifier of the campaign this phone number is attached to, if any
+      sig { returns(T.nilable(String)) }
+      attr_accessor :campaign_id
+
       # The phone number in E.164 format
       sig { returns(String) }
       attr_accessor :number
@@ -24,6 +28,7 @@ module SurgeAPI
       sig do
         params(
           id: String,
+          campaign_id: T.nilable(String),
           number: String,
           type: SurgeAPI::PhoneNumber::Type::OrSymbol
         ).returns(T.attached_class)
@@ -31,6 +36,8 @@ module SurgeAPI
       def self.new(
         # Unique identifier for the phone number
         id:,
+        # The unique identifier of the campaign this phone number is attached to, if any
+        campaign_id:,
         # The phone number in E.164 format
         number:,
         # Whether the phone number is local, toll-free, or short code
@@ -42,6 +49,7 @@ module SurgeAPI
         override.returns(
           {
             id: String,
+            campaign_id: T.nilable(String),
             number: String,
             type: SurgeAPI::PhoneNumber::Type::TaggedSymbol
           }

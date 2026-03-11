@@ -1,10 +1,17 @@
 module SurgeAPI
   module Models
     type phone_number =
-      { id: String, number: String, type: SurgeAPI::Models::PhoneNumber::type_ }
+      {
+        id: String,
+        campaign_id: String?,
+        number: String,
+        type: SurgeAPI::Models::PhoneNumber::type_
+      }
 
     class PhoneNumber < SurgeAPI::Internal::Type::BaseModel
       attr_accessor id: String
+
+      attr_accessor campaign_id: String?
 
       attr_accessor number: String
 
@@ -12,12 +19,14 @@ module SurgeAPI
 
       def initialize: (
         id: String,
+        campaign_id: String?,
         number: String,
         type: SurgeAPI::Models::PhoneNumber::type_
       ) -> void
 
       def to_hash: -> {
         id: String,
+        campaign_id: String?,
         number: String,
         type: SurgeAPI::Models::PhoneNumber::type_
       }
