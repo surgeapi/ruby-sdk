@@ -3,6 +3,43 @@
 module SurgeAPI
   module Resources
     class Recordings
+      # Retrieves a Recording object.
+      sig do
+        params(
+          id: String,
+          request_options: SurgeAPI::RequestOptions::OrHash
+        ).returns(SurgeAPI::Models::RecordingRetrieveResponse)
+      end
+      def retrieve(
+        # The ID of the recording to retrieve.
+        id,
+        request_options: {}
+      )
+      end
+
+      # List all recordings for an account with cursor-based pagination.
+      sig do
+        params(
+          account_id: String,
+          after: String,
+          before: String,
+          request_options: SurgeAPI::RequestOptions::OrHash
+        ).returns(
+          SurgeAPI::Internal::Cursor[SurgeAPI::Models::RecordingListResponse]
+        )
+      end
+      def list(
+        # The account ID to list recordings for.
+        account_id,
+        # Cursor for forward pagination. Use the next_cursor from a previous response.
+        after: nil,
+        # Cursor for backward pagination. Use the previous_cursor from a previous
+        # response.
+        before: nil,
+        request_options: {}
+      )
+      end
+
       # Deletes a recording. The recording file will be removed from storage
       # asynchronously.
       sig do

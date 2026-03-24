@@ -1,0 +1,94 @@
+module SurgeAPI
+  module Models
+    type recording_list_response =
+      {
+        id: String,
+        call: SurgeAPI::Models::RecordingListResponse::Call,
+        duration: Integer
+      }
+
+    class RecordingListResponse < SurgeAPI::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor call: SurgeAPI::Models::RecordingListResponse::Call
+
+      attr_accessor duration: Integer
+
+      def initialize: (
+        id: String,
+        call: SurgeAPI::Models::RecordingListResponse::Call,
+        duration: Integer
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        call: SurgeAPI::Models::RecordingListResponse::Call,
+        duration: Integer
+      }
+
+      type call =
+        {
+          id: String,
+          contact: SurgeAPI::Contact,
+          duration: Integer,
+          initiated_at: Time,
+          status: SurgeAPI::Models::RecordingListResponse::Call::status
+        }
+
+      class Call < SurgeAPI::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor contact: SurgeAPI::Contact
+
+        attr_accessor duration: Integer
+
+        attr_accessor initiated_at: Time
+
+        attr_accessor status: SurgeAPI::Models::RecordingListResponse::Call::status
+
+        def initialize: (
+          id: String,
+          contact: SurgeAPI::Contact,
+          duration: Integer,
+          initiated_at: Time,
+          status: SurgeAPI::Models::RecordingListResponse::Call::status
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          contact: SurgeAPI::Contact,
+          duration: Integer,
+          initiated_at: Time,
+          status: SurgeAPI::Models::RecordingListResponse::Call::status
+        }
+
+        type status =
+          :busy
+          | :canceled
+          | :completed
+          | :failed
+          | :in_progress
+          | :missed
+          | :no_answer
+          | :queued
+          | :ringing
+
+        module Status
+          extend SurgeAPI::Internal::Type::Enum
+
+          BUSY: :busy
+          CANCELED: :canceled
+          COMPLETED: :completed
+          FAILED: :failed
+          IN_PROGRESS: :in_progress
+          MISSED: :missed
+          NO_ANSWER: :no_answer
+          QUEUED: :queued
+          RINGING: :ringing
+
+          def self?.values: -> ::Array[SurgeAPI::Models::RecordingListResponse::Call::status]
+        end
+      end
+    end
+  end
+end
