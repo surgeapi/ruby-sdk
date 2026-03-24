@@ -83,6 +83,37 @@ module SurgeAPI
         )
       end
 
+      # Some parameter documentations has been truncated, see
+      # {SurgeAPI::Models::UserListParams} for more details.
+      #
+      # List all users for an account with cursor-based pagination.
+      #
+      # @overload list(account_id, after: nil, before: nil, request_options: {})
+      #
+      # @param account_id [String] The account ID to list users for.
+      #
+      # @param after [String] Cursor for forward pagination. Use the next_cursor from a previous response.
+      #
+      # @param before [String] Cursor for backward pagination. Use the previous_cursor from a previous response
+      #
+      # @param request_options [SurgeAPI::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [SurgeAPI::Internal::Cursor<SurgeAPI::Models::User>]
+      #
+      # @see SurgeAPI::Models::UserListParams
+      def list(account_id, params = {})
+        parsed, options = SurgeAPI::UserListParams.dump_request(params)
+        query = SurgeAPI::Internal::Util.encode_query_params(parsed)
+        @client.request(
+          method: :get,
+          path: ["accounts/%1$s/users", account_id],
+          query: query,
+          page: SurgeAPI::Internal::Cursor,
+          model: SurgeAPI::User,
+          options: options
+        )
+      end
+
       # Deletes a user.
       #
       # Once a user has been deleted, they will no longer be permitted to access any of
