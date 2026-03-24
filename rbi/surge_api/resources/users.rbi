@@ -69,6 +69,27 @@ module SurgeAPI
       )
       end
 
+      # List all users for an account with cursor-based pagination.
+      sig do
+        params(
+          account_id: String,
+          after: String,
+          before: String,
+          request_options: SurgeAPI::RequestOptions::OrHash
+        ).returns(SurgeAPI::Internal::Cursor[SurgeAPI::User])
+      end
+      def list(
+        # The account ID to list users for.
+        account_id,
+        # Cursor for forward pagination. Use the next_cursor from a previous response.
+        after: nil,
+        # Cursor for backward pagination. Use the previous_cursor from a previous
+        # response.
+        before: nil,
+        request_options: {}
+      )
+      end
+
       # Deletes a user.
       #
       # Once a user has been deleted, they will no longer be permitted to access any of
