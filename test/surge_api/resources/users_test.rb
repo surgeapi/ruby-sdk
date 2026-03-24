@@ -63,6 +63,33 @@ class SurgeAPI::Test::Resources::UsersTest < SurgeAPI::Test::ResourceTest
     end
   end
 
+  def test_list
+    skip("Mock server tests are disabled")
+
+    response = @surge.users.list("acct_01j9a43avnfqzbjfch6pygv1td")
+
+    assert_pattern do
+      response => SurgeAPI::Internal::Cursor
+    end
+
+    row = response.to_enum.first
+    return if row.nil?
+
+    assert_pattern do
+      row => SurgeAPI::User
+    end
+
+    assert_pattern do
+      row => {
+        first_name: String,
+        id: String | nil,
+        last_name: String | nil,
+        metadata: ^(SurgeAPI::Internal::Type::HashOf[String]) | nil,
+        photo_url: String | nil
+      }
+    end
+  end
+
   def test_delete
     skip("Mock server tests are disabled")
 
