@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.13.0 (2026-03-24)
+
+Full Changelog: [v0.12.0...v0.13.0](https://github.com/surgeapi/ruby-sdk/compare/v0.12.0...v0.13.0)
+
+### Features
+
+* **api:** get and list recordings endpoints ([5c70f53](https://github.com/surgeapi/ruby-sdk/commit/5c70f532acc1a8eea9a2122e8f126f46b4e57d0a))
+* **api:** list users endpoint ([660a12d](https://github.com/surgeapi/ruby-sdk/commit/660a12d464f024ad86cd4c9fd4af250937ac8205))
+
 ## 0.12.0 (2026-03-11)
 
 Full Changelog: [v0.11.0...v0.12.0](https://github.com/surgeapi/ruby-sdk/compare/v0.11.0...v0.12.0)
