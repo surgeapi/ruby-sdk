@@ -83,6 +83,10 @@ module SurgeAPI
 
   class RecordingGetFileParams = SurgeAPI::Models::RecordingGetFileParams
 
+  class RecordingListParams = SurgeAPI::Models::RecordingListParams
+
+  class RecordingRetrieveParams = SurgeAPI::Models::RecordingRetrieveParams
+
   module UnwrapWebhookEvent = SurgeAPI::Models::UnwrapWebhookEvent
 
   class User = SurgeAPI::Models::User
