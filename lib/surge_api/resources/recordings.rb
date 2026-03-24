@@ -3,6 +3,57 @@
 module SurgeAPI
   module Resources
     class Recordings
+      # Retrieves a Recording object.
+      #
+      # @overload retrieve(id, request_options: {})
+      #
+      # @param id [String] The ID of the recording to retrieve.
+      #
+      # @param request_options [SurgeAPI::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [SurgeAPI::Models::RecordingRetrieveResponse]
+      #
+      # @see SurgeAPI::Models::RecordingRetrieveParams
+      def retrieve(id, params = {})
+        @client.request(
+          method: :get,
+          path: ["recordings/%1$s", id],
+          model: SurgeAPI::Models::RecordingRetrieveResponse,
+          options: params[:request_options]
+        )
+      end
+
+      # Some parameter documentations has been truncated, see
+      # {SurgeAPI::Models::RecordingListParams} for more details.
+      #
+      # List all recordings for an account with cursor-based pagination.
+      #
+      # @overload list(account_id, after: nil, before: nil, request_options: {})
+      #
+      # @param account_id [String] The account ID to list recordings for.
+      #
+      # @param after [String] Cursor for forward pagination. Use the next_cursor from a previous response.
+      #
+      # @param before [String] Cursor for backward pagination. Use the previous_cursor from a previous response
+      #
+      # @param request_options [SurgeAPI::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [SurgeAPI::Internal::Cursor<SurgeAPI::Models::RecordingListResponse>]
+      #
+      # @see SurgeAPI::Models::RecordingListParams
+      def list(account_id, params = {})
+        parsed, options = SurgeAPI::RecordingListParams.dump_request(params)
+        query = SurgeAPI::Internal::Util.encode_query_params(parsed)
+        @client.request(
+          method: :get,
+          path: ["accounts/%1$s/recordings", account_id],
+          query: query,
+          page: SurgeAPI::Internal::Cursor,
+          model: SurgeAPI::Models::RecordingListResponse,
+          options: options
+        )
+      end
+
       # Deletes a recording. The recording file will be removed from storage
       # asynchronously.
       #
