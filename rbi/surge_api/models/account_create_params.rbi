@@ -174,8 +174,8 @@ module SurgeAPI
         end
         attr_accessor :industry
 
-        # For sole proprietors, this must be a valid US mobile phone number to which a
-        # verification text message will be sent. (E.164 format)
+        # For sole proprietors, this must be a valid US or Canadian mobile phone number to
+        # which a verification text message will be sent. (E.164 format)
         sig { returns(T.nilable(String)) }
         attr_accessor :mobile_number
 
@@ -296,8 +296,8 @@ module SurgeAPI
           identifier_type: nil,
           # The industry in which the organization operates.
           industry: nil,
-          # For sole proprietors, this must be a valid US mobile phone number to which a
-          # verification text message will be sent. (E.164 format)
+          # For sole proprietors, this must be a valid US or Canadian mobile phone number to
+          # which a verification text message will be sent. (E.164 format)
           mobile_number: nil,
           # An array of regions in which the organization operates.
           regions_of_operation: nil,
