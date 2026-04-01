@@ -12,6 +12,8 @@ module SurgeAPI
 
     attr_reader accounts: SurgeAPI::Resources::Accounts
 
+    attr_reader audiences: SurgeAPI::Resources::Audiences
+
     attr_reader blasts: SurgeAPI::Resources::Blasts
 
     attr_reader campaigns: SurgeAPI::Resources::Campaigns
