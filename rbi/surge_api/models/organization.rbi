@@ -53,8 +53,8 @@ module SurgeAPI
       sig { returns(T.nilable(SurgeAPI::Organization::Industry::TaggedSymbol)) }
       attr_accessor :industry
 
-      # For sole proprietors, this must be a valid US mobile phone number to which a
-      # verification text message will be sent. (E.164 format)
+      # For sole proprietors, this must be a valid US or Canadian mobile phone number to
+      # which a verification text message will be sent. (E.164 format)
       sig { returns(T.nilable(String)) }
       attr_accessor :mobile_number
 
@@ -143,8 +143,8 @@ module SurgeAPI
         identifier_type:,
         # The industry in which the organization operates.
         industry:,
-        # For sole proprietors, this must be a valid US mobile phone number to which a
-        # verification text message will be sent. (E.164 format)
+        # For sole proprietors, this must be a valid US or Canadian mobile phone number to
+        # which a verification text message will be sent. (E.164 format)
         mobile_number:,
         # An array of regions in which the organization operates.
         regions_of_operation:,
