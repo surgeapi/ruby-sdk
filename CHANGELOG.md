@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.14.0 (2026-04-01)
+
+Full Changelog: [v0.13.0...v0.14.0](https://github.com/surgeapi/ruby-sdk/compare/v0.13.0...v0.14.0)
+
+### Features
+
+* **api:** add a contact to an audience ([e018d30](https://github.com/surgeapi/ruby-sdk/commit/e018d30efea8ab2796e5c8ba74e1bef5e582abe0))
+* **api:** allow canadian organizations ([0291b0c](https://github.com/surgeapi/ruby-sdk/commit/0291b0c4d0209f6b7f47a755501f2c863e798f67))
+* **api:** list contacts in audiences ([75df97d](https://github.com/surgeapi/ruby-sdk/commit/75df97dace94cbdb661a82ee360a89f270216c84))
+
+
+### Documentation
+
+* **api:** allow Canadian mobile number ([b5c8e47](https://github.com/surgeapi/ruby-sdk/commit/b5c8e477b89659b6a0554ffcada847e481138311))
+
 ## 0.13.0 (2026-03-24)
 
 Full Changelog: [v0.12.0...v0.13.0](https://github.com/surgeapi/ruby-sdk/compare/v0.12.0...v0.13.0)
