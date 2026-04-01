@@ -55,8 +55,8 @@ module SurgeAPI
       required :industry, enum: -> { SurgeAPI::Organization::Industry }, nil?: true
 
       # @!attribute mobile_number
-      #   For sole proprietors, this must be a valid US mobile phone number to which a
-      #   verification text message will be sent. (E.164 format)
+      #   For sole proprietors, this must be a valid US or Canadian mobile phone number to
+      #   which a verification text message will be sent. (E.164 format)
       #
       #   @return [String, nil]
       required :mobile_number, String, nil?: true
@@ -124,7 +124,7 @@ module SurgeAPI
       #
       #   @param industry [Symbol, SurgeAPI::Models::Organization::Industry, nil] The industry in which the organization operates.
       #
-      #   @param mobile_number [String, nil] For sole proprietors, this must be a valid US mobile phone number to which a ver
+      #   @param mobile_number [String, nil] For sole proprietors, this must be a valid US or Canadian mobile phone number to
       #
       #   @param regions_of_operation [Array<Symbol, SurgeAPI::Models::Organization::RegionsOfOperation>, nil] An array of regions in which the organization operates.
       #
