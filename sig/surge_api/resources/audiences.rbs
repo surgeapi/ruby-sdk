@@ -1,6 +1,12 @@
 module SurgeAPI
   module Resources
     class Audiences
+      def add_contact: (
+        String audience_id,
+        id: String,
+        ?request_options: SurgeAPI::request_opts
+      ) -> SurgeAPI::Contact
+
       def list_contacts: (
         String audience_id,
         ?after: String,
