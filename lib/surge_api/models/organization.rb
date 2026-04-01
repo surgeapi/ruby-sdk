@@ -35,15 +35,15 @@ module SurgeAPI
 
       # @!attribute identifier
       #   The value of the identifier whose type is specified in the identifier_type
-      #   field. Typically this will be an EIN, and can be formatted with or without the
-      #   hyphen.
+      #   field. For EIN, can be formatted with or without the hyphen. For CBN, must be
+      #   exactly 9 digits.
       #
       #   @return [String, nil]
       required :identifier, String, nil?: true
 
       # @!attribute identifier_type
-      #   The type of identifier being provided for the organization. Support for more
-      #   values will be added in the future.
+      #   The type of identifier being provided for the organization. Use "ein" for US
+      #   businesses or "cbn" for Canadian businesses.
       #
       #   @return [Symbol, SurgeAPI::Models::Organization::IdentifierType, nil]
       required :identifier_type, enum: -> { SurgeAPI::Organization::IdentifierType }, nil?: true
@@ -120,7 +120,7 @@ module SurgeAPI
       #
       #   @param identifier [String, nil] The value of the identifier whose type is specified in the identifier_type field
       #
-      #   @param identifier_type [Symbol, SurgeAPI::Models::Organization::IdentifierType, nil] The type of identifier being provided for the organization. Support for more val
+      #   @param identifier_type [Symbol, SurgeAPI::Models::Organization::IdentifierType, nil] The type of identifier being provided for the organization. Use "ein" for US bus
       #
       #   @param industry [Symbol, SurgeAPI::Models::Organization::Industry, nil] The industry in which the organization operates.
       #
@@ -286,14 +286,15 @@ module SurgeAPI
         end
       end
 
-      # The type of identifier being provided for the organization. Support for more
-      # values will be added in the future.
+      # The type of identifier being provided for the organization. Use "ein" for US
+      # businesses or "cbn" for Canadian businesses.
       #
       # @see SurgeAPI::Models::Organization#identifier_type
       module IdentifierType
         extend SurgeAPI::Internal::Type::Enum
 
         EIN = :ein
+        CBN = :cbn
 
         # @!method self.values
         #   @return [Array<Symbol>]
