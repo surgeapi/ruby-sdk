@@ -148,13 +148,13 @@ module SurgeAPI
         attr_accessor :email
 
         # The value of the identifier whose type is specified in the identifier_type
-        # field. Typically this will be an EIN, and can be formatted with or without the
-        # hyphen.
+        # field. For EIN, can be formatted with or without the hyphen. For CBN, must be
+        # exactly 9 digits.
         sig { returns(T.nilable(String)) }
         attr_accessor :identifier
 
-        # The type of identifier being provided for the organization. Support for more
-        # values will be added in the future.
+        # The type of identifier being provided for the organization. Use "ein" for US
+        # businesses or "cbn" for Canadian businesses.
         sig do
           returns(
             T.nilable(
@@ -288,11 +288,11 @@ module SurgeAPI
           # `@dtprecisionauto.com`)
           email: nil,
           # The value of the identifier whose type is specified in the identifier_type
-          # field. Typically this will be an EIN, and can be formatted with or without the
-          # hyphen.
+          # field. For EIN, can be formatted with or without the hyphen. For CBN, must be
+          # exactly 9 digits.
           identifier: nil,
-          # The type of identifier being provided for the organization. Support for more
-          # values will be added in the future.
+          # The type of identifier being provided for the organization. Use "ein" for US
+          # businesses or "cbn" for Canadian businesses.
           identifier_type: nil,
           # The industry in which the organization operates.
           industry: nil,
@@ -612,8 +612,8 @@ module SurgeAPI
           end
         end
 
-        # The type of identifier being provided for the organization. Support for more
-        # values will be added in the future.
+        # The type of identifier being provided for the organization. Use "ein" for US
+        # businesses or "cbn" for Canadian businesses.
         module IdentifierType
           extend SurgeAPI::Internal::Type::Enum
 
@@ -629,6 +629,11 @@ module SurgeAPI
           EIN =
             T.let(
               :ein,
+              SurgeAPI::AccountCreateParams::Organization::IdentifierType::TaggedSymbol
+            )
+          CBN =
+            T.let(
+              :cbn,
               SurgeAPI::AccountCreateParams::Organization::IdentifierType::TaggedSymbol
             )
 
