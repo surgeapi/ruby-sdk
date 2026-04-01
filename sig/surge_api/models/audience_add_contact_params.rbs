@@ -1,0 +1,20 @@
+module SurgeAPI
+  module Models
+    type audience_add_contact_params =
+      { id: String } & SurgeAPI::Internal::Type::request_parameters
+
+    class AudienceAddContactParams < SurgeAPI::Internal::Type::BaseModel
+      extend SurgeAPI::Internal::Type::RequestParameters::Converter
+      include SurgeAPI::Internal::Type::RequestParameters
+
+      attr_accessor id: String
+
+      def initialize: (
+        id: String,
+        ?request_options: SurgeAPI::request_opts
+      ) -> void
+
+      def to_hash: -> { id: String, request_options: SurgeAPI::RequestOptions }
+    end
+  end
+end

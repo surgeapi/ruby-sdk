@@ -3,6 +3,24 @@
 module SurgeAPI
   module Resources
     class Audiences
+      # Adds an existing contact to a manual audience.
+      sig do
+        params(
+          audience_id: String,
+          id: String,
+          request_options: SurgeAPI::RequestOptions::OrHash
+        ).returns(SurgeAPI::Contact)
+      end
+      def add_contact(
+        # The audience ID to add the contact to.
+        audience_id,
+        # The ID of the contact to add. The contact must belong to the same account as the
+        # audience.
+        id:,
+        request_options: {}
+      )
+      end
+
       # List all contacts in an audience with cursor-based pagination. The account is
       # inferred from the audience.
       sig do
