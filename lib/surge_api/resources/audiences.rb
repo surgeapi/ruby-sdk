@@ -4,6 +4,33 @@ module SurgeAPI
   module Resources
     class Audiences
       # Some parameter documentations has been truncated, see
+      # {SurgeAPI::Models::AudienceAddContactParams} for more details.
+      #
+      # Adds an existing contact to a manual audience.
+      #
+      # @overload add_contact(audience_id, id:, request_options: {})
+      #
+      # @param audience_id [String] The audience ID to add the contact to.
+      #
+      # @param id [String] The ID of the contact to add. The contact must belong to the same account as the
+      #
+      # @param request_options [SurgeAPI::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [SurgeAPI::Models::Contact]
+      #
+      # @see SurgeAPI::Models::AudienceAddContactParams
+      def add_contact(audience_id, params)
+        parsed, options = SurgeAPI::AudienceAddContactParams.dump_request(params)
+        @client.request(
+          method: :post,
+          path: ["audiences/%1$s/contacts", audience_id],
+          body: parsed,
+          model: SurgeAPI::Contact,
+          options: options
+        )
+      end
+
+      # Some parameter documentations has been truncated, see
       # {SurgeAPI::Models::AudienceListContactsParams} for more details.
       #
       # List all contacts in an audience with cursor-based pagination. The account is
