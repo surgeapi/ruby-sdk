@@ -13,6 +13,8 @@ module SurgeAPI
 
   AccountUpdateParams = SurgeAPI::Models::AccountUpdateParams
 
+  AudienceListContactsParams = SurgeAPI::Models::AudienceListContactsParams
+
   Blast = SurgeAPI::Models::Blast
 
   BlastCreateParams = SurgeAPI::Models::BlastCreateParams

@@ -44,15 +44,15 @@ List methods in the Surge API are paginated.
 This library provides auto-paginating iterators with each list response, so you do not have to request successive pages manually:
 
 ```ruby
-page = surge.campaigns.list
+page = surge.audiences.list_contacts
 
 # Fetch single item from page.
-campaign = page.data[0]
-puts(campaign.id)
+audience = page.data[0]
+puts(audience.id)
 
 # Automatically fetches more pages as needed.
-page.auto_paging_each do |campaign|
-  puts(campaign.id)
+page.auto_paging_each do |audience|
+  puts(audience.id)
 end
 ```
 
