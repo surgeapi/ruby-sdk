@@ -16,6 +16,9 @@ module SurgeAPI
     sig { returns(SurgeAPI::Resources::Accounts) }
     attr_reader :accounts
 
+    sig { returns(SurgeAPI::Resources::Audiences) }
+    attr_reader :audiences
+
     sig { returns(SurgeAPI::Resources::Blasts) }
     attr_reader :blasts
 
