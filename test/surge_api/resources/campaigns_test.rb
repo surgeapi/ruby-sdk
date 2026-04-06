@@ -17,6 +17,7 @@ class SurgeAPI::Test::Resources::CampaignsTest < SurgeAPI::Test::ResourceTest
           "Your car is ready to go. See your invoice here: https://l.fastauto.shop/s034ij"
         ],
         privacy_policy_url: "https://fastauto.shop/sms-privacy",
+        terms_and_conditions_url: "https://fastauto.shop/terms-and-conditions",
         use_cases: [:account_notification, :customer_care, :marketing],
         volume: :high
       )
