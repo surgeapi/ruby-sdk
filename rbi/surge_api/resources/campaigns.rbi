@@ -35,6 +35,27 @@ module SurgeAPI
       )
       end
 
+      # Updates a campaign that has not yet been approved. This can be used to fix
+      # issues flagged during review and resubmit the campaign. Returns an error if the
+      # campaign is currently in review, has already been approved, or has been
+      # deactivated.
+      sig do
+        params(
+          id: String,
+          campaign_params: SurgeAPI::CampaignParams,
+          request_options: SurgeAPI::RequestOptions::OrHash
+        ).returns(SurgeAPI::Campaign)
+      end
+      def update(
+        # The ID of the campaign to update.
+        id,
+        # Parameters for creating a new campaign. Either provide full campaign details or
+        # import using a TCR ID.
+        campaign_params:,
+        request_options: {}
+      )
+      end
+
       # List all campaigns for an account with cursor-based pagination.
       sig do
         params(

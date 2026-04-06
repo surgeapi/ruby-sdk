@@ -56,6 +56,41 @@ module SurgeAPI
       end
 
       # Some parameter documentations has been truncated, see
+      # {SurgeAPI::Models::CampaignUpdateParams} for more details.
+      #
+      # Updates a campaign that has not yet been approved. This can be used to fix
+      # issues flagged during review and resubmit the campaign. Returns an error if the
+      # campaign is currently in review, has already been approved, or has been
+      # deactivated.
+      #
+      # @overload update(id, campaign_params:, request_options: {})
+      #
+      # @param id [String] The ID of the campaign to update.
+      #
+      # @param campaign_params [SurgeAPI::CampaignParams] Parameters for creating a new campaign. Either provide full campaign details or
+      #
+      # @param request_options [SurgeAPI::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [SurgeAPI::Models::Campaign]
+      #
+      # @see SurgeAPI::Models::CampaignUpdateParams
+      def update(id, params)
+        parsed, options = SurgeAPI::CampaignUpdateParams.dump_request(params)
+        case parsed
+        in {campaign_params: Hash => union, **rest}
+          parsed = {**rest, **union}
+        else
+        end
+        @client.request(
+          method: :patch,
+          path: ["campaigns/%1$s", id],
+          body: parsed,
+          model: SurgeAPI::Campaign,
+          options: options
+        )
+      end
+
+      # Some parameter documentations has been truncated, see
       # {SurgeAPI::Models::CampaignListParams} for more details.
       #
       # List all campaigns for an account with cursor-based pagination.

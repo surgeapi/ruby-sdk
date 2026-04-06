@@ -69,6 +69,46 @@ class SurgeAPI::Test::Resources::CampaignsTest < SurgeAPI::Test::ResourceTest
     end
   end
 
+  def test_update_required_params
+    skip("Mock server tests are disabled")
+
+    response =
+      @surge.campaigns.update(
+        "cpn_01k0qczvhbet4azgn5xm2ccfst",
+        consent_flow: "When customers bring in their car for service, they will fill out this web form for intake: https://fastauto.shop/bp108c In it they can choose to opt in to text message notifications. If they choose to opt in, we will send them notifications to let them know if our mechanics find issues and once the car is ready to go, as well as links to invoices and to leave us feedback.",
+        description: "This phone number will send auto maintenance notifications to end users that have opted in. It will also be used for responding to customer inquiries and sending some marketing offers.",
+        message_samples: [
+          "You are now opted in to receive repair notifications from DT Precision Auto. Frequency varies. Msg&data rates apply. Reply STOP to opt out.",
+          "You're lucky that hundred shot of NOS didn't blow the welds on the intake!",
+          "Your car is ready to go. See your invoice here: https://l.fastauto.shop/s034ij"
+        ],
+        privacy_policy_url: "https://fastauto.shop/sms-privacy",
+        terms_and_conditions_url: "https://fastauto.shop/terms-and-conditions",
+        use_cases: [:account_notification, :customer_care, :marketing],
+        volume: :high
+      )
+
+    assert_pattern do
+      response => SurgeAPI::Campaign
+    end
+
+    assert_pattern do
+      response => {
+        id: String,
+        consent_flow: String,
+        description: String,
+        includes: ^(SurgeAPI::Internal::Type::ArrayOf[enum: SurgeAPI::Campaign::Include]),
+        message_samples: ^(SurgeAPI::Internal::Type::ArrayOf[String]),
+        privacy_policy_url: String,
+        status: SurgeAPI::Campaign::Status,
+        use_cases: ^(SurgeAPI::Internal::Type::ArrayOf[enum: SurgeAPI::Campaign::UseCase]),
+        volume: SurgeAPI::Campaign::Volume,
+        link_sample: String | nil,
+        terms_and_conditions_url: String | nil
+      }
+    end
+  end
+
   def test_list
     skip("Mock server tests are disabled")
 
