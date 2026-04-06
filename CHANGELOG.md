@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.15.0 (2026-04-06)
+
+Full Changelog: [v0.14.0...v0.15.0](https://github.com/surgeapi/ruby-sdk/compare/v0.14.0...v0.15.0)
+
+### Features
+
+* **api:** create an audience ([817fd30](https://github.com/surgeapi/ruby-sdk/commit/817fd3063e6346d452062fb720b42495f030d1e9))
+* **api:** require terms_and_conditions_url for campaigns ([859ee36](https://github.com/surgeapi/ruby-sdk/commit/859ee3658653d0c0dfee2b7d6118e4adf7cb9c46))
+* **api:** update a campaign ([b22a5e4](https://github.com/surgeapi/ruby-sdk/commit/b22a5e438e80654d4ea05572d4e54c32594eba22))
+
 ## 0.14.0 (2026-04-01)
 
 Full Changelog: [v0.13.0...v0.14.0](https://github.com/surgeapi/ruby-sdk/compare/v0.13.0...v0.14.0)
