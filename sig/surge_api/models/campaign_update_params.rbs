@@ -1,0 +1,28 @@
+module SurgeAPI
+  module Models
+    type campaign_update_params =
+      { campaign_params: SurgeAPI::Models::campaign_params }
+      & SurgeAPI::Internal::Type::request_parameters
+
+    class CampaignUpdateParams < SurgeAPI::Internal::Type::BaseModel
+      extend SurgeAPI::Internal::Type::RequestParameters::Converter
+      include SurgeAPI::Internal::Type::RequestParameters
+
+      def campaign_params: -> SurgeAPI::Models::campaign_params
+
+      def campaign_params=: (
+        SurgeAPI::Models::campaign_params _
+      ) -> SurgeAPI::Models::campaign_params
+
+      def initialize: (
+        campaign_params: SurgeAPI::Models::campaign_params,
+        ?request_options: SurgeAPI::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        campaign_params: SurgeAPI::Models::campaign_params,
+        request_options: SurgeAPI::RequestOptions
+      }
+    end
+  end
+end

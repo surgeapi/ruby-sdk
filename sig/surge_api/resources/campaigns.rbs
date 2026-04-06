@@ -12,6 +12,12 @@ module SurgeAPI
         ?request_options: SurgeAPI::request_opts
       ) -> SurgeAPI::Campaign
 
+      def update: (
+        String id,
+        campaign_params: SurgeAPI::Models::CampaignParams,
+        ?request_options: SurgeAPI::request_opts
+      ) -> SurgeAPI::Campaign
+
       def list: (
         String account_id,
         ?after: String,
