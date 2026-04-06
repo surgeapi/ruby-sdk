@@ -3,6 +3,30 @@
 module SurgeAPI
   module Resources
     class Audiences
+      # Creates a new audience.
+      #
+      # @overload create(account_id, name:, request_options: {})
+      #
+      # @param account_id [String] The account for which the audience should be created.
+      #
+      # @param name [String] The audience name.
+      #
+      # @param request_options [SurgeAPI::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [SurgeAPI::Models::AudienceCreateResponse]
+      #
+      # @see SurgeAPI::Models::AudienceCreateParams
+      def create(account_id, params)
+        parsed, options = SurgeAPI::AudienceCreateParams.dump_request(params)
+        @client.request(
+          method: :post,
+          path: ["accounts/%1$s/audiences", account_id],
+          body: parsed,
+          model: SurgeAPI::Models::AudienceCreateResponse,
+          options: options
+        )
+      end
+
       # Some parameter documentations has been truncated, see
       # {SurgeAPI::Models::AudienceAddContactParams} for more details.
       #
