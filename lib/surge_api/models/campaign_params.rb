@@ -50,6 +50,15 @@ module SurgeAPI
         #   @return [String]
         required :privacy_policy_url, String
 
+        # @!attribute terms_and_conditions_url
+        #   The URL of the terms and conditions presented to end users when they opt in to
+        #   messaging. These terms and conditions may be shared among all of a platform's
+        #   customers if they're the terms that are presented to end users when they opt in
+        #   to messaging.
+        #
+        #   @return [String]
+        required :terms_and_conditions_url, String
+
         # @!attribute use_cases
         #   A list containing 1-5 types of messages that will be sent with this campaign.
         #
@@ -122,16 +131,7 @@ module SurgeAPI
         #   @return [String, nil]
         optional :link_sample, String
 
-        # @!attribute terms_and_conditions_url
-        #   The URL of the terms and conditions presented to end users when they opt in to
-        #   messaging. These terms and conditions may be shared among all of a platform's
-        #   customers if they're the terms that are presented to end users when they opt in
-        #   to messaging.
-        #
-        #   @return [String, nil]
-        optional :terms_and_conditions_url, String
-
-        # @!method initialize(consent_flow:, description:, message_samples:, privacy_policy_url:, use_cases:, volume:, includes: nil, link_sample: nil, terms_and_conditions_url: nil)
+        # @!method initialize(consent_flow:, description:, message_samples:, privacy_policy_url:, terms_and_conditions_url:, use_cases:, volume:, includes: nil, link_sample: nil)
         #   Some parameter documentations has been truncated, see
         #   {SurgeAPI::Models::CampaignParams::StandardCampaignParams} for more details.
         #
@@ -145,6 +145,8 @@ module SurgeAPI
         #
         #   @param privacy_policy_url [String] The URL of the privacy policy for the brand in question. This may be a shared pr
         #
+        #   @param terms_and_conditions_url [String] The URL of the terms and conditions presented to end users when they opt in to m
+        #
         #   @param use_cases [Array<Symbol, SurgeAPI::Models::CampaignParams::StandardCampaignParams::UseCase>] A list containing 1-5 types of messages that will be sent with this campaign.
         #
         #   @param volume [Symbol, SurgeAPI::Models::CampaignParams::StandardCampaignParams::Volume] This will be one of the following:
@@ -152,8 +154,6 @@ module SurgeAPI
         #   @param includes [Array<Symbol, SurgeAPI::Models::CampaignParams::StandardCampaignParams::Include>] A list of properties that this campaign should include. These properties can be
         #
         #   @param link_sample [String] A sample link that might be sent by this campaign. If links from other domains a
-        #
-        #   @param terms_and_conditions_url [String] The URL of the terms and conditions presented to end users when they opt in to m
 
         module UseCase
           extend SurgeAPI::Internal::Type::Enum
