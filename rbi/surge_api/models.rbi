@@ -35,6 +35,8 @@ module SurgeAPI
 
   CampaignRetrieveParams = SurgeAPI::Models::CampaignRetrieveParams
 
+  CampaignUpdateParams = SurgeAPI::Models::CampaignUpdateParams
+
   Contact = SurgeAPI::Models::Contact
 
   ContactCreateParams = SurgeAPI::Models::ContactCreateParams
