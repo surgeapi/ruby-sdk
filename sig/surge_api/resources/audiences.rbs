@@ -1,6 +1,12 @@
 module SurgeAPI
   module Resources
     class Audiences
+      def create: (
+        String account_id,
+        name: String,
+        ?request_options: SurgeAPI::request_opts
+      ) -> SurgeAPI::Models::AudienceCreateResponse
+
       def add_contact: (
         String audience_id,
         id: String,
