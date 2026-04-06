@@ -53,6 +53,8 @@ module SurgeAPI
 
   AudienceAddContactParams = SurgeAPI::Models::AudienceAddContactParams
 
+  AudienceCreateParams = SurgeAPI::Models::AudienceCreateParams
+
   AudienceListContactsParams = SurgeAPI::Models::AudienceListContactsParams
 
   Blast = SurgeAPI::Models::Blast

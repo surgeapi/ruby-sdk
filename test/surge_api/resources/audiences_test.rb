@@ -3,6 +3,23 @@
 require_relative "../test_helper"
 
 class SurgeAPI::Test::Resources::AudiencesTest < SurgeAPI::Test::ResourceTest
+  def test_create_required_params
+    skip("Mock server tests are disabled")
+
+    response = @surge.audiences.create("acct_01j9a43avnfqzbjfch6pygv1td", name: "The Family")
+
+    assert_pattern do
+      response => SurgeAPI::Models::AudienceCreateResponse
+    end
+
+    assert_pattern do
+      response => {
+        id: String,
+        name: String
+      }
+    end
+  end
+
   def test_add_contact_required_params
     skip("Mock server tests are disabled")
 

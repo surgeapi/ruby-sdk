@@ -3,6 +3,23 @@
 module SurgeAPI
   module Resources
     class Audiences
+      # Creates a new audience.
+      sig do
+        params(
+          account_id: String,
+          name: String,
+          request_options: SurgeAPI::RequestOptions::OrHash
+        ).returns(SurgeAPI::Models::AudienceCreateResponse)
+      end
+      def create(
+        # The account for which the audience should be created.
+        account_id,
+        # The audience name.
+        name:,
+        request_options: {}
+      )
+      end
+
       # Adds an existing contact to a manual audience.
       sig do
         params(
