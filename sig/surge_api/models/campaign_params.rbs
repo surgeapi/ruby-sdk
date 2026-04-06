@@ -13,11 +13,11 @@ module SurgeAPI
           description: String,
           message_samples: ::Array[String],
           privacy_policy_url: String,
+          terms_and_conditions_url: String,
           use_cases: ::Array[SurgeAPI::Models::CampaignParams::StandardCampaignParams::use_case],
           volume: SurgeAPI::Models::CampaignParams::StandardCampaignParams::volume,
           includes: ::Array[SurgeAPI::Models::CampaignParams::StandardCampaignParams::include_],
-          link_sample: String,
-          terms_and_conditions_url: String
+          link_sample: String
         }
 
       class StandardCampaignParams < SurgeAPI::Internal::Type::BaseModel
@@ -28,6 +28,8 @@ module SurgeAPI
         attr_accessor message_samples: ::Array[String]
 
         attr_accessor privacy_policy_url: String
+
+        attr_accessor terms_and_conditions_url: String
 
         attr_accessor use_cases: ::Array[SurgeAPI::Models::CampaignParams::StandardCampaignParams::use_case]
 
@@ -43,20 +45,16 @@ module SurgeAPI
 
         def link_sample=: (String) -> String
 
-        attr_reader terms_and_conditions_url: String?
-
-        def terms_and_conditions_url=: (String) -> String
-
         def initialize: (
           consent_flow: String,
           description: String,
           message_samples: ::Array[String],
           privacy_policy_url: String,
+          terms_and_conditions_url: String,
           use_cases: ::Array[SurgeAPI::Models::CampaignParams::StandardCampaignParams::use_case],
           volume: SurgeAPI::Models::CampaignParams::StandardCampaignParams::volume,
           ?includes: ::Array[SurgeAPI::Models::CampaignParams::StandardCampaignParams::include_],
-          ?link_sample: String,
-          ?terms_and_conditions_url: String
+          ?link_sample: String
         ) -> void
 
         def to_hash: -> {
@@ -64,11 +62,11 @@ module SurgeAPI
           description: String,
           message_samples: ::Array[String],
           privacy_policy_url: String,
+          terms_and_conditions_url: String,
           use_cases: ::Array[SurgeAPI::Models::CampaignParams::StandardCampaignParams::use_case],
           volume: SurgeAPI::Models::CampaignParams::StandardCampaignParams::volume,
           includes: ::Array[SurgeAPI::Models::CampaignParams::StandardCampaignParams::include_],
-          link_sample: String,
-          terms_and_conditions_url: String
+          link_sample: String
         }
 
         type use_case =

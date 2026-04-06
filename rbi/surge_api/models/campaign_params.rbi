@@ -52,6 +52,13 @@ module SurgeAPI
         sig { returns(String) }
         attr_accessor :privacy_policy_url
 
+        # The URL of the terms and conditions presented to end users when they opt in to
+        # messaging. These terms and conditions may be shared among all of a platform's
+        # customers if they're the terms that are presented to end users when they opt in
+        # to messaging.
+        sig { returns(String) }
+        attr_accessor :terms_and_conditions_url
+
         # A list containing 1-5 types of messages that will be sent with this campaign.
         #
         # The following use cases are typically available to all brands:
@@ -145,16 +152,6 @@ module SurgeAPI
         sig { params(link_sample: String).void }
         attr_writer :link_sample
 
-        # The URL of the terms and conditions presented to end users when they opt in to
-        # messaging. These terms and conditions may be shared among all of a platform's
-        # customers if they're the terms that are presented to end users when they opt in
-        # to messaging.
-        sig { returns(T.nilable(String)) }
-        attr_reader :terms_and_conditions_url
-
-        sig { params(terms_and_conditions_url: String).void }
-        attr_writer :terms_and_conditions_url
-
         # Full campaign details for standard registration through Surge
         sig do
           params(
@@ -162,6 +159,7 @@ module SurgeAPI
             description: String,
             message_samples: T::Array[String],
             privacy_policy_url: String,
+            terms_and_conditions_url: String,
             use_cases:
               T::Array[
                 SurgeAPI::CampaignParams::StandardCampaignParams::UseCase::OrSymbol
@@ -172,8 +170,7 @@ module SurgeAPI
               T::Array[
                 SurgeAPI::CampaignParams::StandardCampaignParams::Include::OrSymbol
               ],
-            link_sample: String,
-            terms_and_conditions_url: String
+            link_sample: String
           ).returns(T.attached_class)
         end
         def self.new(
@@ -197,6 +194,11 @@ module SurgeAPI
           # privacy policy if it's the policy that is displayed to end users when they opt
           # in to messaging.
           privacy_policy_url:,
+          # The URL of the terms and conditions presented to end users when they opt in to
+          # messaging. These terms and conditions may be shared among all of a platform's
+          # customers if they're the terms that are presented to end users when they opt in
+          # to messaging.
+          terms_and_conditions_url:,
           # A list containing 1-5 types of messages that will be sent with this campaign.
           #
           # The following use cases are typically available to all brands:
@@ -250,12 +252,7 @@ module SurgeAPI
           # carriers. If link shortening is enabled for the account, the link shortener URL
           # will be used instead of what is provided. Reach out to support if you would like
           # to disable automatic link shortening.
-          link_sample: nil,
-          # The URL of the terms and conditions presented to end users when they opt in to
-          # messaging. These terms and conditions may be shared among all of a platform's
-          # customers if they're the terms that are presented to end users when they opt in
-          # to messaging.
-          terms_and_conditions_url: nil
+          link_sample: nil
         )
         end
 
@@ -266,6 +263,7 @@ module SurgeAPI
               description: String,
               message_samples: T::Array[String],
               privacy_policy_url: String,
+              terms_and_conditions_url: String,
               use_cases:
                 T::Array[
                   SurgeAPI::CampaignParams::StandardCampaignParams::UseCase::OrSymbol
@@ -276,8 +274,7 @@ module SurgeAPI
                 T::Array[
                   SurgeAPI::CampaignParams::StandardCampaignParams::Include::OrSymbol
                 ],
-              link_sample: String,
-              terms_and_conditions_url: String
+              link_sample: String
             }
           )
         end
