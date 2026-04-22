@@ -5,6 +5,7 @@ module SurgeAPI
         area_code: String,
         latitude: Float,
         longitude: Float,
+        name: String,
         type: SurgeAPI::Models::PhoneNumberPurchaseParams::type_
       }
       & SurgeAPI::Internal::Type::request_parameters
@@ -25,6 +26,10 @@ module SurgeAPI
 
       def longitude=: (Float) -> Float
 
+      attr_reader name: String?
+
+      def name=: (String) -> String
+
       attr_reader type: SurgeAPI::Models::PhoneNumberPurchaseParams::type_?
 
       def type=: (
@@ -35,6 +40,7 @@ module SurgeAPI
         ?area_code: String,
         ?latitude: Float,
         ?longitude: Float,
+        ?name: String,
         ?type: SurgeAPI::Models::PhoneNumberPurchaseParams::type_,
         ?request_options: SurgeAPI::request_opts
       ) -> void
@@ -43,6 +49,7 @@ module SurgeAPI
         area_code: String,
         latitude: Float,
         longitude: Float,
+        name: String,
         type: SurgeAPI::Models::PhoneNumberPurchaseParams::type_,
         request_options: SurgeAPI::RequestOptions
       }

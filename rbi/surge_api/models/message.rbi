@@ -243,6 +243,10 @@ module SurgeAPI
           sig { returns(String) }
           attr_accessor :id
 
+          # A human-readable name for the phone number
+          sig { returns(T.nilable(String)) }
+          attr_accessor :name
+
           # The canonical format of the phone number.
           sig { returns(String) }
           attr_accessor :number
@@ -259,6 +263,7 @@ module SurgeAPI
           sig do
             params(
               id: String,
+              name: T.nilable(String),
               number: String,
               type: SurgeAPI::Message::Conversation::PhoneNumber::Type::OrSymbol
             ).returns(T.attached_class)
@@ -266,6 +271,8 @@ module SurgeAPI
           def self.new(
             # Unique identifier for the phone number
             id:,
+            # A human-readable name for the phone number
+            name:,
             # The canonical format of the phone number.
             number:,
             # Whether the phone number is local, toll-free, or short code
@@ -277,6 +284,7 @@ module SurgeAPI
             override.returns(
               {
                 id: String,
+                name: T.nilable(String),
                 number: String,
                 type:
                   SurgeAPI::Message::Conversation::PhoneNumber::Type::TaggedSymbol

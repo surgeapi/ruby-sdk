@@ -16,6 +16,10 @@ module SurgeAPI
       sig { returns(T.nilable(String)) }
       attr_accessor :campaign_id
 
+      # A human-readable name for the phone number
+      sig { returns(T.nilable(String)) }
+      attr_accessor :name
+
       # The phone number in E.164 format
       sig { returns(String) }
       attr_accessor :number
@@ -29,6 +33,7 @@ module SurgeAPI
         params(
           id: String,
           campaign_id: T.nilable(String),
+          name: T.nilable(String),
           number: String,
           type: SurgeAPI::PhoneNumber::Type::OrSymbol
         ).returns(T.attached_class)
@@ -38,6 +43,8 @@ module SurgeAPI
         id:,
         # The unique identifier of the campaign this phone number is attached to, if any
         campaign_id:,
+        # A human-readable name for the phone number
+        name:,
         # The phone number in E.164 format
         number:,
         # Whether the phone number is local, toll-free, or short code
@@ -50,6 +57,7 @@ module SurgeAPI
           {
             id: String,
             campaign_id: T.nilable(String),
+            name: T.nilable(String),
             number: String,
             type: SurgeAPI::PhoneNumber::Type::TaggedSymbol
           }
