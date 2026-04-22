@@ -21,6 +21,9 @@ module SurgeAPI
     # @return [SurgeAPI::Resources::Accounts]
     attr_reader :accounts
 
+    # @return [SurgeAPI::Resources::Attachments]
+    attr_reader :attachments
+
     # @return [SurgeAPI::Resources::Audiences]
     attr_reader :audiences
 
@@ -99,6 +102,7 @@ module SurgeAPI
       )
 
       @accounts = SurgeAPI::Resources::Accounts.new(client: self)
+      @attachments = SurgeAPI::Resources::Attachments.new(client: self)
       @audiences = SurgeAPI::Resources::Audiences.new(client: self)
       @blasts = SurgeAPI::Resources::Blasts.new(client: self)
       @campaigns = SurgeAPI::Resources::Campaigns.new(client: self)

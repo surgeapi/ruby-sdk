@@ -51,6 +51,8 @@ module SurgeAPI
 
   AccountUpdateParams = SurgeAPI::Models::AccountUpdateParams
 
+  AttachmentGetFileParams = SurgeAPI::Models::AttachmentGetFileParams
+
   AudienceAddContactParams = SurgeAPI::Models::AudienceAddContactParams
 
   AudienceCreateParams = SurgeAPI::Models::AudienceCreateParams
