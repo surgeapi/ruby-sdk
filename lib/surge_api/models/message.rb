@@ -139,6 +139,12 @@ module SurgeAPI
           #   @return [String]
           required :id, String
 
+          # @!attribute name
+          #   A human-readable name for the phone number
+          #
+          #   @return [String, nil]
+          required :name, String, nil?: true
+
           # @!attribute number
           #   The canonical format of the phone number.
           #
@@ -151,10 +157,12 @@ module SurgeAPI
           #   @return [Symbol, SurgeAPI::Models::Message::Conversation::PhoneNumber::Type]
           required :type, enum: -> { SurgeAPI::Message::Conversation::PhoneNumber::Type }
 
-          # @!method initialize(id:, number:, type:)
+          # @!method initialize(id:, name:, number:, type:)
           #   This is the phone number tied to the Surge account.
           #
           #   @param id [String] Unique identifier for the phone number
+          #
+          #   @param name [String, nil] A human-readable name for the phone number
           #
           #   @param number [String] The canonical format of the phone number.
           #

@@ -13,6 +13,7 @@ module SurgeAPI
         ?area_code: String,
         ?latitude: Float,
         ?longitude: Float,
+        ?name: String,
         ?type: SurgeAPI::Models::PhoneNumberPurchaseParams::type_,
         ?request_options: SurgeAPI::request_opts
       ) -> SurgeAPI::PhoneNumber

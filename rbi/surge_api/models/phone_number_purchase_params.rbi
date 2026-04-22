@@ -38,6 +38,14 @@ module SurgeAPI
       sig { params(longitude: Float).void }
       attr_writer :longitude
 
+      # A human-readable name for the phone number. If not provided, defaults to the
+      # formatted phone number.
+      sig { returns(T.nilable(String)) }
+      attr_reader :name
+
+      sig { params(name: String).void }
+      attr_writer :name
+
       # Whether the phone number is local or toll-free. Can be omitted if area_code or
       # latitude/longitude are provided.
       sig do
@@ -55,6 +63,7 @@ module SurgeAPI
           area_code: String,
           latitude: Float,
           longitude: Float,
+          name: String,
           type: SurgeAPI::PhoneNumberPurchaseParams::Type::OrSymbol,
           request_options: SurgeAPI::RequestOptions::OrHash
         ).returns(T.attached_class)
@@ -69,6 +78,9 @@ module SurgeAPI
         # Longitude to search for nearby phone numbers. Must be used with latitude. If
         # provided without type, type will be inferred as 'local'.
         longitude: nil,
+        # A human-readable name for the phone number. If not provided, defaults to the
+        # formatted phone number.
+        name: nil,
         # Whether the phone number is local or toll-free. Can be omitted if area_code or
         # latitude/longitude are provided.
         type: nil,
@@ -82,6 +94,7 @@ module SurgeAPI
             area_code: String,
             latitude: Float,
             longitude: Float,
+            name: String,
             type: SurgeAPI::PhoneNumberPurchaseParams::Type::OrSymbol,
             request_options: SurgeAPI::RequestOptions
           }

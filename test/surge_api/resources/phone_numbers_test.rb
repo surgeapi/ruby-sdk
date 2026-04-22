@@ -23,6 +23,7 @@ class SurgeAPI::Test::Resources::PhoneNumbersTest < SurgeAPI::Test::ResourceTest
       row => {
         id: String,
         campaign_id: String | nil,
+        name: String | nil,
         number: String,
         type: SurgeAPI::PhoneNumber::Type
       }
@@ -42,6 +43,7 @@ class SurgeAPI::Test::Resources::PhoneNumbersTest < SurgeAPI::Test::ResourceTest
       response => {
         id: String,
         campaign_id: String | nil,
+        name: String | nil,
         number: String,
         type: SurgeAPI::PhoneNumber::Type
       }
