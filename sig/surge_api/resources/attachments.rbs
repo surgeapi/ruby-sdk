@@ -1,0 +1,12 @@
+module SurgeAPI
+  module Resources
+    class Attachments
+      def get_file: (
+        String attachment_id,
+        ?request_options: SurgeAPI::request_opts
+      ) -> SurgeAPI::Models::AttachmentGetFileResponse
+
+      def initialize: (client: SurgeAPI::Client) -> void
+    end
+  end
+end
