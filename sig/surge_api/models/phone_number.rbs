@@ -4,6 +4,7 @@ module SurgeAPI
       {
         id: String,
         campaign_id: String?,
+        name: String?,
         number: String,
         type: SurgeAPI::Models::PhoneNumber::type_
       }
@@ -13,6 +14,8 @@ module SurgeAPI
 
       attr_accessor campaign_id: String?
 
+      attr_accessor name: String?
+
       attr_accessor number: String
 
       attr_accessor type: SurgeAPI::Models::PhoneNumber::type_
@@ -20,6 +23,7 @@ module SurgeAPI
       def initialize: (
         id: String,
         campaign_id: String?,
+        name: String?,
         number: String,
         type: SurgeAPI::Models::PhoneNumber::type_
       ) -> void
@@ -27,6 +31,7 @@ module SurgeAPI
       def to_hash: -> {
         id: String,
         campaign_id: String?,
+        name: String?,
         number: String,
         type: SurgeAPI::Models::PhoneNumber::type_
       }

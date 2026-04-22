@@ -134,6 +134,7 @@ module SurgeAPI
         type phone_number =
           {
             id: String,
+            name: String?,
             number: String,
             type: SurgeAPI::Models::Message::Conversation::PhoneNumber::type_
           }
@@ -141,18 +142,22 @@ module SurgeAPI
         class PhoneNumber < SurgeAPI::Internal::Type::BaseModel
           attr_accessor id: String
 
+          attr_accessor name: String?
+
           attr_accessor number: String
 
           attr_accessor type: SurgeAPI::Models::Message::Conversation::PhoneNumber::type_
 
           def initialize: (
             id: String,
+            name: String?,
             number: String,
             type: SurgeAPI::Models::Message::Conversation::PhoneNumber::type_
           ) -> void
 
           def to_hash: -> {
             id: String,
+            name: String?,
             number: String,
             type: SurgeAPI::Models::Message::Conversation::PhoneNumber::type_
           }

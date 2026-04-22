@@ -16,6 +16,12 @@ module SurgeAPI
       #   @return [String, nil]
       required :campaign_id, String, nil?: true
 
+      # @!attribute name
+      #   A human-readable name for the phone number
+      #
+      #   @return [String, nil]
+      required :name, String, nil?: true
+
       # @!attribute number
       #   The phone number in E.164 format
       #
@@ -28,12 +34,14 @@ module SurgeAPI
       #   @return [Symbol, SurgeAPI::Models::PhoneNumber::Type]
       required :type, enum: -> { SurgeAPI::PhoneNumber::Type }
 
-      # @!method initialize(id:, campaign_id:, number:, type:)
+      # @!method initialize(id:, campaign_id:, name:, number:, type:)
       #   A phone number that can be used to send and receive messages and calls
       #
       #   @param id [String] Unique identifier for the phone number
       #
       #   @param campaign_id [String, nil] The unique identifier of the campaign this phone number is attached to, if any
+      #
+      #   @param name [String, nil] A human-readable name for the phone number
       #
       #   @param number [String] The phone number in E.164 format
       #

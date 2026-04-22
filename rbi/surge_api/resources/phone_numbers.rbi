@@ -32,6 +32,7 @@ module SurgeAPI
           area_code: String,
           latitude: Float,
           longitude: Float,
+          name: String,
           type: SurgeAPI::PhoneNumberPurchaseParams::Type::OrSymbol,
           request_options: SurgeAPI::RequestOptions::OrHash
         ).returns(SurgeAPI::PhoneNumber)
@@ -48,6 +49,9 @@ module SurgeAPI
         # Longitude to search for nearby phone numbers. Must be used with latitude. If
         # provided without type, type will be inferred as 'local'.
         longitude: nil,
+        # A human-readable name for the phone number. If not provided, defaults to the
+        # formatted phone number.
+        name: nil,
         # Whether the phone number is local or toll-free. Can be omitted if area_code or
         # latitude/longitude are provided.
         type: nil,

@@ -54,6 +54,12 @@ module SurgeAPI
         #   @return [String]
         required :campaign_id, String
 
+        # @!attribute name
+        #   A human-readable name for the phone number
+        #
+        #   @return [String, nil]
+        required :name, String, nil?: true
+
         # @!attribute number
         #   The phone number in E.164 format
         #
@@ -66,12 +72,14 @@ module SurgeAPI
         #   @return [Symbol, SurgeAPI::Models::PhoneNumberAttachedToCampaignWebhookEvent::Data::Type]
         required :type, enum: -> { SurgeAPI::PhoneNumberAttachedToCampaignWebhookEvent::Data::Type }
 
-        # @!method initialize(id:, campaign_id:, number:, type:)
+        # @!method initialize(id:, campaign_id:, name:, number:, type:)
         #   The data associated with the event
         #
         #   @param id [String] The unique identifier for the phone number
         #
         #   @param campaign_id [String] The unique identifier of the campaign this phone number is attached to
+        #
+        #   @param name [String, nil] A human-readable name for the phone number
         #
         #   @param number [String] The phone number in E.164 format
         #
