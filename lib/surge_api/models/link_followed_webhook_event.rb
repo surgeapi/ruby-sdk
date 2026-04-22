@@ -44,11 +44,19 @@ module SurgeAPI
         #   @return [String]
         required :id, String
 
-        # @!attribute message_id
-        #   The unique identifier for the message that contained the link
+        # @!attribute message
+        #   A Message is a communication sent to a Contact.
         #
-        #   @return [String]
-        required :message_id, String
+        #   @return [SurgeAPI::Models::Message, nil]
+        required :message, -> { SurgeAPI::Message }, nil?: true
+
+        # @!attribute message_id
+        #   @deprecated Use `message.id` instead.
+        #
+        #   Deprecated. The unique identifier for the message that contained the link.
+        #
+        #   @return [String, nil]
+        required :message_id, String, nil?: true
 
         # @!attribute url
         #   The original URL that was shortened
@@ -56,12 +64,14 @@ module SurgeAPI
         #   @return [String]
         required :url, String
 
-        # @!method initialize(id:, message_id:, url:)
+        # @!method initialize(id:, message:, message_id:, url:)
         #   The data associated with the event
         #
         #   @param id [String] The unique identifier for the link
         #
-        #   @param message_id [String] The unique identifier for the message that contained the link
+        #   @param message [SurgeAPI::Models::Message, nil] A Message is a communication sent to a Contact.
+        #
+        #   @param message_id [String, nil] Deprecated. The unique identifier for the message that contained the link.
         #
         #   @param url [String] The original URL that was shortened
       end

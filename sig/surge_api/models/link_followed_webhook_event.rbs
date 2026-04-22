@@ -31,18 +31,36 @@ module SurgeAPI
         type: :"link.followed"
       }
 
-      type data = { id: String, message_id: String, url: String }
+      type data =
+        {
+          id: String,
+          message: SurgeAPI::Message?,
+          message_id: String?,
+          url: String
+        }
 
       class Data < SurgeAPI::Internal::Type::BaseModel
         attr_accessor id: String
 
-        attr_accessor message_id: String
+        attr_accessor message: SurgeAPI::Message?
+
+        attr_accessor message_id: String?
 
         attr_accessor url: String
 
-        def initialize: (id: String, message_id: String, url: String) -> void
+        def initialize: (
+          id: String,
+          message: SurgeAPI::Message?,
+          message_id: String?,
+          url: String
+        ) -> void
 
-        def to_hash: -> { id: String, message_id: String, url: String }
+        def to_hash: -> {
+          id: String,
+          message: SurgeAPI::Message?,
+          message_id: String?,
+          url: String
+        }
       end
     end
   end
