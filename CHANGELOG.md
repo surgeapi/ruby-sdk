@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.16.0 (2026-04-22)
+
+Full Changelog: [v0.15.0...v0.16.0](https://github.com/surgeapi/ruby-sdk/compare/v0.15.0...v0.16.0)
+
+### Features
+
+* **api:** add endpoint to get attachment file ([5475d91](https://github.com/surgeapi/ruby-sdk/commit/5475d91e283e6afb974243f11a259e9990471f88))
+* **api:** add message to link.followed events ([1c36d5c](https://github.com/surgeapi/ruby-sdk/commit/1c36d5c6c21eb866aa5489ce0b70b01bfd01a9e4))
+* **api:** add name to phone numbers ([ee71d0d](https://github.com/surgeapi/ruby-sdk/commit/ee71d0dcec71388ed0af4132759072cca94e11f0))
+
 ## 0.15.0 (2026-04-06)
 
 Full Changelog: [v0.14.0...v0.15.0](https://github.com/surgeapi/ruby-sdk/compare/v0.14.0...v0.15.0)
