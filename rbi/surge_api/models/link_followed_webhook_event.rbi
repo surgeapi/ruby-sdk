@@ -75,8 +75,15 @@ module SurgeAPI
         sig { returns(String) }
         attr_accessor :id
 
-        # The unique identifier for the message that contained the link
-        sig { returns(String) }
+        # A Message is a communication sent to a Contact.
+        sig { returns(T.nilable(SurgeAPI::Message)) }
+        attr_reader :message
+
+        sig { params(message: T.nilable(SurgeAPI::Message::OrHash)).void }
+        attr_writer :message
+
+        # Deprecated. The unique identifier for the message that contained the link.
+        sig { returns(T.nilable(String)) }
         attr_accessor :message_id
 
         # The original URL that was shortened
@@ -85,14 +92,19 @@ module SurgeAPI
 
         # The data associated with the event
         sig do
-          params(id: String, message_id: String, url: String).returns(
-            T.attached_class
-          )
+          params(
+            id: String,
+            message: T.nilable(SurgeAPI::Message::OrHash),
+            message_id: T.nilable(String),
+            url: String
+          ).returns(T.attached_class)
         end
         def self.new(
           # The unique identifier for the link
           id:,
-          # The unique identifier for the message that contained the link
+          # A Message is a communication sent to a Contact.
+          message:,
+          # Deprecated. The unique identifier for the message that contained the link.
           message_id:,
           # The original URL that was shortened
           url:
@@ -100,7 +112,14 @@ module SurgeAPI
         end
 
         sig do
-          override.returns({ id: String, message_id: String, url: String })
+          override.returns(
+            {
+              id: String,
+              message: T.nilable(SurgeAPI::Message),
+              message_id: T.nilable(String),
+              url: String
+            }
+          )
         end
         def to_hash
         end
