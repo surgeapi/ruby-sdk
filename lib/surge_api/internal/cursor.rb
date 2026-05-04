@@ -10,8 +10,8 @@ module SurgeAPI
     #   end
     #
     # @example
-    #   cursor.auto_paging_each do |audience|
-    #     puts(audience)
+    #   cursor.auto_paging_each do |account|
+    #     puts(account)
     #   end
     class Cursor
       include SurgeAPI::Internal::Type::BasePage

@@ -18,6 +18,12 @@ module SurgeAPI
         ?request_options: SurgeAPI::request_opts
       ) -> SurgeAPI::Account
 
+      def list: (
+        ?after: String,
+        ?before: String,
+        ?request_options: SurgeAPI::request_opts
+      ) -> SurgeAPI::Internal::Cursor[SurgeAPI::Account]
+
       def archive: (
         String id,
         ?request_options: SurgeAPI::request_opts
