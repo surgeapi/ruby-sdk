@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.17.0 (2026-05-04)
+
+Full Changelog: [v0.16.0...v0.17.0](https://github.com/surgeapi/ruby-sdk/compare/v0.16.0...v0.17.0)
+
+### Features
+
+* **api:** list accounts endpoint ([510b3bc](https://github.com/surgeapi/ruby-sdk/commit/510b3bc3d2ab9b8659e5ca0701cef8fc2c5f2a2e))
+
 ## 0.16.0 (2026-04-22)
 
 Full Changelog: [v0.15.0...v0.16.0](https://github.com/surgeapi/ruby-sdk/compare/v0.15.0...v0.16.0)
