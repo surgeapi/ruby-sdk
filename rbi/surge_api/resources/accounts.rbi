@@ -65,6 +65,24 @@ module SurgeAPI
       )
       end
 
+      # List all accounts for the calling platform with cursor-based pagination.
+      sig do
+        params(
+          after: String,
+          before: String,
+          request_options: SurgeAPI::RequestOptions::OrHash
+        ).returns(SurgeAPI::Internal::Cursor[SurgeAPI::Account])
+      end
+      def list(
+        # Cursor for forward pagination. Use the next_cursor from a previous response.
+        after: nil,
+        # Cursor for backward pagination. Use the previous_cursor from a previous
+        # response.
+        before: nil,
+        request_options: {}
+      )
+      end
+
       # Archives an account and releases all associated resources.
       #
       # **Warning**: This action will:
