@@ -43,6 +43,33 @@ class SurgeAPI::Test::Resources::AccountsTest < SurgeAPI::Test::ResourceTest
     end
   end
 
+  def test_list
+    skip("Mock server tests are disabled")
+
+    response = @surge.accounts.list
+
+    assert_pattern do
+      response => SurgeAPI::Internal::Cursor
+    end
+
+    row = response.to_enum.first
+    return if row.nil?
+
+    assert_pattern do
+      row => SurgeAPI::Account
+    end
+
+    assert_pattern do
+      row => {
+        id: String,
+        brand_name: String | nil,
+        name: String,
+        organization: SurgeAPI::Organization,
+        time_zone: String | nil
+      }
+    end
+  end
+
   def test_archive
     skip("Mock server tests are disabled")
 

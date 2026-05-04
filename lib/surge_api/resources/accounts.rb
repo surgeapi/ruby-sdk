@@ -67,6 +67,35 @@ module SurgeAPI
         )
       end
 
+      # Some parameter documentations has been truncated, see
+      # {SurgeAPI::Models::AccountListParams} for more details.
+      #
+      # List all accounts for the calling platform with cursor-based pagination.
+      #
+      # @overload list(after: nil, before: nil, request_options: {})
+      #
+      # @param after [String] Cursor for forward pagination. Use the next_cursor from a previous response.
+      #
+      # @param before [String] Cursor for backward pagination. Use the previous_cursor from a previous response
+      #
+      # @param request_options [SurgeAPI::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [SurgeAPI::Internal::Cursor<SurgeAPI::Models::Account>]
+      #
+      # @see SurgeAPI::Models::AccountListParams
+      def list(params = {})
+        parsed, options = SurgeAPI::AccountListParams.dump_request(params)
+        query = SurgeAPI::Internal::Util.encode_query_params(parsed)
+        @client.request(
+          method: :get,
+          path: "accounts",
+          query: query,
+          page: SurgeAPI::Internal::Cursor,
+          model: SurgeAPI::Account,
+          options: options
+        )
+      end
+
       # Archives an account and releases all associated resources.
       #
       # **Warning**: This action will:
