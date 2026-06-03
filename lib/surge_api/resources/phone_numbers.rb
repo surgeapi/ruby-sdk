@@ -70,6 +70,26 @@ module SurgeAPI
         )
       end
 
+      # Releases a phone number from the account.
+      #
+      # @overload release(id, request_options: {})
+      #
+      # @param id [String] The ID of the phone number to release.
+      #
+      # @param request_options [SurgeAPI::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [SurgeAPI::Models::PhoneNumber]
+      #
+      # @see SurgeAPI::Models::PhoneNumberReleaseParams
+      def release(id, params = {})
+        @client.request(
+          method: :delete,
+          path: ["phone_numbers/%1$s", id],
+          model: SurgeAPI::PhoneNumber,
+          options: params[:request_options]
+        )
+      end
+
       # @api private
       #
       # @param client [SurgeAPI::Client]

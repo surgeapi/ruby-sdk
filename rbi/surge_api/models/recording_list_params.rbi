@@ -11,6 +11,10 @@ module SurgeAPI
           T.any(SurgeAPI::RecordingListParams, SurgeAPI::Internal::AnyHash)
         end
 
+      # The account ID to list recordings for.
+      sig { returns(String) }
+      attr_accessor :account_id
+
       # Cursor for forward pagination. Use the next_cursor from a previous response.
       sig { returns(T.nilable(String)) }
       attr_reader :after
@@ -28,12 +32,15 @@ module SurgeAPI
 
       sig do
         params(
+          account_id: String,
           after: String,
           before: String,
           request_options: SurgeAPI::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
+        # The account ID to list recordings for.
+        account_id:,
         # Cursor for forward pagination. Use the next_cursor from a previous response.
         after: nil,
         # Cursor for backward pagination. Use the previous_cursor from a previous
@@ -46,6 +53,7 @@ module SurgeAPI
       sig do
         override.returns(
           {
+            account_id: String,
             after: String,
             before: String,
             request_options: SurgeAPI::RequestOptions

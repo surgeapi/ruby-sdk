@@ -14,6 +14,10 @@ module SurgeAPI
           )
         end
 
+      # The account for which the phone number should be created.
+      sig { returns(String) }
+      attr_accessor :account_id
+
       # The desired area code for this phone number. If provided without type, the type
       # will be inferred.
       sig { returns(T.nilable(String)) }
@@ -60,6 +64,7 @@ module SurgeAPI
 
       sig do
         params(
+          account_id: String,
           area_code: String,
           latitude: Float,
           longitude: Float,
@@ -69,6 +74,8 @@ module SurgeAPI
         ).returns(T.attached_class)
       end
       def self.new(
+        # The account for which the phone number should be created.
+        account_id:,
         # The desired area code for this phone number. If provided without type, the type
         # will be inferred.
         area_code: nil,
@@ -91,6 +98,7 @@ module SurgeAPI
       sig do
         override.returns(
           {
+            account_id: String,
             area_code: String,
             latitude: Float,
             longitude: Float,

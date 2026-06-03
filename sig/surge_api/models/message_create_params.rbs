@@ -1,26 +1,21 @@
 module SurgeAPI
   module Models
     type message_create_params =
-      { message_params: SurgeAPI::Models::message_params }
-      & SurgeAPI::Internal::Type::request_parameters
+      { account_id: String } & SurgeAPI::Internal::Type::request_parameters
 
     class MessageCreateParams < SurgeAPI::Internal::Type::BaseModel
       extend SurgeAPI::Internal::Type::RequestParameters::Converter
       include SurgeAPI::Internal::Type::RequestParameters
 
-      def message_params: -> SurgeAPI::Models::message_params
-
-      def message_params=: (
-        SurgeAPI::Models::message_params _
-      ) -> SurgeAPI::Models::message_params
+      attr_accessor account_id: String
 
       def initialize: (
-        message_params: SurgeAPI::Models::message_params,
+        account_id: String,
         ?request_options: SurgeAPI::request_opts
       ) -> void
 
       def to_hash: -> {
-        message_params: SurgeAPI::Models::message_params,
+        account_id: String,
         request_options: SurgeAPI::RequestOptions
       }
     end

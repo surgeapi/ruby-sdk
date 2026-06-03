@@ -7,7 +7,15 @@ module SurgeAPI
       extend SurgeAPI::Internal::Type::RequestParameters::Converter
       include SurgeAPI::Internal::Type::RequestParameters
 
-      # @!method initialize(request_options: {})
+      # @!attribute attachment_id
+      #   The ID of the attachment.
+      #
+      #   @return [String]
+      required :attachment_id, String
+
+      # @!method initialize(attachment_id:, request_options: {})
+      #   @param attachment_id [String] The ID of the attachment.
+      #
       #   @param request_options [SurgeAPI::RequestOptions, Hash{Symbol=>Object}]
     end
   end

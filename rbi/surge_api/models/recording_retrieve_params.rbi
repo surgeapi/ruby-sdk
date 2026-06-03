@@ -11,15 +11,28 @@ module SurgeAPI
           T.any(SurgeAPI::RecordingRetrieveParams, SurgeAPI::Internal::AnyHash)
         end
 
+      # The ID of the recording to retrieve.
+      sig { returns(String) }
+      attr_accessor :id
+
       sig do
-        params(request_options: SurgeAPI::RequestOptions::OrHash).returns(
-          T.attached_class
-        )
+        params(
+          id: String,
+          request_options: SurgeAPI::RequestOptions::OrHash
+        ).returns(T.attached_class)
       end
-      def self.new(request_options: {})
+      def self.new(
+        # The ID of the recording to retrieve.
+        id:,
+        request_options: {}
+      )
       end
 
-      sig { override.returns({ request_options: SurgeAPI::RequestOptions }) }
+      sig do
+        override.returns(
+          { id: String, request_options: SurgeAPI::RequestOptions }
+        )
+      end
       def to_hash
       end
     end

@@ -11,6 +11,10 @@ module SurgeAPI
           T.any(SurgeAPI::UserCreateTokenParams, SurgeAPI::Internal::AnyHash)
         end
 
+      # The user for which the token represents authentication.
+      sig { returns(String) }
+      attr_accessor :user_id
+
       # For how many seconds the token should be accepted. Defaults to 15 minutes.
       sig { returns(T.nilable(Integer)) }
       attr_reader :duration_seconds
@@ -20,11 +24,14 @@ module SurgeAPI
 
       sig do
         params(
+          user_id: String,
           duration_seconds: Integer,
           request_options: SurgeAPI::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
+        # The user for which the token represents authentication.
+        user_id:,
         # For how many seconds the token should be accepted. Defaults to 15 minutes.
         duration_seconds: nil,
         request_options: {}
@@ -34,6 +41,7 @@ module SurgeAPI
       sig do
         override.returns(
           {
+            user_id: String,
             duration_seconds: Integer,
             request_options: SurgeAPI::RequestOptions
           }

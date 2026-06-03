@@ -7,7 +7,15 @@ module SurgeAPI
       extend SurgeAPI::Internal::Type::RequestParameters::Converter
       include SurgeAPI::Internal::Type::RequestParameters
 
-      # @!method initialize(request_options: {})
+      # @!attribute id
+      #   The ID of the contact to retrieve.
+      #
+      #   @return [String]
+      required :id, String
+
+      # @!method initialize(id:, request_options: {})
+      #   @param id [String] The ID of the contact to retrieve.
+      #
       #   @param request_options [SurgeAPI::RequestOptions, Hash{Symbol=>Object}]
     end
   end

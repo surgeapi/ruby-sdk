@@ -7,6 +7,12 @@ module SurgeAPI
       extend SurgeAPI::Internal::Type::RequestParameters::Converter
       include SurgeAPI::Internal::Type::RequestParameters
 
+      # @!attribute id
+      #   The ID for the account to update.
+      #
+      #   @return [String]
+      required :id, String
+
       # @!attribute brand_name
       #   The name by which the people this account communicates with know it. If not
       #   provided, this will match the name field.
@@ -37,9 +43,11 @@ module SurgeAPI
       #   @return [String, nil]
       optional :time_zone, String, nil?: true
 
-      # @!method initialize(brand_name: nil, name: nil, organization: nil, time_zone: nil, request_options: {})
+      # @!method initialize(id:, brand_name: nil, name: nil, organization: nil, time_zone: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {SurgeAPI::Models::AccountUpdateParams} for more details.
+      #
+      #   @param id [String] The ID for the account to update.
       #
       #   @param brand_name [String] The name by which the people this account communicates with know it. If not prov
       #

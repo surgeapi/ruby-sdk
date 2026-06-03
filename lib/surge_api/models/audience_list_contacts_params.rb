@@ -7,6 +7,12 @@ module SurgeAPI
       extend SurgeAPI::Internal::Type::RequestParameters::Converter
       include SurgeAPI::Internal::Type::RequestParameters
 
+      # @!attribute audience_id
+      #   The audience ID to list contacts for.
+      #
+      #   @return [String]
+      required :audience_id, String
+
       # @!attribute after
       #   Cursor for forward pagination. Use the next_cursor from a previous response.
       #
@@ -20,9 +26,11 @@ module SurgeAPI
       #   @return [String, nil]
       optional :before, String
 
-      # @!method initialize(after: nil, before: nil, request_options: {})
+      # @!method initialize(audience_id:, after: nil, before: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {SurgeAPI::Models::AudienceListContactsParams} for more details.
+      #
+      #   @param audience_id [String] The audience ID to list contacts for.
       #
       #   @param after [String] Cursor for forward pagination. Use the next_cursor from a previous response.
       #

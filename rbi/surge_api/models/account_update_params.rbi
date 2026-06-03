@@ -11,6 +11,10 @@ module SurgeAPI
           T.any(SurgeAPI::AccountUpdateParams, SurgeAPI::Internal::AnyHash)
         end
 
+      # The ID for the account to update.
+      sig { returns(String) }
+      attr_accessor :id
+
       # The name by which the people this account communicates with know it. If not
       # provided, this will match the name field.
       sig { returns(T.nilable(String)) }
@@ -48,6 +52,7 @@ module SurgeAPI
 
       sig do
         params(
+          id: String,
           brand_name: String,
           name: String,
           organization: SurgeAPI::AccountUpdateParams::Organization::OrHash,
@@ -56,6 +61,8 @@ module SurgeAPI
         ).returns(T.attached_class)
       end
       def self.new(
+        # The ID for the account to update.
+        id:,
         # The name by which the people this account communicates with know it. If not
         # provided, this will match the name field.
         brand_name: nil,
@@ -77,6 +84,7 @@ module SurgeAPI
       sig do
         override.returns(
           {
+            id: String,
             brand_name: String,
             name: String,
             organization: SurgeAPI::AccountUpdateParams::Organization,

@@ -59,6 +59,20 @@ module SurgeAPI
       )
       end
 
+      # Releases a phone number from the account.
+      sig do
+        params(
+          id: String,
+          request_options: SurgeAPI::RequestOptions::OrHash
+        ).returns(SurgeAPI::PhoneNumber)
+      end
+      def release(
+        # The ID of the phone number to release.
+        id,
+        request_options: {}
+      )
+      end
+
       # @api private
       sig { params(client: SurgeAPI::Client).returns(T.attached_class) }
       def self.new(client:)

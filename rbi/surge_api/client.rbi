@@ -13,6 +13,9 @@ module SurgeAPI
     sig { returns(String) }
     attr_reader :api_key
 
+    sig { returns(T.nilable(String)) }
+    attr_reader :webhook_signing_secret
+
     sig { returns(SurgeAPI::Resources::Accounts) }
     attr_reader :accounts
 
@@ -58,6 +61,7 @@ module SurgeAPI
     sig do
       params(
         api_key: T.nilable(String),
+        webhook_signing_secret: T.nilable(String),
         base_url: T.nilable(String),
         max_retries: Integer,
         timeout: Float,
@@ -68,6 +72,8 @@ module SurgeAPI
     def self.new(
       # Defaults to `ENV["SURGE_API_KEY"]`
       api_key: ENV["SURGE_API_KEY"],
+      # Defaults to `ENV["SURGE_WEBHOOK_SIGNING_SECRET"]`
+      webhook_signing_secret: ENV["SURGE_WEBHOOK_SIGNING_SECRET"],
       # Override the default base URL for the API, e.g.,
       # `"https://api.example.com/v2/"`. Defaults to `ENV["SURGE_BASE_URL"]`
       base_url: ENV["SURGE_BASE_URL"],

@@ -2,6 +2,7 @@ module SurgeAPI
   module Models
     type user_update_params =
       {
+        id: String,
         first_name: String,
         last_name: String,
         metadata: ::Hash[Symbol, String],
@@ -12,6 +13,8 @@ module SurgeAPI
     class UserUpdateParams < SurgeAPI::Internal::Type::BaseModel
       extend SurgeAPI::Internal::Type::RequestParameters::Converter
       include SurgeAPI::Internal::Type::RequestParameters
+
+      attr_accessor id: String
 
       attr_accessor first_name: String
 
@@ -28,6 +31,7 @@ module SurgeAPI
       def photo_url=: (String) -> String
 
       def initialize: (
+        id: String,
         first_name: String,
         ?last_name: String,
         ?metadata: ::Hash[Symbol, String],
@@ -36,6 +40,7 @@ module SurgeAPI
       ) -> void
 
       def to_hash: -> {
+        id: String,
         first_name: String,
         last_name: String,
         metadata: ::Hash[Symbol, String],

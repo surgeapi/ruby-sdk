@@ -7,13 +7,21 @@ module SurgeAPI
       extend SurgeAPI::Internal::Type::RequestParameters::Converter
       include SurgeAPI::Internal::Type::RequestParameters
 
+      # @!attribute account_id
+      #   The account for which the audience should be created.
+      #
+      #   @return [String]
+      required :account_id, String
+
       # @!attribute name
       #   The audience name.
       #
       #   @return [String]
       required :name, String
 
-      # @!method initialize(name:, request_options: {})
+      # @!method initialize(account_id:, name:, request_options: {})
+      #   @param account_id [String] The account for which the audience should be created.
+      #
       #   @param name [String] The audience name.
       #
       #   @param request_options [SurgeAPI::RequestOptions, Hash{Symbol=>Object}]

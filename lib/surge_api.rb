@@ -30,6 +30,7 @@ end
 
 # Gems.
 require "connection_pool"
+require "standardwebhooks"
 
 # Package files.
 require_relative "surge_api/version"
@@ -100,6 +101,7 @@ require_relative "surge_api/models/phone_number"
 require_relative "surge_api/models/phone_number_attached_to_campaign_webhook_event"
 require_relative "surge_api/models/phone_number_list_params"
 require_relative "surge_api/models/phone_number_purchase_params"
+require_relative "surge_api/models/phone_number_release_params"
 require_relative "surge_api/models/recording_completed_webhook_event"
 require_relative "surge_api/models/recording_delete_params"
 require_relative "surge_api/models/recording_delete_response"

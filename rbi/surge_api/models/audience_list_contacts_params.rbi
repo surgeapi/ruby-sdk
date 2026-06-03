@@ -14,6 +14,10 @@ module SurgeAPI
           )
         end
 
+      # The audience ID to list contacts for.
+      sig { returns(String) }
+      attr_accessor :audience_id
+
       # Cursor for forward pagination. Use the next_cursor from a previous response.
       sig { returns(T.nilable(String)) }
       attr_reader :after
@@ -31,12 +35,15 @@ module SurgeAPI
 
       sig do
         params(
+          audience_id: String,
           after: String,
           before: String,
           request_options: SurgeAPI::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
+        # The audience ID to list contacts for.
+        audience_id:,
         # Cursor for forward pagination. Use the next_cursor from a previous response.
         after: nil,
         # Cursor for backward pagination. Use the previous_cursor from a previous
@@ -49,6 +56,7 @@ module SurgeAPI
       sig do
         override.returns(
           {
+            audience_id: String,
             after: String,
             before: String,
             request_options: SurgeAPI::RequestOptions

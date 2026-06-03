@@ -4,7 +4,11 @@ module SurgeAPI
   module Resources
     class Webhooks
       sig do
-        params(payload: String).returns(
+        params(
+          payload: String,
+          headers: T::Hash[String, String],
+          key: T.nilable(String)
+        ).returns(
           T.any(
             SurgeAPI::CallEndedWebhookEvent,
             SurgeAPI::CampaignApprovedWebhookEvent,
@@ -24,7 +28,11 @@ module SurgeAPI
       end
       def unwrap(
         # The raw webhook payload as a string
-        payload
+        payload,
+        # The raw HTTP headers that came with the payload
+        headers:,
+        # The webhook signing key
+        key: @client.webhook_signing_secret
       )
       end
 

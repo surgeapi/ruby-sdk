@@ -7,7 +7,15 @@ module SurgeAPI
       extend SurgeAPI::Internal::Type::RequestParameters::Converter
       include SurgeAPI::Internal::Type::RequestParameters
 
-      # @!method initialize(request_options: {})
+      # @!attribute recording_id
+      #   The ID of the recording.
+      #
+      #   @return [String]
+      required :recording_id, String
+
+      # @!method initialize(recording_id:, request_options: {})
+      #   @param recording_id [String] The ID of the recording.
+      #
       #   @param request_options [SurgeAPI::RequestOptions, Hash{Symbol=>Object}]
     end
   end

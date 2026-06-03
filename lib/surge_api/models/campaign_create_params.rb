@@ -7,18 +7,14 @@ module SurgeAPI
       extend SurgeAPI::Internal::Type::RequestParameters::Converter
       include SurgeAPI::Internal::Type::RequestParameters
 
-      # @!attribute campaign_params
-      #   Parameters for creating a new campaign. Either provide full campaign details or
-      #   import using a TCR ID.
+      # @!attribute account_id
+      #   The account for which the campaign should be created.
       #
-      #   @return [SurgeAPI::Models::CampaignParams::StandardCampaignParams, SurgeAPI::Models::CampaignParams::ExternalCampaignParams]
-      required :campaign_params, union: -> { SurgeAPI::CampaignParams }
+      #   @return [String]
+      required :account_id, String
 
-      # @!method initialize(campaign_params:, request_options: {})
-      #   Some parameter documentations has been truncated, see
-      #   {SurgeAPI::Models::CampaignCreateParams} for more details.
-      #
-      #   @param campaign_params [SurgeAPI::Models::CampaignParams::StandardCampaignParams, SurgeAPI::Models::CampaignParams::ExternalCampaignParams] Parameters for creating a new campaign. Either provide full campaign details or
+      # @!method initialize(account_id:, request_options: {})
+      #   @param account_id [String] The account for which the campaign should be created.
       #
       #   @param request_options [SurgeAPI::RequestOptions, Hash{Symbol=>Object}]
     end
