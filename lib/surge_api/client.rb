@@ -18,6 +18,9 @@ module SurgeAPI
     # @return [String]
     attr_reader :api_key
 
+    # @return [String, nil]
+    attr_reader :webhook_signing_secret
+
     # @return [SurgeAPI::Resources::Accounts]
     attr_reader :accounts
 
@@ -67,6 +70,8 @@ module SurgeAPI
     #
     # @param api_key [String, nil] Defaults to `ENV["SURGE_API_KEY"]`
     #
+    # @param webhook_signing_secret [String, nil] Defaults to `ENV["SURGE_WEBHOOK_SIGNING_SECRET"]`
+    #
     # @param base_url [String, nil] Override the default base URL for the API, e.g.,
     # `"https://api.example.com/v2/"`. Defaults to `ENV["SURGE_BASE_URL"]`
     #
@@ -79,6 +84,7 @@ module SurgeAPI
     # @param max_retry_delay [Float]
     def initialize(
       api_key: ENV["SURGE_API_KEY"],
+      webhook_signing_secret: ENV["SURGE_WEBHOOK_SIGNING_SECRET"],
       base_url: ENV["SURGE_BASE_URL"],
       max_retries: self.class::DEFAULT_MAX_RETRIES,
       timeout: self.class::DEFAULT_TIMEOUT_IN_SECONDS,
@@ -91,14 +97,29 @@ module SurgeAPI
         raise ArgumentError.new("api_key is required, and can be set via environ: \"SURGE_API_KEY\"")
       end
 
+      headers = {}
+      custom_headers_env = ENV["SURGE_CUSTOM_HEADERS"]
+      unless custom_headers_env.nil?
+        parsed = {}
+        custom_headers_env.split("\n").each do |line|
+          colon = line.index(":")
+          unless colon.nil?
+            parsed[line[0...colon].strip] = line[(colon + 1)..].strip
+          end
+        end
+        headers = parsed.merge(headers)
+      end
+
       @api_key = api_key.to_s
+      @webhook_signing_secret = webhook_signing_secret&.to_s
 
       super(
         base_url: base_url,
         timeout: timeout,
         max_retries: max_retries,
         initial_retry_delay: initial_retry_delay,
-        max_retry_delay: max_retry_delay
+        max_retry_delay: max_retry_delay,
+        headers: headers
       )
 
       @accounts = SurgeAPI::Resources::Accounts.new(client: self)

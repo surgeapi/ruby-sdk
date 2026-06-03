@@ -2,6 +2,7 @@ module SurgeAPI
   module Models
     type account_update_params =
       {
+        id: String,
         brand_name: String,
         name: String,
         organization: SurgeAPI::AccountUpdateParams::Organization,
@@ -12,6 +13,8 @@ module SurgeAPI
     class AccountUpdateParams < SurgeAPI::Internal::Type::BaseModel
       extend SurgeAPI::Internal::Type::RequestParameters::Converter
       include SurgeAPI::Internal::Type::RequestParameters
+
+      attr_accessor id: String
 
       attr_reader brand_name: String?
 
@@ -30,6 +33,7 @@ module SurgeAPI
       attr_accessor time_zone: String?
 
       def initialize: (
+        id: String,
         ?brand_name: String,
         ?name: String,
         ?organization: SurgeAPI::AccountUpdateParams::Organization,
@@ -38,6 +42,7 @@ module SurgeAPI
       ) -> void
 
       def to_hash: -> {
+        id: String,
         brand_name: String,
         name: String,
         organization: SurgeAPI::AccountUpdateParams::Organization,

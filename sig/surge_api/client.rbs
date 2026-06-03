@@ -10,6 +10,8 @@ module SurgeAPI
 
     attr_reader api_key: String
 
+    attr_reader webhook_signing_secret: String?
+
     attr_reader accounts: SurgeAPI::Resources::Accounts
 
     attr_reader attachments: SurgeAPI::Resources::Attachments
@@ -38,6 +40,7 @@ module SurgeAPI
 
     def initialize: (
       ?api_key: String?,
+      ?webhook_signing_secret: String?,
       ?base_url: String?,
       ?max_retries: Integer,
       ?timeout: Float,

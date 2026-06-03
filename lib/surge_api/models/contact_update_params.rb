@@ -7,6 +7,12 @@ module SurgeAPI
       extend SurgeAPI::Internal::Type::RequestParameters::Converter
       include SurgeAPI::Internal::Type::RequestParameters
 
+      # @!attribute id
+      #   The ID of the contact to update.
+      #
+      #   @return [String]
+      required :id, String
+
       # @!attribute phone_number
       #   The contact's phone number in E.164 format.
       #
@@ -37,7 +43,9 @@ module SurgeAPI
       #   @return [Hash{Symbol=>String}, nil]
       optional :metadata, SurgeAPI::Internal::Type::HashOf[String]
 
-      # @!method initialize(phone_number:, email: nil, first_name: nil, last_name: nil, metadata: nil, request_options: {})
+      # @!method initialize(id:, phone_number:, email: nil, first_name: nil, last_name: nil, metadata: nil, request_options: {})
+      #   @param id [String] The ID of the contact to update.
+      #
       #   @param phone_number [String] The contact's phone number in E.164 format.
       #
       #   @param email [String] The contact's email address.

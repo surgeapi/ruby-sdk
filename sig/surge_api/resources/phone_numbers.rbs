@@ -18,6 +18,11 @@ module SurgeAPI
         ?request_options: SurgeAPI::request_opts
       ) -> SurgeAPI::PhoneNumber
 
+      def release: (
+        String id,
+        ?request_options: SurgeAPI::request_opts
+      ) -> SurgeAPI::PhoneNumber
+
       def initialize: (client: SurgeAPI::Client) -> void
     end
   end

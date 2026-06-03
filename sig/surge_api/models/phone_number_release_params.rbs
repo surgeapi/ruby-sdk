@@ -1,9 +1,9 @@
 module SurgeAPI
   module Models
-    type message_retrieve_params =
+    type phone_number_release_params =
       { id: String } & SurgeAPI::Internal::Type::request_parameters
 
-    class MessageRetrieveParams < SurgeAPI::Internal::Type::BaseModel
+    class PhoneNumberReleaseParams < SurgeAPI::Internal::Type::BaseModel
       extend SurgeAPI::Internal::Type::RequestParameters::Converter
       include SurgeAPI::Internal::Type::RequestParameters
 

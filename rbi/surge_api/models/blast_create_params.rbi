@@ -11,6 +11,10 @@ module SurgeAPI
           T.any(SurgeAPI::BlastCreateParams, SurgeAPI::Internal::AnyHash)
         end
 
+      # The account for which the blast should be sent.
+      sig { returns(String) }
+      attr_accessor :account_id
+
       sig do
         returns(T.nilable(T::Array[SurgeAPI::BlastCreateParams::Attachment]))
       end
@@ -74,6 +78,7 @@ module SurgeAPI
 
       sig do
         params(
+          account_id: String,
           attachments:
             T::Array[SurgeAPI::BlastCreateParams::Attachment::OrHash],
           body: T.nilable(String),
@@ -87,6 +92,8 @@ module SurgeAPI
         ).returns(T.attached_class)
       end
       def self.new(
+        # The account for which the blast should be sent.
+        account_id:,
         attachments: nil,
         # The message body.
         body: nil,
@@ -112,6 +119,7 @@ module SurgeAPI
       sig do
         override.returns(
           {
+            account_id: String,
             attachments: T::Array[SurgeAPI::BlastCreateParams::Attachment],
             body: T.nilable(String),
             contacts: T::Array[String],

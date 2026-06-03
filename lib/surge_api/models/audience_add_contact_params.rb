@@ -7,6 +7,12 @@ module SurgeAPI
       extend SurgeAPI::Internal::Type::RequestParameters::Converter
       include SurgeAPI::Internal::Type::RequestParameters
 
+      # @!attribute audience_id
+      #   The audience ID to add the contact to.
+      #
+      #   @return [String]
+      required :audience_id, String
+
       # @!attribute id
       #   The ID of the contact to add. The contact must belong to the same account as the
       #   audience.
@@ -14,9 +20,11 @@ module SurgeAPI
       #   @return [String]
       required :id, String
 
-      # @!method initialize(id:, request_options: {})
+      # @!method initialize(audience_id:, id:, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {SurgeAPI::Models::AudienceAddContactParams} for more details.
+      #
+      #   @param audience_id [String] The audience ID to add the contact to.
       #
       #   @param id [String] The ID of the contact to add. The contact must belong to the same account as the
       #

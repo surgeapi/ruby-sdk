@@ -7,6 +7,12 @@ module SurgeAPI
       extend SurgeAPI::Internal::Type::RequestParameters::Converter
       include SurgeAPI::Internal::Type::RequestParameters
 
+      # @!attribute account_id
+      #   The account for which the user should be created.
+      #
+      #   @return [String]
+      required :account_id, String
+
       # @!attribute first_name
       #   The user's first name.
       #
@@ -31,7 +37,9 @@ module SurgeAPI
       #   @return [String, nil]
       optional :photo_url, String
 
-      # @!method initialize(first_name:, last_name: nil, metadata: nil, photo_url: nil, request_options: {})
+      # @!method initialize(account_id:, first_name:, last_name: nil, metadata: nil, photo_url: nil, request_options: {})
+      #   @param account_id [String] The account for which the user should be created.
+      #
       #   @param first_name [String] The user's first name.
       #
       #   @param last_name [String] The user's last name.

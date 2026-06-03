@@ -7,6 +7,12 @@ module SurgeAPI
       extend SurgeAPI::Internal::Type::RequestParameters::Converter
       include SurgeAPI::Internal::Type::RequestParameters
 
+      # @!attribute account_id
+      #   ID of the account to check
+      #
+      #   @return [String]
+      required :account_id, String
+
       # @!attribute capabilities
       #   capabilities about which to check the status
       #
@@ -14,7 +20,9 @@ module SurgeAPI
       optional :capabilities,
                -> { SurgeAPI::Internal::Type::ArrayOf[enum: SurgeAPI::AccountRetrieveStatusParams::Capability] }
 
-      # @!method initialize(capabilities: nil, request_options: {})
+      # @!method initialize(account_id:, capabilities: nil, request_options: {})
+      #   @param account_id [String] ID of the account to check
+      #
       #   @param capabilities [Array<Symbol, SurgeAPI::Models::AccountRetrieveStatusParams::Capability>] capabilities about which to check the status
       #
       #   @param request_options [SurgeAPI::RequestOptions, Hash{Symbol=>Object}]

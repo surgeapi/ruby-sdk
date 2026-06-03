@@ -7,7 +7,11 @@ module SurgeAPI
       sig do
         params(
           account_id: String,
-          campaign_params: SurgeAPI::CampaignParams,
+          campaign_params:
+            T.any(
+              SurgeAPI::CampaignParams::StandardCampaignParams::OrHash,
+              SurgeAPI::CampaignParams::ExternalCampaignParams::OrHash
+            ),
           request_options: SurgeAPI::RequestOptions::OrHash
         ).returns(SurgeAPI::Campaign)
       end
@@ -42,7 +46,11 @@ module SurgeAPI
       sig do
         params(
           id: String,
-          campaign_params: SurgeAPI::CampaignParams,
+          campaign_params:
+            T.any(
+              SurgeAPI::CampaignParams::StandardCampaignParams::OrHash,
+              SurgeAPI::CampaignParams::ExternalCampaignParams::OrHash
+            ),
           request_options: SurgeAPI::RequestOptions::OrHash
         ).returns(SurgeAPI::Campaign)
       end

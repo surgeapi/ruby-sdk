@@ -7,6 +7,12 @@ module SurgeAPI
       extend SurgeAPI::Internal::Type::RequestParameters::Converter
       include SurgeAPI::Internal::Type::RequestParameters
 
+      # @!attribute account_id
+      #   The account for which the phone number should be created.
+      #
+      #   @return [String]
+      required :account_id, String
+
       # @!attribute area_code
       #   The desired area code for this phone number. If provided without type, the type
       #   will be inferred.
@@ -42,9 +48,11 @@ module SurgeAPI
       #   @return [Symbol, SurgeAPI::Models::PhoneNumberPurchaseParams::Type, nil]
       optional :type, enum: -> { SurgeAPI::PhoneNumberPurchaseParams::Type }
 
-      # @!method initialize(area_code: nil, latitude: nil, longitude: nil, name: nil, type: nil, request_options: {})
+      # @!method initialize(account_id:, area_code: nil, latitude: nil, longitude: nil, name: nil, type: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {SurgeAPI::Models::PhoneNumberPurchaseParams} for more details.
+      #
+      #   @param account_id [String] The account for which the phone number should be created.
       #
       #   @param area_code [String] The desired area code for this phone number. If provided without type, the type
       #

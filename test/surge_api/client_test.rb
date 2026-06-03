@@ -45,7 +45,7 @@ class SurgeAPITest < Minitest::Test
     assert_raises(SurgeAPI::Errors::InternalServerError) do
       surge.messages.create(
         "acct_01j9a43avnfqzbjfch6pygv1td",
-        conversation: {contact: {phone_number: "+18015551234"}}
+        message_params: {conversation: {contact: {phone_number: "+18015551234"}}}
       )
     end
 
@@ -63,7 +63,7 @@ class SurgeAPITest < Minitest::Test
     assert_raises(SurgeAPI::Errors::InternalServerError) do
       surge.messages.create(
         "acct_01j9a43avnfqzbjfch6pygv1td",
-        conversation: {contact: {phone_number: "+18015551234"}}
+        message_params: {conversation: {contact: {phone_number: "+18015551234"}}}
       )
     end
 
@@ -81,7 +81,7 @@ class SurgeAPITest < Minitest::Test
     assert_raises(SurgeAPI::Errors::InternalServerError) do
       surge.messages.create(
         "acct_01j9a43avnfqzbjfch6pygv1td",
-        conversation: {contact: {phone_number: "+18015551234"}},
+        message_params: {conversation: {contact: {phone_number: "+18015551234"}}},
         request_options: {max_retries: 3}
       )
     end
@@ -100,7 +100,7 @@ class SurgeAPITest < Minitest::Test
     assert_raises(SurgeAPI::Errors::InternalServerError) do
       surge.messages.create(
         "acct_01j9a43avnfqzbjfch6pygv1td",
-        conversation: {contact: {phone_number: "+18015551234"}},
+        message_params: {conversation: {contact: {phone_number: "+18015551234"}}},
         request_options: {max_retries: 4}
       )
     end
@@ -120,7 +120,7 @@ class SurgeAPITest < Minitest::Test
     assert_raises(SurgeAPI::Errors::InternalServerError) do
       surge.messages.create(
         "acct_01j9a43avnfqzbjfch6pygv1td",
-        conversation: {contact: {phone_number: "+18015551234"}}
+        message_params: {conversation: {contact: {phone_number: "+18015551234"}}}
       )
     end
 
@@ -143,7 +143,7 @@ class SurgeAPITest < Minitest::Test
     assert_raises(SurgeAPI::Errors::InternalServerError) do
       surge.messages.create(
         "acct_01j9a43avnfqzbjfch6pygv1td",
-        conversation: {contact: {phone_number: "+18015551234"}}
+        message_params: {conversation: {contact: {phone_number: "+18015551234"}}}
       )
     end
     Thread.current.thread_variable_set(:time_now, nil)
@@ -164,7 +164,7 @@ class SurgeAPITest < Minitest::Test
     assert_raises(SurgeAPI::Errors::InternalServerError) do
       surge.messages.create(
         "acct_01j9a43avnfqzbjfch6pygv1td",
-        conversation: {contact: {phone_number: "+18015551234"}}
+        message_params: {conversation: {contact: {phone_number: "+18015551234"}}}
       )
     end
 
@@ -183,7 +183,7 @@ class SurgeAPITest < Minitest::Test
     assert_raises(SurgeAPI::Errors::InternalServerError) do
       surge.messages.create(
         "acct_01j9a43avnfqzbjfch6pygv1td",
-        conversation: {contact: {phone_number: "+18015551234"}}
+        message_params: {conversation: {contact: {phone_number: "+18015551234"}}}
       )
     end
 
@@ -203,7 +203,7 @@ class SurgeAPITest < Minitest::Test
     assert_raises(SurgeAPI::Errors::InternalServerError) do
       surge.messages.create(
         "acct_01j9a43avnfqzbjfch6pygv1td",
-        conversation: {contact: {phone_number: "+18015551234"}},
+        message_params: {conversation: {contact: {phone_number: "+18015551234"}}},
         request_options: {extra_headers: {"x-stainless-retry-count" => nil}}
       )
     end
@@ -224,7 +224,7 @@ class SurgeAPITest < Minitest::Test
     assert_raises(SurgeAPI::Errors::InternalServerError) do
       surge.messages.create(
         "acct_01j9a43avnfqzbjfch6pygv1td",
-        conversation: {contact: {phone_number: "+18015551234"}},
+        message_params: {conversation: {contact: {phone_number: "+18015551234"}}},
         request_options: {extra_headers: {"x-stainless-retry-count" => "42"}}
       )
     end
@@ -248,7 +248,7 @@ class SurgeAPITest < Minitest::Test
     assert_raises(SurgeAPI::Errors::APIConnectionError) do
       surge.messages.create(
         "acct_01j9a43avnfqzbjfch6pygv1td",
-        conversation: {contact: {phone_number: "+18015551234"}},
+        message_params: {conversation: {contact: {phone_number: "+18015551234"}}},
         request_options: {extra_headers: {}}
       )
     end
@@ -259,8 +259,8 @@ class SurgeAPITest < Minitest::Test
       assert_equal(recorded.method, _1.method)
       assert_equal(recorded.body, _1.body)
       assert_equal(
-        recorded.headers.transform_keys(&:downcase).fetch("content-type"),
-        _1.headers.transform_keys(&:downcase).fetch("content-type")
+        recorded.headers.transform_keys(&:downcase)["content-type"],
+        _1.headers.transform_keys(&:downcase)["content-type"]
       )
     end
   end
@@ -281,7 +281,7 @@ class SurgeAPITest < Minitest::Test
     assert_raises(SurgeAPI::Errors::APIConnectionError) do
       surge.messages.create(
         "acct_01j9a43avnfqzbjfch6pygv1td",
-        conversation: {contact: {phone_number: "+18015551234"}},
+        message_params: {conversation: {contact: {phone_number: "+18015551234"}}},
         request_options: {extra_headers: {}}
       )
     end
@@ -309,7 +309,7 @@ class SurgeAPITest < Minitest::Test
     assert_raises(SurgeAPI::Errors::APIConnectionError) do
       surge.messages.create(
         "acct_01j9a43avnfqzbjfch6pygv1td",
-        conversation: {contact: {phone_number: "+18015551234"}},
+        message_params: {conversation: {contact: {phone_number: "+18015551234"}}},
         request_options: {extra_headers: {"authorization" => "Bearer xyz"}}
       )
     end
@@ -340,7 +340,7 @@ class SurgeAPITest < Minitest::Test
     assert_raises(SurgeAPI::Errors::APIConnectionError) do
       surge.messages.create(
         "acct_01j9a43avnfqzbjfch6pygv1td",
-        conversation: {contact: {phone_number: "+18015551234"}},
+        message_params: {conversation: {contact: {phone_number: "+18015551234"}}},
         request_options: {extra_headers: {"authorization" => "Bearer xyz"}}
       )
     end
@@ -361,12 +361,13 @@ class SurgeAPITest < Minitest::Test
 
     surge.messages.create(
       "acct_01j9a43avnfqzbjfch6pygv1td",
-      conversation: {contact: {phone_number: "+18015551234"}}
+      message_params: {conversation: {contact: {phone_number: "+18015551234"}}}
     )
 
     assert_requested(:any, /./) do |req|
-      headers = req.headers.transform_keys(&:downcase).fetch_values("accept", "content-type")
-      headers.each { refute_empty(_1) }
+      headers = req.headers.transform_keys(&:downcase)
+      expected = req.body.nil? ? ["accept"] : %w[accept content-type]
+      headers.fetch_values(*expected).each { refute_empty(_1) }
     end
   end
 end

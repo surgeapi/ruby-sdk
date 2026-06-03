@@ -32,7 +32,10 @@ surge = SurgeAPI::Client.new(
   api_key: ENV["SURGE_API_KEY"] # This is the default and can be omitted
 )
 
-message = surge.messages.create("acct_01j9a43avnfqzbjfch6pygv1td")
+message = surge.messages.create(
+  "acct_01j9a43avnfqzbjfch6pygv1td",
+  message_params: {conversation: {contact: {phone_number: "+18015551234"}}}
+)
 
 puts(message.id)
 ```
@@ -71,7 +74,10 @@ When the library is unable to connect to the API, or if the API returns a non-su
 
 ```ruby
 begin
-  message = surge.messages.create("acct_01j9a43avnfqzbjfch6pygv1td")
+  message = surge.messages.create(
+    "acct_01j9a43avnfqzbjfch6pygv1td",
+    message_params: {conversation: {contact: {phone_number: "+18015551234"}}}
+  )
 rescue SurgeAPI::Errors::APIConnectionError => e
   puts("The server could not be reached")
   puts(e.cause)  # an underlying Exception, likely raised within `net/http`
@@ -114,7 +120,11 @@ surge = SurgeAPI::Client.new(
 )
 
 # Or, configure per-request:
-surge.messages.create("acct_01j9a43avnfqzbjfch6pygv1td", request_options: {max_retries: 5})
+surge.messages.create(
+  "acct_01j9a43avnfqzbjfch6pygv1td",
+  message_params: {conversation: {contact: {phone_number: "+18015551234"}}},
+  request_options: {max_retries: 5}
+)
 ```
 
 ### Timeouts
@@ -128,7 +138,11 @@ surge = SurgeAPI::Client.new(
 )
 
 # Or, configure per-request:
-surge.messages.create("acct_01j9a43avnfqzbjfch6pygv1td", request_options: {timeout: 5})
+surge.messages.create(
+  "acct_01j9a43avnfqzbjfch6pygv1td",
+  message_params: {conversation: {contact: {phone_number: "+18015551234"}}},
+  request_options: {timeout: 5}
+)
 ```
 
 On timeout, `SurgeAPI::Errors::APITimeoutError` is raised.
@@ -161,6 +175,7 @@ Note: the `extra_` parameters of the same name overrides the documented paramete
 message =
   surge.messages.create(
     "acct_01j9a43avnfqzbjfch6pygv1td",
+    message_params: {conversation: {contact: {phone_number: "+18015551234"}}},
     request_options: {
       extra_query: {my_query_parameter: value},
       extra_body: {my_body_parameter: value},
@@ -206,17 +221,37 @@ This library provides comprehensive [RBI](https://sorbet.org/docs/rbi) definitio
 You can provide typesafe request parameters like so:
 
 ```ruby
-surge.messages.create("acct_01j9a43avnfqzbjfch6pygv1td")
+surge.messages.create(
+  "acct_01j9a43avnfqzbjfch6pygv1td",
+  message_params: SurgeAPI::MessageParams::MessageParamsWithConversation.new(
+    conversation: SurgeAPI::MessageParams::MessageParamsWithConversation::Conversation.new(
+      contact: SurgeAPI::MessageParams::MessageParamsWithConversation::Conversation::Contact.new(
+        phone_number: "+18015551234"
+      )
+    )
+  )
+)
 ```
 
 Or, equivalently:
 
 ```ruby
 # Hashes work, but are not typesafe:
-surge.messages.create("acct_01j9a43avnfqzbjfch6pygv1td")
+surge.messages.create(
+  "acct_01j9a43avnfqzbjfch6pygv1td",
+  message_params: {conversation: {contact: {phone_number: "+18015551234"}}}
+)
 
 # You can also splat a full Params class:
-params = SurgeAPI::MessageCreateParams.new
+params = SurgeAPI::MessageCreateParams.new(
+  message_params: SurgeAPI::MessageParams::MessageParamsWithConversation.new(
+    conversation: SurgeAPI::MessageParams::MessageParamsWithConversation::Conversation.new(
+      contact: SurgeAPI::MessageParams::MessageParamsWithConversation::Conversation::Contact.new(
+        phone_number: "+18015551234"
+      )
+    )
+  )
+)
 surge.messages.create("acct_01j9a43avnfqzbjfch6pygv1td", **params)
 ```
 
@@ -225,25 +260,25 @@ surge.messages.create("acct_01j9a43avnfqzbjfch6pygv1td", **params)
 Since this library does not depend on `sorbet-runtime`, it cannot provide [`T::Enum`](https://sorbet.org/docs/tenum) instances. Instead, we provide "tagged symbols" instead, which is always a primitive at runtime:
 
 ```ruby
-# :high
-puts(SurgeAPI::CampaignParams::Volume::HIGH)
+# :local
+puts(SurgeAPI::PhoneNumberPurchaseParams::Type::LOCAL)
 
-# Revealed type: `T.all(SurgeAPI::CampaignParams::Volume, Symbol)`
-T.reveal_type(SurgeAPI::CampaignParams::Volume::HIGH)
+# Revealed type: `T.all(SurgeAPI::PhoneNumberPurchaseParams::Type, Symbol)`
+T.reveal_type(SurgeAPI::PhoneNumberPurchaseParams::Type::LOCAL)
 ```
 
 Enum parameters have a "relaxed" type, so you can either pass in enum constants or their literal value:
 
 ```ruby
 # Using the enum constants preserves the tagged type information:
-surge.campaigns.create(
-  volume: SurgeAPI::CampaignParams::Volume::HIGH,
+surge.phone_numbers.purchase(
+  type: SurgeAPI::PhoneNumberPurchaseParams::Type::LOCAL,
   # …
 )
 
 # Literal values are also permissible:
-surge.campaigns.create(
-  volume: :high,
+surge.phone_numbers.purchase(
+  type: :local,
   # …
 )
 ```

@@ -11,6 +11,10 @@ module SurgeAPI
           T.any(SurgeAPI::UserCreateParams, SurgeAPI::Internal::AnyHash)
         end
 
+      # The account for which the user should be created.
+      sig { returns(String) }
+      attr_accessor :account_id
+
       # The user's first name.
       sig { returns(String) }
       attr_accessor :first_name
@@ -38,6 +42,7 @@ module SurgeAPI
 
       sig do
         params(
+          account_id: String,
           first_name: String,
           last_name: String,
           metadata: T::Hash[Symbol, String],
@@ -46,6 +51,8 @@ module SurgeAPI
         ).returns(T.attached_class)
       end
       def self.new(
+        # The account for which the user should be created.
+        account_id:,
         # The user's first name.
         first_name:,
         # The user's last name.
@@ -61,6 +68,7 @@ module SurgeAPI
       sig do
         override.returns(
           {
+            account_id: String,
             first_name: String,
             last_name: String,
             metadata: T::Hash[Symbol, String],

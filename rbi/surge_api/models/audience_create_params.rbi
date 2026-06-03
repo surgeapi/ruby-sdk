@@ -11,17 +11,24 @@ module SurgeAPI
           T.any(SurgeAPI::AudienceCreateParams, SurgeAPI::Internal::AnyHash)
         end
 
+      # The account for which the audience should be created.
+      sig { returns(String) }
+      attr_accessor :account_id
+
       # The audience name.
       sig { returns(String) }
       attr_accessor :name
 
       sig do
         params(
+          account_id: String,
           name: String,
           request_options: SurgeAPI::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
+        # The account for which the audience should be created.
+        account_id:,
         # The audience name.
         name:,
         request_options: {}
@@ -30,7 +37,11 @@ module SurgeAPI
 
       sig do
         override.returns(
-          { name: String, request_options: SurgeAPI::RequestOptions }
+          {
+            account_id: String,
+            name: String,
+            request_options: SurgeAPI::RequestOptions
+          }
         )
       end
       def to_hash

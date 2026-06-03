@@ -2,19 +2,19 @@
 
 module SurgeAPI
   module Models
-    # @see SurgeAPI::Resources::Users#retrieve
-    class UserRetrieveParams < SurgeAPI::Internal::Type::BaseModel
+    # @see SurgeAPI::Resources::PhoneNumbers#release
+    class PhoneNumberReleaseParams < SurgeAPI::Internal::Type::BaseModel
       extend SurgeAPI::Internal::Type::RequestParameters::Converter
       include SurgeAPI::Internal::Type::RequestParameters
 
       # @!attribute id
-      #   The ID of the user to retrieve.
+      #   The ID of the phone number to release.
       #
       #   @return [String]
       required :id, String
 
       # @!method initialize(id:, request_options: {})
-      #   @param id [String] The ID of the user to retrieve.
+      #   @param id [String] The ID of the phone number to release.
       #
       #   @param request_options [SurgeAPI::RequestOptions, Hash{Symbol=>Object}]
     end

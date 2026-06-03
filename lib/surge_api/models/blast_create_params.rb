@@ -7,6 +7,12 @@ module SurgeAPI
       extend SurgeAPI::Internal::Type::RequestParameters::Converter
       include SurgeAPI::Internal::Type::RequestParameters
 
+      # @!attribute account_id
+      #   The account for which the blast should be sent.
+      #
+      #   @return [String]
+      required :account_id, String
+
       # @!attribute attachments
       #
       #   @return [Array<SurgeAPI::Models::BlastCreateParams::Attachment>, nil]
@@ -61,9 +67,11 @@ module SurgeAPI
       #   @return [Array<String>, nil]
       optional :to, SurgeAPI::Internal::Type::ArrayOf[String]
 
-      # @!method initialize(attachments: nil, body: nil, contacts: nil, from: nil, name: nil, segments: nil, send_at: nil, to: nil, request_options: {})
+      # @!method initialize(account_id:, attachments: nil, body: nil, contacts: nil, from: nil, name: nil, segments: nil, send_at: nil, to: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {SurgeAPI::Models::BlastCreateParams} for more details.
+      #
+      #   @param account_id [String] The account for which the blast should be sent.
       #
       #   @param attachments [Array<SurgeAPI::Models::BlastCreateParams::Attachment>]
       #

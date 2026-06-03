@@ -2,16 +2,16 @@
 
 module SurgeAPI
   module Models
-    class RecordingDeleteParams < SurgeAPI::Internal::Type::BaseModel
+    class PhoneNumberReleaseParams < SurgeAPI::Internal::Type::BaseModel
       extend SurgeAPI::Internal::Type::RequestParameters::Converter
       include SurgeAPI::Internal::Type::RequestParameters
 
       OrHash =
         T.type_alias do
-          T.any(SurgeAPI::RecordingDeleteParams, SurgeAPI::Internal::AnyHash)
+          T.any(SurgeAPI::PhoneNumberReleaseParams, SurgeAPI::Internal::AnyHash)
         end
 
-      # The ID of the recording.
+      # The ID of the phone number to release.
       sig { returns(String) }
       attr_accessor :id
 
@@ -22,7 +22,7 @@ module SurgeAPI
         ).returns(T.attached_class)
       end
       def self.new(
-        # The ID of the recording.
+        # The ID of the phone number to release.
         id:,
         request_options: {}
       )
