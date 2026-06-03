@@ -2,6 +2,7 @@ module SurgeAPI
   module Models
     type blast_create_params =
       {
+        account_id: String,
         attachments: ::Array[SurgeAPI::BlastCreateParams::Attachment],
         body: String?,
         contacts: ::Array[String],
@@ -16,6 +17,8 @@ module SurgeAPI
     class BlastCreateParams < SurgeAPI::Internal::Type::BaseModel
       extend SurgeAPI::Internal::Type::RequestParameters::Converter
       include SurgeAPI::Internal::Type::RequestParameters
+
+      attr_accessor account_id: String
 
       attr_reader attachments: ::Array[SurgeAPI::BlastCreateParams::Attachment]?
 
@@ -50,6 +53,7 @@ module SurgeAPI
       def to=: (::Array[String]) -> ::Array[String]
 
       def initialize: (
+        account_id: String,
         ?attachments: ::Array[SurgeAPI::BlastCreateParams::Attachment],
         ?body: String?,
         ?contacts: ::Array[String],
@@ -62,6 +66,7 @@ module SurgeAPI
       ) -> void
 
       def to_hash: -> {
+        account_id: String,
         attachments: ::Array[SurgeAPI::BlastCreateParams::Attachment],
         body: String?,
         contacts: ::Array[String],

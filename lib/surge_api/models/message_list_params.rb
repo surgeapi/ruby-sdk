@@ -7,6 +7,12 @@ module SurgeAPI
       extend SurgeAPI::Internal::Type::RequestParameters::Converter
       include SurgeAPI::Internal::Type::RequestParameters
 
+      # @!attribute account_id
+      #   The account ID to list messages for.
+      #
+      #   @return [String]
+      required :account_id, String
+
       # @!attribute after
       #   Cursor for forward pagination. Use the next_cursor from a previous response.
       #
@@ -20,9 +26,11 @@ module SurgeAPI
       #   @return [String, nil]
       optional :before, String
 
-      # @!method initialize(after: nil, before: nil, request_options: {})
+      # @!method initialize(account_id:, after: nil, before: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {SurgeAPI::Models::MessageListParams} for more details.
+      #
+      #   @param account_id [String] The account ID to list messages for.
       #
       #   @param after [String] Cursor for forward pagination. Use the next_cursor from a previous response.
       #

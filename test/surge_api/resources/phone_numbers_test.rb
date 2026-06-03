@@ -49,4 +49,24 @@ class SurgeAPI::Test::Resources::PhoneNumbersTest < SurgeAPI::Test::ResourceTest
       }
     end
   end
+
+  def test_release
+    skip("Mock server tests are disabled")
+
+    response = @surge.phone_numbers.release("pn_01j9a43avnfqzbjfch6pygv1td")
+
+    assert_pattern do
+      response => SurgeAPI::PhoneNumber
+    end
+
+    assert_pattern do
+      response => {
+        id: String,
+        campaign_id: String | nil,
+        name: String | nil,
+        number: String,
+        type: SurgeAPI::PhoneNumber::Type
+      }
+    end
+  end
 end

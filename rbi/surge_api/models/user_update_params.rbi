@@ -11,6 +11,10 @@ module SurgeAPI
           T.any(SurgeAPI::UserUpdateParams, SurgeAPI::Internal::AnyHash)
         end
 
+      # The ID of the user to update.
+      sig { returns(String) }
+      attr_accessor :id
+
       # The user's first name.
       sig { returns(String) }
       attr_accessor :first_name
@@ -38,6 +42,7 @@ module SurgeAPI
 
       sig do
         params(
+          id: String,
           first_name: String,
           last_name: String,
           metadata: T::Hash[Symbol, String],
@@ -46,6 +51,8 @@ module SurgeAPI
         ).returns(T.attached_class)
       end
       def self.new(
+        # The ID of the user to update.
+        id:,
         # The user's first name.
         first_name:,
         # The user's last name.
@@ -61,6 +68,7 @@ module SurgeAPI
       sig do
         override.returns(
           {
+            id: String,
             first_name: String,
             last_name: String,
             metadata: T::Hash[Symbol, String],

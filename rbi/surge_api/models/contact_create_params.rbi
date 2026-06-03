@@ -11,6 +11,10 @@ module SurgeAPI
           T.any(SurgeAPI::ContactCreateParams, SurgeAPI::Internal::AnyHash)
         end
 
+      # The account for which the contact should be created.
+      sig { returns(String) }
+      attr_accessor :account_id
+
       # The contact's phone number in E.164 format.
       sig { returns(String) }
       attr_accessor :phone_number
@@ -45,6 +49,7 @@ module SurgeAPI
 
       sig do
         params(
+          account_id: String,
           phone_number: String,
           email: String,
           first_name: String,
@@ -54,6 +59,8 @@ module SurgeAPI
         ).returns(T.attached_class)
       end
       def self.new(
+        # The account for which the contact should be created.
+        account_id:,
         # The contact's phone number in E.164 format.
         phone_number:,
         # The contact's email address.
@@ -71,6 +78,7 @@ module SurgeAPI
       sig do
         override.returns(
           {
+            account_id: String,
             phone_number: String,
             email: String,
             first_name: String,

@@ -12,7 +12,7 @@ module SurgeAPI
       #
       # @param account_id [String] The account for which the campaign should be created.
       #
-      # @param campaign_params [SurgeAPI::CampaignParams] Parameters for creating a new campaign. Either provide full campaign details or
+      # @param campaign_params [SurgeAPI::Models::CampaignParams::StandardCampaignParams, SurgeAPI::Models::CampaignParams::ExternalCampaignParams] Parameters for creating a new campaign. Either provide full campaign details or
       #
       # @param request_options [SurgeAPI::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -21,15 +21,10 @@ module SurgeAPI
       # @see SurgeAPI::Models::CampaignCreateParams
       def create(account_id, params)
         parsed, options = SurgeAPI::CampaignCreateParams.dump_request(params)
-        case parsed
-        in {campaign_params: Hash => union, **rest}
-          parsed = {**rest, **union}
-        else
-        end
         @client.request(
           method: :post,
           path: ["accounts/%1$s/campaigns", account_id],
-          body: parsed,
+          body: parsed[:campaign_params],
           model: SurgeAPI::Campaign,
           options: options
         )
@@ -67,7 +62,7 @@ module SurgeAPI
       #
       # @param id [String] The ID of the campaign to update.
       #
-      # @param campaign_params [SurgeAPI::CampaignParams] Parameters for creating a new campaign. Either provide full campaign details or
+      # @param campaign_params [SurgeAPI::Models::CampaignParams::StandardCampaignParams, SurgeAPI::Models::CampaignParams::ExternalCampaignParams] Parameters for creating a new campaign. Either provide full campaign details or
       #
       # @param request_options [SurgeAPI::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -76,15 +71,10 @@ module SurgeAPI
       # @see SurgeAPI::Models::CampaignUpdateParams
       def update(id, params)
         parsed, options = SurgeAPI::CampaignUpdateParams.dump_request(params)
-        case parsed
-        in {campaign_params: Hash => union, **rest}
-          parsed = {**rest, **union}
-        else
-        end
         @client.request(
           method: :patch,
           path: ["campaigns/%1$s", id],
-          body: parsed,
+          body: parsed[:campaign_params],
           model: SurgeAPI::Campaign,
           options: options
         )

@@ -11,46 +11,26 @@ module SurgeAPI
           T.any(SurgeAPI::CampaignUpdateParams, SurgeAPI::Internal::AnyHash)
         end
 
-      # Parameters for creating a new campaign. Either provide full campaign details or
-      # import using a TCR ID.
-      sig do
-        returns(
-          T.any(
-            SurgeAPI::CampaignParams::StandardCampaignParams,
-            SurgeAPI::CampaignParams::ExternalCampaignParams
-          )
-        )
-      end
-      attr_accessor :campaign_params
+      # The ID of the campaign to update.
+      sig { returns(String) }
+      attr_accessor :id
 
       sig do
         params(
-          campaign_params:
-            T.any(
-              SurgeAPI::CampaignParams::StandardCampaignParams::OrHash,
-              SurgeAPI::CampaignParams::ExternalCampaignParams::OrHash
-            ),
+          id: String,
           request_options: SurgeAPI::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
-        # Parameters for creating a new campaign. Either provide full campaign details or
-        # import using a TCR ID.
-        campaign_params:,
+        # The ID of the campaign to update.
+        id:,
         request_options: {}
       )
       end
 
       sig do
         override.returns(
-          {
-            campaign_params:
-              T.any(
-                SurgeAPI::CampaignParams::StandardCampaignParams,
-                SurgeAPI::CampaignParams::ExternalCampaignParams
-              ),
-            request_options: SurgeAPI::RequestOptions
-          }
+          { id: String, request_options: SurgeAPI::RequestOptions }
         )
       end
       def to_hash

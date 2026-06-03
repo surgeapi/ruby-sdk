@@ -2,7 +2,9 @@ module SurgeAPI
   module Resources
     class Webhooks
       def unwrap: (
-        String payload
+        String payload,
+        headers: ::Hash[String, String],
+        ?key: String?
       ) -> (SurgeAPI::CallEndedWebhookEvent
       | SurgeAPI::CampaignApprovedWebhookEvent
       | SurgeAPI::ContactOptedInWebhookEvent

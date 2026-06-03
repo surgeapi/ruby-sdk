@@ -11,6 +11,10 @@ module SurgeAPI
           T.any(SurgeAPI::AudienceAddContactParams, SurgeAPI::Internal::AnyHash)
         end
 
+      # The audience ID to add the contact to.
+      sig { returns(String) }
+      attr_accessor :audience_id
+
       # The ID of the contact to add. The contact must belong to the same account as the
       # audience.
       sig { returns(String) }
@@ -18,11 +22,14 @@ module SurgeAPI
 
       sig do
         params(
+          audience_id: String,
           id: String,
           request_options: SurgeAPI::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
+        # The audience ID to add the contact to.
+        audience_id:,
         # The ID of the contact to add. The contact must belong to the same account as the
         # audience.
         id:,
@@ -32,7 +39,11 @@ module SurgeAPI
 
       sig do
         override.returns(
-          { id: String, request_options: SurgeAPI::RequestOptions }
+          {
+            audience_id: String,
+            id: String,
+            request_options: SurgeAPI::RequestOptions
+          }
         )
       end
       def to_hash

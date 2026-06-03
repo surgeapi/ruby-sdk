@@ -31,7 +31,11 @@ module SurgeAPI
       sig do
         params(
           account_id: String,
-          message_params: SurgeAPI::MessageParams,
+          message_params:
+            T.any(
+              SurgeAPI::MessageParams::MessageParamsWithConversation::OrHash,
+              SurgeAPI::MessageParams::SimpleMessageParams::OrHash
+            ),
           request_options: SurgeAPI::RequestOptions::OrHash
         ).returns(SurgeAPI::Message)
       end

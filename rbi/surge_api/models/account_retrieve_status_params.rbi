@@ -14,6 +14,10 @@ module SurgeAPI
           )
         end
 
+      # ID of the account to check
+      sig { returns(String) }
+      attr_accessor :account_id
+
       # capabilities about which to check the status
       sig do
         returns(
@@ -38,6 +42,7 @@ module SurgeAPI
 
       sig do
         params(
+          account_id: String,
           capabilities:
             T::Array[
               SurgeAPI::AccountRetrieveStatusParams::Capability::OrSymbol
@@ -46,6 +51,8 @@ module SurgeAPI
         ).returns(T.attached_class)
       end
       def self.new(
+        # ID of the account to check
+        account_id:,
         # capabilities about which to check the status
         capabilities: nil,
         request_options: {}
@@ -55,6 +62,7 @@ module SurgeAPI
       sig do
         override.returns(
           {
+            account_id: String,
             capabilities:
               T::Array[
                 SurgeAPI::AccountRetrieveStatusParams::Capability::OrSymbol

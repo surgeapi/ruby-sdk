@@ -1,15 +1,23 @@
 module SurgeAPI
   module Models
     type recording_get_file_params =
-      {  } & SurgeAPI::Internal::Type::request_parameters
+      { recording_id: String } & SurgeAPI::Internal::Type::request_parameters
 
     class RecordingGetFileParams < SurgeAPI::Internal::Type::BaseModel
       extend SurgeAPI::Internal::Type::RequestParameters::Converter
       include SurgeAPI::Internal::Type::RequestParameters
 
-      def initialize: (?request_options: SurgeAPI::request_opts) -> void
+      attr_accessor recording_id: String
 
-      def to_hash: -> { request_options: SurgeAPI::RequestOptions }
+      def initialize: (
+        recording_id: String,
+        ?request_options: SurgeAPI::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        recording_id: String,
+        request_options: SurgeAPI::RequestOptions
+      }
     end
   end
 end

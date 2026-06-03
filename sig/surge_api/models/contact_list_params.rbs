@@ -1,12 +1,14 @@
 module SurgeAPI
   module Models
     type contact_list_params =
-      { after: String, before: String }
+      { account_id: String, after: String, before: String }
       & SurgeAPI::Internal::Type::request_parameters
 
     class ContactListParams < SurgeAPI::Internal::Type::BaseModel
       extend SurgeAPI::Internal::Type::RequestParameters::Converter
       include SurgeAPI::Internal::Type::RequestParameters
+
+      attr_accessor account_id: String
 
       attr_reader after: String?
 
@@ -17,12 +19,14 @@ module SurgeAPI
       def before=: (String) -> String
 
       def initialize: (
+        account_id: String,
         ?after: String,
         ?before: String,
         ?request_options: SurgeAPI::request_opts
       ) -> void
 
       def to_hash: -> {
+        account_id: String,
         after: String,
         before: String,
         request_options: SurgeAPI::RequestOptions

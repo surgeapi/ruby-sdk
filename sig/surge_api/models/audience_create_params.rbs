@@ -1,20 +1,25 @@
 module SurgeAPI
   module Models
     type audience_create_params =
-      { name: String } & SurgeAPI::Internal::Type::request_parameters
+      { account_id: String, name: String }
+      & SurgeAPI::Internal::Type::request_parameters
 
     class AudienceCreateParams < SurgeAPI::Internal::Type::BaseModel
       extend SurgeAPI::Internal::Type::RequestParameters::Converter
       include SurgeAPI::Internal::Type::RequestParameters
 
+      attr_accessor account_id: String
+
       attr_accessor name: String
 
       def initialize: (
+        account_id: String,
         name: String,
         ?request_options: SurgeAPI::request_opts
       ) -> void
 
       def to_hash: -> {
+        account_id: String,
         name: String,
         request_options: SurgeAPI::RequestOptions
       }
