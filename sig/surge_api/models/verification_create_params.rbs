@@ -1,20 +1,25 @@
 module SurgeAPI
   module Models
     type verification_create_params =
-      { phone_number: String } & SurgeAPI::Internal::Type::request_parameters
+      { account_id: String, phone_number: String }
+      & SurgeAPI::Internal::Type::request_parameters
 
     class VerificationCreateParams < SurgeAPI::Internal::Type::BaseModel
       extend SurgeAPI::Internal::Type::RequestParameters::Converter
       include SurgeAPI::Internal::Type::RequestParameters
 
+      attr_accessor account_id: String
+
       attr_accessor phone_number: String
 
       def initialize: (
+        account_id: String,
         phone_number: String,
         ?request_options: SurgeAPI::request_opts
       ) -> void
 
       def to_hash: -> {
+        account_id: String,
         phone_number: String,
         request_options: SurgeAPI::RequestOptions
       }

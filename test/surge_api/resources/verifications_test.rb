@@ -6,7 +6,7 @@ class SurgeAPI::Test::Resources::VerificationsTest < SurgeAPI::Test::ResourceTes
   def test_create_required_params
     skip("Mock server tests are disabled")
 
-    response = @surge.verifications.create(phone_number: "+18015551234")
+    response = @surge.verifications.create("acct_01j9a43avnfqzbjfch6pygv1td", phone_number: "+18015551234")
 
     assert_pattern do
       response => SurgeAPI::Verification
