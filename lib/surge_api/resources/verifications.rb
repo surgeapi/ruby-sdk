@@ -3,9 +3,12 @@
 module SurgeAPI
   module Resources
     class Verifications
-      # Creates a new Verification and sends the code to the given phone number.
+      # Creates a new Verification for an account and sends the code to the given phone
+      # number.
       #
-      # @overload create(phone_number:, request_options: {})
+      # @overload create(account_id, phone_number:, request_options: {})
+      #
+      # @param account_id [String] The account to associate with the verification.
       #
       # @param phone_number [String] The phone number to be verified. In E.164 format.
       #
@@ -14,11 +17,11 @@ module SurgeAPI
       # @return [SurgeAPI::Models::Verification]
       #
       # @see SurgeAPI::Models::VerificationCreateParams
-      def create(params)
+      def create(account_id, params)
         parsed, options = SurgeAPI::VerificationCreateParams.dump_request(params)
         @client.request(
           method: :post,
-          path: "verifications",
+          path: ["accounts/%1$s/verifications", account_id],
           body: parsed,
           model: SurgeAPI::Verification,
           options: options
