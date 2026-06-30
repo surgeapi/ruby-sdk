@@ -136,7 +136,7 @@ module SurgeAPI
             url: String
           }
 
-          type type_ = :file | :image | :link | :video
+          type type_ = :file | :image | :link | :contact | :video
 
           module Type
             extend SurgeAPI::Internal::Type::Enum
@@ -144,6 +144,7 @@ module SurgeAPI
             FILE: :file
             IMAGE: :image
             LINK: :link
+            CONTACT: :contact
             VIDEO: :video
 
             def self?.values: -> ::Array[SurgeAPI::Models::MessageDeliveredWebhookEvent::Data::Attachment::type_]

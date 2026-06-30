@@ -159,6 +159,8 @@ module SurgeAPI
           IMAGE =
             T.let(:image, SurgeAPI::Message::Attachment::Type::TaggedSymbol)
           LINK = T.let(:link, SurgeAPI::Message::Attachment::Type::TaggedSymbol)
+          CONTACT =
+            T.let(:contact, SurgeAPI::Message::Attachment::Type::TaggedSymbol)
           VIDEO =
             T.let(:video, SurgeAPI::Message::Attachment::Type::TaggedSymbol)
 
