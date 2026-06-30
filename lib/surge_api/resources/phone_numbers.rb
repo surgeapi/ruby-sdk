@@ -3,6 +3,32 @@
 module SurgeAPI
   module Resources
     class PhoneNumbers
+      # Updates a phone number's details.
+      #
+      # @overload update(id, campaign_id: nil, name: nil, request_options: {})
+      #
+      # @param id [String] The ID of the phone number to update.
+      #
+      # @param campaign_id [String] Campaign ID to attach this number to (`cpn_...`).
+      #
+      # @param name [String] A human-readable name for the phone number.
+      #
+      # @param request_options [SurgeAPI::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [SurgeAPI::Models::PhoneNumber]
+      #
+      # @see SurgeAPI::Models::PhoneNumberUpdateParams
+      def update(id, params = {})
+        parsed, options = SurgeAPI::PhoneNumberUpdateParams.dump_request(params)
+        @client.request(
+          method: :patch,
+          path: ["phone_numbers/%1$s", id],
+          body: parsed,
+          model: SurgeAPI::PhoneNumber,
+          options: options
+        )
+      end
+
       # Some parameter documentations has been truncated, see
       # {SurgeAPI::Models::PhoneNumberListParams} for more details.
       #
