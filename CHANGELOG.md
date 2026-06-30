@@ -1,5 +1,27 @@
 # Changelog
 
+## 0.18.0 (2026-06-30)
+
+Full Changelog: [v0.17.0...v0.18.0](https://github.com/surgeapi/ruby-sdk/compare/v0.17.0...v0.18.0)
+
+### Features
+
+* **api:** add contact to attachment types ([2deb16b](https://github.com/surgeapi/ruby-sdk/commit/2deb16b7a54e656be02438844c68de41dcdc0aff))
+* **api:** add message settings ([a0b6be6](https://github.com/surgeapi/ruby-sdk/commit/a0b6be6586d6392a9a01143c3e838618246e0183))
+* **api:** add update phone number endpoint ([1953448](https://github.com/surgeapi/ruby-sdk/commit/1953448bc582187a06e9a474fd7587510868d389))
+* **api:** remove extraneous empty properties ([230dd27](https://github.com/surgeapi/ruby-sdk/commit/230dd27965e2d6ac14920a584baefe9067a702c1))
+
+
+### Bug Fixes
+
+* **client:** send content-type header for requests with an omitted optional body ([b482a41](https://github.com/surgeapi/ruby-sdk/commit/b482a41647474442749c52b692083119985c5d39))
+
+
+### Chores
+
+* **internal:** bound formatter parallelism to CPU count ([85fcacc](https://github.com/surgeapi/ruby-sdk/commit/85fcaccabe7f4f1321306a5edd86a63eb2c50322))
+* **spec:** remove extraneous empty properties ([e985a21](https://github.com/surgeapi/ruby-sdk/commit/e985a21b5b45e835fe2a623c3cc38030fee2455d))
+
 ## 0.17.0 (2026-05-04)
 
 Full Changelog: [v0.16.0...v0.17.0](https://github.com/surgeapi/ruby-sdk/compare/v0.16.0...v0.17.0)
