@@ -320,6 +320,11 @@ module SurgeAPI
                 :link,
                 SurgeAPI::MessageSentWebhookEvent::Data::Attachment::Type::TaggedSymbol
               )
+            CONTACT =
+              T.let(
+                :contact,
+                SurgeAPI::MessageSentWebhookEvent::Data::Attachment::Type::TaggedSymbol
+              )
             VIDEO =
               T.let(
                 :video,
