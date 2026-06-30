@@ -1,0 +1,36 @@
+module SurgeAPI
+  module Models
+    type phone_number_update_params =
+      { id: String, campaign_id: String, name: String }
+      & SurgeAPI::Internal::Type::request_parameters
+
+    class PhoneNumberUpdateParams < SurgeAPI::Internal::Type::BaseModel
+      extend SurgeAPI::Internal::Type::RequestParameters::Converter
+      include SurgeAPI::Internal::Type::RequestParameters
+
+      attr_accessor id: String
+
+      attr_reader campaign_id: String?
+
+      def campaign_id=: (String) -> String
+
+      attr_reader name: String?
+
+      def name=: (String) -> String
+
+      def initialize: (
+        id: String,
+        ?campaign_id: String,
+        ?name: String,
+        ?request_options: SurgeAPI::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        campaign_id: String,
+        name: String,
+        request_options: SurgeAPI::RequestOptions
+      }
+    end
+  end
+end
