@@ -85,6 +85,24 @@ module SurgeAPI
         sig { params(send_at: Time).void }
         attr_writer :send_at
 
+        # Per-message setting overrides.
+        sig do
+          returns(
+            T.nilable(
+              SurgeAPI::MessageParams::MessageParamsWithConversation::Settings
+            )
+          )
+        end
+        attr_reader :settings
+
+        sig do
+          params(
+            settings:
+              SurgeAPI::MessageParams::MessageParamsWithConversation::Settings::OrHash
+          ).void
+        end
+        attr_writer :settings
+
         # Create a message while including parameters for the conversation in which the
         # message should be sent.
         sig do
@@ -97,7 +115,9 @@ module SurgeAPI
               ],
             body: String,
             metadata: T::Hash[Symbol, String],
-            send_at: Time
+            send_at: Time,
+            settings:
+              SurgeAPI::MessageParams::MessageParamsWithConversation::Settings::OrHash
           ).returns(T.attached_class)
         end
         def self.new(
@@ -111,7 +131,9 @@ module SurgeAPI
           metadata: nil,
           # An optional datetime for scheduling message up to a couple of months in the
           # future.
-          send_at: nil
+          send_at: nil,
+          # Per-message setting overrides.
+          settings: nil
         )
         end
 
@@ -126,7 +148,9 @@ module SurgeAPI
                 ],
               body: String,
               metadata: T::Hash[Symbol, String],
-              send_at: Time
+              send_at: Time,
+              settings:
+                SurgeAPI::MessageParams::MessageParamsWithConversation::Settings
             }
           )
         end
@@ -302,6 +326,93 @@ module SurgeAPI
           def to_hash
           end
         end
+
+        class Settings < SurgeAPI::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                SurgeAPI::MessageParams::MessageParamsWithConversation::Settings,
+                SurgeAPI::Internal::AnyHash
+              )
+            end
+
+          # Override link shortening for this message.
+          sig do
+            returns(
+              T.nilable(
+                SurgeAPI::MessageParams::MessageParamsWithConversation::Settings::LinkShortening::OrSymbol
+              )
+            )
+          end
+          attr_reader :link_shortening
+
+          sig do
+            params(
+              link_shortening:
+                SurgeAPI::MessageParams::MessageParamsWithConversation::Settings::LinkShortening::OrSymbol
+            ).void
+          end
+          attr_writer :link_shortening
+
+          # Per-message setting overrides.
+          sig do
+            params(
+              link_shortening:
+                SurgeAPI::MessageParams::MessageParamsWithConversation::Settings::LinkShortening::OrSymbol
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # Override link shortening for this message.
+            link_shortening: nil
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                link_shortening:
+                  SurgeAPI::MessageParams::MessageParamsWithConversation::Settings::LinkShortening::OrSymbol
+              }
+            )
+          end
+          def to_hash
+          end
+
+          # Override link shortening for this message.
+          module LinkShortening
+            extend SurgeAPI::Internal::Type::Enum
+
+            TaggedSymbol =
+              T.type_alias do
+                T.all(
+                  Symbol,
+                  SurgeAPI::MessageParams::MessageParamsWithConversation::Settings::LinkShortening
+                )
+              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+            ENABLED =
+              T.let(
+                :enabled,
+                SurgeAPI::MessageParams::MessageParamsWithConversation::Settings::LinkShortening::TaggedSymbol
+              )
+            DISABLED =
+              T.let(
+                :disabled,
+                SurgeAPI::MessageParams::MessageParamsWithConversation::Settings::LinkShortening::TaggedSymbol
+              )
+
+            sig do
+              override.returns(
+                T::Array[
+                  SurgeAPI::MessageParams::MessageParamsWithConversation::Settings::LinkShortening::TaggedSymbol
+                ]
+              )
+            end
+            def self.values
+            end
+          end
+        end
       end
 
       class SimpleMessageParams < SurgeAPI::Internal::Type::BaseModel
@@ -367,6 +478,22 @@ module SurgeAPI
         sig { params(send_at: Time).void }
         attr_writer :send_at
 
+        # Per-message setting overrides.
+        sig do
+          returns(
+            T.nilable(SurgeAPI::MessageParams::SimpleMessageParams::Settings)
+          )
+        end
+        attr_reader :settings
+
+        sig do
+          params(
+            settings:
+              SurgeAPI::MessageParams::SimpleMessageParams::Settings::OrHash
+          ).void
+        end
+        attr_writer :settings
+
         # Create a basic message by specifying just the to/from phone numbers.
         sig do
           params(
@@ -378,7 +505,9 @@ module SurgeAPI
             body: String,
             from: String,
             metadata: T::Hash[Symbol, String],
-            send_at: Time
+            send_at: Time,
+            settings:
+              SurgeAPI::MessageParams::SimpleMessageParams::Settings::OrHash
           ).returns(T.attached_class)
         end
         def self.new(
@@ -395,7 +524,9 @@ module SurgeAPI
           metadata: nil,
           # An optional datetime for scheduling message up to a couple of months in the
           # future.
-          send_at: nil
+          send_at: nil,
+          # Per-message setting overrides.
+          settings: nil
         )
         end
 
@@ -410,7 +541,8 @@ module SurgeAPI
               body: String,
               from: String,
               metadata: T::Hash[Symbol, String],
-              send_at: Time
+              send_at: Time,
+              settings: SurgeAPI::MessageParams::SimpleMessageParams::Settings
             }
           )
         end
@@ -440,6 +572,93 @@ module SurgeAPI
 
           sig { override.returns({ url: String }) }
           def to_hash
+          end
+        end
+
+        class Settings < SurgeAPI::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                SurgeAPI::MessageParams::SimpleMessageParams::Settings,
+                SurgeAPI::Internal::AnyHash
+              )
+            end
+
+          # Override link shortening for this message.
+          sig do
+            returns(
+              T.nilable(
+                SurgeAPI::MessageParams::SimpleMessageParams::Settings::LinkShortening::OrSymbol
+              )
+            )
+          end
+          attr_reader :link_shortening
+
+          sig do
+            params(
+              link_shortening:
+                SurgeAPI::MessageParams::SimpleMessageParams::Settings::LinkShortening::OrSymbol
+            ).void
+          end
+          attr_writer :link_shortening
+
+          # Per-message setting overrides.
+          sig do
+            params(
+              link_shortening:
+                SurgeAPI::MessageParams::SimpleMessageParams::Settings::LinkShortening::OrSymbol
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # Override link shortening for this message.
+            link_shortening: nil
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                link_shortening:
+                  SurgeAPI::MessageParams::SimpleMessageParams::Settings::LinkShortening::OrSymbol
+              }
+            )
+          end
+          def to_hash
+          end
+
+          # Override link shortening for this message.
+          module LinkShortening
+            extend SurgeAPI::Internal::Type::Enum
+
+            TaggedSymbol =
+              T.type_alias do
+                T.all(
+                  Symbol,
+                  SurgeAPI::MessageParams::SimpleMessageParams::Settings::LinkShortening
+                )
+              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+            ENABLED =
+              T.let(
+                :enabled,
+                SurgeAPI::MessageParams::SimpleMessageParams::Settings::LinkShortening::TaggedSymbol
+              )
+            DISABLED =
+              T.let(
+                :disabled,
+                SurgeAPI::MessageParams::SimpleMessageParams::Settings::LinkShortening::TaggedSymbol
+              )
+
+            sig do
+              override.returns(
+                T::Array[
+                  SurgeAPI::MessageParams::SimpleMessageParams::Settings::LinkShortening::TaggedSymbol
+                ]
+              )
+            end
+            def self.values
+            end
           end
         end
       end

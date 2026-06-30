@@ -47,7 +47,13 @@ module SurgeAPI
         #   @return [Time, nil]
         optional :send_at, Time
 
-        # @!method initialize(conversation:, attachments: nil, body: nil, metadata: nil, send_at: nil)
+        # @!attribute settings
+        #   Per-message setting overrides.
+        #
+        #   @return [SurgeAPI::Models::MessageParams::MessageParamsWithConversation::Settings, nil]
+        optional :settings, -> { SurgeAPI::MessageParams::MessageParamsWithConversation::Settings }
+
+        # @!method initialize(conversation:, attachments: nil, body: nil, metadata: nil, send_at: nil, settings: nil)
         #   Some parameter documentations has been truncated, see
         #   {SurgeAPI::Models::MessageParams::MessageParamsWithConversation} for more
         #   details.
@@ -64,6 +70,8 @@ module SurgeAPI
         #   @param metadata [Hash{Symbol=>String}] Set of key-value pairs that will be stored with the object.
         #
         #   @param send_at [Time] An optional datetime for scheduling message up to a couple of months in the futu
+        #
+        #   @param settings [SurgeAPI::Models::MessageParams::MessageParamsWithConversation::Settings] Per-message setting overrides.
 
         # @see SurgeAPI::Models::MessageParams::MessageParamsWithConversation#conversation
         class Conversation < SurgeAPI::Internal::Type::BaseModel
@@ -151,6 +159,34 @@ module SurgeAPI
           #
           #   @param url [String] The URL of the attachment.
         end
+
+        # @see SurgeAPI::Models::MessageParams::MessageParamsWithConversation#settings
+        class Settings < SurgeAPI::Internal::Type::BaseModel
+          # @!attribute link_shortening
+          #   Override link shortening for this message.
+          #
+          #   @return [Symbol, SurgeAPI::Models::MessageParams::MessageParamsWithConversation::Settings::LinkShortening, nil]
+          optional :link_shortening,
+                   enum: -> { SurgeAPI::MessageParams::MessageParamsWithConversation::Settings::LinkShortening }
+
+          # @!method initialize(link_shortening: nil)
+          #   Per-message setting overrides.
+          #
+          #   @param link_shortening [Symbol, SurgeAPI::Models::MessageParams::MessageParamsWithConversation::Settings::LinkShortening] Override link shortening for this message.
+
+          # Override link shortening for this message.
+          #
+          # @see SurgeAPI::Models::MessageParams::MessageParamsWithConversation::Settings#link_shortening
+          module LinkShortening
+            extend SurgeAPI::Internal::Type::Enum
+
+            ENABLED = :enabled
+            DISABLED = :disabled
+
+            # @!method self.values
+            #   @return [Array<Symbol>]
+          end
+        end
       end
 
       class SimpleMessageParams < SurgeAPI::Internal::Type::BaseModel
@@ -193,7 +229,13 @@ module SurgeAPI
         #   @return [Time, nil]
         optional :send_at, Time
 
-        # @!method initialize(to:, attachments: nil, body: nil, from: nil, metadata: nil, send_at: nil)
+        # @!attribute settings
+        #   Per-message setting overrides.
+        #
+        #   @return [SurgeAPI::Models::MessageParams::SimpleMessageParams::Settings, nil]
+        optional :settings, -> { SurgeAPI::MessageParams::SimpleMessageParams::Settings }
+
+        # @!method initialize(to:, attachments: nil, body: nil, from: nil, metadata: nil, send_at: nil, settings: nil)
         #   Some parameter documentations has been truncated, see
         #   {SurgeAPI::Models::MessageParams::SimpleMessageParams} for more details.
         #
@@ -210,6 +252,8 @@ module SurgeAPI
         #   @param metadata [Hash{Symbol=>String}] Set of key-value pairs that will be stored with the object.
         #
         #   @param send_at [Time] An optional datetime for scheduling message up to a couple of months in the futu
+        #
+        #   @param settings [SurgeAPI::Models::MessageParams::SimpleMessageParams::Settings] Per-message setting overrides.
 
         class Attachment < SurgeAPI::Internal::Type::BaseModel
           # @!attribute url
@@ -222,6 +266,34 @@ module SurgeAPI
           #   Params for creating an attachment
           #
           #   @param url [String] The URL of the attachment.
+        end
+
+        # @see SurgeAPI::Models::MessageParams::SimpleMessageParams#settings
+        class Settings < SurgeAPI::Internal::Type::BaseModel
+          # @!attribute link_shortening
+          #   Override link shortening for this message.
+          #
+          #   @return [Symbol, SurgeAPI::Models::MessageParams::SimpleMessageParams::Settings::LinkShortening, nil]
+          optional :link_shortening,
+                   enum: -> { SurgeAPI::MessageParams::SimpleMessageParams::Settings::LinkShortening }
+
+          # @!method initialize(link_shortening: nil)
+          #   Per-message setting overrides.
+          #
+          #   @param link_shortening [Symbol, SurgeAPI::Models::MessageParams::SimpleMessageParams::Settings::LinkShortening] Override link shortening for this message.
+
+          # Override link shortening for this message.
+          #
+          # @see SurgeAPI::Models::MessageParams::SimpleMessageParams::Settings#link_shortening
+          module LinkShortening
+            extend SurgeAPI::Internal::Type::Enum
+
+            ENABLED = :enabled
+            DISABLED = :disabled
+
+            # @!method self.values
+            #   @return [Array<Symbol>]
+          end
         end
       end
 
