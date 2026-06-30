@@ -175,6 +175,7 @@ module SurgeAPI
             FILE = :file
             IMAGE = :image
             LINK = :link
+            CONTACT = :contact
             VIDEO = :video
 
             # @!method self.values
