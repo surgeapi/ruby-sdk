@@ -32,6 +32,10 @@ module SurgeAPI
       # `conversation` field, and `conversation.phone_number` should be specified
       # instead.
       #
+      # Optionally, you can pass a `settings` object to override account-level settings
+      # for this message. Currently the only supported setting is `link_shortening`,
+      # which accepts `"enabled"` or `"disabled"`.
+      #
       # @overload create(account_id, message_params:, request_options: {})
       #
       # @param account_id [String] The account from which the message should be sent.

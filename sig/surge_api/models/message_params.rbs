@@ -13,7 +13,8 @@ module SurgeAPI
           attachments: ::Array[SurgeAPI::MessageParams::MessageParamsWithConversation::Attachment],
           body: String,
           metadata: ::Hash[Symbol, String],
-          send_at: Time
+          send_at: Time,
+          settings: SurgeAPI::MessageParams::MessageParamsWithConversation::Settings
         }
 
       class MessageParamsWithConversation < SurgeAPI::Internal::Type::BaseModel
@@ -37,12 +38,19 @@ module SurgeAPI
 
         def send_at=: (Time) -> Time
 
+        attr_reader settings: SurgeAPI::MessageParams::MessageParamsWithConversation::Settings?
+
+        def settings=: (
+          SurgeAPI::MessageParams::MessageParamsWithConversation::Settings
+        ) -> SurgeAPI::MessageParams::MessageParamsWithConversation::Settings
+
         def initialize: (
           conversation: SurgeAPI::MessageParams::MessageParamsWithConversation::Conversation,
           ?attachments: ::Array[SurgeAPI::MessageParams::MessageParamsWithConversation::Attachment],
           ?body: String,
           ?metadata: ::Hash[Symbol, String],
-          ?send_at: Time
+          ?send_at: Time,
+          ?settings: SurgeAPI::MessageParams::MessageParamsWithConversation::Settings
         ) -> void
 
         def to_hash: -> {
@@ -50,7 +58,8 @@ module SurgeAPI
           attachments: ::Array[SurgeAPI::MessageParams::MessageParamsWithConversation::Attachment],
           body: String,
           metadata: ::Hash[Symbol, String],
-          send_at: Time
+          send_at: Time,
+          settings: SurgeAPI::MessageParams::MessageParamsWithConversation::Settings
         }
 
         type conversation =
@@ -131,6 +140,38 @@ module SurgeAPI
 
           def to_hash: -> { url: String }
         end
+
+        type settings =
+          {
+            link_shortening: SurgeAPI::Models::MessageParams::MessageParamsWithConversation::Settings::link_shortening
+          }
+
+        class Settings < SurgeAPI::Internal::Type::BaseModel
+          attr_reader link_shortening: SurgeAPI::Models::MessageParams::MessageParamsWithConversation::Settings::link_shortening?
+
+          def link_shortening=: (
+            SurgeAPI::Models::MessageParams::MessageParamsWithConversation::Settings::link_shortening
+          ) -> SurgeAPI::Models::MessageParams::MessageParamsWithConversation::Settings::link_shortening
+
+          def initialize: (
+            ?link_shortening: SurgeAPI::Models::MessageParams::MessageParamsWithConversation::Settings::link_shortening
+          ) -> void
+
+          def to_hash: -> {
+            link_shortening: SurgeAPI::Models::MessageParams::MessageParamsWithConversation::Settings::link_shortening
+          }
+
+          type link_shortening = :enabled | :disabled
+
+          module LinkShortening
+            extend SurgeAPI::Internal::Type::Enum
+
+            ENABLED: :enabled
+            DISABLED: :disabled
+
+            def self?.values: -> ::Array[SurgeAPI::Models::MessageParams::MessageParamsWithConversation::Settings::link_shortening]
+          end
+        end
       end
 
       type simple_message_params =
@@ -140,7 +181,8 @@ module SurgeAPI
           body: String,
           from: String,
           metadata: ::Hash[Symbol, String],
-          send_at: Time
+          send_at: Time,
+          settings: SurgeAPI::MessageParams::SimpleMessageParams::Settings
         }
 
       class SimpleMessageParams < SurgeAPI::Internal::Type::BaseModel
@@ -168,13 +210,20 @@ module SurgeAPI
 
         def send_at=: (Time) -> Time
 
+        attr_reader settings: SurgeAPI::MessageParams::SimpleMessageParams::Settings?
+
+        def settings=: (
+          SurgeAPI::MessageParams::SimpleMessageParams::Settings
+        ) -> SurgeAPI::MessageParams::SimpleMessageParams::Settings
+
         def initialize: (
           to: String,
           ?attachments: ::Array[SurgeAPI::MessageParams::SimpleMessageParams::Attachment],
           ?body: String,
           ?from: String,
           ?metadata: ::Hash[Symbol, String],
-          ?send_at: Time
+          ?send_at: Time,
+          ?settings: SurgeAPI::MessageParams::SimpleMessageParams::Settings
         ) -> void
 
         def to_hash: -> {
@@ -183,7 +232,8 @@ module SurgeAPI
           body: String,
           from: String,
           metadata: ::Hash[Symbol, String],
-          send_at: Time
+          send_at: Time,
+          settings: SurgeAPI::MessageParams::SimpleMessageParams::Settings
         }
 
         type attachment = { url: String }
@@ -194,6 +244,38 @@ module SurgeAPI
           def initialize: (url: String) -> void
 
           def to_hash: -> { url: String }
+        end
+
+        type settings =
+          {
+            link_shortening: SurgeAPI::Models::MessageParams::SimpleMessageParams::Settings::link_shortening
+          }
+
+        class Settings < SurgeAPI::Internal::Type::BaseModel
+          attr_reader link_shortening: SurgeAPI::Models::MessageParams::SimpleMessageParams::Settings::link_shortening?
+
+          def link_shortening=: (
+            SurgeAPI::Models::MessageParams::SimpleMessageParams::Settings::link_shortening
+          ) -> SurgeAPI::Models::MessageParams::SimpleMessageParams::Settings::link_shortening
+
+          def initialize: (
+            ?link_shortening: SurgeAPI::Models::MessageParams::SimpleMessageParams::Settings::link_shortening
+          ) -> void
+
+          def to_hash: -> {
+            link_shortening: SurgeAPI::Models::MessageParams::SimpleMessageParams::Settings::link_shortening
+          }
+
+          type link_shortening = :enabled | :disabled
+
+          module LinkShortening
+            extend SurgeAPI::Internal::Type::Enum
+
+            ENABLED: :enabled
+            DISABLED: :disabled
+
+            def self?.values: -> ::Array[SurgeAPI::Models::MessageParams::SimpleMessageParams::Settings::link_shortening]
+          end
         end
       end
 

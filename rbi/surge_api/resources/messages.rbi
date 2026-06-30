@@ -28,6 +28,10 @@ module SurgeAPI
       # are provided. Similarly the `from` field cannot be used together with the
       # `conversation` field, and `conversation.phone_number` should be specified
       # instead.
+      #
+      # Optionally, you can pass a `settings` object to override account-level settings
+      # for this message. Currently the only supported setting is `link_shortening`,
+      # which accepts `"enabled"` or `"disabled"`.
       sig do
         params(
           account_id: String,
