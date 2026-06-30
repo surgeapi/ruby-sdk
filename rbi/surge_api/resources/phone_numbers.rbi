@@ -3,6 +3,26 @@
 module SurgeAPI
   module Resources
     class PhoneNumbers
+      # Updates a phone number's details.
+      sig do
+        params(
+          id: String,
+          campaign_id: String,
+          name: String,
+          request_options: SurgeAPI::RequestOptions::OrHash
+        ).returns(SurgeAPI::PhoneNumber)
+      end
+      def update(
+        # The ID of the phone number to update.
+        id,
+        # Campaign ID to attach this number to (`cpn_...`).
+        campaign_id: nil,
+        # A human-readable name for the phone number.
+        name: nil,
+        request_options: {}
+      )
+      end
+
       # List all phone numbers for an account with cursor-based pagination.
       sig do
         params(

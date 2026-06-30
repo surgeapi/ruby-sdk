@@ -95,6 +95,8 @@ module SurgeAPI
 
   PhoneNumberReleaseParams = SurgeAPI::Models::PhoneNumberReleaseParams
 
+  PhoneNumberUpdateParams = SurgeAPI::Models::PhoneNumberUpdateParams
+
   RecordingCompletedWebhookEvent =
     SurgeAPI::Models::RecordingCompletedWebhookEvent
 
