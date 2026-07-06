@@ -167,6 +167,18 @@ module SurgeAPI
           end
           attr_accessor :status
 
+          # The E.164 phone number of the caller
+          sig { returns(T.nilable(String)) }
+          attr_accessor :from
+
+          # The Surge phone number ID (e.g. pn\_...)
+          sig { returns(T.nilable(String)) }
+          attr_accessor :phone_number_id
+
+          # The E.164 phone number of the callee
+          sig { returns(T.nilable(String)) }
+          attr_accessor :to
+
           # The call that resulted in this voicemail
           sig do
             params(
@@ -175,7 +187,10 @@ module SurgeAPI
               duration: Integer,
               initiated_at: Time,
               status:
-                SurgeAPI::VoicemailReceivedWebhookEvent::Data::Call::Status::OrSymbol
+                SurgeAPI::VoicemailReceivedWebhookEvent::Data::Call::Status::OrSymbol,
+              from: T.nilable(String),
+              phone_number_id: T.nilable(String),
+              to: T.nilable(String)
             ).returns(T.attached_class)
           end
           def self.new(
@@ -188,7 +203,13 @@ module SurgeAPI
             # When the call was initiated
             initiated_at:,
             # The status of the call
-            status:
+            status:,
+            # The E.164 phone number of the caller
+            from: nil,
+            # The Surge phone number ID (e.g. pn\_...)
+            phone_number_id: nil,
+            # The E.164 phone number of the callee
+            to: nil
           )
           end
 
@@ -200,7 +221,10 @@ module SurgeAPI
                 duration: Integer,
                 initiated_at: Time,
                 status:
-                  SurgeAPI::VoicemailReceivedWebhookEvent::Data::Call::Status::TaggedSymbol
+                  SurgeAPI::VoicemailReceivedWebhookEvent::Data::Call::Status::TaggedSymbol,
+                from: T.nilable(String),
+                phone_number_id: T.nilable(String),
+                to: T.nilable(String)
               }
             )
           end
