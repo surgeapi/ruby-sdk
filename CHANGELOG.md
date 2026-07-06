@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.19.0 (2026-07-06)
+
+Full Changelog: [v0.18.0...v0.19.0](https://github.com/surgeapi/ruby-sdk/compare/v0.18.0...v0.19.0)
+
+### Features
+
+* **api:** add phone numbers to call webhooks ([4498bd6](https://github.com/surgeapi/ruby-sdk/commit/4498bd66855cd38f001965b0acda0b61163b0165))
+
 ## 0.18.0 (2026-06-30)
 
 Full Changelog: [v0.17.0...v0.18.0](https://github.com/surgeapi/ruby-sdk/compare/v0.17.0...v0.18.0)
