@@ -97,7 +97,25 @@ module SurgeAPI
           #   @return [Symbol, SurgeAPI::Models::RecordingCompletedWebhookEvent::Data::Call::Status]
           required :status, enum: -> { SurgeAPI::RecordingCompletedWebhookEvent::Data::Call::Status }
 
-          # @!method initialize(id:, contact:, duration:, initiated_at:, status:)
+          # @!attribute from
+          #   The E.164 phone number of the caller
+          #
+          #   @return [String, nil]
+          optional :from, String, nil?: true
+
+          # @!attribute phone_number_id
+          #   The Surge phone number ID (e.g. pn\_...)
+          #
+          #   @return [String, nil]
+          optional :phone_number_id, String, nil?: true
+
+          # @!attribute to
+          #   The E.164 phone number of the callee
+          #
+          #   @return [String, nil]
+          optional :to, String, nil?: true
+
+          # @!method initialize(id:, contact:, duration:, initiated_at:, status:, from: nil, phone_number_id: nil, to: nil)
           #   The call that produced this recording
           #
           #   @param id [String] The unique identifier for the call
@@ -109,6 +127,12 @@ module SurgeAPI
           #   @param initiated_at [Time] When the call was initiated
           #
           #   @param status [Symbol, SurgeAPI::Models::RecordingCompletedWebhookEvent::Data::Call::Status] The status of the call
+          #
+          #   @param from [String, nil] The E.164 phone number of the caller
+          #
+          #   @param phone_number_id [String, nil] The Surge phone number ID (e.g. pn\_...)
+          #
+          #   @param to [String, nil] The E.164 phone number of the callee
 
           # The status of the call
           #

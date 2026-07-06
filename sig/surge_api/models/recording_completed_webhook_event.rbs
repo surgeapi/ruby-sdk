@@ -63,7 +63,10 @@ module SurgeAPI
             contact: SurgeAPI::Contact,
             duration: Integer,
             initiated_at: Time,
-            status: SurgeAPI::Models::RecordingCompletedWebhookEvent::Data::Call::status
+            status: SurgeAPI::Models::RecordingCompletedWebhookEvent::Data::Call::status,
+            from: String?,
+            phone_number_id: String?,
+            to: String?
           }
 
         class Call < SurgeAPI::Internal::Type::BaseModel
@@ -77,12 +80,21 @@ module SurgeAPI
 
           attr_accessor status: SurgeAPI::Models::RecordingCompletedWebhookEvent::Data::Call::status
 
+          attr_accessor from: String?
+
+          attr_accessor phone_number_id: String?
+
+          attr_accessor to: String?
+
           def initialize: (
             id: String,
             contact: SurgeAPI::Contact,
             duration: Integer,
             initiated_at: Time,
-            status: SurgeAPI::Models::RecordingCompletedWebhookEvent::Data::Call::status
+            status: SurgeAPI::Models::RecordingCompletedWebhookEvent::Data::Call::status,
+            ?from: String?,
+            ?phone_number_id: String?,
+            ?to: String?
           ) -> void
 
           def to_hash: -> {
@@ -90,7 +102,10 @@ module SurgeAPI
             contact: SurgeAPI::Contact,
             duration: Integer,
             initiated_at: Time,
-            status: SurgeAPI::Models::RecordingCompletedWebhookEvent::Data::Call::status
+            status: SurgeAPI::Models::RecordingCompletedWebhookEvent::Data::Call::status,
+            from: String?,
+            phone_number_id: String?,
+            to: String?
           }
 
           type status =
