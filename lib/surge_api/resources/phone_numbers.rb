@@ -122,10 +122,12 @@ module SurgeAPI
       # Some parameter documentations has been truncated, see
       # {SurgeAPI::Models::PhoneNumberPurchaseParams} for more details.
       #
-      # Purchase a new phone number for the account. You can specify search criteria or
-      # let the system select a random number.
+      # Purchase a new phone number for the account. You can specify an exact phone
+      # number, search criteria, or let the system select a random number.
       #
-      # @overload purchase(account_id, area_code: nil, latitude: nil, longitude: nil, name: nil, type: nil, request_options: {})
+      # When `phone_number` is provided, all other search parameters are ignored.
+      #
+      # @overload purchase(account_id, area_code: nil, latitude: nil, longitude: nil, name: nil, phone_number: nil, type: nil, request_options: {})
       #
       # @param account_id [String] The account for which the phone number should be created.
       #
@@ -136,6 +138,8 @@ module SurgeAPI
       # @param longitude [Float] Longitude to search for nearby phone numbers. Must be used with latitude. If pro
       #
       # @param name [String] A human-readable name for the phone number. If not provided, defaults to the for
+      #
+      # @param phone_number [String] The exact phone number to purchase in E.164 format. When provided, all other sea
       #
       # @param type [Symbol, SurgeAPI::Models::PhoneNumberPurchaseParams::Type] Whether the phone number is local or toll-free. Can be omitted if area_code or l
       #
