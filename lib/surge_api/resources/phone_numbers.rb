@@ -3,6 +3,26 @@
 module SurgeAPI
   module Resources
     class PhoneNumbers
+      # Retrieves a PhoneNumber object.
+      #
+      # @overload retrieve(id, request_options: {})
+      #
+      # @param id [String] The ID of the phone number to retrieve.
+      #
+      # @param request_options [SurgeAPI::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [SurgeAPI::Models::PhoneNumber]
+      #
+      # @see SurgeAPI::Models::PhoneNumberRetrieveParams
+      def retrieve(id, params = {})
+        @client.request(
+          method: :get,
+          path: ["phone_numbers/%1$s", id],
+          model: SurgeAPI::PhoneNumber,
+          options: params[:request_options]
+        )
+      end
+
       # Updates a phone number's details.
       #
       # @overload update(id, campaign_id: nil, name: nil, request_options: {})
