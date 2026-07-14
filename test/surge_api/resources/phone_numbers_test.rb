@@ -73,6 +73,31 @@ class SurgeAPI::Test::Resources::PhoneNumbersTest < SurgeAPI::Test::ResourceTest
     end
   end
 
+  def test_list_available_numbers_required_params
+    skip("Mock server tests are disabled")
+
+    response = @surge.phone_numbers.list_available_numbers("acct_01j9a43avnfqzbjfch6pygv1td", type: :local)
+
+    assert_pattern do
+      response => SurgeAPI::Internal::Cursor
+    end
+
+    row = response.to_enum.first
+    return if row.nil?
+
+    assert_pattern do
+      row => SurgeAPI::Models::PhoneNumberListAvailableNumbersResponse
+    end
+
+    assert_pattern do
+      row => {
+        country: SurgeAPI::Models::PhoneNumberListAvailableNumbersResponse::Country,
+        number: String,
+        type: SurgeAPI::Models::PhoneNumberListAvailableNumbersResponse::Type
+      }
+    end
+  end
+
   def test_purchase
     skip("Mock server tests are disabled")
 

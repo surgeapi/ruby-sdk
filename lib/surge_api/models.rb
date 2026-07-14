@@ -125,6 +125,8 @@ module SurgeAPI
 
   PhoneNumberAttachedToCampaignWebhookEvent = SurgeAPI::Models::PhoneNumberAttachedToCampaignWebhookEvent
 
+  PhoneNumberListAvailableNumbersParams = SurgeAPI::Models::PhoneNumberListAvailableNumbersParams
+
   PhoneNumberListParams = SurgeAPI::Models::PhoneNumberListParams
 
   PhoneNumberPurchaseParams = SurgeAPI::Models::PhoneNumberPurchaseParams

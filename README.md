@@ -261,23 +261,23 @@ Since this library does not depend on `sorbet-runtime`, it cannot provide [`T::E
 
 ```ruby
 # :local
-puts(SurgeAPI::PhoneNumberPurchaseParams::Type::LOCAL)
+puts(SurgeAPI::PhoneNumberListAvailableNumbersParams::Type::LOCAL)
 
-# Revealed type: `T.all(SurgeAPI::PhoneNumberPurchaseParams::Type, Symbol)`
-T.reveal_type(SurgeAPI::PhoneNumberPurchaseParams::Type::LOCAL)
+# Revealed type: `T.all(SurgeAPI::PhoneNumberListAvailableNumbersParams::Type, Symbol)`
+T.reveal_type(SurgeAPI::PhoneNumberListAvailableNumbersParams::Type::LOCAL)
 ```
 
 Enum parameters have a "relaxed" type, so you can either pass in enum constants or their literal value:
 
 ```ruby
 # Using the enum constants preserves the tagged type information:
-surge.phone_numbers.purchase(
-  type: SurgeAPI::PhoneNumberPurchaseParams::Type::LOCAL,
+surge.phone_numbers.list_available_numbers(
+  type: SurgeAPI::PhoneNumberListAvailableNumbersParams::Type::LOCAL,
   # …
 )
 
 # Literal values are also permissible:
-surge.phone_numbers.purchase(
+surge.phone_numbers.list_available_numbers(
   type: :local,
   # …
 )

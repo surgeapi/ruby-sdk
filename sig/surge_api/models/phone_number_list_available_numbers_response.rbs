@@ -1,0 +1,52 @@
+module SurgeAPI
+  module Models
+    type phone_number_list_available_numbers_response =
+      {
+        country: SurgeAPI::Models::PhoneNumberListAvailableNumbersResponse::country,
+        number: String,
+        type: SurgeAPI::Models::PhoneNumberListAvailableNumbersResponse::type_
+      }
+
+    class PhoneNumberListAvailableNumbersResponse < SurgeAPI::Internal::Type::BaseModel
+      attr_accessor country: SurgeAPI::Models::PhoneNumberListAvailableNumbersResponse::country
+
+      attr_accessor number: String
+
+      attr_accessor type: SurgeAPI::Models::PhoneNumberListAvailableNumbersResponse::type_
+
+      def initialize: (
+        country: SurgeAPI::Models::PhoneNumberListAvailableNumbersResponse::country,
+        number: String,
+        type: SurgeAPI::Models::PhoneNumberListAvailableNumbersResponse::type_
+      ) -> void
+
+      def to_hash: -> {
+        country: SurgeAPI::Models::PhoneNumberListAvailableNumbersResponse::country,
+        number: String,
+        type: SurgeAPI::Models::PhoneNumberListAvailableNumbersResponse::type_
+      }
+
+      type country = :US | :CA
+
+      module Country
+        extend SurgeAPI::Internal::Type::Enum
+
+        US: :US
+        CA: :CA
+
+        def self?.values: -> ::Array[SurgeAPI::Models::PhoneNumberListAvailableNumbersResponse::country]
+      end
+
+      type type_ = :local | :toll_free
+
+      module Type
+        extend SurgeAPI::Internal::Type::Enum
+
+        LOCAL: :local
+        TOLL_FREE: :toll_free
+
+        def self?.values: -> ::Array[SurgeAPI::Models::PhoneNumberListAvailableNumbersResponse::type_]
+      end
+    end
+  end
+end
