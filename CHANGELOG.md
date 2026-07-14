@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.20.0 (2026-07-14)
+
+Full Changelog: [v0.19.0...v0.20.0](https://github.com/surgeapi/ruby-sdk/compare/v0.19.0...v0.20.0)
+
+### Features
+
+* **api:** add campaign to phone numbers ([037405d](https://github.com/surgeapi/ruby-sdk/commit/037405d891eaa84c91ede8b963d91a1910b1379e))
+* **api:** add list available phone numbers endpoint ([d54f29f](https://github.com/surgeapi/ruby-sdk/commit/d54f29f90abc8cdc9d42577775bdbe727898d19f))
+* **api:** add phone number field to purchase endpoint ([d9eafc6](https://github.com/surgeapi/ruby-sdk/commit/d9eafc611da5fb60b149eda5a676d3ca276b3780))
+* **api:** add retrieve phone number endpoint ([2f15b40](https://github.com/surgeapi/ruby-sdk/commit/2f15b4093fd0ed099e41c2292ca9a433458eec19))
+
 ## 0.19.0 (2026-07-06)
 
 Full Changelog: [v0.18.0...v0.19.0](https://github.com/surgeapi/ruby-sdk/compare/v0.18.0...v0.19.0)
