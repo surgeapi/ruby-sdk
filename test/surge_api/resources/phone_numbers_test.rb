@@ -15,6 +15,7 @@ class SurgeAPI::Test::Resources::PhoneNumbersTest < SurgeAPI::Test::ResourceTest
     assert_pattern do
       response => {
         id: String,
+        campaign: SurgeAPI::PhoneNumber::Campaign | nil,
         campaign_id: String | nil,
         name: String | nil,
         number: String,
@@ -42,6 +43,7 @@ class SurgeAPI::Test::Resources::PhoneNumbersTest < SurgeAPI::Test::ResourceTest
     assert_pattern do
       row => {
         id: String,
+        campaign: SurgeAPI::PhoneNumber::Campaign | nil,
         campaign_id: String | nil,
         name: String | nil,
         number: String,
@@ -62,6 +64,7 @@ class SurgeAPI::Test::Resources::PhoneNumbersTest < SurgeAPI::Test::ResourceTest
     assert_pattern do
       response => {
         id: String,
+        campaign: SurgeAPI::PhoneNumber::Campaign | nil,
         campaign_id: String | nil,
         name: String | nil,
         number: String,
@@ -82,6 +85,7 @@ class SurgeAPI::Test::Resources::PhoneNumbersTest < SurgeAPI::Test::ResourceTest
     assert_pattern do
       response => {
         id: String,
+        campaign: SurgeAPI::PhoneNumber::Campaign | nil,
         campaign_id: String | nil,
         name: String | nil,
         number: String,

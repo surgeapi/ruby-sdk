@@ -48,8 +48,21 @@ module SurgeAPI
         #   @return [String]
         required :id, String
 
+        # @!attribute campaign
+        #   Campaign attachment details for a domestic local phone number
+        #
+        #   @return [SurgeAPI::Models::PhoneNumberAttachedToCampaignWebhookEvent::Data::Campaign, nil]
+        required :campaign,
+                 -> {
+                   SurgeAPI::PhoneNumberAttachedToCampaignWebhookEvent::Data::Campaign
+                 },
+                 nil?: true
+
         # @!attribute campaign_id
-        #   The unique identifier of the campaign this phone number is attached to
+        #   @deprecated Use `campaign.id` instead.
+        #
+        #   Deprecated. The unique identifier of the campaign this phone number is attached
+        #   to
         #
         #   @return [String]
         required :campaign_id, String
@@ -72,18 +85,62 @@ module SurgeAPI
         #   @return [Symbol, SurgeAPI::Models::PhoneNumberAttachedToCampaignWebhookEvent::Data::Type]
         required :type, enum: -> { SurgeAPI::PhoneNumberAttachedToCampaignWebhookEvent::Data::Type }
 
-        # @!method initialize(id:, campaign_id:, name:, number:, type:)
+        # @!method initialize(id:, campaign:, campaign_id:, name:, number:, type:)
+        #   Some parameter documentations has been truncated, see
+        #   {SurgeAPI::Models::PhoneNumberAttachedToCampaignWebhookEvent::Data} for more
+        #   details.
+        #
         #   The data associated with the event
         #
         #   @param id [String] The unique identifier for the phone number
         #
-        #   @param campaign_id [String] The unique identifier of the campaign this phone number is attached to
+        #   @param campaign [SurgeAPI::Models::PhoneNumberAttachedToCampaignWebhookEvent::Data::Campaign, nil] Campaign attachment details for a domestic local phone number
+        #
+        #   @param campaign_id [String] Deprecated. The unique identifier of the campaign this phone number is attached
         #
         #   @param name [String, nil] A human-readable name for the phone number
         #
         #   @param number [String] The phone number in E.164 format
         #
         #   @param type [Symbol, SurgeAPI::Models::PhoneNumberAttachedToCampaignWebhookEvent::Data::Type] Whether the phone number is local, toll-free, or short code
+
+        # @see SurgeAPI::Models::PhoneNumberAttachedToCampaignWebhookEvent::Data#campaign
+        class Campaign < SurgeAPI::Internal::Type::BaseModel
+          # @!attribute id
+          #   The unique identifier of the campaign this phone number is attached to
+          #
+          #   @return [String]
+          required :id, String
+
+          # @!attribute attachment_status
+          #   The current campaign attachment status for this phone number.
+          #
+          #   @return [Symbol, SurgeAPI::Models::PhoneNumberAttachedToCampaignWebhookEvent::Data::Campaign::AttachmentStatus]
+          required :attachment_status,
+                   enum: -> { SurgeAPI::PhoneNumberAttachedToCampaignWebhookEvent::Data::Campaign::AttachmentStatus }
+
+          # @!method initialize(id:, attachment_status:)
+          #   Campaign attachment details for a domestic local phone number
+          #
+          #   @param id [String] The unique identifier of the campaign this phone number is attached to
+          #
+          #   @param attachment_status [Symbol, SurgeAPI::Models::PhoneNumberAttachedToCampaignWebhookEvent::Data::Campaign::AttachmentStatus] The current campaign attachment status for this phone number.
+
+          # The current campaign attachment status for this phone number.
+          #
+          # @see SurgeAPI::Models::PhoneNumberAttachedToCampaignWebhookEvent::Data::Campaign#attachment_status
+          module AttachmentStatus
+            extend SurgeAPI::Internal::Type::Enum
+
+            ATTACHED = :attached
+            ATTACHMENT_PENDING = :attachment_pending
+            DETACHED = :detached
+            DETACHMENT_PENDING = :detachment_pending
+
+            # @!method self.values
+            #   @return [Array<Symbol>]
+          end
+        end
 
         # Whether the phone number is local, toll-free, or short code
         #
