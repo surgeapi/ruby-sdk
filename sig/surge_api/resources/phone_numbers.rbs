@@ -20,6 +20,16 @@ module SurgeAPI
         ?request_options: SurgeAPI::request_opts
       ) -> SurgeAPI::Internal::Cursor[SurgeAPI::PhoneNumber]
 
+      def list_available_numbers: (
+        String account_id,
+        type: SurgeAPI::Models::PhoneNumberListAvailableNumbersParams::type_,
+        ?after: String,
+        ?area_code: String,
+        ?before: String,
+        ?country: SurgeAPI::Models::PhoneNumberListAvailableNumbersParams::country,
+        ?request_options: SurgeAPI::request_opts
+      ) -> SurgeAPI::Internal::Cursor[SurgeAPI::Models::PhoneNumberListAvailableNumbersResponse]
+
       def purchase: (
         String account_id,
         ?area_code: String,

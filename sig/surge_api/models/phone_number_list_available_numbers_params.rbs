@@ -1,0 +1,83 @@
+module SurgeAPI
+  module Models
+    type phone_number_list_available_numbers_params =
+      {
+        account_id: String,
+        type: SurgeAPI::Models::PhoneNumberListAvailableNumbersParams::type_,
+        after: String,
+        area_code: String,
+        before: String,
+        country: SurgeAPI::Models::PhoneNumberListAvailableNumbersParams::country
+      }
+      & SurgeAPI::Internal::Type::request_parameters
+
+    class PhoneNumberListAvailableNumbersParams < SurgeAPI::Internal::Type::BaseModel
+      extend SurgeAPI::Internal::Type::RequestParameters::Converter
+      include SurgeAPI::Internal::Type::RequestParameters
+
+      attr_accessor account_id: String
+
+      attr_accessor type: SurgeAPI::Models::PhoneNumberListAvailableNumbersParams::type_
+
+      attr_reader after: String?
+
+      def after=: (String) -> String
+
+      attr_reader area_code: String?
+
+      def area_code=: (String) -> String
+
+      attr_reader before: String?
+
+      def before=: (String) -> String
+
+      attr_reader country: SurgeAPI::Models::PhoneNumberListAvailableNumbersParams::country?
+
+      def country=: (
+        SurgeAPI::Models::PhoneNumberListAvailableNumbersParams::country
+      ) -> SurgeAPI::Models::PhoneNumberListAvailableNumbersParams::country
+
+      def initialize: (
+        account_id: String,
+        type: SurgeAPI::Models::PhoneNumberListAvailableNumbersParams::type_,
+        ?after: String,
+        ?area_code: String,
+        ?before: String,
+        ?country: SurgeAPI::Models::PhoneNumberListAvailableNumbersParams::country,
+        ?request_options: SurgeAPI::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        account_id: String,
+        type: SurgeAPI::Models::PhoneNumberListAvailableNumbersParams::type_,
+        after: String,
+        area_code: String,
+        before: String,
+        country: SurgeAPI::Models::PhoneNumberListAvailableNumbersParams::country,
+        request_options: SurgeAPI::RequestOptions
+      }
+
+      type type_ = :local | :toll_free
+
+      module Type
+        extend SurgeAPI::Internal::Type::Enum
+
+        LOCAL: :local
+        TOLL_FREE: :toll_free
+
+        def self?.values: -> ::Array[SurgeAPI::Models::PhoneNumberListAvailableNumbersParams::type_]
+      end
+
+      type country = :US | :CA
+
+      module Country
+        extend SurgeAPI::Internal::Type::Enum
+
+        US: :US
+        CA: :CA
+
+        def self?.values: -> ::Array[SurgeAPI::Models::PhoneNumberListAvailableNumbersParams::country]
+      end
+    end
+  end
+end

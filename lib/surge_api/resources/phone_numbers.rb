@@ -81,6 +81,45 @@ module SurgeAPI
       end
 
       # Some parameter documentations has been truncated, see
+      # {SurgeAPI::Models::PhoneNumberListAvailableNumbersParams} for more details.
+      #
+      # Browse purchasable phone numbers from Surge inventory before buying.
+      #
+      # Pagination cursors are always null for now.
+      #
+      # @overload list_available_numbers(account_id, type:, after: nil, area_code: nil, before: nil, country: nil, request_options: {})
+      #
+      # @param account_id [String] The account ID to list available phone numbers for.
+      #
+      # @param type [Symbol, SurgeAPI::Models::PhoneNumberListAvailableNumbersParams::Type] Whether to search for local or toll-free numbers.
+      #
+      # @param after [String] Cursor for forward pagination. Use the next_cursor from a previous response.
+      #
+      # @param area_code [String] Filter by 3-digit area code.
+      #
+      # @param before [String] Cursor for backward pagination. Use the previous_cursor from a previous response
+      #
+      # @param country [Symbol, SurgeAPI::Models::PhoneNumberListAvailableNumbersParams::Country] ISO country code to search in.
+      #
+      # @param request_options [SurgeAPI::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [SurgeAPI::Internal::Cursor<SurgeAPI::Models::PhoneNumberListAvailableNumbersResponse>]
+      #
+      # @see SurgeAPI::Models::PhoneNumberListAvailableNumbersParams
+      def list_available_numbers(account_id, params)
+        parsed, options = SurgeAPI::PhoneNumberListAvailableNumbersParams.dump_request(params)
+        query = SurgeAPI::Internal::Util.encode_query_params(parsed)
+        @client.request(
+          method: :get,
+          path: ["accounts/%1$s/available_phone_numbers", account_id],
+          query: query,
+          page: SurgeAPI::Internal::Cursor,
+          model: SurgeAPI::Models::PhoneNumberListAvailableNumbersResponse,
+          options: options
+        )
+      end
+
+      # Some parameter documentations has been truncated, see
       # {SurgeAPI::Models::PhoneNumberPurchaseParams} for more details.
       #
       # Purchase a new phone number for the account. You can specify search criteria or

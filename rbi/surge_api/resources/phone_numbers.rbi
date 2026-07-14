@@ -58,6 +58,43 @@ module SurgeAPI
       )
       end
 
+      # Browse purchasable phone numbers from Surge inventory before buying.
+      #
+      # Pagination cursors are always null for now.
+      sig do
+        params(
+          account_id: String,
+          type: SurgeAPI::PhoneNumberListAvailableNumbersParams::Type::OrSymbol,
+          after: String,
+          area_code: String,
+          before: String,
+          country:
+            SurgeAPI::PhoneNumberListAvailableNumbersParams::Country::OrSymbol,
+          request_options: SurgeAPI::RequestOptions::OrHash
+        ).returns(
+          SurgeAPI::Internal::Cursor[
+            SurgeAPI::Models::PhoneNumberListAvailableNumbersResponse
+          ]
+        )
+      end
+      def list_available_numbers(
+        # The account ID to list available phone numbers for.
+        account_id,
+        # Whether to search for local or toll-free numbers.
+        type:,
+        # Cursor for forward pagination. Use the next_cursor from a previous response.
+        after: nil,
+        # Filter by 3-digit area code.
+        area_code: nil,
+        # Cursor for backward pagination. Use the previous_cursor from a previous
+        # response.
+        before: nil,
+        # ISO country code to search in.
+        country: nil,
+        request_options: {}
+      )
+      end
+
       # Purchase a new phone number for the account. You can specify search criteria or
       # let the system select a random number.
       sig do
