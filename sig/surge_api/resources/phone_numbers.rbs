@@ -1,6 +1,11 @@
 module SurgeAPI
   module Resources
     class PhoneNumbers
+      def retrieve: (
+        String id,
+        ?request_options: SurgeAPI::request_opts
+      ) -> SurgeAPI::PhoneNumber
+
       def update: (
         String id,
         ?campaign_id: String,

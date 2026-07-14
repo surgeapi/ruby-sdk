@@ -3,6 +3,27 @@
 require_relative "../test_helper"
 
 class SurgeAPI::Test::Resources::PhoneNumbersTest < SurgeAPI::Test::ResourceTest
+  def test_retrieve
+    skip("Mock server tests are disabled")
+
+    response = @surge.phone_numbers.retrieve("pn_01jsjwe4d9fx3tpymgtg958d9w")
+
+    assert_pattern do
+      response => SurgeAPI::PhoneNumber
+    end
+
+    assert_pattern do
+      response => {
+        id: String,
+        campaign: SurgeAPI::PhoneNumber::Campaign | nil,
+        campaign_id: String | nil,
+        name: String | nil,
+        number: String,
+        type: SurgeAPI::PhoneNumber::Type
+      }
+    end
+  end
+
   def test_update
     skip("Mock server tests are disabled")
 

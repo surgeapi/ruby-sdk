@@ -3,6 +3,20 @@
 module SurgeAPI
   module Resources
     class PhoneNumbers
+      # Retrieves a PhoneNumber object.
+      sig do
+        params(
+          id: String,
+          request_options: SurgeAPI::RequestOptions::OrHash
+        ).returns(SurgeAPI::PhoneNumber)
+      end
+      def retrieve(
+        # The ID of the phone number to retrieve.
+        id,
+        request_options: {}
+      )
+      end
+
       # Updates a phone number's details.
       sig do
         params(
