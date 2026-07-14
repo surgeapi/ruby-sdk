@@ -36,6 +36,7 @@ module SurgeAPI
         ?latitude: Float,
         ?longitude: Float,
         ?name: String,
+        ?phone_number: String,
         ?type: SurgeAPI::Models::PhoneNumberPurchaseParams::type_,
         ?request_options: SurgeAPI::request_opts
       ) -> SurgeAPI::PhoneNumber
