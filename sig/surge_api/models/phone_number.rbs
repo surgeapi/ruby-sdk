@@ -3,6 +3,7 @@ module SurgeAPI
     type phone_number =
       {
         id: String,
+        campaign: SurgeAPI::PhoneNumber::Campaign?,
         campaign_id: String?,
         name: String?,
         number: String,
@@ -11,6 +12,8 @@ module SurgeAPI
 
     class PhoneNumber < SurgeAPI::Internal::Type::BaseModel
       attr_accessor id: String
+
+      attr_accessor campaign: SurgeAPI::PhoneNumber::Campaign?
 
       attr_accessor campaign_id: String?
 
@@ -22,6 +25,7 @@ module SurgeAPI
 
       def initialize: (
         id: String,
+        campaign: SurgeAPI::PhoneNumber::Campaign?,
         campaign_id: String?,
         name: String?,
         number: String,
@@ -30,11 +34,48 @@ module SurgeAPI
 
       def to_hash: -> {
         id: String,
+        campaign: SurgeAPI::PhoneNumber::Campaign?,
         campaign_id: String?,
         name: String?,
         number: String,
         type: SurgeAPI::Models::PhoneNumber::type_
       }
+
+      type campaign =
+        {
+          id: String,
+          attachment_status: SurgeAPI::Models::PhoneNumber::Campaign::attachment_status
+        }
+
+      class Campaign < SurgeAPI::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor attachment_status: SurgeAPI::Models::PhoneNumber::Campaign::attachment_status
+
+        def initialize: (
+          id: String,
+          attachment_status: SurgeAPI::Models::PhoneNumber::Campaign::attachment_status
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          attachment_status: SurgeAPI::Models::PhoneNumber::Campaign::attachment_status
+        }
+
+        type attachment_status =
+          :attached | :attachment_pending | :detached | :detachment_pending
+
+        module AttachmentStatus
+          extend SurgeAPI::Internal::Type::Enum
+
+          ATTACHED: :attached
+          ATTACHMENT_PENDING: :attachment_pending
+          DETACHED: :detached
+          DETACHMENT_PENDING: :detachment_pending
+
+          def self?.values: -> ::Array[SurgeAPI::Models::PhoneNumber::Campaign::attachment_status]
+        end
+      end
 
       type type_ = :local | :short_code | :toll_free
 

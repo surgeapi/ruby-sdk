@@ -12,7 +12,19 @@ module SurgeAPI
       sig { returns(String) }
       attr_accessor :id
 
-      # The unique identifier of the campaign this phone number is attached to, if any
+      # Campaign attachment details for a domestic local phone number
+      sig { returns(T.nilable(SurgeAPI::PhoneNumber::Campaign)) }
+      attr_reader :campaign
+
+      sig do
+        params(
+          campaign: T.nilable(SurgeAPI::PhoneNumber::Campaign::OrHash)
+        ).void
+      end
+      attr_writer :campaign
+
+      # Deprecated. The unique identifier of the campaign this phone number is attached
+      # to, if any
       sig { returns(T.nilable(String)) }
       attr_accessor :campaign_id
 
@@ -32,6 +44,7 @@ module SurgeAPI
       sig do
         params(
           id: String,
+          campaign: T.nilable(SurgeAPI::PhoneNumber::Campaign::OrHash),
           campaign_id: T.nilable(String),
           name: T.nilable(String),
           number: String,
@@ -41,7 +54,10 @@ module SurgeAPI
       def self.new(
         # Unique identifier for the phone number
         id:,
-        # The unique identifier of the campaign this phone number is attached to, if any
+        # Campaign attachment details for a domestic local phone number
+        campaign:,
+        # Deprecated. The unique identifier of the campaign this phone number is attached
+        # to, if any
         campaign_id:,
         # A human-readable name for the phone number
         name:,
@@ -56,6 +72,7 @@ module SurgeAPI
         override.returns(
           {
             id: String,
+            campaign: T.nilable(SurgeAPI::PhoneNumber::Campaign),
             campaign_id: T.nilable(String),
             name: T.nilable(String),
             number: String,
@@ -64,6 +81,95 @@ module SurgeAPI
         )
       end
       def to_hash
+      end
+
+      class Campaign < SurgeAPI::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(SurgeAPI::PhoneNumber::Campaign, SurgeAPI::Internal::AnyHash)
+          end
+
+        # The unique identifier of the campaign this phone number is attached to
+        sig { returns(String) }
+        attr_accessor :id
+
+        # The current campaign attachment status for this phone number.
+        sig do
+          returns(
+            SurgeAPI::PhoneNumber::Campaign::AttachmentStatus::TaggedSymbol
+          )
+        end
+        attr_accessor :attachment_status
+
+        # Campaign attachment details for a domestic local phone number
+        sig do
+          params(
+            id: String,
+            attachment_status:
+              SurgeAPI::PhoneNumber::Campaign::AttachmentStatus::OrSymbol
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # The unique identifier of the campaign this phone number is attached to
+          id:,
+          # The current campaign attachment status for this phone number.
+          attachment_status:
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              id: String,
+              attachment_status:
+                SurgeAPI::PhoneNumber::Campaign::AttachmentStatus::TaggedSymbol
+            }
+          )
+        end
+        def to_hash
+        end
+
+        # The current campaign attachment status for this phone number.
+        module AttachmentStatus
+          extend SurgeAPI::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(Symbol, SurgeAPI::PhoneNumber::Campaign::AttachmentStatus)
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          ATTACHED =
+            T.let(
+              :attached,
+              SurgeAPI::PhoneNumber::Campaign::AttachmentStatus::TaggedSymbol
+            )
+          ATTACHMENT_PENDING =
+            T.let(
+              :attachment_pending,
+              SurgeAPI::PhoneNumber::Campaign::AttachmentStatus::TaggedSymbol
+            )
+          DETACHED =
+            T.let(
+              :detached,
+              SurgeAPI::PhoneNumber::Campaign::AttachmentStatus::TaggedSymbol
+            )
+          DETACHMENT_PENDING =
+            T.let(
+              :detachment_pending,
+              SurgeAPI::PhoneNumber::Campaign::AttachmentStatus::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                SurgeAPI::PhoneNumber::Campaign::AttachmentStatus::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
+          end
+        end
       end
 
       # Whether the phone number is local, toll-free, or short code
