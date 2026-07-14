@@ -41,6 +41,13 @@ module SurgeAPI
       #   @return [String, nil]
       optional :name, String
 
+      # @!attribute phone_number
+      #   The exact phone number to purchase in E.164 format. When provided, all other
+      #   search parameters are ignored.
+      #
+      #   @return [String, nil]
+      optional :phone_number, String
+
       # @!attribute type
       #   Whether the phone number is local or toll-free. Can be omitted if area_code or
       #   latitude/longitude are provided.
@@ -48,7 +55,7 @@ module SurgeAPI
       #   @return [Symbol, SurgeAPI::Models::PhoneNumberPurchaseParams::Type, nil]
       optional :type, enum: -> { SurgeAPI::PhoneNumberPurchaseParams::Type }
 
-      # @!method initialize(account_id:, area_code: nil, latitude: nil, longitude: nil, name: nil, type: nil, request_options: {})
+      # @!method initialize(account_id:, area_code: nil, latitude: nil, longitude: nil, name: nil, phone_number: nil, type: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {SurgeAPI::Models::PhoneNumberPurchaseParams} for more details.
       #
@@ -61,6 +68,8 @@ module SurgeAPI
       #   @param longitude [Float] Longitude to search for nearby phone numbers. Must be used with latitude. If pro
       #
       #   @param name [String] A human-readable name for the phone number. If not provided, defaults to the for
+      #
+      #   @param phone_number [String] The exact phone number to purchase in E.164 format. When provided, all other sea
       #
       #   @param type [Symbol, SurgeAPI::Models::PhoneNumberPurchaseParams::Type] Whether the phone number is local or toll-free. Can be omitted if area_code or l
       #
