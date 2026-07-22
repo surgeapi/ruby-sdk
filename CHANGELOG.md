@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.21.0 (2026-07-22)
+
+Full Changelog: [v0.20.0...v0.21.0](https://github.com/surgeapi/ruby-sdk/compare/v0.20.0...v0.21.0)
+
+### Features
+
+* **api:** add resend brand verification message endpoint ([49f208a](https://github.com/surgeapi/ruby-sdk/commit/49f208ae28574f1b7ef4993d5e9bc165ee7b0f79))
+* **stlc:** configurable CI runner and private-production-repo support in workflow templates ([7d825e7](https://github.com/surgeapi/ruby-sdk/commit/7d825e74a607a569319c08d22c2fa87b3fe9efb0))
+
 ## 0.20.0 (2026-07-14)
 
 Full Changelog: [v0.19.0...v0.20.0](https://github.com/surgeapi/ruby-sdk/compare/v0.19.0...v0.20.0)
