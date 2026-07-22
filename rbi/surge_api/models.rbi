@@ -39,6 +39,9 @@ module SurgeAPI
 
   CampaignParams = SurgeAPI::Models::CampaignParams
 
+  CampaignResendBrandVerificationMessageParams =
+    SurgeAPI::Models::CampaignResendBrandVerificationMessageParams
+
   CampaignRetrieveParams = SurgeAPI::Models::CampaignRetrieveParams
 
   CampaignUpdateParams = SurgeAPI::Models::CampaignUpdateParams
