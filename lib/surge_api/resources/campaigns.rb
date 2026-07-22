@@ -111,6 +111,26 @@ module SurgeAPI
         )
       end
 
+      # Enqueues an SMS OTP for a sole proprietor brand awaiting identity verification.
+      #
+      # @overload resend_brand_verification_message(account_id, request_options: {})
+      #
+      # @param account_id [String] The account whose brand verification OTP should be sent.
+      #
+      # @param request_options [SurgeAPI::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [SurgeAPI::Models::CampaignResendBrandVerificationMessageResponse]
+      #
+      # @see SurgeAPI::Models::CampaignResendBrandVerificationMessageParams
+      def resend_brand_verification_message(account_id, params = {})
+        @client.request(
+          method: :post,
+          path: ["accounts/%1$s/brand_verification_messages", account_id],
+          model: SurgeAPI::Models::CampaignResendBrandVerificationMessageResponse,
+          options: params[:request_options]
+        )
+      end
+
       # @api private
       #
       # @param client [SurgeAPI::Client]

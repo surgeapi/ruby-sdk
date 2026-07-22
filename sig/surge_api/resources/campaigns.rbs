@@ -25,6 +25,11 @@ module SurgeAPI
         ?request_options: SurgeAPI::request_opts
       ) -> SurgeAPI::Internal::Cursor[SurgeAPI::Campaign]
 
+      def resend_brand_verification_message: (
+        String account_id,
+        ?request_options: SurgeAPI::request_opts
+      ) -> SurgeAPI::Models::CampaignResendBrandVerificationMessageResponse
+
       def initialize: (client: SurgeAPI::Client) -> void
     end
   end

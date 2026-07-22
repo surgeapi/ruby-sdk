@@ -1,0 +1,30 @@
+module SurgeAPI
+  module Models
+    type campaign_resend_brand_verification_message_response =
+      {
+        status: SurgeAPI::Models::CampaignResendBrandVerificationMessageResponse::status
+      }
+
+    class CampaignResendBrandVerificationMessageResponse < SurgeAPI::Internal::Type::BaseModel
+      attr_accessor status: SurgeAPI::Models::CampaignResendBrandVerificationMessageResponse::status
+
+      def initialize: (
+        status: SurgeAPI::Models::CampaignResendBrandVerificationMessageResponse::status
+      ) -> void
+
+      def to_hash: -> {
+        status: SurgeAPI::Models::CampaignResendBrandVerificationMessageResponse::status
+      }
+
+      type status = :enqueued
+
+      module Status
+        extend SurgeAPI::Internal::Type::Enum
+
+        ENQUEUED: :enqueued
+
+        def self?.values: -> ::Array[SurgeAPI::Models::CampaignResendBrandVerificationMessageResponse::status]
+      end
+    end
+  end
+end

@@ -145,4 +145,20 @@ class SurgeAPI::Test::Resources::CampaignsTest < SurgeAPI::Test::ResourceTest
       }
     end
   end
+
+  def test_resend_brand_verification_message
+    skip("Mock server tests are disabled")
+
+    response = @surge.campaigns.resend_brand_verification_message("acct_01j9a43avnfqzbjfch6pygv1td")
+
+    assert_pattern do
+      response => SurgeAPI::Models::CampaignResendBrandVerificationMessageResponse
+    end
+
+    assert_pattern do
+      response => {
+        status: SurgeAPI::Models::CampaignResendBrandVerificationMessageResponse::Status
+      }
+    end
+  end
 end
