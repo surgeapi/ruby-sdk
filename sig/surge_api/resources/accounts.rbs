@@ -9,6 +9,11 @@ module SurgeAPI
         ?request_options: SurgeAPI::request_opts
       ) -> SurgeAPI::Account
 
+      def retrieve: (
+        String id,
+        ?request_options: SurgeAPI::request_opts
+      ) -> SurgeAPI::Account
+
       def update: (
         String id,
         ?brand_name: String,
