@@ -34,6 +34,26 @@ module SurgeAPI
         )
       end
 
+      # Retrieves an Account object.
+      #
+      # @overload retrieve(id, request_options: {})
+      #
+      # @param id [String] The ID of the account to retrieve.
+      #
+      # @param request_options [SurgeAPI::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [SurgeAPI::Models::Account]
+      #
+      # @see SurgeAPI::Models::AccountRetrieveParams
+      def retrieve(id, params = {})
+        @client.request(
+          method: :get,
+          path: ["accounts/%1$s", id],
+          model: SurgeAPI::Account,
+          options: params[:request_options]
+        )
+      end
+
       # Some parameter documentations has been truncated, see
       # {SurgeAPI::Models::AccountUpdateParams} for more details.
       #

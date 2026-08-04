@@ -33,6 +33,20 @@ module SurgeAPI
       )
       end
 
+      # Retrieves an Account object.
+      sig do
+        params(
+          id: String,
+          request_options: SurgeAPI::RequestOptions::OrHash
+        ).returns(SurgeAPI::Account)
+      end
+      def retrieve(
+        # The ID of the account to retrieve.
+        id,
+        request_options: {}
+      )
+      end
+
       # Updates an Account
       sig do
         params(
