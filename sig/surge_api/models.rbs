@@ -7,6 +7,8 @@ module SurgeAPI
 
   class AccountListParams = SurgeAPI::Models::AccountListParams
 
+  class AccountRetrieveParams = SurgeAPI::Models::AccountRetrieveParams
+
   class AccountRetrieveStatusParams = SurgeAPI::Models::AccountRetrieveStatusParams
 
   class AccountStatus = SurgeAPI::Models::AccountStatus

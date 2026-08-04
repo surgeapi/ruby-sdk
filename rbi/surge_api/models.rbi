@@ -9,6 +9,8 @@ module SurgeAPI
 
   AccountListParams = SurgeAPI::Models::AccountListParams
 
+  AccountRetrieveParams = SurgeAPI::Models::AccountRetrieveParams
+
   AccountRetrieveStatusParams = SurgeAPI::Models::AccountRetrieveStatusParams
 
   AccountStatus = SurgeAPI::Models::AccountStatus
