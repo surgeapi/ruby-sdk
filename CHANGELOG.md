@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.22.0 (2026-08-04)
+
+Full Changelog: [v0.21.0...v0.22.0](https://github.com/surgeapi/ruby-sdk/compare/v0.21.0...v0.22.0)
+
+### Features
+
+* **api:** add get account endpoint ([011b8a3](https://github.com/surgeapi/ruby-sdk/commit/011b8a3c03d8cf5175e58944e5783ea7974a1188))
+* **api:** remove campaign rejected status ([c5b66f9](https://github.com/surgeapi/ruby-sdk/commit/c5b66f919658888a3bb649c91cbb13252cd468ef))
+
 ## 0.21.0 (2026-07-22)
 
 Full Changelog: [v0.20.0...v0.21.0](https://github.com/surgeapi/ruby-sdk/compare/v0.20.0...v0.21.0)
