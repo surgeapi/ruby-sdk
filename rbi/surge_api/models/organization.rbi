@@ -38,12 +38,14 @@ module SurgeAPI
 
       # The value of the identifier whose type is specified in the identifier_type
       # field. For EIN, can be formatted with or without the hyphen. For CBN, must be
-      # exactly 9 digits.
+      # exactly 9 digits. For VAT, provide only the numeric portion, between 2 and 20
+      # digits.
       sig { returns(T.nilable(String)) }
       attr_accessor :identifier
 
       # The type of identifier being provided for the organization. Use "ein" for US
-      # businesses or "cbn" for Canadian businesses.
+      # organizations, "cbn" for Canadian organizations, or "vat" for supported
+      # international organizations.
       sig do
         returns(T.nilable(SurgeAPI::Organization::IdentifierType::TaggedSymbol))
       end
@@ -136,10 +138,12 @@ module SurgeAPI
         email:,
         # The value of the identifier whose type is specified in the identifier_type
         # field. For EIN, can be formatted with or without the hyphen. For CBN, must be
-        # exactly 9 digits.
+        # exactly 9 digits. For VAT, provide only the numeric portion, between 2 and 20
+        # digits.
         identifier:,
         # The type of identifier being provided for the organization. Use "ein" for US
-        # businesses or "cbn" for Canadian businesses.
+        # organizations, "cbn" for Canadian organizations, or "vat" for supported
+        # international organizations.
         identifier_type:,
         # The industry in which the organization operates.
         industry:,
@@ -409,7 +413,8 @@ module SurgeAPI
       end
 
       # The type of identifier being provided for the organization. Use "ein" for US
-      # businesses or "cbn" for Canadian businesses.
+      # organizations, "cbn" for Canadian organizations, or "vat" for supported
+      # international organizations.
       module IdentifierType
         extend SurgeAPI::Internal::Type::Enum
 
@@ -419,6 +424,7 @@ module SurgeAPI
 
         EIN = T.let(:ein, SurgeAPI::Organization::IdentifierType::TaggedSymbol)
         CBN = T.let(:cbn, SurgeAPI::Organization::IdentifierType::TaggedSymbol)
+        VAT = T.let(:vat, SurgeAPI::Organization::IdentifierType::TaggedSymbol)
 
         sig do
           override.returns(

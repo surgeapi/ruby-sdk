@@ -158,12 +158,14 @@ module SurgeAPI
 
         # The value of the identifier whose type is specified in the identifier_type
         # field. For EIN, can be formatted with or without the hyphen. For CBN, must be
-        # exactly 9 digits.
+        # exactly 9 digits. For VAT, provide only the numeric portion, between 2 and 20
+        # digits.
         sig { returns(T.nilable(String)) }
         attr_accessor :identifier
 
         # The type of identifier being provided for the organization. Use "ein" for US
-        # businesses or "cbn" for Canadian businesses.
+        # organizations, "cbn" for Canadian organizations, or "vat" for supported
+        # international organizations.
         sig do
           returns(
             T.nilable(
@@ -298,10 +300,12 @@ module SurgeAPI
           email: nil,
           # The value of the identifier whose type is specified in the identifier_type
           # field. For EIN, can be formatted with or without the hyphen. For CBN, must be
-          # exactly 9 digits.
+          # exactly 9 digits. For VAT, provide only the numeric portion, between 2 and 20
+          # digits.
           identifier: nil,
           # The type of identifier being provided for the organization. Use "ein" for US
-          # businesses or "cbn" for Canadian businesses.
+          # organizations, "cbn" for Canadian organizations, or "vat" for supported
+          # international organizations.
           identifier_type: nil,
           # The industry in which the organization operates.
           industry: nil,
@@ -622,7 +626,8 @@ module SurgeAPI
         end
 
         # The type of identifier being provided for the organization. Use "ein" for US
-        # businesses or "cbn" for Canadian businesses.
+        # organizations, "cbn" for Canadian organizations, or "vat" for supported
+        # international organizations.
         module IdentifierType
           extend SurgeAPI::Internal::Type::Enum
 
@@ -643,6 +648,11 @@ module SurgeAPI
           CBN =
             T.let(
               :cbn,
+              SurgeAPI::AccountUpdateParams::Organization::IdentifierType::TaggedSymbol
+            )
+          VAT =
+            T.let(
+              :vat,
               SurgeAPI::AccountUpdateParams::Organization::IdentifierType::TaggedSymbol
             )
 

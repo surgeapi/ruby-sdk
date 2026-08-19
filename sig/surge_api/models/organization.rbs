@@ -187,13 +187,14 @@ module SurgeAPI
         end
       end
 
-      type identifier_type = :ein | :cbn
+      type identifier_type = :ein | :cbn | :vat
 
       module IdentifierType
         extend SurgeAPI::Internal::Type::Enum
 
         EIN: :ein
         CBN: :cbn
+        VAT: :vat
 
         def self?.values: -> ::Array[SurgeAPI::Models::Organization::identifier_type]
       end
