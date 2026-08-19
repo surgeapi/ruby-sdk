@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.23.0 (2026-08-19)
+
+Full Changelog: [v0.22.0...v0.23.0](https://github.com/surgeapi/ruby-sdk/compare/v0.22.0...v0.23.0)
+
+### Features
+
+* **api:** allow non us/canadian organizations ([d558bb0](https://github.com/surgeapi/ruby-sdk/commit/d558bb011a766c052623418137ad13c977f750d5))
+* **api:** disable outbound for contacts ([8689417](https://github.com/surgeapi/ruby-sdk/commit/8689417b03df27a4aadd6b48cc611b48264ed03f))
+
 ## 0.22.0 (2026-08-04)
 
 Full Changelog: [v0.21.0...v0.22.0](https://github.com/surgeapi/ruby-sdk/compare/v0.21.0...v0.22.0)
