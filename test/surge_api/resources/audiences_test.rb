@@ -37,7 +37,8 @@ class SurgeAPI::Test::Resources::AudiencesTest < SurgeAPI::Test::ResourceTest
         email: String | nil,
         first_name: String | nil,
         last_name: String | nil,
-        metadata: ^(SurgeAPI::Internal::Type::HashOf[String]) | nil
+        metadata: ^(SurgeAPI::Internal::Type::HashOf[String]) | nil,
+        outbound_disabled: SurgeAPI::Internal::Type::Boolean | nil
       }
     end
   end
@@ -65,7 +66,8 @@ class SurgeAPI::Test::Resources::AudiencesTest < SurgeAPI::Test::ResourceTest
         email: String | nil,
         first_name: String | nil,
         last_name: String | nil,
-        metadata: ^(SurgeAPI::Internal::Type::HashOf[String]) | nil
+        metadata: ^(SurgeAPI::Internal::Type::HashOf[String]) | nil,
+        outbound_disabled: SurgeAPI::Internal::Type::Boolean | nil
       }
     end
   end

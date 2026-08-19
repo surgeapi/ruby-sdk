@@ -5,7 +5,7 @@ module SurgeAPI
     class Contacts
       # Creates a new Contact object.
       #
-      # @overload create(account_id, phone_number:, email: nil, first_name: nil, last_name: nil, metadata: nil, request_options: {})
+      # @overload create(account_id, phone_number:, email: nil, first_name: nil, last_name: nil, metadata: nil, outbound_disabled: nil, request_options: {})
       #
       # @param account_id [String] The account for which the contact should be created.
       #
@@ -18,6 +18,8 @@ module SurgeAPI
       # @param last_name [String] The contact's last name.
       #
       # @param metadata [Hash{Symbol=>String}] Set of key-value pairs that will be stored with the object.
+      #
+      # @param outbound_disabled [Boolean] Whether outbound messaging should be manually disabled for the contact.
       #
       # @param request_options [SurgeAPI::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -58,7 +60,7 @@ module SurgeAPI
       # Updates the specified contact by setting the values of the parameters passed.
       # Any parameters not provided will be left unchanged.
       #
-      # @overload update(id, phone_number:, email: nil, first_name: nil, last_name: nil, metadata: nil, request_options: {})
+      # @overload update(id, phone_number:, email: nil, first_name: nil, last_name: nil, metadata: nil, outbound_disabled: nil, request_options: {})
       #
       # @param id [String] The ID of the contact to update.
       #
@@ -71,6 +73,8 @@ module SurgeAPI
       # @param last_name [String] The contact's last name.
       #
       # @param metadata [Hash{Symbol=>String}] Set of key-value pairs that will be stored with the object.
+      #
+      # @param outbound_disabled [Boolean] Whether outbound messaging should be manually disabled for the contact.
       #
       # @param request_options [SurgeAPI::RequestOptions, Hash{Symbol=>Object}, nil]
       #

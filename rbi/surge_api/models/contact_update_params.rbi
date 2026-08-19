@@ -47,6 +47,13 @@ module SurgeAPI
       sig { params(metadata: T::Hash[Symbol, String]).void }
       attr_writer :metadata
 
+      # Whether outbound messaging should be manually disabled for the contact.
+      sig { returns(T.nilable(T::Boolean)) }
+      attr_reader :outbound_disabled
+
+      sig { params(outbound_disabled: T::Boolean).void }
+      attr_writer :outbound_disabled
+
       sig do
         params(
           id: String,
@@ -55,6 +62,7 @@ module SurgeAPI
           first_name: String,
           last_name: String,
           metadata: T::Hash[Symbol, String],
+          outbound_disabled: T::Boolean,
           request_options: SurgeAPI::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
@@ -71,6 +79,8 @@ module SurgeAPI
         last_name: nil,
         # Set of key-value pairs that will be stored with the object.
         metadata: nil,
+        # Whether outbound messaging should be manually disabled for the contact.
+        outbound_disabled: nil,
         request_options: {}
       )
       end
@@ -84,6 +94,7 @@ module SurgeAPI
             first_name: String,
             last_name: String,
             metadata: T::Hash[Symbol, String],
+            outbound_disabled: T::Boolean,
             request_options: SurgeAPI::RequestOptions
           }
         )
