@@ -36,14 +36,16 @@ module SurgeAPI
       # @!attribute identifier
       #   The value of the identifier whose type is specified in the identifier_type
       #   field. For EIN, can be formatted with or without the hyphen. For CBN, must be
-      #   exactly 9 digits.
+      #   exactly 9 digits. For VAT, provide only the numeric portion, between 2 and 20
+      #   digits.
       #
       #   @return [String, nil]
       required :identifier, String, nil?: true
 
       # @!attribute identifier_type
       #   The type of identifier being provided for the organization. Use "ein" for US
-      #   businesses or "cbn" for Canadian businesses.
+      #   organizations, "cbn" for Canadian organizations, or "vat" for supported
+      #   international organizations.
       #
       #   @return [Symbol, SurgeAPI::Models::Organization::IdentifierType, nil]
       required :identifier_type, enum: -> { SurgeAPI::Organization::IdentifierType }, nil?: true
@@ -120,7 +122,7 @@ module SurgeAPI
       #
       #   @param identifier [String, nil] The value of the identifier whose type is specified in the identifier_type field
       #
-      #   @param identifier_type [Symbol, SurgeAPI::Models::Organization::IdentifierType, nil] The type of identifier being provided for the organization. Use "ein" for US bus
+      #   @param identifier_type [Symbol, SurgeAPI::Models::Organization::IdentifierType, nil] The type of identifier being provided for the organization. Use "ein" for US org
       #
       #   @param industry [Symbol, SurgeAPI::Models::Organization::Industry, nil] The industry in which the organization operates.
       #
@@ -287,7 +289,8 @@ module SurgeAPI
       end
 
       # The type of identifier being provided for the organization. Use "ein" for US
-      # businesses or "cbn" for Canadian businesses.
+      # organizations, "cbn" for Canadian organizations, or "vat" for supported
+      # international organizations.
       #
       # @see SurgeAPI::Models::Organization#identifier_type
       module IdentifierType
@@ -295,6 +298,7 @@ module SurgeAPI
 
         EIN = :ein
         CBN = :cbn
+        VAT = :vat
 
         # @!method self.values
         #   @return [Array<Symbol>]
