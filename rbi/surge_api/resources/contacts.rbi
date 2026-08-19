@@ -12,6 +12,7 @@ module SurgeAPI
           first_name: String,
           last_name: String,
           metadata: T::Hash[Symbol, String],
+          outbound_disabled: T::Boolean,
           request_options: SurgeAPI::RequestOptions::OrHash
         ).returns(SurgeAPI::Contact)
       end
@@ -28,6 +29,8 @@ module SurgeAPI
         last_name: nil,
         # Set of key-value pairs that will be stored with the object.
         metadata: nil,
+        # Whether outbound messaging should be manually disabled for the contact.
+        outbound_disabled: nil,
         request_options: {}
       )
       end
@@ -56,6 +59,7 @@ module SurgeAPI
           first_name: String,
           last_name: String,
           metadata: T::Hash[Symbol, String],
+          outbound_disabled: T::Boolean,
           request_options: SurgeAPI::RequestOptions::OrHash
         ).returns(SurgeAPI::Contact)
       end
@@ -72,6 +76,8 @@ module SurgeAPI
         last_name: nil,
         # Set of key-value pairs that will be stored with the object.
         metadata: nil,
+        # Whether outbound messaging should be manually disabled for the contact.
+        outbound_disabled: nil,
         request_options: {}
       )
       end

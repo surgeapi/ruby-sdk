@@ -132,7 +132,13 @@ module SurgeAPI
             #   @return [Hash{Symbol=>String}, nil]
             optional :metadata, SurgeAPI::Internal::Type::HashOf[String]
 
-            # @!method initialize(phone_number:, email: nil, first_name: nil, last_name: nil, metadata: nil)
+            # @!attribute outbound_disabled
+            #   Whether outbound messaging should be manually disabled for the contact.
+            #
+            #   @return [Boolean, nil]
+            optional :outbound_disabled, SurgeAPI::Internal::Type::Boolean
+
+            # @!method initialize(phone_number:, email: nil, first_name: nil, last_name: nil, metadata: nil, outbound_disabled: nil)
             #   Parameters for creating a contact
             #
             #   @param phone_number [String] The contact's phone number in E.164 format.
@@ -144,6 +150,8 @@ module SurgeAPI
             #   @param last_name [String] The contact's last name.
             #
             #   @param metadata [Hash{Symbol=>String}] Set of key-value pairs that will be stored with the object.
+            #
+            #   @param outbound_disabled [Boolean] Whether outbound messaging should be manually disabled for the contact.
           end
         end
 

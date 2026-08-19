@@ -8,6 +8,7 @@ module SurgeAPI
         ?first_name: String,
         ?last_name: String,
         ?metadata: ::Hash[Symbol, String],
+        ?outbound_disabled: bool,
         ?request_options: SurgeAPI::request_opts
       ) -> SurgeAPI::Contact
 
@@ -23,6 +24,7 @@ module SurgeAPI
         ?first_name: String,
         ?last_name: String,
         ?metadata: ::Hash[Symbol, String],
+        ?outbound_disabled: bool,
         ?request_options: SurgeAPI::request_opts
       ) -> SurgeAPI::Contact
 
