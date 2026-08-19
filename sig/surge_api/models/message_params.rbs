@@ -91,7 +91,8 @@ module SurgeAPI
               email: String,
               first_name: String,
               last_name: String,
-              metadata: ::Hash[Symbol, String]
+              metadata: ::Hash[Symbol, String],
+              outbound_disabled: bool
             }
 
           class Contact < SurgeAPI::Internal::Type::BaseModel
@@ -113,12 +114,17 @@ module SurgeAPI
 
             def metadata=: (::Hash[Symbol, String]) -> ::Hash[Symbol, String]
 
+            attr_reader outbound_disabled: bool?
+
+            def outbound_disabled=: (bool) -> bool
+
             def initialize: (
               phone_number: String,
               ?email: String,
               ?first_name: String,
               ?last_name: String,
-              ?metadata: ::Hash[Symbol, String]
+              ?metadata: ::Hash[Symbol, String],
+              ?outbound_disabled: bool
             ) -> void
 
             def to_hash: -> {
@@ -126,7 +132,8 @@ module SurgeAPI
               email: String,
               first_name: String,
               last_name: String,
-              metadata: ::Hash[Symbol, String]
+              metadata: ::Hash[Symbol, String],
+              outbound_disabled: bool
             }
           end
         end
