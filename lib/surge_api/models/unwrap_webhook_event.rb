@@ -29,12 +29,14 @@ module SurgeAPI
 
       variant :"phone_number.attached_to_campaign", -> { SurgeAPI::PhoneNumberAttachedToCampaignWebhookEvent }
 
+      variant :"phone_number.imported", -> { SurgeAPI::PhoneNumberImportedWebhookEvent }
+
       variant :"recording.completed", -> { SurgeAPI::RecordingCompletedWebhookEvent }
 
       variant :"voicemail.received", -> { SurgeAPI::VoicemailReceivedWebhookEvent }
 
       # @!method self.variants
-      #   @return [Array(SurgeAPI::Models::CallEndedWebhookEvent, SurgeAPI::Models::CampaignApprovedWebhookEvent, SurgeAPI::Models::ContactOptedInWebhookEvent, SurgeAPI::Models::ContactOptedOutWebhookEvent, SurgeAPI::Models::ConversationCreatedWebhookEvent, SurgeAPI::Models::LinkFollowedWebhookEvent, SurgeAPI::Models::MessageDeliveredWebhookEvent, SurgeAPI::Models::MessageFailedWebhookEvent, SurgeAPI::Models::MessageReceivedWebhookEvent, SurgeAPI::Models::MessageSentWebhookEvent, SurgeAPI::Models::PhoneNumberAttachedToCampaignWebhookEvent, SurgeAPI::Models::RecordingCompletedWebhookEvent, SurgeAPI::Models::VoicemailReceivedWebhookEvent)]
+      #   @return [Array(SurgeAPI::Models::CallEndedWebhookEvent, SurgeAPI::Models::CampaignApprovedWebhookEvent, SurgeAPI::Models::ContactOptedInWebhookEvent, SurgeAPI::Models::ContactOptedOutWebhookEvent, SurgeAPI::Models::ConversationCreatedWebhookEvent, SurgeAPI::Models::LinkFollowedWebhookEvent, SurgeAPI::Models::MessageDeliveredWebhookEvent, SurgeAPI::Models::MessageFailedWebhookEvent, SurgeAPI::Models::MessageReceivedWebhookEvent, SurgeAPI::Models::MessageSentWebhookEvent, SurgeAPI::Models::PhoneNumberAttachedToCampaignWebhookEvent, SurgeAPI::Models::PhoneNumberImportedWebhookEvent, SurgeAPI::Models::RecordingCompletedWebhookEvent, SurgeAPI::Models::VoicemailReceivedWebhookEvent)]
     end
   end
 end
