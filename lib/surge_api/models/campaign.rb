@@ -179,6 +179,7 @@ module SurgeAPI
 
         ACTIVE = :active
         CANCELED = :canceled
+        REJECTED = :rejected
         CREATED = :created
         DEACTIVATED = :deactivated
         IN_REVIEW = :in_review

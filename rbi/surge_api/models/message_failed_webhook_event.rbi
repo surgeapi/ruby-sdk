@@ -106,6 +106,14 @@ module SurgeAPI
         sig { returns(T::Hash[Symbol, String]) }
         attr_accessor :metadata
 
+        # The message status represented by this event
+        sig do
+          returns(
+            SurgeAPI::MessageFailedWebhookEvent::Data::Status::TaggedSymbol
+          )
+        end
+        attr_accessor :status
+
         # Attachments included with the message
         sig do
           returns(
@@ -144,6 +152,7 @@ module SurgeAPI
             failed_at: Time,
             failure_reason: String,
             metadata: T::Hash[Symbol, String],
+            status: SurgeAPI::MessageFailedWebhookEvent::Data::Status::OrSymbol,
             attachments:
               T::Array[
                 SurgeAPI::MessageFailedWebhookEvent::Data::Attachment::OrHash
@@ -164,6 +173,8 @@ module SurgeAPI
           failure_reason:,
           # Set of key-value pairs that will be stored with the object.
           metadata:,
+          # The message status represented by this event
+          status:,
           # Attachments included with the message
           attachments: nil,
           # The ID of the blast this message belongs to, if any. This can be used to
@@ -182,6 +193,8 @@ module SurgeAPI
               failed_at: Time,
               failure_reason: String,
               metadata: T::Hash[Symbol, String],
+              status:
+                SurgeAPI::MessageFailedWebhookEvent::Data::Status::TaggedSymbol,
               attachments:
                 T::Array[SurgeAPI::MessageFailedWebhookEvent::Data::Attachment],
               blast_id: String
@@ -246,6 +259,33 @@ module SurgeAPI
             )
           end
           def to_hash
+          end
+        end
+
+        # The message status represented by this event
+        module Status
+          extend SurgeAPI::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(Symbol, SurgeAPI::MessageFailedWebhookEvent::Data::Status)
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          FAILED =
+            T.let(
+              :failed,
+              SurgeAPI::MessageFailedWebhookEvent::Data::Status::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                SurgeAPI::MessageFailedWebhookEvent::Data::Status::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
           end
         end
 

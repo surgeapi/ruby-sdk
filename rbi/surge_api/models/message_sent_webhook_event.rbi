@@ -97,6 +97,12 @@ module SurgeAPI
         sig { returns(Time) }
         attr_accessor :sent_at
 
+        # The message status represented by this event
+        sig do
+          returns(SurgeAPI::MessageSentWebhookEvent::Data::Status::TaggedSymbol)
+        end
+        attr_accessor :status
+
         # Attachments included with the message
         sig do
           returns(
@@ -134,6 +140,7 @@ module SurgeAPI
               SurgeAPI::MessageSentWebhookEvent::Data::Conversation::OrHash,
             metadata: T::Hash[Symbol, String],
             sent_at: Time,
+            status: SurgeAPI::MessageSentWebhookEvent::Data::Status::OrSymbol,
             attachments:
               T::Array[
                 SurgeAPI::MessageSentWebhookEvent::Data::Attachment::OrHash
@@ -152,6 +159,8 @@ module SurgeAPI
           metadata:,
           # When the message was sent
           sent_at:,
+          # The message status represented by this event
+          status:,
           # Attachments included with the message
           attachments: nil,
           # The ID of the blast this message belongs to, if any. This can be used to
@@ -169,6 +178,8 @@ module SurgeAPI
                 SurgeAPI::MessageSentWebhookEvent::Data::Conversation,
               metadata: T::Hash[Symbol, String],
               sent_at: Time,
+              status:
+                SurgeAPI::MessageSentWebhookEvent::Data::Status::TaggedSymbol,
               attachments:
                 T::Array[SurgeAPI::MessageSentWebhookEvent::Data::Attachment],
               blast_id: String
@@ -233,6 +244,33 @@ module SurgeAPI
             )
           end
           def to_hash
+          end
+        end
+
+        # The message status represented by this event
+        module Status
+          extend SurgeAPI::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(Symbol, SurgeAPI::MessageSentWebhookEvent::Data::Status)
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          SENT =
+            T.let(
+              :sent,
+              SurgeAPI::MessageSentWebhookEvent::Data::Status::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                SurgeAPI::MessageSentWebhookEvent::Data::Status::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
           end
         end
 

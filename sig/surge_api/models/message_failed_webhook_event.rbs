@@ -39,6 +39,7 @@ module SurgeAPI
           failed_at: Time,
           failure_reason: String,
           metadata: ::Hash[Symbol, String],
+          status: SurgeAPI::Models::MessageFailedWebhookEvent::Data::status,
           attachments: ::Array[SurgeAPI::MessageFailedWebhookEvent::Data::Attachment],
           blast_id: String
         }
@@ -55,6 +56,8 @@ module SurgeAPI
         attr_accessor failure_reason: String
 
         attr_accessor metadata: ::Hash[Symbol, String]
+
+        attr_accessor status: SurgeAPI::Models::MessageFailedWebhookEvent::Data::status
 
         attr_reader attachments: ::Array[SurgeAPI::MessageFailedWebhookEvent::Data::Attachment]?
 
@@ -73,6 +76,7 @@ module SurgeAPI
           failed_at: Time,
           failure_reason: String,
           metadata: ::Hash[Symbol, String],
+          status: SurgeAPI::Models::MessageFailedWebhookEvent::Data::status,
           ?attachments: ::Array[SurgeAPI::MessageFailedWebhookEvent::Data::Attachment],
           ?blast_id: String
         ) -> void
@@ -84,6 +88,7 @@ module SurgeAPI
           failed_at: Time,
           failure_reason: String,
           metadata: ::Hash[Symbol, String],
+          status: SurgeAPI::Models::MessageFailedWebhookEvent::Data::status,
           attachments: ::Array[SurgeAPI::MessageFailedWebhookEvent::Data::Attachment],
           blast_id: String
         }
@@ -113,6 +118,16 @@ module SurgeAPI
             contact: SurgeAPI::Contact,
             phone_number: SurgeAPI::PhoneNumber
           }
+        end
+
+        type status = :failed
+
+        module Status
+          extend SurgeAPI::Internal::Type::Enum
+
+          FAILED: :failed
+
+          def self?.values: -> ::Array[SurgeAPI::Models::MessageFailedWebhookEvent::Data::status]
         end
 
         type attachment =
