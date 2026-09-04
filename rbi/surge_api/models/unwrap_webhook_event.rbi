@@ -19,6 +19,7 @@ module SurgeAPI
             SurgeAPI::MessageReceivedWebhookEvent,
             SurgeAPI::MessageSentWebhookEvent,
             SurgeAPI::PhoneNumberAttachedToCampaignWebhookEvent,
+            SurgeAPI::PhoneNumberImportedWebhookEvent,
             SurgeAPI::RecordingCompletedWebhookEvent,
             SurgeAPI::VoicemailReceivedWebhookEvent
           )
