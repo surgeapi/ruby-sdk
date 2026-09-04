@@ -83,13 +83,15 @@ module SurgeAPI
         def self?.values: -> ::Array[SurgeAPI::Models::Campaign::include_]
       end
 
-      type status = :active | :canceled | :created | :deactivated | :in_review
+      type status =
+        :active | :canceled | :rejected | :created | :deactivated | :in_review
 
       module Status
         extend SurgeAPI::Internal::Type::Enum
 
         ACTIVE: :active
         CANCELED: :canceled
+        REJECTED: :rejected
         CREATED: :created
         DEACTIVATED: :deactivated
         IN_REVIEW: :in_review

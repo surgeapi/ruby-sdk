@@ -68,6 +68,12 @@ module SurgeAPI
         #   @return [Hash{Symbol=>String}]
         required :metadata, SurgeAPI::Internal::Type::HashOf[String]
 
+        # @!attribute status
+        #   The message status represented by this event
+        #
+        #   @return [Symbol, SurgeAPI::Models::MessageDeliveredWebhookEvent::Data::Status]
+        required :status, enum: -> { SurgeAPI::MessageDeliveredWebhookEvent::Data::Status }
+
         # @!attribute attachments
         #   Attachments included with the message
         #
@@ -82,7 +88,7 @@ module SurgeAPI
         #   @return [String, nil]
         optional :blast_id, String
 
-        # @!method initialize(id:, body:, conversation:, delivered_at:, metadata:, attachments: nil, blast_id: nil)
+        # @!method initialize(id:, body:, conversation:, delivered_at:, metadata:, status:, attachments: nil, blast_id: nil)
         #   Some parameter documentations has been truncated, see
         #   {SurgeAPI::Models::MessageDeliveredWebhookEvent::Data} for more details.
         #
@@ -97,6 +103,8 @@ module SurgeAPI
         #   @param delivered_at [Time] When the message was delivered
         #
         #   @param metadata [Hash{Symbol=>String}] Set of key-value pairs that will be stored with the object.
+        #
+        #   @param status [Symbol, SurgeAPI::Models::MessageDeliveredWebhookEvent::Data::Status] The message status represented by this event
         #
         #   @param attachments [Array<SurgeAPI::Models::MessageDeliveredWebhookEvent::Data::Attachment>] Attachments included with the message
         #
@@ -130,6 +138,18 @@ module SurgeAPI
           #   @param contact [SurgeAPI::Models::Contact] A contact who has consented to receive messages
           #
           #   @param phone_number [SurgeAPI::Models::PhoneNumber] A phone number that can be used to send and receive messages and calls
+        end
+
+        # The message status represented by this event
+        #
+        # @see SurgeAPI::Models::MessageDeliveredWebhookEvent::Data#status
+        module Status
+          extend SurgeAPI::Internal::Type::Enum
+
+          DELIVERED = :delivered
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
         end
 
         class Attachment < SurgeAPI::Internal::Type::BaseModel

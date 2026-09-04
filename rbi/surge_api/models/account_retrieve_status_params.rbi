@@ -88,6 +88,11 @@ module SurgeAPI
             :local_messaging,
             SurgeAPI::AccountRetrieveStatusParams::Capability::TaggedSymbol
           )
+        TOLL_FREE_MESSAGING =
+          T.let(
+            :toll_free_messaging,
+            SurgeAPI::AccountRetrieveStatusParams::Capability::TaggedSymbol
+          )
 
         sig do
           override.returns(

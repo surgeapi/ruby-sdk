@@ -1,0 +1,125 @@
+module SurgeAPI
+  module Models
+    type phone_number_imported_webhook_event =
+      {
+        account_id: String,
+        data: SurgeAPI::PhoneNumberImportedWebhookEvent::Data,
+        timestamp: Time,
+        type: :"phone_number.imported"
+      }
+
+    class PhoneNumberImportedWebhookEvent < SurgeAPI::Internal::Type::BaseModel
+      attr_accessor account_id: String
+
+      attr_accessor data: SurgeAPI::PhoneNumberImportedWebhookEvent::Data
+
+      attr_accessor timestamp: Time
+
+      attr_accessor type: :"phone_number.imported"
+
+      def initialize: (
+        account_id: String,
+        data: SurgeAPI::PhoneNumberImportedWebhookEvent::Data,
+        timestamp: Time,
+        ?type: :"phone_number.imported"
+      ) -> void
+
+      def to_hash: -> {
+        account_id: String,
+        data: SurgeAPI::PhoneNumberImportedWebhookEvent::Data,
+        timestamp: Time,
+        type: :"phone_number.imported"
+      }
+
+      type data =
+        {
+          id: String,
+          campaign: SurgeAPI::PhoneNumberImportedWebhookEvent::Data::Campaign?,
+          campaign_id: String?,
+          name: String?,
+          number: String,
+          type: SurgeAPI::Models::PhoneNumberImportedWebhookEvent::Data::type_
+        }
+
+      class Data < SurgeAPI::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor campaign: SurgeAPI::PhoneNumberImportedWebhookEvent::Data::Campaign?
+
+        attr_accessor campaign_id: String?
+
+        attr_accessor name: String?
+
+        attr_accessor number: String
+
+        attr_accessor type: SurgeAPI::Models::PhoneNumberImportedWebhookEvent::Data::type_
+
+        def initialize: (
+          id: String,
+          campaign: SurgeAPI::PhoneNumberImportedWebhookEvent::Data::Campaign?,
+          campaign_id: String?,
+          name: String?,
+          number: String,
+          type: SurgeAPI::Models::PhoneNumberImportedWebhookEvent::Data::type_
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          campaign: SurgeAPI::PhoneNumberImportedWebhookEvent::Data::Campaign?,
+          campaign_id: String?,
+          name: String?,
+          number: String,
+          type: SurgeAPI::Models::PhoneNumberImportedWebhookEvent::Data::type_
+        }
+
+        type campaign =
+          {
+            id: String,
+            attachment_status: SurgeAPI::Models::PhoneNumberImportedWebhookEvent::Data::Campaign::attachment_status
+          }
+
+        class Campaign < SurgeAPI::Internal::Type::BaseModel
+          attr_accessor id: String
+
+          attr_accessor attachment_status: SurgeAPI::Models::PhoneNumberImportedWebhookEvent::Data::Campaign::attachment_status
+
+          def initialize: (
+            id: String,
+            attachment_status: SurgeAPI::Models::PhoneNumberImportedWebhookEvent::Data::Campaign::attachment_status
+          ) -> void
+
+          def to_hash: -> {
+            id: String,
+            attachment_status: SurgeAPI::Models::PhoneNumberImportedWebhookEvent::Data::Campaign::attachment_status
+          }
+
+          type attachment_status =
+            :attached | :attachment_pending | :detached | :detachment_pending
+
+          module AttachmentStatus
+            extend SurgeAPI::Internal::Type::Enum
+
+            ATTACHED: :attached
+            ATTACHMENT_PENDING: :attachment_pending
+            DETACHED: :detached
+            DETACHMENT_PENDING: :detachment_pending
+
+            def self?.values: -> ::Array[SurgeAPI::Models::PhoneNumberImportedWebhookEvent::Data::Campaign::attachment_status]
+          end
+        end
+
+        type type_ = :local | :short_code | :toll_free
+
+        module Type
+          extend SurgeAPI::Internal::Type::Enum
+
+          LOCAL: :local
+          SHORT_CODE: :short_code
+          TOLL_FREE: :toll_free
+
+          def self?.values: -> ::Array[SurgeAPI::Models::PhoneNumberImportedWebhookEvent::Data::type_]
+        end
+      end
+    end
+  end
+end

@@ -96,11 +96,10 @@ module SurgeAPI
       sig { returns(SurgeAPI::Campaign::Volume::TaggedSymbol) }
       attr_accessor :volume
 
-      # A sample link that might be sent by this campaign. If links from other domains
-      # are sent through this campaign, they are much more likely to be filtered by the
-      # carriers. If link shortening is enabled for the account, the link shortener URL
-      # will be used instead of what is provided. Reach out to support if you would like
-      # to disable automatic link shortening.
+      # A sample link that might be sent by this campaign. This is required when
+      # `includes` contains `links`. Provide the same URL or domain that the campaign
+      # will use in production. If links from other domains are sent through this
+      # campaign, they are much more likely to be filtered by the carriers.
       sig { returns(T.nilable(String)) }
       attr_reader :link_sample
 
@@ -207,11 +206,10 @@ module SurgeAPI
         #   volume number upon receipt of the API request, and phone numbers will be
         #   charged as high volume numbers going forward.
         volume:,
-        # A sample link that might be sent by this campaign. If links from other domains
-        # are sent through this campaign, they are much more likely to be filtered by the
-        # carriers. If link shortening is enabled for the account, the link shortener URL
-        # will be used instead of what is provided. Reach out to support if you would like
-        # to disable automatic link shortening.
+        # A sample link that might be sent by this campaign. This is required when
+        # `includes` contains `links`. Provide the same URL or domain that the campaign
+        # will use in production. If links from other domains are sent through this
+        # campaign, they are much more likely to be filtered by the carriers.
         link_sample: nil,
         # The URL of the terms and conditions presented to end users when they opt in to
         # messaging. These terms and conditions may be shared among all of a platform's
@@ -272,6 +270,7 @@ module SurgeAPI
 
         ACTIVE = T.let(:active, SurgeAPI::Campaign::Status::TaggedSymbol)
         CANCELED = T.let(:canceled, SurgeAPI::Campaign::Status::TaggedSymbol)
+        REJECTED = T.let(:rejected, SurgeAPI::Campaign::Status::TaggedSymbol)
         CREATED = T.let(:created, SurgeAPI::Campaign::Status::TaggedSymbol)
         DEACTIVATED =
           T.let(:deactivated, SurgeAPI::Campaign::Status::TaggedSymbol)

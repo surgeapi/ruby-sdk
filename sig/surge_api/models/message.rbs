@@ -7,7 +7,8 @@ module SurgeAPI
         blast_id: String?,
         body: String?,
         conversation: SurgeAPI::Message::Conversation,
-        metadata: ::Hash[Symbol, String]
+        metadata: ::Hash[Symbol, String],
+        status: SurgeAPI::Models::Message::status
       }
 
     class Message < SurgeAPI::Internal::Type::BaseModel
@@ -35,13 +36,20 @@ module SurgeAPI
 
       def metadata=: (::Hash[Symbol, String]) -> ::Hash[Symbol, String]
 
+      attr_reader status: SurgeAPI::Models::Message::status?
+
+      def status=: (
+        SurgeAPI::Models::Message::status
+      ) -> SurgeAPI::Models::Message::status
+
       def initialize: (
         ?id: String,
         ?attachments: ::Array[SurgeAPI::Message::Attachment],
         ?blast_id: String?,
         ?body: String?,
         ?conversation: SurgeAPI::Message::Conversation,
-        ?metadata: ::Hash[Symbol, String]
+        ?metadata: ::Hash[Symbol, String],
+        ?status: SurgeAPI::Models::Message::status
       ) -> void
 
       def to_hash: -> {
@@ -50,7 +58,8 @@ module SurgeAPI
         blast_id: String?,
         body: String?,
         conversation: SurgeAPI::Message::Conversation,
-        metadata: ::Hash[Symbol, String]
+        metadata: ::Hash[Symbol, String],
+        status: SurgeAPI::Models::Message::status
       }
 
       type attachment =
@@ -176,6 +185,20 @@ module SurgeAPI
             def self?.values: -> ::Array[SurgeAPI::Models::Message::Conversation::PhoneNumber::type_]
           end
         end
+      end
+
+      type status = :pending | :received | :sent | :delivered | :failed
+
+      module Status
+        extend SurgeAPI::Internal::Type::Enum
+
+        PENDING: :pending
+        RECEIVED: :received
+        SENT: :sent
+        DELIVERED: :delivered
+        FAILED: :failed
+
+        def self?.values: -> ::Array[SurgeAPI::Models::Message::status]
       end
     end
   end

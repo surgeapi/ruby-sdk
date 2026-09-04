@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.24.0 (2026-09-04)
+
+Full Changelog: [v0.23.0...v0.24.0](https://github.com/surgeapi/ruby-sdk/compare/v0.23.0...v0.24.0)
+
+### Features
+
+* **api:** add status to messages ([1a1b928](https://github.com/surgeapi/ruby-sdk/commit/1a1b9288784e37ae35e8c01f814eb39e952a24b0))
+* **api:** add toll free messaging capability to accounts ([87fff80](https://github.com/surgeapi/ruby-sdk/commit/87fff8049ea378688bd2ca8df6b4f5e9919ee832))
+* **api:** phone number imported webhook event ([358bf6d](https://github.com/surgeapi/ruby-sdk/commit/358bf6d5128520687260208216f8923a6c37db29))
+
+
+### Documentation
+
+* **api:** add note about links in messages for campaigns ([0b7c72d](https://github.com/surgeapi/ruby-sdk/commit/0b7c72ddf56ff3a92959ff50b484a55f62807e42))
+* **api:** add note about links in messages for campaigns (continued) ([0847773](https://github.com/surgeapi/ruby-sdk/commit/0847773d88887971ec454d1ff89ac3a979ed9e0d))
+
 ## 0.23.0 (2026-08-19)
 
 Full Changelog: [v0.22.0...v0.23.0](https://github.com/surgeapi/ruby-sdk/compare/v0.22.0...v0.23.0)

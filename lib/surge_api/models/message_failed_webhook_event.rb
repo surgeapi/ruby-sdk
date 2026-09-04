@@ -74,6 +74,12 @@ module SurgeAPI
         #   @return [Hash{Symbol=>String}]
         required :metadata, SurgeAPI::Internal::Type::HashOf[String]
 
+        # @!attribute status
+        #   The message status represented by this event
+        #
+        #   @return [Symbol, SurgeAPI::Models::MessageFailedWebhookEvent::Data::Status]
+        required :status, enum: -> { SurgeAPI::MessageFailedWebhookEvent::Data::Status }
+
         # @!attribute attachments
         #   Attachments included with the message
         #
@@ -88,7 +94,7 @@ module SurgeAPI
         #   @return [String, nil]
         optional :blast_id, String
 
-        # @!method initialize(id:, body:, conversation:, failed_at:, failure_reason:, metadata:, attachments: nil, blast_id: nil)
+        # @!method initialize(id:, body:, conversation:, failed_at:, failure_reason:, metadata:, status:, attachments: nil, blast_id: nil)
         #   Some parameter documentations has been truncated, see
         #   {SurgeAPI::Models::MessageFailedWebhookEvent::Data} for more details.
         #
@@ -105,6 +111,8 @@ module SurgeAPI
         #   @param failure_reason [String] The reason the message failed to be delivered
         #
         #   @param metadata [Hash{Symbol=>String}] Set of key-value pairs that will be stored with the object.
+        #
+        #   @param status [Symbol, SurgeAPI::Models::MessageFailedWebhookEvent::Data::Status] The message status represented by this event
         #
         #   @param attachments [Array<SurgeAPI::Models::MessageFailedWebhookEvent::Data::Attachment>] Attachments included with the message
         #
@@ -138,6 +146,18 @@ module SurgeAPI
           #   @param contact [SurgeAPI::Models::Contact] A contact who has consented to receive messages
           #
           #   @param phone_number [SurgeAPI::Models::PhoneNumber] A phone number that can be used to send and receive messages and calls
+        end
+
+        # The message status represented by this event
+        #
+        # @see SurgeAPI::Models::MessageFailedWebhookEvent::Data#status
+        module Status
+          extend SurgeAPI::Internal::Type::Enum
+
+          FAILED = :failed
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
         end
 
         class Attachment < SurgeAPI::Internal::Type::BaseModel

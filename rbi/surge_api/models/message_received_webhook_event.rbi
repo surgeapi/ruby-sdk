@@ -104,6 +104,14 @@ module SurgeAPI
         sig { returns(Time) }
         attr_accessor :received_at
 
+        # The message status represented by this event
+        sig do
+          returns(
+            SurgeAPI::MessageReceivedWebhookEvent::Data::Status::TaggedSymbol
+          )
+        end
+        attr_accessor :status
+
         # Attachments included with the message
         sig do
           returns(
@@ -141,6 +149,8 @@ module SurgeAPI
               SurgeAPI::MessageReceivedWebhookEvent::Data::Conversation::OrHash,
             metadata: T::Hash[Symbol, String],
             received_at: Time,
+            status:
+              SurgeAPI::MessageReceivedWebhookEvent::Data::Status::OrSymbol,
             attachments:
               T::Array[
                 SurgeAPI::MessageReceivedWebhookEvent::Data::Attachment::OrHash
@@ -159,6 +169,8 @@ module SurgeAPI
           metadata:,
           # When the message was received
           received_at:,
+          # The message status represented by this event
+          status:,
           # Attachments included with the message
           attachments: nil,
           # The ID of the blast this message belongs to, if any. This can be used to
@@ -176,6 +188,8 @@ module SurgeAPI
                 SurgeAPI::MessageReceivedWebhookEvent::Data::Conversation,
               metadata: T::Hash[Symbol, String],
               received_at: Time,
+              status:
+                SurgeAPI::MessageReceivedWebhookEvent::Data::Status::TaggedSymbol,
               attachments:
                 T::Array[
                   SurgeAPI::MessageReceivedWebhookEvent::Data::Attachment
@@ -242,6 +256,33 @@ module SurgeAPI
             )
           end
           def to_hash
+          end
+        end
+
+        # The message status represented by this event
+        module Status
+          extend SurgeAPI::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(Symbol, SurgeAPI::MessageReceivedWebhookEvent::Data::Status)
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          RECEIVED =
+            T.let(
+              :received,
+              SurgeAPI::MessageReceivedWebhookEvent::Data::Status::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                SurgeAPI::MessageReceivedWebhookEvent::Data::Status::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
           end
         end
 
