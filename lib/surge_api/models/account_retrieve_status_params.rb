@@ -31,6 +31,7 @@ module SurgeAPI
         extend SurgeAPI::Internal::Type::Enum
 
         LOCAL_MESSAGING = :local_messaging
+        TOLL_FREE_MESSAGING = :toll_free_messaging
 
         # @!method self.values
         #   @return [Array<Symbol>]

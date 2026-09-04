@@ -31,12 +31,13 @@ module SurgeAPI
         request_options: SurgeAPI::RequestOptions
       }
 
-      type capability = :local_messaging
+      type capability = :local_messaging | :toll_free_messaging
 
       module Capability
         extend SurgeAPI::Internal::Type::Enum
 
         LOCAL_MESSAGING: :local_messaging
+        TOLL_FREE_MESSAGING: :toll_free_messaging
 
         def self?.values: -> ::Array[SurgeAPI::Models::AccountRetrieveStatusParams::capability]
       end
