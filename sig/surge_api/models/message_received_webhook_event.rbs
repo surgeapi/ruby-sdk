@@ -38,6 +38,7 @@ module SurgeAPI
           conversation: SurgeAPI::MessageReceivedWebhookEvent::Data::Conversation,
           metadata: ::Hash[Symbol, String],
           received_at: Time,
+          status: SurgeAPI::Models::MessageReceivedWebhookEvent::Data::status,
           attachments: ::Array[SurgeAPI::MessageReceivedWebhookEvent::Data::Attachment],
           blast_id: String
         }
@@ -52,6 +53,8 @@ module SurgeAPI
         attr_accessor metadata: ::Hash[Symbol, String]
 
         attr_accessor received_at: Time
+
+        attr_accessor status: SurgeAPI::Models::MessageReceivedWebhookEvent::Data::status
 
         attr_reader attachments: ::Array[SurgeAPI::MessageReceivedWebhookEvent::Data::Attachment]?
 
@@ -69,6 +72,7 @@ module SurgeAPI
           conversation: SurgeAPI::MessageReceivedWebhookEvent::Data::Conversation,
           metadata: ::Hash[Symbol, String],
           received_at: Time,
+          status: SurgeAPI::Models::MessageReceivedWebhookEvent::Data::status,
           ?attachments: ::Array[SurgeAPI::MessageReceivedWebhookEvent::Data::Attachment],
           ?blast_id: String
         ) -> void
@@ -79,6 +83,7 @@ module SurgeAPI
           conversation: SurgeAPI::MessageReceivedWebhookEvent::Data::Conversation,
           metadata: ::Hash[Symbol, String],
           received_at: Time,
+          status: SurgeAPI::Models::MessageReceivedWebhookEvent::Data::status,
           attachments: ::Array[SurgeAPI::MessageReceivedWebhookEvent::Data::Attachment],
           blast_id: String
         }
@@ -108,6 +113,16 @@ module SurgeAPI
             contact: SurgeAPI::Contact,
             phone_number: SurgeAPI::PhoneNumber
           }
+        end
+
+        type status = :received
+
+        module Status
+          extend SurgeAPI::Internal::Type::Enum
+
+          RECEIVED: :received
+
+          def self?.values: -> ::Array[SurgeAPI::Models::MessageReceivedWebhookEvent::Data::status]
         end
 
         type attachment =

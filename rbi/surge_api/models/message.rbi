@@ -46,6 +46,13 @@ module SurgeAPI
       sig { params(metadata: T::Hash[Symbol, String]).void }
       attr_writer :metadata
 
+      # The current status of the message.
+      sig { returns(T.nilable(SurgeAPI::Message::Status::TaggedSymbol)) }
+      attr_reader :status
+
+      sig { params(status: SurgeAPI::Message::Status::OrSymbol).void }
+      attr_writer :status
+
       # A Message is a communication sent to a Contact.
       sig do
         params(
@@ -54,7 +61,8 @@ module SurgeAPI
           blast_id: T.nilable(String),
           body: T.nilable(String),
           conversation: SurgeAPI::Message::Conversation::OrHash,
-          metadata: T::Hash[Symbol, String]
+          metadata: T::Hash[Symbol, String],
+          status: SurgeAPI::Message::Status::OrSymbol
         ).returns(T.attached_class)
       end
       def self.new(
@@ -69,7 +77,9 @@ module SurgeAPI
         # A conversation with a Contact
         conversation: nil,
         # Set of key-value pairs that will be stored with the object.
-        metadata: nil
+        metadata: nil,
+        # The current status of the message.
+        status: nil
       )
       end
 
@@ -81,7 +91,8 @@ module SurgeAPI
             blast_id: T.nilable(String),
             body: T.nilable(String),
             conversation: SurgeAPI::Message::Conversation,
-            metadata: T::Hash[Symbol, String]
+            metadata: T::Hash[Symbol, String],
+            status: SurgeAPI::Message::Status::TaggedSymbol
           }
         )
       end
@@ -340,6 +351,26 @@ module SurgeAPI
             def self.values
             end
           end
+        end
+      end
+
+      # The current status of the message.
+      module Status
+        extend SurgeAPI::Internal::Type::Enum
+
+        TaggedSymbol = T.type_alias { T.all(Symbol, SurgeAPI::Message::Status) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        PENDING = T.let(:pending, SurgeAPI::Message::Status::TaggedSymbol)
+        RECEIVED = T.let(:received, SurgeAPI::Message::Status::TaggedSymbol)
+        SENT = T.let(:sent, SurgeAPI::Message::Status::TaggedSymbol)
+        DELIVERED = T.let(:delivered, SurgeAPI::Message::Status::TaggedSymbol)
+        FAILED = T.let(:failed, SurgeAPI::Message::Status::TaggedSymbol)
+
+        sig do
+          override.returns(T::Array[SurgeAPI::Message::Status::TaggedSymbol])
+        end
+        def self.values
         end
       end
     end

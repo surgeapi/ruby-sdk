@@ -270,6 +270,7 @@ module SurgeAPI
 
         ACTIVE = T.let(:active, SurgeAPI::Campaign::Status::TaggedSymbol)
         CANCELED = T.let(:canceled, SurgeAPI::Campaign::Status::TaggedSymbol)
+        REJECTED = T.let(:rejected, SurgeAPI::Campaign::Status::TaggedSymbol)
         CREATED = T.let(:created, SurgeAPI::Campaign::Status::TaggedSymbol)
         DEACTIVATED =
           T.let(:deactivated, SurgeAPI::Campaign::Status::TaggedSymbol)

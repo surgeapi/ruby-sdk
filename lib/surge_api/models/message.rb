@@ -40,7 +40,13 @@ module SurgeAPI
       #   @return [Hash{Symbol=>String}, nil]
       optional :metadata, SurgeAPI::Internal::Type::HashOf[String]
 
-      # @!method initialize(id: nil, attachments: nil, blast_id: nil, body: nil, conversation: nil, metadata: nil)
+      # @!attribute status
+      #   The current status of the message.
+      #
+      #   @return [Symbol, SurgeAPI::Models::Message::Status, nil]
+      optional :status, enum: -> { SurgeAPI::Message::Status }
+
+      # @!method initialize(id: nil, attachments: nil, blast_id: nil, body: nil, conversation: nil, metadata: nil, status: nil)
       #   Some parameter documentations has been truncated, see
       #   {SurgeAPI::Models::Message} for more details.
       #
@@ -57,6 +63,8 @@ module SurgeAPI
       #   @param conversation [SurgeAPI::Models::Message::Conversation] A conversation with a Contact
       #
       #   @param metadata [Hash{Symbol=>String}] Set of key-value pairs that will be stored with the object.
+      #
+      #   @param status [Symbol, SurgeAPI::Models::Message::Status] The current status of the message.
 
       class Attachment < SurgeAPI::Internal::Type::BaseModel
         # @!attribute id
@@ -184,6 +192,22 @@ module SurgeAPI
             #   @return [Array<Symbol>]
           end
         end
+      end
+
+      # The current status of the message.
+      #
+      # @see SurgeAPI::Models::Message#status
+      module Status
+        extend SurgeAPI::Internal::Type::Enum
+
+        PENDING = :pending
+        RECEIVED = :received
+        SENT = :sent
+        DELIVERED = :delivered
+        FAILED = :failed
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
     end
   end
