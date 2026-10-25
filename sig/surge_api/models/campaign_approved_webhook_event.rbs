@@ -34,21 +34,26 @@ module SurgeAPI
       type data =
         {
           id: String,
+          account_id: String,
           status: SurgeAPI::Models::CampaignApprovedWebhookEvent::Data::status
         }
 
       class Data < SurgeAPI::Internal::Type::BaseModel
         attr_accessor id: String
 
+        attr_accessor account_id: String
+
         attr_accessor status: SurgeAPI::Models::CampaignApprovedWebhookEvent::Data::status
 
         def initialize: (
           id: String,
+          account_id: String,
           status: SurgeAPI::Models::CampaignApprovedWebhookEvent::Data::status
         ) -> void
 
         def to_hash: -> {
           id: String,
+          account_id: String,
           status: SurgeAPI::Models::CampaignApprovedWebhookEvent::Data::status
         }
 

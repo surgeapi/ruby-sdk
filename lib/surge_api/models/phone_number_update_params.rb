@@ -19,16 +19,24 @@ module SurgeAPI
       #   @return [String, nil]
       optional :campaign_id, String
 
+      # @!attribute metadata
+      #   Set of key-value pairs that will be stored with the object.
+      #
+      #   @return [Hash{Symbol=>String}, nil]
+      optional :metadata, SurgeAPI::Internal::Type::HashOf[String]
+
       # @!attribute name
       #   A human-readable name for the phone number.
       #
       #   @return [String, nil]
       optional :name, String
 
-      # @!method initialize(id:, campaign_id: nil, name: nil, request_options: {})
+      # @!method initialize(id:, campaign_id: nil, metadata: nil, name: nil, request_options: {})
       #   @param id [String] The ID of the phone number to update.
       #
       #   @param campaign_id [String] Campaign ID to attach this number to (`cpn_...`).
+      #
+      #   @param metadata [Hash{Symbol=>String}] Set of key-value pairs that will be stored with the object.
       #
       #   @param name [String] A human-readable name for the phone number.
       #

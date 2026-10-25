@@ -6,6 +6,7 @@ module SurgeAPI
         area_code: String,
         latitude: Float,
         longitude: Float,
+        metadata: ::Hash[Symbol, String],
         name: String,
         phone_number: String,
         type: SurgeAPI::Models::PhoneNumberPurchaseParams::type_
@@ -30,6 +31,10 @@ module SurgeAPI
 
       def longitude=: (Float) -> Float
 
+      attr_reader metadata: ::Hash[Symbol, String]?
+
+      def metadata=: (::Hash[Symbol, String]) -> ::Hash[Symbol, String]
+
       attr_reader name: String?
 
       def name=: (String) -> String
@@ -49,6 +54,7 @@ module SurgeAPI
         ?area_code: String,
         ?latitude: Float,
         ?longitude: Float,
+        ?metadata: ::Hash[Symbol, String],
         ?name: String,
         ?phone_number: String,
         ?type: SurgeAPI::Models::PhoneNumberPurchaseParams::type_,
@@ -60,6 +66,7 @@ module SurgeAPI
         area_code: String,
         latitude: Float,
         longitude: Float,
+        metadata: ::Hash[Symbol, String],
         name: String,
         phone_number: String,
         type: SurgeAPI::Models::PhoneNumberPurchaseParams::type_,

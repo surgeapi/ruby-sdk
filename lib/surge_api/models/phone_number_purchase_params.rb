@@ -34,6 +34,12 @@ module SurgeAPI
       #   @return [Float, nil]
       optional :longitude, Float
 
+      # @!attribute metadata
+      #   Set of key-value pairs that will be stored with the object.
+      #
+      #   @return [Hash{Symbol=>String}, nil]
+      optional :metadata, SurgeAPI::Internal::Type::HashOf[String]
+
       # @!attribute name
       #   A human-readable name for the phone number. If not provided, defaults to the
       #   formatted phone number.
@@ -55,7 +61,7 @@ module SurgeAPI
       #   @return [Symbol, SurgeAPI::Models::PhoneNumberPurchaseParams::Type, nil]
       optional :type, enum: -> { SurgeAPI::PhoneNumberPurchaseParams::Type }
 
-      # @!method initialize(account_id:, area_code: nil, latitude: nil, longitude: nil, name: nil, phone_number: nil, type: nil, request_options: {})
+      # @!method initialize(account_id:, area_code: nil, latitude: nil, longitude: nil, metadata: nil, name: nil, phone_number: nil, type: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {SurgeAPI::Models::PhoneNumberPurchaseParams} for more details.
       #
@@ -66,6 +72,8 @@ module SurgeAPI
       #   @param latitude [Float] Latitude to search for nearby phone numbers. Must be used with longitude. If pro
       #
       #   @param longitude [Float] Longitude to search for nearby phone numbers. Must be used with latitude. If pro
+      #
+      #   @param metadata [Hash{Symbol=>String}] Set of key-value pairs that will be stored with the object.
       #
       #   @param name [String] A human-readable name for the phone number. If not provided, defaults to the for
       #

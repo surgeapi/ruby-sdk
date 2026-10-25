@@ -59,6 +59,12 @@ module SurgeAPI
         #   @return [String, nil]
         required :campaign_id, String, nil?: true
 
+        # @!attribute metadata
+        #   Set of key-value pairs that will be stored with the object.
+        #
+        #   @return [Hash{Symbol=>String}]
+        required :metadata, SurgeAPI::Internal::Type::HashOf[String]
+
         # @!attribute name
         #   A human-readable name for the phone number
         #
@@ -77,7 +83,7 @@ module SurgeAPI
         #   @return [Symbol, SurgeAPI::Models::PhoneNumberImportedWebhookEvent::Data::Type]
         required :type, enum: -> { SurgeAPI::PhoneNumberImportedWebhookEvent::Data::Type }
 
-        # @!method initialize(id:, campaign:, campaign_id:, name:, number:, type:)
+        # @!method initialize(id:, campaign:, campaign_id:, metadata:, name:, number:, type:)
         #   Some parameter documentations has been truncated, see
         #   {SurgeAPI::Models::PhoneNumberImportedWebhookEvent::Data} for more details.
         #
@@ -88,6 +94,8 @@ module SurgeAPI
         #   @param campaign [SurgeAPI::Models::PhoneNumberImportedWebhookEvent::Data::Campaign, nil] Campaign attachment details for a domestic local phone number
         #
         #   @param campaign_id [String, nil] Deprecated. The unique identifier of the campaign this phone number is attached
+        #
+        #   @param metadata [Hash{Symbol=>String}] Set of key-value pairs that will be stored with the object.
         #
         #   @param name [String, nil] A human-readable name for the phone number
         #

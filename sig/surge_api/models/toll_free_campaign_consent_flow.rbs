@@ -1,0 +1,207 @@
+module SurgeAPI
+  module Models
+    type toll_free_campaign_consent_flow =
+      SurgeAPI::TollFreeCampaignConsentFlow::UnionMember0
+      | SurgeAPI::TollFreeCampaignConsentFlow::UnionMember1
+      | SurgeAPI::TollFreeCampaignConsentFlow::UnionMember2
+      | SurgeAPI::TollFreeCampaignConsentFlow::UnionMember3
+      | SurgeAPI::TollFreeCampaignConsentFlow::Type
+
+    module TollFreeCampaignConsentFlow
+      extend SurgeAPI::Internal::Type::Union
+
+      type union_member0 =
+        {
+          script: String,
+          type: SurgeAPI::Models::TollFreeCampaignConsentFlow::UnionMember0::type_
+        }
+
+      class UnionMember0 < SurgeAPI::Internal::Type::BaseModel
+        attr_accessor script: String
+
+        attr_accessor type: SurgeAPI::Models::TollFreeCampaignConsentFlow::UnionMember0::type_
+
+        def initialize: (
+          script: String,
+          type: SurgeAPI::Models::TollFreeCampaignConsentFlow::UnionMember0::type_
+        ) -> void
+
+        def to_hash: -> {
+          script: String,
+          type: SurgeAPI::Models::TollFreeCampaignConsentFlow::UnionMember0::type_
+        }
+
+        type type_ = :verbal
+
+        module Type
+          extend SurgeAPI::Internal::Type::Enum
+
+          VERBAL: :verbal
+
+          def self?.values: -> ::Array[SurgeAPI::Models::TollFreeCampaignConsentFlow::UnionMember0::type_]
+        end
+      end
+
+      type union_member1 =
+        {
+          form_url: String,
+          type: SurgeAPI::Models::TollFreeCampaignConsentFlow::UnionMember1::type_
+        }
+
+      class UnionMember1 < SurgeAPI::Internal::Type::BaseModel
+        attr_accessor form_url: String
+
+        attr_accessor type: SurgeAPI::Models::TollFreeCampaignConsentFlow::UnionMember1::type_
+
+        def initialize: (
+          form_url: String,
+          type: SurgeAPI::Models::TollFreeCampaignConsentFlow::UnionMember1::type_
+        ) -> void
+
+        def to_hash: -> {
+          form_url: String,
+          type: SurgeAPI::Models::TollFreeCampaignConsentFlow::UnionMember1::type_
+        }
+
+        type type_ = :web_form
+
+        module Type
+          extend SurgeAPI::Internal::Type::Enum
+
+          WEB_FORM: :web_form
+
+          def self?.values: -> ::Array[SurgeAPI::Models::TollFreeCampaignConsentFlow::UnionMember1::type_]
+        end
+      end
+
+      type union_member2 =
+        {
+          screenshot: SurgeAPI::TollFreeCampaignConsentFlow::UnionMember2::Screenshot,
+          type: SurgeAPI::Models::TollFreeCampaignConsentFlow::UnionMember2::type_
+        }
+
+      class UnionMember2 < SurgeAPI::Internal::Type::BaseModel
+        attr_accessor screenshot: SurgeAPI::TollFreeCampaignConsentFlow::UnionMember2::Screenshot
+
+        attr_accessor type: SurgeAPI::Models::TollFreeCampaignConsentFlow::UnionMember2::type_
+
+        def initialize: (
+          screenshot: SurgeAPI::TollFreeCampaignConsentFlow::UnionMember2::Screenshot,
+          type: SurgeAPI::Models::TollFreeCampaignConsentFlow::UnionMember2::type_
+        ) -> void
+
+        def to_hash: -> {
+          screenshot: SurgeAPI::TollFreeCampaignConsentFlow::UnionMember2::Screenshot,
+          type: SurgeAPI::Models::TollFreeCampaignConsentFlow::UnionMember2::type_
+        }
+
+        type screenshot =
+          {
+            reason: SurgeAPI::Models::TollFreeCampaignConsentFlow::UnionMember2::Screenshot::reason,
+            reason_other: String
+          }
+
+        class Screenshot < SurgeAPI::Internal::Type::BaseModel
+          attr_accessor reason: SurgeAPI::Models::TollFreeCampaignConsentFlow::UnionMember2::Screenshot::reason
+
+          attr_reader reason_other: String?
+
+          def reason_other=: (String) -> String
+
+          def initialize: (
+            reason: SurgeAPI::Models::TollFreeCampaignConsentFlow::UnionMember2::Screenshot::reason,
+            ?reason_other: String
+          ) -> void
+
+          def to_hash: -> {
+            reason: SurgeAPI::Models::TollFreeCampaignConsentFlow::UnionMember2::Screenshot::reason,
+            reason_other: String
+          }
+
+          type reason = :behind_login | :under_construction | :other
+
+          module Reason
+            extend SurgeAPI::Internal::Type::Enum
+
+            BEHIND_LOGIN: :behind_login
+            UNDER_CONSTRUCTION: :under_construction
+            OTHER: :other
+
+            def self?.values: -> ::Array[SurgeAPI::Models::TollFreeCampaignConsentFlow::UnionMember2::Screenshot::reason]
+          end
+        end
+
+        type type_ = :web_form
+
+        module Type
+          extend SurgeAPI::Internal::Type::Enum
+
+          WEB_FORM: :web_form
+
+          def self?.values: -> ::Array[SurgeAPI::Models::TollFreeCampaignConsentFlow::UnionMember2::type_]
+        end
+      end
+
+      type union_member3 =
+        {
+          type: SurgeAPI::Models::TollFreeCampaignConsentFlow::UnionMember3::type_,
+          keywords: ::Array[String]
+        }
+
+      class UnionMember3 < SurgeAPI::Internal::Type::BaseModel
+        attr_accessor type: SurgeAPI::Models::TollFreeCampaignConsentFlow::UnionMember3::type_
+
+        attr_reader keywords: ::Array[String]?
+
+        def keywords=: (::Array[String]) -> ::Array[String]
+
+        def initialize: (
+          type: SurgeAPI::Models::TollFreeCampaignConsentFlow::UnionMember3::type_,
+          ?keywords: ::Array[String]
+        ) -> void
+
+        def to_hash: -> {
+          type: SurgeAPI::Models::TollFreeCampaignConsentFlow::UnionMember3::type_,
+          keywords: ::Array[String]
+        }
+
+        type type_ = :text
+
+        module Type
+          extend SurgeAPI::Internal::Type::Enum
+
+          TEXT: :text
+
+          def self?.values: -> ::Array[SurgeAPI::Models::TollFreeCampaignConsentFlow::UnionMember3::type_]
+        end
+      end
+
+      type type_ =
+        { type: SurgeAPI::Models::TollFreeCampaignConsentFlow::Type::type_ }
+
+      class Type < SurgeAPI::Internal::Type::BaseModel
+        attr_accessor type: SurgeAPI::Models::TollFreeCampaignConsentFlow::Type::type_
+
+        def initialize: (
+          type: SurgeAPI::Models::TollFreeCampaignConsentFlow::Type::type_
+        ) -> void
+
+        def to_hash: -> {
+          type: SurgeAPI::Models::TollFreeCampaignConsentFlow::Type::type_
+        }
+
+        type type_ = :paper_form
+
+        module Type
+          extend SurgeAPI::Internal::Type::Enum
+
+          PAPER_FORM: :paper_form
+
+          def self?.values: -> ::Array[SurgeAPI::Models::TollFreeCampaignConsentFlow::Type::type_]
+        end
+      end
+
+      def self?.variants: -> ::Array[SurgeAPI::Models::toll_free_campaign_consent_flow]
+    end
+  end
+end

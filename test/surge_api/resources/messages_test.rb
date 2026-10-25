@@ -23,6 +23,7 @@ class SurgeAPI::Test::Resources::MessagesTest < SurgeAPI::Test::ResourceTest
         blast_id: String | nil,
         body: String | nil,
         conversation: SurgeAPI::Message::Conversation | nil,
+        failure_reason: String | nil,
         metadata: ^(SurgeAPI::Internal::Type::HashOf[String]) | nil,
         status: SurgeAPI::Message::Status | nil
       }
@@ -45,6 +46,7 @@ class SurgeAPI::Test::Resources::MessagesTest < SurgeAPI::Test::ResourceTest
         blast_id: String | nil,
         body: String | nil,
         conversation: SurgeAPI::Message::Conversation | nil,
+        failure_reason: String | nil,
         metadata: ^(SurgeAPI::Internal::Type::HashOf[String]) | nil,
         status: SurgeAPI::Message::Status | nil
       }
@@ -74,6 +76,7 @@ class SurgeAPI::Test::Resources::MessagesTest < SurgeAPI::Test::ResourceTest
         blast_id: String | nil,
         body: String | nil,
         conversation: SurgeAPI::Message::Conversation | nil,
+        failure_reason: String | nil,
         metadata: ^(SurgeAPI::Internal::Type::HashOf[String]) | nil,
         status: SurgeAPI::Message::Status | nil
       }

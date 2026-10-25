@@ -78,6 +78,10 @@ module SurgeAPI
         sig { returns(String) }
         attr_accessor :id
 
+        # The ID of the account that owns this campaign
+        sig { returns(String) }
+        attr_accessor :account_id
+
         # The status of the campaign. Will always be `active` for this event.
         sig do
           returns(
@@ -90,6 +94,7 @@ module SurgeAPI
         sig do
           params(
             id: String,
+            account_id: String,
             status:
               SurgeAPI::CampaignApprovedWebhookEvent::Data::Status::OrSymbol
           ).returns(T.attached_class)
@@ -97,6 +102,8 @@ module SurgeAPI
         def self.new(
           # The unique identifier for the campaign
           id:,
+          # The ID of the account that owns this campaign
+          account_id:,
           # The status of the campaign. Will always be `active` for this event.
           status:
         )
@@ -106,6 +113,7 @@ module SurgeAPI
           override.returns(
             {
               id: String,
+              account_id: String,
               status:
                 SurgeAPI::CampaignApprovedWebhookEvent::Data::Status::TaggedSymbol
             }

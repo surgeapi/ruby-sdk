@@ -1,0 +1,149 @@
+# typed: strong
+
+module SurgeAPI
+  module Models
+    class CampaignSubmittedWebhookEvent < SurgeAPI::Internal::Type::BaseModel
+      OrHash =
+        T.type_alias do
+          T.any(
+            SurgeAPI::CampaignSubmittedWebhookEvent,
+            SurgeAPI::Internal::AnyHash
+          )
+        end
+
+      # The ID of the account in which this event occurred
+      sig { returns(String) }
+      attr_accessor :account_id
+
+      # The data associated with the event
+      sig { returns(SurgeAPI::CampaignSubmittedWebhookEvent::Data) }
+      attr_reader :data
+
+      sig do
+        params(data: SurgeAPI::CampaignSubmittedWebhookEvent::Data::OrHash).void
+      end
+      attr_writer :data
+
+      # The timestamp when this event occurred, in ISO8601 format
+      sig { returns(Time) }
+      attr_accessor :timestamp
+
+      # The type of the event. Always `campaign.submitted` for this event.
+      sig { returns(Symbol) }
+      attr_accessor :type
+
+      sig do
+        params(
+          account_id: String,
+          data: SurgeAPI::CampaignSubmittedWebhookEvent::Data::OrHash,
+          timestamp: Time,
+          type: Symbol
+        ).returns(T.attached_class)
+      end
+      def self.new(
+        # The ID of the account in which this event occurred
+        account_id:,
+        # The data associated with the event
+        data:,
+        # The timestamp when this event occurred, in ISO8601 format
+        timestamp:,
+        # The type of the event. Always `campaign.submitted` for this event.
+        type: :"campaign.submitted"
+      )
+      end
+
+      sig do
+        override.returns(
+          {
+            account_id: String,
+            data: SurgeAPI::CampaignSubmittedWebhookEvent::Data,
+            timestamp: Time,
+            type: Symbol
+          }
+        )
+      end
+      def to_hash
+      end
+
+      class Data < SurgeAPI::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              SurgeAPI::CampaignSubmittedWebhookEvent::Data,
+              SurgeAPI::Internal::AnyHash
+            )
+          end
+
+        # The unique identifier for the campaign
+        sig { returns(String) }
+        attr_accessor :id
+
+        # The public campaign status. Always `in_review` for this event.
+        sig do
+          returns(
+            SurgeAPI::CampaignSubmittedWebhookEvent::Data::Status::TaggedSymbol
+          )
+        end
+        attr_accessor :status
+
+        # The data associated with the event
+        sig do
+          params(
+            id: String,
+            status:
+              SurgeAPI::CampaignSubmittedWebhookEvent::Data::Status::OrSymbol
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # The unique identifier for the campaign
+          id:,
+          # The public campaign status. Always `in_review` for this event.
+          status:
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              id: String,
+              status:
+                SurgeAPI::CampaignSubmittedWebhookEvent::Data::Status::TaggedSymbol
+            }
+          )
+        end
+        def to_hash
+        end
+
+        # The public campaign status. Always `in_review` for this event.
+        module Status
+          extend SurgeAPI::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(
+                Symbol,
+                SurgeAPI::CampaignSubmittedWebhookEvent::Data::Status
+              )
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          IN_REVIEW =
+            T.let(
+              :in_review,
+              SurgeAPI::CampaignSubmittedWebhookEvent::Data::Status::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                SurgeAPI::CampaignSubmittedWebhookEvent::Data::Status::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
+          end
+        end
+      end
+    end
+  end
+end

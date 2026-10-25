@@ -1,7 +1,12 @@
 module SurgeAPI
   module Models
     type phone_number_update_params =
-      { id: String, campaign_id: String, name: String }
+      {
+        id: String,
+        campaign_id: String,
+        metadata: ::Hash[Symbol, String],
+        name: String
+      }
       & SurgeAPI::Internal::Type::request_parameters
 
     class PhoneNumberUpdateParams < SurgeAPI::Internal::Type::BaseModel
@@ -14,6 +19,10 @@ module SurgeAPI
 
       def campaign_id=: (String) -> String
 
+      attr_reader metadata: ::Hash[Symbol, String]?
+
+      def metadata=: (::Hash[Symbol, String]) -> ::Hash[Symbol, String]
+
       attr_reader name: String?
 
       def name=: (String) -> String
@@ -21,6 +30,7 @@ module SurgeAPI
       def initialize: (
         id: String,
         ?campaign_id: String,
+        ?metadata: ::Hash[Symbol, String],
         ?name: String,
         ?request_options: SurgeAPI::request_opts
       ) -> void
@@ -28,6 +38,7 @@ module SurgeAPI
       def to_hash: -> {
         id: String,
         campaign_id: String,
+        metadata: ::Hash[Symbol, String],
         name: String,
         request_options: SurgeAPI::RequestOptions
       }

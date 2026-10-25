@@ -114,6 +114,7 @@ module SurgeAPI
         params(
           user_id: String,
           duration_seconds: Integer,
+          read_only: T::Boolean,
           request_options: SurgeAPI::RequestOptions::OrHash
         ).returns(SurgeAPI::UserTokenResponse)
       end
@@ -122,6 +123,11 @@ module SurgeAPI
         user_id,
         # For how many seconds the token should be accepted. Defaults to 15 minutes.
         duration_seconds: nil,
+        # Restrict the token to viewing embedded conversations and unread counts. Sending
+        # messages, changing read state, editing contacts, and calling are disabled.
+        # Defaults to false. Preserve this value when refreshing the token; changing
+        # access mode requires reloading the embed.
+        read_only: nil,
         request_options: {}
       )
       end

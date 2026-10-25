@@ -3,6 +3,9 @@ module SurgeAPI
     type unwrap_webhook_event =
       SurgeAPI::CallEndedWebhookEvent
       | SurgeAPI::CampaignApprovedWebhookEvent
+      | SurgeAPI::CampaignRejectedWebhookEvent
+      | SurgeAPI::CampaignSubmittedWebhookEvent
+      | SurgeAPI::CampaignWarningWebhookEvent
       | SurgeAPI::ContactOptedInWebhookEvent
       | SurgeAPI::ContactOptedOutWebhookEvent
       | SurgeAPI::ConversationCreatedWebhookEvent

@@ -11,6 +11,12 @@ module SurgeAPI
 
       variant :"campaign.approved", -> { SurgeAPI::CampaignApprovedWebhookEvent }
 
+      variant :"campaign.rejected", -> { SurgeAPI::CampaignRejectedWebhookEvent }
+
+      variant :"campaign.submitted", -> { SurgeAPI::CampaignSubmittedWebhookEvent }
+
+      variant :"campaign.warning", -> { SurgeAPI::CampaignWarningWebhookEvent }
+
       variant :"contact.opted_in", -> { SurgeAPI::ContactOptedInWebhookEvent }
 
       variant :"contact.opted_out", -> { SurgeAPI::ContactOptedOutWebhookEvent }
@@ -36,7 +42,7 @@ module SurgeAPI
       variant :"voicemail.received", -> { SurgeAPI::VoicemailReceivedWebhookEvent }
 
       # @!method self.variants
-      #   @return [Array(SurgeAPI::Models::CallEndedWebhookEvent, SurgeAPI::Models::CampaignApprovedWebhookEvent, SurgeAPI::Models::ContactOptedInWebhookEvent, SurgeAPI::Models::ContactOptedOutWebhookEvent, SurgeAPI::Models::ConversationCreatedWebhookEvent, SurgeAPI::Models::LinkFollowedWebhookEvent, SurgeAPI::Models::MessageDeliveredWebhookEvent, SurgeAPI::Models::MessageFailedWebhookEvent, SurgeAPI::Models::MessageReceivedWebhookEvent, SurgeAPI::Models::MessageSentWebhookEvent, SurgeAPI::Models::PhoneNumberAttachedToCampaignWebhookEvent, SurgeAPI::Models::PhoneNumberImportedWebhookEvent, SurgeAPI::Models::RecordingCompletedWebhookEvent, SurgeAPI::Models::VoicemailReceivedWebhookEvent)]
+      #   @return [Array(SurgeAPI::Models::CallEndedWebhookEvent, SurgeAPI::Models::CampaignApprovedWebhookEvent, SurgeAPI::Models::CampaignRejectedWebhookEvent, SurgeAPI::Models::CampaignSubmittedWebhookEvent, SurgeAPI::Models::CampaignWarningWebhookEvent, SurgeAPI::Models::ContactOptedInWebhookEvent, SurgeAPI::Models::ContactOptedOutWebhookEvent, SurgeAPI::Models::ConversationCreatedWebhookEvent, SurgeAPI::Models::LinkFollowedWebhookEvent, SurgeAPI::Models::MessageDeliveredWebhookEvent, SurgeAPI::Models::MessageFailedWebhookEvent, SurgeAPI::Models::MessageReceivedWebhookEvent, SurgeAPI::Models::MessageSentWebhookEvent, SurgeAPI::Models::PhoneNumberAttachedToCampaignWebhookEvent, SurgeAPI::Models::PhoneNumberImportedWebhookEvent, SurgeAPI::Models::RecordingCompletedWebhookEvent, SurgeAPI::Models::VoicemailReceivedWebhookEvent)]
     end
   end
 end

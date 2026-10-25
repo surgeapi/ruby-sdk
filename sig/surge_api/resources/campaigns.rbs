@@ -14,7 +14,15 @@ module SurgeAPI
 
       def update: (
         String id,
-        campaign_params: SurgeAPI::Models::campaign_params,
+        ?consent_flow: String,
+        ?description: String,
+        ?includes: ::Array[SurgeAPI::Models::CampaignUpdateParams::include_],
+        ?link_sample: String?,
+        ?message_samples: ::Array[String],
+        ?privacy_policy_url: String,
+        ?terms_and_conditions_url: String,
+        ?use_cases: ::Array[SurgeAPI::Models::CampaignUpdateParams::use_case],
+        ?volume: SurgeAPI::Models::CampaignUpdateParams::volume,
         ?request_options: SurgeAPI::request_opts
       ) -> SurgeAPI::Campaign
 

@@ -44,16 +44,24 @@ module SurgeAPI
         #   @return [String]
         required :id, String
 
+        # @!attribute account_id
+        #   The ID of the account that owns this campaign
+        #
+        #   @return [String]
+        required :account_id, String
+
         # @!attribute status
         #   The status of the campaign. Will always be `active` for this event.
         #
         #   @return [Symbol, SurgeAPI::Models::CampaignApprovedWebhookEvent::Data::Status]
         required :status, enum: -> { SurgeAPI::CampaignApprovedWebhookEvent::Data::Status }
 
-        # @!method initialize(id:, status:)
+        # @!method initialize(id:, account_id:, status:)
         #   The data associated with the event
         #
         #   @param id [String] The unique identifier for the campaign
+        #
+        #   @param account_id [String] The ID of the account that owns this campaign
         #
         #   @param status [Symbol, SurgeAPI::Models::CampaignApprovedWebhookEvent::Data::Status] The status of the campaign. Will always be `active` for this event.
 

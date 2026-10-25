@@ -1,0 +1,36 @@
+module SurgeAPI
+  module Models
+    type toll_free_campaign_list_params =
+      { account_id: String, after: String, before: String }
+      & SurgeAPI::Internal::Type::request_parameters
+
+    class TollFreeCampaignListParams < SurgeAPI::Internal::Type::BaseModel
+      extend SurgeAPI::Internal::Type::RequestParameters::Converter
+      include SurgeAPI::Internal::Type::RequestParameters
+
+      attr_accessor account_id: String
+
+      attr_reader after: String?
+
+      def after=: (String) -> String
+
+      attr_reader before: String?
+
+      def before=: (String) -> String
+
+      def initialize: (
+        account_id: String,
+        ?after: String,
+        ?before: String,
+        ?request_options: SurgeAPI::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        account_id: String,
+        after: String,
+        before: String,
+        request_options: SurgeAPI::RequestOptions
+      }
+    end
+  end
+end

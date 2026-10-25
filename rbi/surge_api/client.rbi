@@ -43,6 +43,9 @@ module SurgeAPI
     sig { returns(SurgeAPI::Resources::Recordings) }
     attr_reader :recordings
 
+    sig { returns(SurgeAPI::Resources::TollFreeCampaigns) }
+    attr_reader :toll_free_campaigns
+
     sig { returns(SurgeAPI::Resources::Users) }
     attr_reader :users
 

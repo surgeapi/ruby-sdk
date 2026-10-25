@@ -10,6 +10,12 @@ module SurgeAPI
       #   @return [String]
       required :id, String
 
+      # @!attribute account_id
+      #   The ID of the account that owns this campaign
+      #
+      #   @return [String]
+      required :account_id, String
+
       # @!attribute consent_flow
       #   A string explaining the method through which end users will opt in to receive
       #   messages from the brand. Typically this should include URLs for opt-in forms or
@@ -101,11 +107,11 @@ module SurgeAPI
       #   This will be one of the following:
       #
       #   - `low` - The campaign will be allowed to send up to 2000 SMS segments to
-      #     T-Mobile customers each day. In this case your platform will be charged for
-      #     the setup fee for a low volume number upon receipt of the API request.
+      #     T-Mobile customers each day. In this case your project will be charged for the
+      #     setup fee for a low volume number upon receipt of the API request.
       #   - `high` - The campaign will be allowed to send up to 200k SMS segments to
       #     T-Mobile customers each day, depending on the trust score assigned by The
-      #     Campaign Registry. Your platform will be charged for the setup fee for a high
+      #     Campaign Registry. Your project will be charged for the setup fee for a high
       #     volume number upon receipt of the API request, and phone numbers will be
       #     charged as high volume numbers going forward.
       #
@@ -130,7 +136,7 @@ module SurgeAPI
       #   @return [String, nil]
       optional :terms_and_conditions_url, String
 
-      # @!method initialize(id:, consent_flow:, description:, includes:, message_samples:, privacy_policy_url:, status:, use_cases:, volume:, link_sample: nil, terms_and_conditions_url: nil)
+      # @!method initialize(id:, account_id:, consent_flow:, description:, includes:, message_samples:, privacy_policy_url:, status:, use_cases:, volume:, link_sample: nil, terms_and_conditions_url: nil)
       #   Some parameter documentations has been truncated, see
       #   {SurgeAPI::Models::Campaign} for more details.
       #
@@ -138,6 +144,8 @@ module SurgeAPI
       #   communicates with your contacts. Consent and opt-outs are tied to the campaign.
       #
       #   @param id [String] The campaign ID
+      #
+      #   @param account_id [String] The ID of the account that owns this campaign
       #
       #   @param consent_flow [String] A string explaining the method through which end users will opt in to receive me
       #
@@ -209,11 +217,11 @@ module SurgeAPI
       # This will be one of the following:
       #
       # - `low` - The campaign will be allowed to send up to 2000 SMS segments to
-      #   T-Mobile customers each day. In this case your platform will be charged for
-      #   the setup fee for a low volume number upon receipt of the API request.
+      #   T-Mobile customers each day. In this case your project will be charged for the
+      #   setup fee for a low volume number upon receipt of the API request.
       # - `high` - The campaign will be allowed to send up to 200k SMS segments to
       #   T-Mobile customers each day, depending on the trust score assigned by The
-      #   Campaign Registry. Your platform will be charged for the setup fee for a high
+      #   Campaign Registry. Your project will be charged for the setup fee for a high
       #   volume number upon receipt of the API request, and phone numbers will be
       #   charged as high volume numbers going forward.
       #

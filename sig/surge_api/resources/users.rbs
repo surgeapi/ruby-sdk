@@ -39,6 +39,7 @@ module SurgeAPI
       def create_token: (
         String user_id,
         ?duration_seconds: Integer,
+        ?read_only: bool,
         ?request_options: SurgeAPI::request_opts
       ) -> SurgeAPI::UserTokenResponse
 

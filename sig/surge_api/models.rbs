@@ -39,11 +39,17 @@ module SurgeAPI
 
   module CampaignParams = SurgeAPI::Models::CampaignParams
 
+  class CampaignRejectedWebhookEvent = SurgeAPI::Models::CampaignRejectedWebhookEvent
+
   class CampaignResendBrandVerificationMessageParams = SurgeAPI::Models::CampaignResendBrandVerificationMessageParams
 
   class CampaignRetrieveParams = SurgeAPI::Models::CampaignRetrieveParams
 
+  class CampaignSubmittedWebhookEvent = SurgeAPI::Models::CampaignSubmittedWebhookEvent
+
   class CampaignUpdateParams = SurgeAPI::Models::CampaignUpdateParams
+
+  class CampaignWarningWebhookEvent = SurgeAPI::Models::CampaignWarningWebhookEvent
 
   class Contact = SurgeAPI::Models::Contact
 
@@ -112,6 +118,20 @@ module SurgeAPI
   class RecordingListParams = SurgeAPI::Models::RecordingListParams
 
   class RecordingRetrieveParams = SurgeAPI::Models::RecordingRetrieveParams
+
+  class TollFreeCampaign = SurgeAPI::Models::TollFreeCampaign
+
+  module TollFreeCampaignConsentFlow = SurgeAPI::Models::TollFreeCampaignConsentFlow
+
+  class TollFreeCampaignCreateParams = SurgeAPI::Models::TollFreeCampaignCreateParams
+
+  class TollFreeCampaignListParams = SurgeAPI::Models::TollFreeCampaignListParams
+
+  class TollFreeCampaignParams = SurgeAPI::Models::TollFreeCampaignParams
+
+  class TollFreeCampaignRetrieveParams = SurgeAPI::Models::TollFreeCampaignRetrieveParams
+
+  class TollFreeCampaignUpdateParams = SurgeAPI::Models::TollFreeCampaignUpdateParams
 
   module UnwrapWebhookEvent = SurgeAPI::Models::UnwrapWebhookEvent
 

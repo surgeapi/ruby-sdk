@@ -22,6 +22,7 @@ module SurgeAPI
         params(
           id: String,
           campaign_id: String,
+          metadata: T::Hash[Symbol, String],
           name: String,
           request_options: SurgeAPI::RequestOptions::OrHash
         ).returns(SurgeAPI::PhoneNumber)
@@ -31,6 +32,8 @@ module SurgeAPI
         id,
         # Campaign ID to attach this number to (`cpn_...`).
         campaign_id: nil,
+        # Set of key-value pairs that will be stored with the object.
+        metadata: nil,
         # A human-readable name for the phone number.
         name: nil,
         request_options: {}
@@ -105,6 +108,7 @@ module SurgeAPI
           area_code: String,
           latitude: Float,
           longitude: Float,
+          metadata: T::Hash[Symbol, String],
           name: String,
           phone_number: String,
           type: SurgeAPI::PhoneNumberPurchaseParams::Type::OrSymbol,
@@ -123,6 +127,8 @@ module SurgeAPI
         # Longitude to search for nearby phone numbers. Must be used with latitude. If
         # provided without type, type will be inferred as 'local'.
         longitude: nil,
+        # Set of key-value pairs that will be stored with the object.
+        metadata: nil,
         # A human-readable name for the phone number. If not provided, defaults to the
         # formatted phone number.
         name: nil,

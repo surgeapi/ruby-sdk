@@ -13,10 +13,197 @@ module SurgeAPI
       #   @return [String]
       required :id, String
 
-      # @!method initialize(id:, request_options: {})
+      # @!attribute consent_flow
+      #   A string explaining the method through which end users will opt in to receive
+      #   messages from the brand. Typically this should include URLs for opt-in forms or
+      #   screenshots that might be helpful in explaining the flow to someone unfamiliar
+      #   with the organization's purpose.
+      #
+      #   @return [String, nil]
+      optional :consent_flow, String
+
+      # @!attribute description
+      #   An explanation of the organization's purpose and how it will be using text
+      #   messaging to accomplish that purpose.
+      #
+      #   @return [String, nil]
+      optional :description, String
+
+      # @!attribute includes
+      #   A list of properties that this campaign should include. These properties can be
+      #   any of the following values:
+      #
+      #   - `links` - whether the campaign might send links in messages
+      #   - `phone_numbers` - whether the campaign might send phone numbers in messages
+      #   - `age_gated` - whether the campaign contains age gated content (controlled
+      #     substances or adult content)
+      #   - `direct_lending` - whether the campaign contains content related to direct
+      #     lending or other loan arrangements
+      #
+      #   @return [Array<Symbol, SurgeAPI::Models::CampaignUpdateParams::Include>, nil]
+      optional :includes,
+               -> { SurgeAPI::Internal::Type::ArrayOf[enum: SurgeAPI::CampaignUpdateParams::Include] }
+
+      # @!attribute link_sample
+      #   A sample link that might be sent by this campaign. This is required when
+      #   `includes` contains `links`. Provide the same URL or domain that the campaign
+      #   will use in production. If links from other domains are sent through this
+      #   campaign, they are much more likely to be filtered by the carriers.
+      #
+      #   @return [String, nil]
+      optional :link_sample, String, nil?: true
+
+      # @!attribute message_samples
+      #   An array of 2-5 strings with examples of the messages that will be sent from
+      #   this campaign. Typically the first sample should be a compliance message like
+      #   `You are now opted in to messages from {brand name}. Frequency varies. Msg&data rates apply. Reply STOP to opt out.`
+      #   These samples don't necessarily need to be the only templates that will be used
+      #   for the campaign, but they should reflect the purpose of the messages that will
+      #   be sent. Any variable content can be reflected by wrapping it in square brackets
+      #   like `[customer name]`.
+      #
+      #   @return [Array<String>, nil]
+      optional :message_samples, SurgeAPI::Internal::Type::ArrayOf[String]
+
+      # @!attribute privacy_policy_url
+      #   The URL of the privacy policy for the brand in question. This may be a shared
+      #   privacy policy if it's the policy that is displayed to end users when they opt
+      #   in to messaging.
+      #
+      #   @return [String, nil]
+      optional :privacy_policy_url, String
+
+      # @!attribute terms_and_conditions_url
+      #   The URL of the terms and conditions presented to end users when they opt in to
+      #   messaging. These terms and conditions may be shared among all of a platform's
+      #   customers if they're the terms that are presented to end users when they opt in
+      #   to messaging.
+      #
+      #   @return [String, nil]
+      optional :terms_and_conditions_url, String
+
+      # @!attribute use_cases
+      #   A list containing 1-5 types of messages that will be sent with this campaign.
+      #
+      #   The following use cases are typically available to all brands:
+      #
+      #   - `account_notification` - For sending reminders, alerts, and general
+      #     account-related notifications like booking confirmations or appointment
+      #     reminders.
+      #   - `customer_care` - For account support, troubleshooting, and general customer
+      #     service communication.
+      #   - `delivery_notification` - For notifying customers about the status of product
+      #     or service deliveries.
+      #   - `fraud_alert` - For warning customers about suspicious or potentially
+      #     fraudulent activity.
+      #   - `higher_education` - For messaging related to colleges, universities, and
+      #     school districts outside of K–12.
+      #   - `marketing` - For promotional or advertising messages intended to market
+      #     products or services.
+      #   - `polling_voting` - For conducting surveys, polls, or voting-related messaging.
+      #   - `public_service_announcement` - For raising awareness about social issues or
+      #     important public information.
+      #   - `security_alert` - For alerts related to potential security breaches or
+      #     compromised systems requiring user action.
+      #   - `two_factor_authentication` - For sending one-time passwords or verification
+      #     codes for login or password reset.
+      #
+      #   For access to special use cases not shown here, reach out to support@surge.app.
+      #
+      #   @return [Array<Symbol, SurgeAPI::Models::CampaignUpdateParams::UseCase>, nil]
+      optional :use_cases,
+               -> { SurgeAPI::Internal::Type::ArrayOf[enum: SurgeAPI::CampaignUpdateParams::UseCase] }
+
+      # @!attribute volume
+      #   This will be one of the following:
+      #
+      #   - `low` - The campaign will be allowed to send up to 2000 SMS segments to
+      #     T-Mobile customers each day. In this case your project will be charged for the
+      #     setup fee for a low volume number upon receipt of the API request.
+      #   - `high` - The campaign will be allowed to send up to 200k SMS segments to
+      #     T-Mobile customers each day, depending on the trust score assigned by The
+      #     Campaign Registry. Your project will be charged for the setup fee for a high
+      #     volume number upon receipt of the API request, and phone numbers will be
+      #     charged as high volume numbers going forward.
+      #
+      #   @return [Symbol, SurgeAPI::Models::CampaignUpdateParams::Volume, nil]
+      optional :volume, enum: -> { SurgeAPI::CampaignUpdateParams::Volume }
+
+      # @!method initialize(id:, consent_flow: nil, description: nil, includes: nil, link_sample: nil, message_samples: nil, privacy_policy_url: nil, terms_and_conditions_url: nil, use_cases: nil, volume: nil, request_options: {})
+      #   Some parameter documentations has been truncated, see
+      #   {SurgeAPI::Models::CampaignUpdateParams} for more details.
+      #
       #   @param id [String] The ID of the campaign to update.
       #
+      #   @param consent_flow [String] A string explaining the method through which end users will opt in to receive me
+      #
+      #   @param description [String] An explanation of the organization's purpose and how it will be using text messa
+      #
+      #   @param includes [Array<Symbol, SurgeAPI::Models::CampaignUpdateParams::Include>] A list of properties that this campaign should include. These properties can be
+      #
+      #   @param link_sample [String, nil] A sample link that might be sent by this campaign. This is required when `includ
+      #
+      #   @param message_samples [Array<String>] An array of 2-5 strings with examples of the messages that will be sent from thi
+      #
+      #   @param privacy_policy_url [String] The URL of the privacy policy for the brand in question. This may be a shared pr
+      #
+      #   @param terms_and_conditions_url [String] The URL of the terms and conditions presented to end users when they opt in to m
+      #
+      #   @param use_cases [Array<Symbol, SurgeAPI::Models::CampaignUpdateParams::UseCase>] A list containing 1-5 types of messages that will be sent with this campaign.
+      #
+      #   @param volume [Symbol, SurgeAPI::Models::CampaignUpdateParams::Volume] This will be one of the following:
+      #
       #   @param request_options [SurgeAPI::RequestOptions, Hash{Symbol=>Object}]
+
+      module Include
+        extend SurgeAPI::Internal::Type::Enum
+
+        LINKS = :links
+        PHONE_NUMBERS = :phone_numbers
+        AGE_GATED = :age_gated
+        DIRECT_LENDING = :direct_lending
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
+
+      module UseCase
+        extend SurgeAPI::Internal::Type::Enum
+
+        ACCOUNT_NOTIFICATION = :account_notification
+        CUSTOMER_CARE = :customer_care
+        DELIVERY_NOTIFICATION = :delivery_notification
+        FRAUD_ALERT = :fraud_alert
+        HIGHER_EDUCATION = :higher_education
+        MARKETING = :marketing
+        POLLING_VOTING = :polling_voting
+        PUBLIC_SERVICE_ANNOUNCEMENT = :public_service_announcement
+        SECURITY_ALERT = :security_alert
+        TWO_FACTOR_AUTHENTICATION = :two_factor_authentication
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
+
+      # This will be one of the following:
+      #
+      # - `low` - The campaign will be allowed to send up to 2000 SMS segments to
+      #   T-Mobile customers each day. In this case your project will be charged for the
+      #   setup fee for a low volume number upon receipt of the API request.
+      # - `high` - The campaign will be allowed to send up to 200k SMS segments to
+      #   T-Mobile customers each day, depending on the trust score assigned by The
+      #   Campaign Registry. Your project will be charged for the setup fee for a high
+      #   volume number upon receipt of the API request, and phone numbers will be
+      #   charged as high volume numbers going forward.
+      module Volume
+        extend SurgeAPI::Internal::Type::Enum
+
+        HIGH = :high
+        LOW = :low
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
     end
   end
 end

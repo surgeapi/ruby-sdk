@@ -39,6 +39,10 @@ module SurgeAPI
       sig { params(conversation: SurgeAPI::Message::Conversation::OrHash).void }
       attr_writer :conversation
 
+      # The reason the message failed, or null if no failure reason is set.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :failure_reason
+
       # Set of key-value pairs that will be stored with the object.
       sig { returns(T.nilable(T::Hash[Symbol, String])) }
       attr_reader :metadata
@@ -61,6 +65,7 @@ module SurgeAPI
           blast_id: T.nilable(String),
           body: T.nilable(String),
           conversation: SurgeAPI::Message::Conversation::OrHash,
+          failure_reason: T.nilable(String),
           metadata: T::Hash[Symbol, String],
           status: SurgeAPI::Message::Status::OrSymbol
         ).returns(T.attached_class)
@@ -76,6 +81,8 @@ module SurgeAPI
         body: nil,
         # A conversation with a Contact
         conversation: nil,
+        # The reason the message failed, or null if no failure reason is set.
+        failure_reason: nil,
         # Set of key-value pairs that will be stored with the object.
         metadata: nil,
         # The current status of the message.
@@ -91,6 +98,7 @@ module SurgeAPI
             blast_id: T.nilable(String),
             body: T.nilable(String),
             conversation: SurgeAPI::Message::Conversation,
+            failure_reason: T.nilable(String),
             metadata: T::Hash[Symbol, String],
             status: SurgeAPI::Message::Status::TaggedSymbol
           }
@@ -256,6 +264,10 @@ module SurgeAPI
           sig { returns(String) }
           attr_accessor :id
 
+          # Set of key-value pairs that will be stored with the object.
+          sig { returns(T::Hash[Symbol, String]) }
+          attr_accessor :metadata
+
           # A human-readable name for the phone number
           sig { returns(T.nilable(String)) }
           attr_accessor :name
@@ -276,6 +288,7 @@ module SurgeAPI
           sig do
             params(
               id: String,
+              metadata: T::Hash[Symbol, String],
               name: T.nilable(String),
               number: String,
               type: SurgeAPI::Message::Conversation::PhoneNumber::Type::OrSymbol
@@ -284,6 +297,8 @@ module SurgeAPI
           def self.new(
             # Unique identifier for the phone number
             id:,
+            # Set of key-value pairs that will be stored with the object.
+            metadata:,
             # A human-readable name for the phone number
             name:,
             # The canonical format of the phone number.
@@ -297,6 +312,7 @@ module SurgeAPI
             override.returns(
               {
                 id: String,
+                metadata: T::Hash[Symbol, String],
                 name: T.nilable(String),
                 number: String,
                 type:

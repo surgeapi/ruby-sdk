@@ -30,6 +30,8 @@ module SurgeAPI
 
     attr_reader recordings: SurgeAPI::Resources::Recordings
 
+    attr_reader toll_free_campaigns: SurgeAPI::Resources::TollFreeCampaigns
+
     attr_reader users: SurgeAPI::Resources::Users
 
     attr_reader verifications: SurgeAPI::Resources::Verifications

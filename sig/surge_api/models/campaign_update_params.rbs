@@ -1,7 +1,19 @@
 module SurgeAPI
   module Models
     type campaign_update_params =
-      { id: String } & SurgeAPI::Internal::Type::request_parameters
+      {
+        id: String,
+        consent_flow: String,
+        description: String,
+        includes: ::Array[SurgeAPI::Models::CampaignUpdateParams::include_],
+        link_sample: String?,
+        message_samples: ::Array[String],
+        privacy_policy_url: String,
+        terms_and_conditions_url: String,
+        use_cases: ::Array[SurgeAPI::Models::CampaignUpdateParams::use_case],
+        volume: SurgeAPI::Models::CampaignUpdateParams::volume
+      }
+      & SurgeAPI::Internal::Type::request_parameters
 
     class CampaignUpdateParams < SurgeAPI::Internal::Type::BaseModel
       extend SurgeAPI::Internal::Type::RequestParameters::Converter
@@ -9,12 +21,126 @@ module SurgeAPI
 
       attr_accessor id: String
 
+      attr_reader consent_flow: String?
+
+      def consent_flow=: (String) -> String
+
+      attr_reader description: String?
+
+      def description=: (String) -> String
+
+      attr_reader includes: ::Array[SurgeAPI::Models::CampaignUpdateParams::include_]?
+
+      def includes=: (
+        ::Array[SurgeAPI::Models::CampaignUpdateParams::include_]
+      ) -> ::Array[SurgeAPI::Models::CampaignUpdateParams::include_]
+
+      attr_accessor link_sample: String?
+
+      attr_reader message_samples: ::Array[String]?
+
+      def message_samples=: (::Array[String]) -> ::Array[String]
+
+      attr_reader privacy_policy_url: String?
+
+      def privacy_policy_url=: (String) -> String
+
+      attr_reader terms_and_conditions_url: String?
+
+      def terms_and_conditions_url=: (String) -> String
+
+      attr_reader use_cases: ::Array[SurgeAPI::Models::CampaignUpdateParams::use_case]?
+
+      def use_cases=: (
+        ::Array[SurgeAPI::Models::CampaignUpdateParams::use_case]
+      ) -> ::Array[SurgeAPI::Models::CampaignUpdateParams::use_case]
+
+      attr_reader volume: SurgeAPI::Models::CampaignUpdateParams::volume?
+
+      def volume=: (
+        SurgeAPI::Models::CampaignUpdateParams::volume
+      ) -> SurgeAPI::Models::CampaignUpdateParams::volume
+
       def initialize: (
         id: String,
+        ?consent_flow: String,
+        ?description: String,
+        ?includes: ::Array[SurgeAPI::Models::CampaignUpdateParams::include_],
+        ?link_sample: String?,
+        ?message_samples: ::Array[String],
+        ?privacy_policy_url: String,
+        ?terms_and_conditions_url: String,
+        ?use_cases: ::Array[SurgeAPI::Models::CampaignUpdateParams::use_case],
+        ?volume: SurgeAPI::Models::CampaignUpdateParams::volume,
         ?request_options: SurgeAPI::request_opts
       ) -> void
 
-      def to_hash: -> { id: String, request_options: SurgeAPI::RequestOptions }
+      def to_hash: -> {
+        id: String,
+        consent_flow: String,
+        description: String,
+        includes: ::Array[SurgeAPI::Models::CampaignUpdateParams::include_],
+        link_sample: String?,
+        message_samples: ::Array[String],
+        privacy_policy_url: String,
+        terms_and_conditions_url: String,
+        use_cases: ::Array[SurgeAPI::Models::CampaignUpdateParams::use_case],
+        volume: SurgeAPI::Models::CampaignUpdateParams::volume,
+        request_options: SurgeAPI::RequestOptions
+      }
+
+      type include_ = :links | :phone_numbers | :age_gated | :direct_lending
+
+      module Include
+        extend SurgeAPI::Internal::Type::Enum
+
+        LINKS: :links
+        PHONE_NUMBERS: :phone_numbers
+        AGE_GATED: :age_gated
+        DIRECT_LENDING: :direct_lending
+
+        def self?.values: -> ::Array[SurgeAPI::Models::CampaignUpdateParams::include_]
+      end
+
+      type use_case =
+        :account_notification
+        | :customer_care
+        | :delivery_notification
+        | :fraud_alert
+        | :higher_education
+        | :marketing
+        | :polling_voting
+        | :public_service_announcement
+        | :security_alert
+        | :two_factor_authentication
+
+      module UseCase
+        extend SurgeAPI::Internal::Type::Enum
+
+        ACCOUNT_NOTIFICATION: :account_notification
+        CUSTOMER_CARE: :customer_care
+        DELIVERY_NOTIFICATION: :delivery_notification
+        FRAUD_ALERT: :fraud_alert
+        HIGHER_EDUCATION: :higher_education
+        MARKETING: :marketing
+        POLLING_VOTING: :polling_voting
+        PUBLIC_SERVICE_ANNOUNCEMENT: :public_service_announcement
+        SECURITY_ALERT: :security_alert
+        TWO_FACTOR_AUTHENTICATION: :two_factor_authentication
+
+        def self?.values: -> ::Array[SurgeAPI::Models::CampaignUpdateParams::use_case]
+      end
+
+      type volume = :high | :low
+
+      module Volume
+        extend SurgeAPI::Internal::Type::Enum
+
+        HIGH: :high
+        LOW: :low
+
+        def self?.values: -> ::Array[SurgeAPI::Models::CampaignUpdateParams::volume]
+      end
     end
   end
 end
