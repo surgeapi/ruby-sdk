@@ -1,31 +1,71 @@
-# This workflow is triggered when a GitHub release is created.
-# It can also be run manually to re-publish to rubygems.org in case it failed for some reason.
-# You can run this workflow by navigating to https://www.github.com/surgeapi/ruby-sdk/actions/workflows/publish-gem.yml
 name: Publish Gem
-on:
-  workflow_dispatch:
 
+on:
   release:
     types: [published]
+  workflow_dispatch:
+    inputs:
+      release_tag:
+        description: Existing published stable release tag (vMAJOR.MINOR.PATCH).
+        required: true
+        type: string
+      confirmation:
+        description: Type republish-reviewed-release for manual recovery.
+        required: true
+        type: string
+
+concurrency:
+  group: stlc-package-release
+  cancel-in-progress: false
+
+permissions:
+  contents: read
 
 jobs:
   publish:
-    name: publish
-    runs-on: ubuntu-latest
+    # Keep this exact production identity guard when back-syncing to staging.
+    if: github.repository == 'surgeapi/ruby-sdk'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
 
     steps:
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@c4e5b1316158f92e3d49443a9d58b31d25ac0f8f # v1.306.0
+      - name: Check out the release verification code
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
         with:
-          bundler-cache: false
-      - run: |-
-          bundle install
-
-      - name: Publish to RubyGems.org
-        run: |
-          bash ./bin/publish-gem
+          persist-credentials: false
+      - name: Resolve an existing published release
+        id: release
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8.0.0
         env:
-          # `RUBYGEMS_HOST` is only required for private gem repositories, not https://rubygems.org
-          RUBYGEMS_HOST: ${{ secrets.SURGE_RUBYGEMS_HOST || secrets.RUBYGEMS_HOST }}
-          GEM_HOST_API_KEY: ${{ secrets.SURGE_GEM_HOST_API_KEY || secrets.GEM_HOST_API_KEY }}
+          RELEASES_ENABLED: ${{ vars.STLC_PACKAGE_RELEASE_ENABLED }}
+        with:
+          script: |
+            await require('./.github/scripts/stlc-release.cjs').resolveRelease({
+              github, context, core,
+              expectedRepository: 'surgeapi/ruby-sdk',
+              enabled: process.env.RELEASES_ENABLED
+            });
+      - name: Check out the exact released commit
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          ref: ${{ steps.release.outputs.commit }}
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Verify reviewed main ancestry and package versions
+        env:
+          RELEASE_VERSION: ${{ steps.release.outputs.version }}
+        run: |
+          git fetch --no-tags origin main:refs/remotes/origin/main
+          git merge-base --is-ancestor HEAD origin/main
+          node .github/scripts/stlc-release.cjs ruby
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@95ef2b042f9d7a56d8268cba8559e2842e2ad01b # v1
+        with:
+          ruby-version: '3.4.1'
+          bundler-cache: false
+      - name: Install locked dependencies
+        run: BUNDLE_FROZEN=true bundle install
+      - name: Publish the released package
+        run: bash ./bin/publish-gem
+        env:
+          GEM_HOST_API_KEY: ${{ secrets.GEM_HOST_API_KEY }}
