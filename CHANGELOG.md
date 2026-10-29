@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.25.0](https://github.com/surgeapi/ruby-sdk/compare/v0.24.0...v0.25.0) (2026-10-29)
+
+
+### Features
+
+* update ruby SDK ([27806c1](https://github.com/surgeapi/ruby-sdk/commit/27806c1f6f9e0441c462ff72f95fae52d14b5bf1))
+
+
+### Bug Fixes
+
+* declare base64 as a runtime dependency ([f5a2435](https://github.com/surgeapi/ruby-sdk/commit/f5a2435d20809bb16fbfee02becb4e4621731841))
+
 ## 0.24.0 (2026-09-04)
 
 Full Changelog: [v0.23.0...v0.24.0](https://github.com/surgeapi/ruby-sdk/compare/v0.23.0...v0.24.0)
