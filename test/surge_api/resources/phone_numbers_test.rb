@@ -17,6 +17,7 @@ class SurgeAPI::Test::Resources::PhoneNumbersTest < SurgeAPI::Test::ResourceTest
         id: String,
         campaign: SurgeAPI::PhoneNumber::Campaign | nil,
         campaign_id: String | nil,
+        metadata: ^(SurgeAPI::Internal::Type::HashOf[String]),
         name: String | nil,
         number: String,
         type: SurgeAPI::PhoneNumber::Type
@@ -38,6 +39,7 @@ class SurgeAPI::Test::Resources::PhoneNumbersTest < SurgeAPI::Test::ResourceTest
         id: String,
         campaign: SurgeAPI::PhoneNumber::Campaign | nil,
         campaign_id: String | nil,
+        metadata: ^(SurgeAPI::Internal::Type::HashOf[String]),
         name: String | nil,
         number: String,
         type: SurgeAPI::PhoneNumber::Type
@@ -66,6 +68,7 @@ class SurgeAPI::Test::Resources::PhoneNumbersTest < SurgeAPI::Test::ResourceTest
         id: String,
         campaign: SurgeAPI::PhoneNumber::Campaign | nil,
         campaign_id: String | nil,
+        metadata: ^(SurgeAPI::Internal::Type::HashOf[String]),
         name: String | nil,
         number: String,
         type: SurgeAPI::PhoneNumber::Type
@@ -112,6 +115,7 @@ class SurgeAPI::Test::Resources::PhoneNumbersTest < SurgeAPI::Test::ResourceTest
         id: String,
         campaign: SurgeAPI::PhoneNumber::Campaign | nil,
         campaign_id: String | nil,
+        metadata: ^(SurgeAPI::Internal::Type::HashOf[String]),
         name: String | nil,
         number: String,
         type: SurgeAPI::PhoneNumber::Type
@@ -133,6 +137,7 @@ class SurgeAPI::Test::Resources::PhoneNumbersTest < SurgeAPI::Test::ResourceTest
         id: String,
         campaign: SurgeAPI::PhoneNumber::Campaign | nil,
         campaign_id: String | nil,
+        metadata: ^(SurgeAPI::Internal::Type::HashOf[String]),
         name: String | nil,
         number: String,
         type: SurgeAPI::PhoneNumber::Type

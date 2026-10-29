@@ -42,6 +42,13 @@ module SurgeAPI
       sig { params(longitude: Float).void }
       attr_writer :longitude
 
+      # Set of key-value pairs that will be stored with the object.
+      sig { returns(T.nilable(T::Hash[Symbol, String])) }
+      attr_reader :metadata
+
+      sig { params(metadata: T::Hash[Symbol, String]).void }
+      attr_writer :metadata
+
       # A human-readable name for the phone number. If not provided, defaults to the
       # formatted phone number.
       sig { returns(T.nilable(String)) }
@@ -76,6 +83,7 @@ module SurgeAPI
           area_code: String,
           latitude: Float,
           longitude: Float,
+          metadata: T::Hash[Symbol, String],
           name: String,
           phone_number: String,
           type: SurgeAPI::PhoneNumberPurchaseParams::Type::OrSymbol,
@@ -94,6 +102,8 @@ module SurgeAPI
         # Longitude to search for nearby phone numbers. Must be used with latitude. If
         # provided without type, type will be inferred as 'local'.
         longitude: nil,
+        # Set of key-value pairs that will be stored with the object.
+        metadata: nil,
         # A human-readable name for the phone number. If not provided, defaults to the
         # formatted phone number.
         name: nil,
@@ -114,6 +124,7 @@ module SurgeAPI
             area_code: String,
             latitude: Float,
             longitude: Float,
+            metadata: T::Hash[Symbol, String],
             name: String,
             phone_number: String,
             type: SurgeAPI::PhoneNumberPurchaseParams::Type::OrSymbol,

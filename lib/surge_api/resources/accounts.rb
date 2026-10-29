@@ -6,7 +6,7 @@ module SurgeAPI
       # Some parameter documentations has been truncated, see
       # {SurgeAPI::Models::AccountCreateParams} for more details.
       #
-      # Creates a new Account within the calling Platform.
+      # Creates a new Account.
       #
       # @overload create(name:, brand_name: nil, organization: nil, time_zone: nil, request_options: {})
       #
@@ -90,7 +90,7 @@ module SurgeAPI
       # Some parameter documentations has been truncated, see
       # {SurgeAPI::Models::AccountListParams} for more details.
       #
-      # List all accounts for the calling platform with cursor-based pagination.
+      # List all accounts with cursor-based pagination.
       #
       # @overload list(after: nil, before: nil, request_options: {})
       #

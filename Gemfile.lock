@@ -12,6 +12,7 @@ PATH
   remote: .
   specs:
     surge_api (0.24.0)
+      base64
       cgi
       connection_pool
       standardwebhooks

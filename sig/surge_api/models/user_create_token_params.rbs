@@ -1,7 +1,7 @@
 module SurgeAPI
   module Models
     type user_create_token_params =
-      { user_id: String, duration_seconds: Integer }
+      { user_id: String, duration_seconds: Integer, read_only: bool }
       & SurgeAPI::Internal::Type::request_parameters
 
     class UserCreateTokenParams < SurgeAPI::Internal::Type::BaseModel
@@ -14,15 +14,21 @@ module SurgeAPI
 
       def duration_seconds=: (Integer) -> Integer
 
+      attr_reader read_only: bool?
+
+      def read_only=: (bool) -> bool
+
       def initialize: (
         user_id: String,
         ?duration_seconds: Integer,
+        ?read_only: bool,
         ?request_options: SurgeAPI::request_opts
       ) -> void
 
       def to_hash: -> {
         user_id: String,
         duration_seconds: Integer,
+        read_only: bool,
         request_options: SurgeAPI::RequestOptions
       }
     end

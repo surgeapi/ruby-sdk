@@ -22,6 +22,13 @@ module SurgeAPI
       sig { params(campaign_id: String).void }
       attr_writer :campaign_id
 
+      # Set of key-value pairs that will be stored with the object.
+      sig { returns(T.nilable(T::Hash[Symbol, String])) }
+      attr_reader :metadata
+
+      sig { params(metadata: T::Hash[Symbol, String]).void }
+      attr_writer :metadata
+
       # A human-readable name for the phone number.
       sig { returns(T.nilable(String)) }
       attr_reader :name
@@ -33,6 +40,7 @@ module SurgeAPI
         params(
           id: String,
           campaign_id: String,
+          metadata: T::Hash[Symbol, String],
           name: String,
           request_options: SurgeAPI::RequestOptions::OrHash
         ).returns(T.attached_class)
@@ -42,6 +50,8 @@ module SurgeAPI
         id:,
         # Campaign ID to attach this number to (`cpn_...`).
         campaign_id: nil,
+        # Set of key-value pairs that will be stored with the object.
+        metadata: nil,
         # A human-readable name for the phone number.
         name: nil,
         request_options: {}
@@ -53,6 +63,7 @@ module SurgeAPI
           {
             id: String,
             campaign_id: String,
+            metadata: T::Hash[Symbol, String],
             name: String,
             request_options: SurgeAPI::RequestOptions
           }

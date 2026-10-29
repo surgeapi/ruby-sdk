@@ -109,6 +109,10 @@ module SurgeAPI
         sig { returns(String) }
         attr_accessor :campaign_id
 
+        # Set of key-value pairs that will be stored with the object.
+        sig { returns(T::Hash[Symbol, String]) }
+        attr_accessor :metadata
+
         # A human-readable name for the phone number
         sig { returns(T.nilable(String)) }
         attr_accessor :name
@@ -134,6 +138,7 @@ module SurgeAPI
                 SurgeAPI::PhoneNumberAttachedToCampaignWebhookEvent::Data::Campaign::OrHash
               ),
             campaign_id: String,
+            metadata: T::Hash[Symbol, String],
             name: T.nilable(String),
             number: String,
             type:
@@ -148,6 +153,8 @@ module SurgeAPI
           # Deprecated. The unique identifier of the campaign this phone number is attached
           # to
           campaign_id:,
+          # Set of key-value pairs that will be stored with the object.
+          metadata:,
           # A human-readable name for the phone number
           name:,
           # The phone number in E.164 format
@@ -166,6 +173,7 @@ module SurgeAPI
                   SurgeAPI::PhoneNumberAttachedToCampaignWebhookEvent::Data::Campaign
                 ),
               campaign_id: String,
+              metadata: T::Hash[Symbol, String],
               name: T.nilable(String),
               number: String,
               type:

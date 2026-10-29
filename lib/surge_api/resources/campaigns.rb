@@ -53,28 +53,46 @@ module SurgeAPI
       # Some parameter documentations has been truncated, see
       # {SurgeAPI::Models::CampaignUpdateParams} for more details.
       #
-      # Updates a campaign that has not yet been approved. This can be used to fix
-      # issues flagged during review and resubmit the campaign. Returns an error if the
-      # campaign is currently in review, has already been approved, or has been
-      # deactivated.
+      # Updates supplied fields on a campaign and submits it for review. Omitted fields
+      # retain their stored values. An empty object or empty request body resubmits the
+      # existing campaign without changing its registration details. Supplied arrays
+      # replace their stored values; an empty includes array clears all inclusion flags.
+      # Returns an error if the resulting campaign is incomplete or invalid, or the
+      # campaign is not editable.
       #
-      # @overload update(id, campaign_params:, request_options: {})
+      # @overload update(id, consent_flow: nil, description: nil, includes: nil, link_sample: nil, message_samples: nil, privacy_policy_url: nil, terms_and_conditions_url: nil, use_cases: nil, volume: nil, request_options: {})
       #
       # @param id [String] The ID of the campaign to update.
       #
-      # @param campaign_params [SurgeAPI::Models::CampaignParams::StandardCampaignParams, SurgeAPI::Models::CampaignParams::ExternalCampaignParams] Parameters for creating a new campaign. Either provide full campaign details or
+      # @param consent_flow [String] A string explaining the method through which end users will opt in to receive me
+      #
+      # @param description [String] An explanation of the organization's purpose and how it will be using text messa
+      #
+      # @param includes [Array<Symbol, SurgeAPI::Models::CampaignUpdateParams::Include>] A list of properties that this campaign should include. These properties can be
+      #
+      # @param link_sample [String, nil] A sample link that might be sent by this campaign. This is required when `includ
+      #
+      # @param message_samples [Array<String>] An array of 2-5 strings with examples of the messages that will be sent from thi
+      #
+      # @param privacy_policy_url [String] The URL of the privacy policy for the brand in question. This may be a shared pr
+      #
+      # @param terms_and_conditions_url [String] The URL of the terms and conditions presented to end users when they opt in to m
+      #
+      # @param use_cases [Array<Symbol, SurgeAPI::Models::CampaignUpdateParams::UseCase>] A list containing 1-5 types of messages that will be sent with this campaign.
+      #
+      # @param volume [Symbol, SurgeAPI::Models::CampaignUpdateParams::Volume] This will be one of the following:
       #
       # @param request_options [SurgeAPI::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [SurgeAPI::Models::Campaign]
       #
       # @see SurgeAPI::Models::CampaignUpdateParams
-      def update(id, params)
+      def update(id, params = {})
         parsed, options = SurgeAPI::CampaignUpdateParams.dump_request(params)
         @client.request(
           method: :patch,
           path: ["campaigns/%1$s", id],
-          body: parsed[:campaign_params],
+          body: parsed,
           model: SurgeAPI::Campaign,
           options: options
         )

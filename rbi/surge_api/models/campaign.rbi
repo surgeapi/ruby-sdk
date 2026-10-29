@@ -10,6 +10,10 @@ module SurgeAPI
       sig { returns(String) }
       attr_accessor :id
 
+      # The ID of the account that owns this campaign
+      sig { returns(String) }
+      attr_accessor :account_id
+
       # A string explaining the method through which end users will opt in to receive
       # messages from the brand. Typically this should include URLs for opt-in forms or
       # screenshots that might be helpful in explaining the flow to someone unfamiliar
@@ -86,11 +90,11 @@ module SurgeAPI
       # This will be one of the following:
       #
       # - `low` - The campaign will be allowed to send up to 2000 SMS segments to
-      #   T-Mobile customers each day. In this case your platform will be charged for
-      #   the setup fee for a low volume number upon receipt of the API request.
+      #   T-Mobile customers each day. In this case your project will be charged for the
+      #   setup fee for a low volume number upon receipt of the API request.
       # - `high` - The campaign will be allowed to send up to 200k SMS segments to
       #   T-Mobile customers each day, depending on the trust score assigned by The
-      #   Campaign Registry. Your platform will be charged for the setup fee for a high
+      #   Campaign Registry. Your project will be charged for the setup fee for a high
       #   volume number upon receipt of the API request, and phone numbers will be
       #   charged as high volume numbers going forward.
       sig { returns(SurgeAPI::Campaign::Volume::TaggedSymbol) }
@@ -121,6 +125,7 @@ module SurgeAPI
       sig do
         params(
           id: String,
+          account_id: String,
           consent_flow: String,
           description: String,
           includes: T::Array[SurgeAPI::Campaign::Include::OrSymbol],
@@ -136,6 +141,8 @@ module SurgeAPI
       def self.new(
         # The campaign ID
         id:,
+        # The ID of the account that owns this campaign
+        account_id:,
         # A string explaining the method through which end users will opt in to receive
         # messages from the brand. Typically this should include URLs for opt-in forms or
         # screenshots that might be helpful in explaining the flow to someone unfamiliar
@@ -198,11 +205,11 @@ module SurgeAPI
         # This will be one of the following:
         #
         # - `low` - The campaign will be allowed to send up to 2000 SMS segments to
-        #   T-Mobile customers each day. In this case your platform will be charged for
-        #   the setup fee for a low volume number upon receipt of the API request.
+        #   T-Mobile customers each day. In this case your project will be charged for the
+        #   setup fee for a low volume number upon receipt of the API request.
         # - `high` - The campaign will be allowed to send up to 200k SMS segments to
         #   T-Mobile customers each day, depending on the trust score assigned by The
-        #   Campaign Registry. Your platform will be charged for the setup fee for a high
+        #   Campaign Registry. Your project will be charged for the setup fee for a high
         #   volume number upon receipt of the API request, and phone numbers will be
         #   charged as high volume numbers going forward.
         volume:,
@@ -223,6 +230,7 @@ module SurgeAPI
         override.returns(
           {
             id: String,
+            account_id: String,
             consent_flow: String,
             description: String,
             includes: T::Array[SurgeAPI::Campaign::Include::TaggedSymbol],
@@ -332,11 +340,11 @@ module SurgeAPI
       # This will be one of the following:
       #
       # - `low` - The campaign will be allowed to send up to 2000 SMS segments to
-      #   T-Mobile customers each day. In this case your platform will be charged for
-      #   the setup fee for a low volume number upon receipt of the API request.
+      #   T-Mobile customers each day. In this case your project will be charged for the
+      #   setup fee for a low volume number upon receipt of the API request.
       # - `high` - The campaign will be allowed to send up to 200k SMS segments to
       #   T-Mobile customers each day, depending on the trust score assigned by The
-      #   Campaign Registry. Your platform will be charged for the setup fee for a high
+      #   Campaign Registry. Your project will be charged for the setup fee for a high
       #   volume number upon receipt of the API request, and phone numbers will be
       #   charged as high volume numbers going forward.
       module Volume

@@ -56,6 +56,12 @@ module SurgeAPI
         #   @return [SurgeAPI::Models::MessageReceivedWebhookEvent::Data::Conversation]
         required :conversation, -> { SurgeAPI::MessageReceivedWebhookEvent::Data::Conversation }
 
+        # @!attribute failure_reason
+        #   The reason the message failed, or null if no failure reason is set
+        #
+        #   @return [String, nil]
+        required :failure_reason, String, nil?: true
+
         # @!attribute metadata
         #   Set of key-value pairs that will be stored with the object.
         #
@@ -88,7 +94,7 @@ module SurgeAPI
         #   @return [String, nil]
         optional :blast_id, String
 
-        # @!method initialize(id:, body:, conversation:, metadata:, received_at:, status:, attachments: nil, blast_id: nil)
+        # @!method initialize(id:, body:, conversation:, failure_reason:, metadata:, received_at:, status:, attachments: nil, blast_id: nil)
         #   Some parameter documentations has been truncated, see
         #   {SurgeAPI::Models::MessageReceivedWebhookEvent::Data} for more details.
         #
@@ -99,6 +105,8 @@ module SurgeAPI
         #   @param body [String, nil] The content of the message
         #
         #   @param conversation [SurgeAPI::Models::MessageReceivedWebhookEvent::Data::Conversation] The conversation this message belongs to
+        #
+        #   @param failure_reason [String, nil] The reason the message failed, or null if no failure reason is set
         #
         #   @param metadata [Hash{Symbol=>String}] Set of key-value pairs that will be stored with the object.
         #

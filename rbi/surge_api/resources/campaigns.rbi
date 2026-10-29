@@ -39,27 +39,109 @@ module SurgeAPI
       )
       end
 
-      # Updates a campaign that has not yet been approved. This can be used to fix
-      # issues flagged during review and resubmit the campaign. Returns an error if the
-      # campaign is currently in review, has already been approved, or has been
-      # deactivated.
+      # Updates supplied fields on a campaign and submits it for review. Omitted fields
+      # retain their stored values. An empty object or empty request body resubmits the
+      # existing campaign without changing its registration details. Supplied arrays
+      # replace their stored values; an empty includes array clears all inclusion flags.
+      # Returns an error if the resulting campaign is incomplete or invalid, or the
+      # campaign is not editable.
       sig do
         params(
           id: String,
-          campaign_params:
-            T.any(
-              SurgeAPI::CampaignParams::StandardCampaignParams::OrHash,
-              SurgeAPI::CampaignParams::ExternalCampaignParams::OrHash
-            ),
+          consent_flow: String,
+          description: String,
+          includes: T::Array[SurgeAPI::CampaignUpdateParams::Include::OrSymbol],
+          link_sample: T.nilable(String),
+          message_samples: T::Array[String],
+          privacy_policy_url: String,
+          terms_and_conditions_url: String,
+          use_cases:
+            T::Array[SurgeAPI::CampaignUpdateParams::UseCase::OrSymbol],
+          volume: SurgeAPI::CampaignUpdateParams::Volume::OrSymbol,
           request_options: SurgeAPI::RequestOptions::OrHash
         ).returns(SurgeAPI::Campaign)
       end
       def update(
         # The ID of the campaign to update.
         id,
-        # Parameters for creating a new campaign. Either provide full campaign details or
-        # import using a TCR ID.
-        campaign_params:,
+        # A string explaining the method through which end users will opt in to receive
+        # messages from the brand. Typically this should include URLs for opt-in forms or
+        # screenshots that might be helpful in explaining the flow to someone unfamiliar
+        # with the organization's purpose.
+        consent_flow: nil,
+        # An explanation of the organization's purpose and how it will be using text
+        # messaging to accomplish that purpose.
+        description: nil,
+        # A list of properties that this campaign should include. These properties can be
+        # any of the following values:
+        #
+        # - `links` - whether the campaign might send links in messages
+        # - `phone_numbers` - whether the campaign might send phone numbers in messages
+        # - `age_gated` - whether the campaign contains age gated content (controlled
+        #   substances or adult content)
+        # - `direct_lending` - whether the campaign contains content related to direct
+        #   lending or other loan arrangements
+        includes: nil,
+        # A sample link that might be sent by this campaign. This is required when
+        # `includes` contains `links`. Provide the same URL or domain that the campaign
+        # will use in production. If links from other domains are sent through this
+        # campaign, they are much more likely to be filtered by the carriers.
+        link_sample: nil,
+        # An array of 2-5 strings with examples of the messages that will be sent from
+        # this campaign. Typically the first sample should be a compliance message like
+        # `You are now opted in to messages from {brand name}. Frequency varies. Msg&data rates apply. Reply STOP to opt out.`
+        # These samples don't necessarily need to be the only templates that will be used
+        # for the campaign, but they should reflect the purpose of the messages that will
+        # be sent. Any variable content can be reflected by wrapping it in square brackets
+        # like `[customer name]`.
+        message_samples: nil,
+        # The URL of the privacy policy for the brand in question. This may be a shared
+        # privacy policy if it's the policy that is displayed to end users when they opt
+        # in to messaging.
+        privacy_policy_url: nil,
+        # The URL of the terms and conditions presented to end users when they opt in to
+        # messaging. These terms and conditions may be shared among all of a platform's
+        # customers if they're the terms that are presented to end users when they opt in
+        # to messaging.
+        terms_and_conditions_url: nil,
+        # A list containing 1-5 types of messages that will be sent with this campaign.
+        #
+        # The following use cases are typically available to all brands:
+        #
+        # - `account_notification` - For sending reminders, alerts, and general
+        #   account-related notifications like booking confirmations or appointment
+        #   reminders.
+        # - `customer_care` - For account support, troubleshooting, and general customer
+        #   service communication.
+        # - `delivery_notification` - For notifying customers about the status of product
+        #   or service deliveries.
+        # - `fraud_alert` - For warning customers about suspicious or potentially
+        #   fraudulent activity.
+        # - `higher_education` - For messaging related to colleges, universities, and
+        #   school districts outside of K–12.
+        # - `marketing` - For promotional or advertising messages intended to market
+        #   products or services.
+        # - `polling_voting` - For conducting surveys, polls, or voting-related messaging.
+        # - `public_service_announcement` - For raising awareness about social issues or
+        #   important public information.
+        # - `security_alert` - For alerts related to potential security breaches or
+        #   compromised systems requiring user action.
+        # - `two_factor_authentication` - For sending one-time passwords or verification
+        #   codes for login or password reset.
+        #
+        # For access to special use cases not shown here, reach out to support@surge.app.
+        use_cases: nil,
+        # This will be one of the following:
+        #
+        # - `low` - The campaign will be allowed to send up to 2000 SMS segments to
+        #   T-Mobile customers each day. In this case your project will be charged for the
+        #   setup fee for a low volume number upon receipt of the API request.
+        # - `high` - The campaign will be allowed to send up to 200k SMS segments to
+        #   T-Mobile customers each day, depending on the trust score assigned by The
+        #   Campaign Registry. Your project will be charged for the setup fee for a high
+        #   volume number upon receipt of the API request, and phone numbers will be
+        #   charged as high volume numbers going forward.
+        volume: nil,
         request_options: {}
       )
       end

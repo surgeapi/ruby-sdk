@@ -100,6 +100,10 @@ module SurgeAPI
         sig { returns(Time) }
         attr_accessor :delivered_at
 
+        # The reason the message failed, or null if no failure reason is set
+        sig { returns(T.nilable(String)) }
+        attr_accessor :failure_reason
+
         # Set of key-value pairs that will be stored with the object.
         sig { returns(T::Hash[Symbol, String]) }
         attr_accessor :metadata
@@ -148,6 +152,7 @@ module SurgeAPI
             conversation:
               SurgeAPI::MessageDeliveredWebhookEvent::Data::Conversation::OrHash,
             delivered_at: Time,
+            failure_reason: T.nilable(String),
             metadata: T::Hash[Symbol, String],
             status:
               SurgeAPI::MessageDeliveredWebhookEvent::Data::Status::OrSymbol,
@@ -167,6 +172,8 @@ module SurgeAPI
           conversation:,
           # When the message was delivered
           delivered_at:,
+          # The reason the message failed, or null if no failure reason is set
+          failure_reason:,
           # Set of key-value pairs that will be stored with the object.
           metadata:,
           # The message status represented by this event
@@ -187,6 +194,7 @@ module SurgeAPI
               conversation:
                 SurgeAPI::MessageDeliveredWebhookEvent::Data::Conversation,
               delivered_at: Time,
+              failure_reason: T.nilable(String),
               metadata: T::Hash[Symbol, String],
               status:
                 SurgeAPI::MessageDeliveredWebhookEvent::Data::Status::TaggedSymbol,

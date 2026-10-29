@@ -1,0 +1,44 @@
+module SurgeAPI
+  module Resources
+    class TollFreeCampaigns
+      def create: (
+        String account_id,
+        consent_flows: ::Array[SurgeAPI::Models::TollFreeCampaignParams::consent_flow],
+        description: String,
+        message_samples: ::Array[String],
+        phone_number_id: String,
+        privacy_policy_url: String,
+        terms_and_conditions_url: String,
+        use_cases: ::Array[SurgeAPI::Models::TollFreeCampaignParams::use_case],
+        ?includes: ::Array[SurgeAPI::Models::TollFreeCampaignParams::include_],
+        ?request_options: SurgeAPI::request_opts
+      ) -> SurgeAPI::TollFreeCampaign
+
+      def retrieve: (
+        String campaign_id,
+        ?request_options: SurgeAPI::request_opts
+      ) -> SurgeAPI::TollFreeCampaign
+
+      def update: (
+        String campaign_id,
+        ?consent_flows: ::Array[SurgeAPI::Models::TollFreeCampaignUpdateParams::consent_flow],
+        ?description: String,
+        ?includes: ::Array[SurgeAPI::Models::TollFreeCampaignUpdateParams::include_],
+        ?message_samples: ::Array[String],
+        ?privacy_policy_url: String,
+        ?terms_and_conditions_url: String,
+        ?use_cases: ::Array[SurgeAPI::Models::TollFreeCampaignUpdateParams::use_case],
+        ?request_options: SurgeAPI::request_opts
+      ) -> SurgeAPI::TollFreeCampaign
+
+      def list: (
+        String account_id,
+        ?after: String,
+        ?before: String,
+        ?request_options: SurgeAPI::request_opts
+      ) -> SurgeAPI::Internal::Cursor[SurgeAPI::TollFreeCampaign]
+
+      def initialize: (client: SurgeAPI::Client) -> void
+    end
+  end
+end

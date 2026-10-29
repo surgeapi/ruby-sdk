@@ -1,0 +1,67 @@
+module SurgeAPI
+  module Models
+    type campaign_submitted_webhook_event =
+      {
+        account_id: String,
+        data: SurgeAPI::CampaignSubmittedWebhookEvent::Data,
+        timestamp: Time,
+        type: :"campaign.submitted"
+      }
+
+    class CampaignSubmittedWebhookEvent < SurgeAPI::Internal::Type::BaseModel
+      attr_accessor account_id: String
+
+      attr_accessor data: SurgeAPI::CampaignSubmittedWebhookEvent::Data
+
+      attr_accessor timestamp: Time
+
+      attr_accessor type: :"campaign.submitted"
+
+      def initialize: (
+        account_id: String,
+        data: SurgeAPI::CampaignSubmittedWebhookEvent::Data,
+        timestamp: Time,
+        ?type: :"campaign.submitted"
+      ) -> void
+
+      def to_hash: -> {
+        account_id: String,
+        data: SurgeAPI::CampaignSubmittedWebhookEvent::Data,
+        timestamp: Time,
+        type: :"campaign.submitted"
+      }
+
+      type data =
+        {
+          id: String,
+          status: SurgeAPI::Models::CampaignSubmittedWebhookEvent::Data::status
+        }
+
+      class Data < SurgeAPI::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor status: SurgeAPI::Models::CampaignSubmittedWebhookEvent::Data::status
+
+        def initialize: (
+          id: String,
+          status: SurgeAPI::Models::CampaignSubmittedWebhookEvent::Data::status
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          status: SurgeAPI::Models::CampaignSubmittedWebhookEvent::Data::status
+        }
+
+        type status = :in_review
+
+        module Status
+          extend SurgeAPI::Internal::Type::Enum
+
+          IN_REVIEW: :in_review
+
+          def self?.values: -> ::Array[SurgeAPI::Models::CampaignSubmittedWebhookEvent::Data::status]
+        end
+      end
+    end
+  end
+end

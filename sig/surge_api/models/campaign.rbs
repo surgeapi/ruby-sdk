@@ -3,6 +3,7 @@ module SurgeAPI
     type campaign =
       {
         id: String,
+        account_id: String,
         consent_flow: String,
         description: String,
         includes: ::Array[SurgeAPI::Models::Campaign::include_],
@@ -17,6 +18,8 @@ module SurgeAPI
 
     class Campaign < SurgeAPI::Internal::Type::BaseModel
       attr_accessor id: String
+
+      attr_accessor account_id: String
 
       attr_accessor consent_flow: String
 
@@ -44,6 +47,7 @@ module SurgeAPI
 
       def initialize: (
         id: String,
+        account_id: String,
         consent_flow: String,
         description: String,
         includes: ::Array[SurgeAPI::Models::Campaign::include_],
@@ -58,6 +62,7 @@ module SurgeAPI
 
       def to_hash: -> {
         id: String,
+        account_id: String,
         consent_flow: String,
         description: String,
         includes: ::Array[SurgeAPI::Models::Campaign::include_],

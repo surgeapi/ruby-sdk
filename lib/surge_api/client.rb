@@ -48,6 +48,9 @@ module SurgeAPI
     # @return [SurgeAPI::Resources::Recordings]
     attr_reader :recordings
 
+    # @return [SurgeAPI::Resources::TollFreeCampaigns]
+    attr_reader :toll_free_campaigns
+
     # @return [SurgeAPI::Resources::Users]
     attr_reader :users
 
@@ -131,6 +134,7 @@ module SurgeAPI
       @messages = SurgeAPI::Resources::Messages.new(client: self)
       @phone_numbers = SurgeAPI::Resources::PhoneNumbers.new(client: self)
       @recordings = SurgeAPI::Resources::Recordings.new(client: self)
+      @toll_free_campaigns = SurgeAPI::Resources::TollFreeCampaigns.new(client: self)
       @users = SurgeAPI::Resources::Users.new(client: self)
       @verifications = SurgeAPI::Resources::Verifications.new(client: self)
       @webhooks = SurgeAPI::Resources::Webhooks.new(client: self)

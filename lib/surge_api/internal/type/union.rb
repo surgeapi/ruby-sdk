@@ -12,7 +12,7 @@ module SurgeAPI
       #     puts(unwrap_webhook_event.account_id)
       #   when SurgeAPI::CampaignApprovedWebhookEvent
       #     puts(unwrap_webhook_event.data)
-      #   when SurgeAPI::ContactOptedInWebhookEvent
+      #   when SurgeAPI::CampaignRejectedWebhookEvent
       #     puts(unwrap_webhook_event.timestamp)
       #   else
       #     puts(unwrap_webhook_event)
@@ -24,7 +24,7 @@ module SurgeAPI
       #     puts(account_id)
       #   in {type: :"campaign.approved", account_id: account_id, data: data, timestamp: timestamp}
       #     puts(data)
-      #   in {type: :"contact.opted_in", account_id: account_id, data: data, timestamp: timestamp}
+      #   in {type: :"campaign.rejected", account_id: account_id, data: data, timestamp: timestamp}
       #     puts(timestamp)
       #   else
       #     puts(unwrap_webhook_event)

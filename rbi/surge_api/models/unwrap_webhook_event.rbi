@@ -10,6 +10,9 @@ module SurgeAPI
           T.any(
             SurgeAPI::CallEndedWebhookEvent,
             SurgeAPI::CampaignApprovedWebhookEvent,
+            SurgeAPI::CampaignRejectedWebhookEvent,
+            SurgeAPI::CampaignSubmittedWebhookEvent,
+            SurgeAPI::CampaignWarningWebhookEvent,
             SurgeAPI::ContactOptedInWebhookEvent,
             SurgeAPI::ContactOptedOutWebhookEvent,
             SurgeAPI::ConversationCreatedWebhookEvent,

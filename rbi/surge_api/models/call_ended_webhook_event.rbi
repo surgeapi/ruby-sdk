@@ -88,7 +88,8 @@ module SurgeAPI
         sig { returns(Time) }
         attr_accessor :initiated_at
 
-        # The status of the call
+        # The status of the call. For inbound embedded-phone calls, `no_answer` means no
+        # embedded user answered, even if the caller reached voicemail.
         sig do
           returns(SurgeAPI::CallEndedWebhookEvent::Data::Status::TaggedSymbol)
         end
@@ -128,7 +129,8 @@ module SurgeAPI
           duration:,
           # When the call was initiated
           initiated_at:,
-          # The status of the call
+          # The status of the call. For inbound embedded-phone calls, `no_answer` means no
+          # embedded user answered, even if the caller reached voicemail.
           status:,
           # The E.164 phone number of the caller
           from: nil,
@@ -157,7 +159,8 @@ module SurgeAPI
         def to_hash
         end
 
-        # The status of the call
+        # The status of the call. For inbound embedded-phone calls, `no_answer` means no
+        # embedded user answered, even if the caller reached voicemail.
         module Status
           extend SurgeAPI::Internal::Type::Enum
 

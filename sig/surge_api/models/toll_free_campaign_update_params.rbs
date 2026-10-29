@@ -1,0 +1,332 @@
+module SurgeAPI
+  module Models
+    type toll_free_campaign_update_params =
+      {
+        consent_flows: ::Array[SurgeAPI::Models::TollFreeCampaignUpdateParams::consent_flow],
+        description: String,
+        includes: ::Array[SurgeAPI::Models::TollFreeCampaignUpdateParams::include_],
+        message_samples: ::Array[String],
+        privacy_policy_url: String,
+        terms_and_conditions_url: String,
+        use_cases: ::Array[SurgeAPI::Models::TollFreeCampaignUpdateParams::use_case]
+      }
+
+    class TollFreeCampaignUpdateParams < SurgeAPI::Internal::Type::BaseModel
+      attr_reader consent_flows: ::Array[SurgeAPI::Models::TollFreeCampaignUpdateParams::consent_flow]?
+
+      def consent_flows=: (
+        ::Array[SurgeAPI::Models::TollFreeCampaignUpdateParams::consent_flow]
+      ) -> ::Array[SurgeAPI::Models::TollFreeCampaignUpdateParams::consent_flow]
+
+      attr_reader description: String?
+
+      def description=: (String) -> String
+
+      attr_reader includes: ::Array[SurgeAPI::Models::TollFreeCampaignUpdateParams::include_]?
+
+      def includes=: (
+        ::Array[SurgeAPI::Models::TollFreeCampaignUpdateParams::include_]
+      ) -> ::Array[SurgeAPI::Models::TollFreeCampaignUpdateParams::include_]
+
+      attr_reader message_samples: ::Array[String]?
+
+      def message_samples=: (::Array[String]) -> ::Array[String]
+
+      attr_reader privacy_policy_url: String?
+
+      def privacy_policy_url=: (String) -> String
+
+      attr_reader terms_and_conditions_url: String?
+
+      def terms_and_conditions_url=: (String) -> String
+
+      attr_reader use_cases: ::Array[SurgeAPI::Models::TollFreeCampaignUpdateParams::use_case]?
+
+      def use_cases=: (
+        ::Array[SurgeAPI::Models::TollFreeCampaignUpdateParams::use_case]
+      ) -> ::Array[SurgeAPI::Models::TollFreeCampaignUpdateParams::use_case]
+
+      def initialize: (
+        ?consent_flows: ::Array[SurgeAPI::Models::TollFreeCampaignUpdateParams::consent_flow],
+        ?description: String,
+        ?includes: ::Array[SurgeAPI::Models::TollFreeCampaignUpdateParams::include_],
+        ?message_samples: ::Array[String],
+        ?privacy_policy_url: String,
+        ?terms_and_conditions_url: String,
+        ?use_cases: ::Array[SurgeAPI::Models::TollFreeCampaignUpdateParams::use_case]
+      ) -> void
+
+      def to_hash: -> {
+        consent_flows: ::Array[SurgeAPI::Models::TollFreeCampaignUpdateParams::consent_flow],
+        description: String,
+        includes: ::Array[SurgeAPI::Models::TollFreeCampaignUpdateParams::include_],
+        message_samples: ::Array[String],
+        privacy_policy_url: String,
+        terms_and_conditions_url: String,
+        use_cases: ::Array[SurgeAPI::Models::TollFreeCampaignUpdateParams::use_case]
+      }
+
+      type consent_flow =
+        SurgeAPI::TollFreeCampaignUpdateParams::ConsentFlow::UnionMember0
+        | SurgeAPI::TollFreeCampaignUpdateParams::ConsentFlow::UnionMember1
+        | SurgeAPI::TollFreeCampaignUpdateParams::ConsentFlow::UnionMember2
+        | SurgeAPI::TollFreeCampaignUpdateParams::ConsentFlow::UnionMember3
+
+      module ConsentFlow
+        extend SurgeAPI::Internal::Type::Union
+
+        type union_member0 =
+          {
+            script: String,
+            type: SurgeAPI::Models::TollFreeCampaignUpdateParams::ConsentFlow::UnionMember0::type_
+          }
+
+        class UnionMember0 < SurgeAPI::Internal::Type::BaseModel
+          attr_accessor script: String
+
+          attr_accessor type: SurgeAPI::Models::TollFreeCampaignUpdateParams::ConsentFlow::UnionMember0::type_
+
+          def initialize: (
+            script: String,
+            type: SurgeAPI::Models::TollFreeCampaignUpdateParams::ConsentFlow::UnionMember0::type_
+          ) -> void
+
+          def to_hash: -> {
+            script: String,
+            type: SurgeAPI::Models::TollFreeCampaignUpdateParams::ConsentFlow::UnionMember0::type_
+          }
+
+          type type_ = :verbal
+
+          module Type
+            extend SurgeAPI::Internal::Type::Enum
+
+            VERBAL: :verbal
+
+            def self?.values: -> ::Array[SurgeAPI::Models::TollFreeCampaignUpdateParams::ConsentFlow::UnionMember0::type_]
+          end
+        end
+
+        type union_member1 =
+          {
+            owner: SurgeAPI::Models::TollFreeCampaignUpdateParams::ConsentFlow::UnionMember1::owner,
+            type: SurgeAPI::Models::TollFreeCampaignUpdateParams::ConsentFlow::UnionMember1::type_,
+            form_url: String,
+            screenshot: SurgeAPI::TollFreeCampaignUpdateParams::ConsentFlow::UnionMember1::Screenshot
+          }
+
+        class UnionMember1 < SurgeAPI::Internal::Type::BaseModel
+          attr_accessor owner: SurgeAPI::Models::TollFreeCampaignUpdateParams::ConsentFlow::UnionMember1::owner
+
+          attr_accessor type: SurgeAPI::Models::TollFreeCampaignUpdateParams::ConsentFlow::UnionMember1::type_
+
+          attr_reader form_url: String?
+
+          def form_url=: (String) -> String
+
+          attr_reader screenshot: SurgeAPI::TollFreeCampaignUpdateParams::ConsentFlow::UnionMember1::Screenshot?
+
+          def screenshot=: (
+            SurgeAPI::TollFreeCampaignUpdateParams::ConsentFlow::UnionMember1::Screenshot
+          ) -> SurgeAPI::TollFreeCampaignUpdateParams::ConsentFlow::UnionMember1::Screenshot
+
+          def initialize: (
+            owner: SurgeAPI::Models::TollFreeCampaignUpdateParams::ConsentFlow::UnionMember1::owner,
+            type: SurgeAPI::Models::TollFreeCampaignUpdateParams::ConsentFlow::UnionMember1::type_,
+            ?form_url: String,
+            ?screenshot: SurgeAPI::TollFreeCampaignUpdateParams::ConsentFlow::UnionMember1::Screenshot
+          ) -> void
+
+          def to_hash: -> {
+            owner: SurgeAPI::Models::TollFreeCampaignUpdateParams::ConsentFlow::UnionMember1::owner,
+            type: SurgeAPI::Models::TollFreeCampaignUpdateParams::ConsentFlow::UnionMember1::type_,
+            form_url: String,
+            screenshot: SurgeAPI::TollFreeCampaignUpdateParams::ConsentFlow::UnionMember1::Screenshot
+          }
+
+          type owner = :brand | :platform
+
+          module Owner
+            extend SurgeAPI::Internal::Type::Enum
+
+            BRAND: :brand
+            PLATFORM: :platform
+
+            def self?.values: -> ::Array[SurgeAPI::Models::TollFreeCampaignUpdateParams::ConsentFlow::UnionMember1::owner]
+          end
+
+          type type_ = :web_form
+
+          module Type
+            extend SurgeAPI::Internal::Type::Enum
+
+            WEB_FORM: :web_form
+
+            def self?.values: -> ::Array[SurgeAPI::Models::TollFreeCampaignUpdateParams::ConsentFlow::UnionMember1::type_]
+          end
+
+          type screenshot =
+            {
+              reason: SurgeAPI::Models::TollFreeCampaignUpdateParams::ConsentFlow::UnionMember1::Screenshot::reason,
+              urls: ::Array[String],
+              reason_other: String
+            }
+
+          class Screenshot < SurgeAPI::Internal::Type::BaseModel
+            attr_accessor reason: SurgeAPI::Models::TollFreeCampaignUpdateParams::ConsentFlow::UnionMember1::Screenshot::reason
+
+            attr_accessor urls: ::Array[String]
+
+            attr_reader reason_other: String?
+
+            def reason_other=: (String) -> String
+
+            def initialize: (
+              reason: SurgeAPI::Models::TollFreeCampaignUpdateParams::ConsentFlow::UnionMember1::Screenshot::reason,
+              urls: ::Array[String],
+              ?reason_other: String
+            ) -> void
+
+            def to_hash: -> {
+              reason: SurgeAPI::Models::TollFreeCampaignUpdateParams::ConsentFlow::UnionMember1::Screenshot::reason,
+              urls: ::Array[String],
+              reason_other: String
+            }
+
+            type reason = :behind_login | :under_construction | :other
+
+            module Reason
+              extend SurgeAPI::Internal::Type::Enum
+
+              BEHIND_LOGIN: :behind_login
+              UNDER_CONSTRUCTION: :under_construction
+              OTHER: :other
+
+              def self?.values: -> ::Array[SurgeAPI::Models::TollFreeCampaignUpdateParams::ConsentFlow::UnionMember1::Screenshot::reason]
+            end
+          end
+        end
+
+        type union_member2 =
+          {
+            file_urls: ::Array[String],
+            type: SurgeAPI::Models::TollFreeCampaignUpdateParams::ConsentFlow::UnionMember2::type_,
+            keywords: ::Array[String]
+          }
+
+        class UnionMember2 < SurgeAPI::Internal::Type::BaseModel
+          attr_accessor file_urls: ::Array[String]
+
+          attr_accessor type: SurgeAPI::Models::TollFreeCampaignUpdateParams::ConsentFlow::UnionMember2::type_
+
+          attr_reader keywords: ::Array[String]?
+
+          def keywords=: (::Array[String]) -> ::Array[String]
+
+          def initialize: (
+            file_urls: ::Array[String],
+            type: SurgeAPI::Models::TollFreeCampaignUpdateParams::ConsentFlow::UnionMember2::type_,
+            ?keywords: ::Array[String]
+          ) -> void
+
+          def to_hash: -> {
+            file_urls: ::Array[String],
+            type: SurgeAPI::Models::TollFreeCampaignUpdateParams::ConsentFlow::UnionMember2::type_,
+            keywords: ::Array[String]
+          }
+
+          type type_ = :text
+
+          module Type
+            extend SurgeAPI::Internal::Type::Enum
+
+            TEXT: :text
+
+            def self?.values: -> ::Array[SurgeAPI::Models::TollFreeCampaignUpdateParams::ConsentFlow::UnionMember2::type_]
+          end
+        end
+
+        type union_member3 =
+          {
+            file_urls: ::Array[String],
+            type: SurgeAPI::Models::TollFreeCampaignUpdateParams::ConsentFlow::UnionMember3::type_
+          }
+
+        class UnionMember3 < SurgeAPI::Internal::Type::BaseModel
+          attr_accessor file_urls: ::Array[String]
+
+          attr_accessor type: SurgeAPI::Models::TollFreeCampaignUpdateParams::ConsentFlow::UnionMember3::type_
+
+          def initialize: (
+            file_urls: ::Array[String],
+            type: SurgeAPI::Models::TollFreeCampaignUpdateParams::ConsentFlow::UnionMember3::type_
+          ) -> void
+
+          def to_hash: -> {
+            file_urls: ::Array[String],
+            type: SurgeAPI::Models::TollFreeCampaignUpdateParams::ConsentFlow::UnionMember3::type_
+          }
+
+          type type_ = :paper_form
+
+          module Type
+            extend SurgeAPI::Internal::Type::Enum
+
+            PAPER_FORM: :paper_form
+
+            def self?.values: -> ::Array[SurgeAPI::Models::TollFreeCampaignUpdateParams::ConsentFlow::UnionMember3::type_]
+          end
+        end
+
+        def self?.variants: -> ::Array[SurgeAPI::Models::TollFreeCampaignUpdateParams::consent_flow]
+      end
+
+      type include_ = :age_gated
+
+      module Include
+        extend SurgeAPI::Internal::Type::Enum
+
+        AGE_GATED: :age_gated
+
+        def self?.values: -> ::Array[SurgeAPI::Models::TollFreeCampaignUpdateParams::include_]
+      end
+
+      type use_case =
+        :two_factor_authentication
+        | :account_notification
+        | :customer_care
+        | :charity
+        | :delivery_notification
+        | :fraud_alert
+        | :event
+        | :higher_education
+        | :k12_education
+        | :marketing
+        | :polling_voting
+        | :political
+        | :public_service_announcement
+        | :security_alert
+
+      module UseCase
+        extend SurgeAPI::Internal::Type::Enum
+
+        TWO_FACTOR_AUTHENTICATION: :two_factor_authentication
+        ACCOUNT_NOTIFICATION: :account_notification
+        CUSTOMER_CARE: :customer_care
+        CHARITY: :charity
+        DELIVERY_NOTIFICATION: :delivery_notification
+        FRAUD_ALERT: :fraud_alert
+        EVENT: :event
+        HIGHER_EDUCATION: :higher_education
+        K12_EDUCATION: :k12_education
+        MARKETING: :marketing
+        POLLING_VOTING: :polling_voting
+        POLITICAL: :political
+        PUBLIC_SERVICE_ANNOUNCEMENT: :public_service_announcement
+        SECURITY_ALERT: :security_alert
+
+        def self?.values: -> ::Array[SurgeAPI::Models::TollFreeCampaignUpdateParams::use_case]
+      end
+    end
+  end
+end

@@ -79,12 +79,18 @@ module SurgeAPI
 
   CampaignParams = SurgeAPI::Models::CampaignParams
 
+  CampaignRejectedWebhookEvent = SurgeAPI::Models::CampaignRejectedWebhookEvent
+
   CampaignResendBrandVerificationMessageParams =
     SurgeAPI::Models::CampaignResendBrandVerificationMessageParams
 
   CampaignRetrieveParams = SurgeAPI::Models::CampaignRetrieveParams
 
+  CampaignSubmittedWebhookEvent = SurgeAPI::Models::CampaignSubmittedWebhookEvent
+
   CampaignUpdateParams = SurgeAPI::Models::CampaignUpdateParams
+
+  CampaignWarningWebhookEvent = SurgeAPI::Models::CampaignWarningWebhookEvent
 
   Contact = SurgeAPI::Models::Contact
 
@@ -153,6 +159,20 @@ module SurgeAPI
   RecordingListParams = SurgeAPI::Models::RecordingListParams
 
   RecordingRetrieveParams = SurgeAPI::Models::RecordingRetrieveParams
+
+  TollFreeCampaign = SurgeAPI::Models::TollFreeCampaign
+
+  TollFreeCampaignConsentFlow = SurgeAPI::Models::TollFreeCampaignConsentFlow
+
+  TollFreeCampaignCreateParams = SurgeAPI::Models::TollFreeCampaignCreateParams
+
+  TollFreeCampaignListParams = SurgeAPI::Models::TollFreeCampaignListParams
+
+  TollFreeCampaignParams = SurgeAPI::Models::TollFreeCampaignParams
+
+  TollFreeCampaignRetrieveParams = SurgeAPI::Models::TollFreeCampaignRetrieveParams
+
+  TollFreeCampaignUpdateParams = SurgeAPI::Models::TollFreeCampaignUpdateParams
 
   UnwrapWebhookEvent = SurgeAPI::Models::UnwrapWebhookEvent
 

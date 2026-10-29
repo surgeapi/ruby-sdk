@@ -1,0 +1,126 @@
+module SurgeAPI
+  module Models
+    type toll_free_campaign =
+      {
+        id: String,
+        consent_flows: ::Array[SurgeAPI::Models::toll_free_campaign_consent_flow],
+        description: String?,
+        includes: ::Array[SurgeAPI::Models::TollFreeCampaign::include_],
+        message_samples: ::Array[String],
+        phone_number_id: String,
+        privacy_policy_url: String?,
+        status: SurgeAPI::Models::TollFreeCampaign::status,
+        terms_and_conditions_url: String?,
+        use_cases: ::Array[SurgeAPI::Models::TollFreeCampaign::use_case]
+      }
+
+    class TollFreeCampaign < SurgeAPI::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor consent_flows: ::Array[SurgeAPI::Models::toll_free_campaign_consent_flow]
+
+      attr_accessor description: String?
+
+      attr_accessor includes: ::Array[SurgeAPI::Models::TollFreeCampaign::include_]
+
+      attr_accessor message_samples: ::Array[String]
+
+      attr_accessor phone_number_id: String
+
+      attr_accessor privacy_policy_url: String?
+
+      attr_accessor status: SurgeAPI::Models::TollFreeCampaign::status
+
+      attr_accessor terms_and_conditions_url: String?
+
+      attr_accessor use_cases: ::Array[SurgeAPI::Models::TollFreeCampaign::use_case]
+
+      def initialize: (
+        id: String,
+        consent_flows: ::Array[SurgeAPI::Models::toll_free_campaign_consent_flow],
+        description: String?,
+        includes: ::Array[SurgeAPI::Models::TollFreeCampaign::include_],
+        message_samples: ::Array[String],
+        phone_number_id: String,
+        privacy_policy_url: String?,
+        status: SurgeAPI::Models::TollFreeCampaign::status,
+        terms_and_conditions_url: String?,
+        use_cases: ::Array[SurgeAPI::Models::TollFreeCampaign::use_case]
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        consent_flows: ::Array[SurgeAPI::Models::toll_free_campaign_consent_flow],
+        description: String?,
+        includes: ::Array[SurgeAPI::Models::TollFreeCampaign::include_],
+        message_samples: ::Array[String],
+        phone_number_id: String,
+        privacy_policy_url: String?,
+        status: SurgeAPI::Models::TollFreeCampaign::status,
+        terms_and_conditions_url: String?,
+        use_cases: ::Array[SurgeAPI::Models::TollFreeCampaign::use_case]
+      }
+
+      type include_ = :age_gated
+
+      module Include
+        extend SurgeAPI::Internal::Type::Enum
+
+        AGE_GATED: :age_gated
+
+        def self?.values: -> ::Array[SurgeAPI::Models::TollFreeCampaign::include_]
+      end
+
+      type status = :active | :canceled | :created | :in_review | :rejected
+
+      module Status
+        extend SurgeAPI::Internal::Type::Enum
+
+        ACTIVE: :active
+        CANCELED: :canceled
+        CREATED: :created
+        IN_REVIEW: :in_review
+        REJECTED: :rejected
+
+        def self?.values: -> ::Array[SurgeAPI::Models::TollFreeCampaign::status]
+      end
+
+      type use_case =
+        :two_factor_authentication
+        | :account_notification
+        | :customer_care
+        | :charity
+        | :delivery_notification
+        | :fraud_alert
+        | :event
+        | :higher_education
+        | :k12_education
+        | :marketing
+        | :polling_voting
+        | :political
+        | :public_service_announcement
+        | :security_alert
+
+      module UseCase
+        extend SurgeAPI::Internal::Type::Enum
+
+        TWO_FACTOR_AUTHENTICATION: :two_factor_authentication
+        ACCOUNT_NOTIFICATION: :account_notification
+        CUSTOMER_CARE: :customer_care
+        CHARITY: :charity
+        DELIVERY_NOTIFICATION: :delivery_notification
+        FRAUD_ALERT: :fraud_alert
+        EVENT: :event
+        HIGHER_EDUCATION: :higher_education
+        K12_EDUCATION: :k12_education
+        MARKETING: :marketing
+        POLLING_VOTING: :polling_voting
+        POLITICAL: :political
+        PUBLIC_SERVICE_ANNOUNCEMENT: :public_service_announcement
+        SECURITY_ALERT: :security_alert
+
+        def self?.values: -> ::Array[SurgeAPI::Models::TollFreeCampaign::use_case]
+      end
+    end
+  end
+end

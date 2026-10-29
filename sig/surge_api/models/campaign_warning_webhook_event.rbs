@@ -1,0 +1,114 @@
+module SurgeAPI
+  module Models
+    type campaign_warning_webhook_event =
+      {
+        account_id: String,
+        data: SurgeAPI::CampaignWarningWebhookEvent::Data,
+        timestamp: Time,
+        type: :"campaign.warning"
+      }
+
+    class CampaignWarningWebhookEvent < SurgeAPI::Internal::Type::BaseModel
+      attr_accessor account_id: String
+
+      attr_accessor data: SurgeAPI::CampaignWarningWebhookEvent::Data
+
+      attr_accessor timestamp: Time
+
+      attr_accessor type: :"campaign.warning"
+
+      def initialize: (
+        account_id: String,
+        data: SurgeAPI::CampaignWarningWebhookEvent::Data,
+        timestamp: Time,
+        ?type: :"campaign.warning"
+      ) -> void
+
+      def to_hash: -> {
+        account_id: String,
+        data: SurgeAPI::CampaignWarningWebhookEvent::Data,
+        timestamp: Time,
+        type: :"campaign.warning"
+      }
+
+      type data =
+        {
+          id: String,
+          feedback: ::Array[SurgeAPI::CampaignWarningWebhookEvent::Data::Feedback],
+          status: SurgeAPI::Models::CampaignWarningWebhookEvent::Data::status
+        }
+
+      class Data < SurgeAPI::Internal::Type::BaseModel
+        attr_accessor id: String
+
+        attr_accessor feedback: ::Array[SurgeAPI::CampaignWarningWebhookEvent::Data::Feedback]
+
+        attr_accessor status: SurgeAPI::Models::CampaignWarningWebhookEvent::Data::status
+
+        def initialize: (
+          id: String,
+          feedback: ::Array[SurgeAPI::CampaignWarningWebhookEvent::Data::Feedback],
+          status: SurgeAPI::Models::CampaignWarningWebhookEvent::Data::status
+        ) -> void
+
+        def to_hash: -> {
+          id: String,
+          feedback: ::Array[SurgeAPI::CampaignWarningWebhookEvent::Data::Feedback],
+          status: SurgeAPI::Models::CampaignWarningWebhookEvent::Data::status
+        }
+
+        type feedback =
+          {
+            field: String,
+            message: String,
+            outcome: SurgeAPI::Models::CampaignWarningWebhookEvent::Data::Feedback::outcome,
+            suggested_value: String?
+          }
+
+        class Feedback < SurgeAPI::Internal::Type::BaseModel
+          attr_accessor field: String
+
+          attr_accessor message: String
+
+          attr_accessor outcome: SurgeAPI::Models::CampaignWarningWebhookEvent::Data::Feedback::outcome
+
+          attr_accessor suggested_value: String?
+
+          def initialize: (
+            field: String,
+            message: String,
+            outcome: SurgeAPI::Models::CampaignWarningWebhookEvent::Data::Feedback::outcome,
+            suggested_value: String?
+          ) -> void
+
+          def to_hash: -> {
+            field: String,
+            message: String,
+            outcome: SurgeAPI::Models::CampaignWarningWebhookEvent::Data::Feedback::outcome,
+            suggested_value: String?
+          }
+
+          type outcome = :warning
+
+          module Outcome
+            extend SurgeAPI::Internal::Type::Enum
+
+            WARNING: :warning
+
+            def self?.values: -> ::Array[SurgeAPI::Models::CampaignWarningWebhookEvent::Data::Feedback::outcome]
+          end
+        end
+
+        type status = :in_review
+
+        module Status
+          extend SurgeAPI::Internal::Type::Enum
+
+          IN_REVIEW: :in_review
+
+          def self?.values: -> ::Array[SurgeAPI::Models::CampaignWarningWebhookEvent::Data::status]
+        end
+      end
+    end
+  end
+end

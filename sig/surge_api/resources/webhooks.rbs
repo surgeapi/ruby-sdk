@@ -7,6 +7,9 @@ module SurgeAPI
         ?key: String?
       ) -> (SurgeAPI::CallEndedWebhookEvent
       | SurgeAPI::CampaignApprovedWebhookEvent
+      | SurgeAPI::CampaignRejectedWebhookEvent
+      | SurgeAPI::CampaignSubmittedWebhookEvent
+      | SurgeAPI::CampaignWarningWebhookEvent
       | SurgeAPI::ContactOptedInWebhookEvent
       | SurgeAPI::ContactOptedOutWebhookEvent
       | SurgeAPI::ConversationCreatedWebhookEvent

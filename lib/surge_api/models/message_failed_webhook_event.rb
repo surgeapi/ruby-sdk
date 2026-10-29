@@ -63,10 +63,11 @@ module SurgeAPI
         required :failed_at, Time
 
         # @!attribute failure_reason
-        #   The reason the message failed to be delivered
+        #   The reason the message failed to be delivered, or null if no failure reason is
+        #   set
         #
-        #   @return [String]
-        required :failure_reason, String
+        #   @return [String, nil]
+        required :failure_reason, String, nil?: true
 
         # @!attribute metadata
         #   Set of key-value pairs that will be stored with the object.
@@ -108,7 +109,7 @@ module SurgeAPI
         #
         #   @param failed_at [Time] When the message failed
         #
-        #   @param failure_reason [String] The reason the message failed to be delivered
+        #   @param failure_reason [String, nil] The reason the message failed to be delivered, or null if no failure reason is s
         #
         #   @param metadata [Hash{Symbol=>String}] Set of key-value pairs that will be stored with the object.
         #

@@ -138,14 +138,19 @@ module SurgeAPI
         )
       end
 
+      # Some parameter documentations has been truncated, see
+      # {SurgeAPI::Models::UserCreateTokenParams} for more details.
+      #
       # Provides a mechanism for having Surge create a signed token for embeds instead
       # of signing with your own signing key.
       #
-      # @overload create_token(user_id, duration_seconds: nil, request_options: {})
+      # @overload create_token(user_id, duration_seconds: nil, read_only: nil, request_options: {})
       #
       # @param user_id [String] The user for which the token represents authentication.
       #
       # @param duration_seconds [Integer] For how many seconds the token should be accepted. Defaults to 15 minutes.
+      #
+      # @param read_only [Boolean] Restrict the token to viewing embedded conversations and unread counts. Sending
       #
       # @param request_options [SurgeAPI::RequestOptions, Hash{Symbol=>Object}, nil]
       #

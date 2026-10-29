@@ -34,6 +34,12 @@ module SurgeAPI
       #   @return [SurgeAPI::Models::Message::Conversation, nil]
       optional :conversation, -> { SurgeAPI::Message::Conversation }
 
+      # @!attribute failure_reason
+      #   The reason the message failed, or null if no failure reason is set.
+      #
+      #   @return [String, nil]
+      optional :failure_reason, String, nil?: true
+
       # @!attribute metadata
       #   Set of key-value pairs that will be stored with the object.
       #
@@ -46,7 +52,7 @@ module SurgeAPI
       #   @return [Symbol, SurgeAPI::Models::Message::Status, nil]
       optional :status, enum: -> { SurgeAPI::Message::Status }
 
-      # @!method initialize(id: nil, attachments: nil, blast_id: nil, body: nil, conversation: nil, metadata: nil, status: nil)
+      # @!method initialize(id: nil, attachments: nil, blast_id: nil, body: nil, conversation: nil, failure_reason: nil, metadata: nil, status: nil)
       #   Some parameter documentations has been truncated, see
       #   {SurgeAPI::Models::Message} for more details.
       #
@@ -61,6 +67,8 @@ module SurgeAPI
       #   @param body [String, nil] The message body.
       #
       #   @param conversation [SurgeAPI::Models::Message::Conversation] A conversation with a Contact
+      #
+      #   @param failure_reason [String, nil] The reason the message failed, or null if no failure reason is set.
       #
       #   @param metadata [Hash{Symbol=>String}] Set of key-value pairs that will be stored with the object.
       #
@@ -148,6 +156,12 @@ module SurgeAPI
           #   @return [String]
           required :id, String
 
+          # @!attribute metadata
+          #   Set of key-value pairs that will be stored with the object.
+          #
+          #   @return [Hash{Symbol=>String}]
+          required :metadata, SurgeAPI::Internal::Type::HashOf[String]
+
           # @!attribute name
           #   A human-readable name for the phone number
           #
@@ -166,10 +180,12 @@ module SurgeAPI
           #   @return [Symbol, SurgeAPI::Models::Message::Conversation::PhoneNumber::Type]
           required :type, enum: -> { SurgeAPI::Message::Conversation::PhoneNumber::Type }
 
-          # @!method initialize(id:, name:, number:, type:)
+          # @!method initialize(id:, metadata:, name:, number:, type:)
           #   This is the phone number tied to the Surge account.
           #
           #   @param id [String] Unique identifier for the phone number
+          #
+          #   @param metadata [Hash{Symbol=>String}] Set of key-value pairs that will be stored with the object.
           #
           #   @param name [String, nil] A human-readable name for the phone number
           #

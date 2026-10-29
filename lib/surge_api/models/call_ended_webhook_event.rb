@@ -63,7 +63,8 @@ module SurgeAPI
         required :initiated_at, Time
 
         # @!attribute status
-        #   The status of the call
+        #   The status of the call. For inbound embedded-phone calls, `no_answer` means no
+        #   embedded user answered, even if the caller reached voicemail.
         #
         #   @return [Symbol, SurgeAPI::Models::CallEndedWebhookEvent::Data::Status]
         required :status, enum: -> { SurgeAPI::CallEndedWebhookEvent::Data::Status }
@@ -87,6 +88,9 @@ module SurgeAPI
         optional :to, String, nil?: true
 
         # @!method initialize(id:, contact:, duration:, initiated_at:, status:, from: nil, phone_number_id: nil, to: nil)
+        #   Some parameter documentations has been truncated, see
+        #   {SurgeAPI::Models::CallEndedWebhookEvent::Data} for more details.
+        #
         #   The data associated with the event
         #
         #   @param id [String] The unique identifier for the call
@@ -97,7 +101,7 @@ module SurgeAPI
         #
         #   @param initiated_at [Time] When the call was initiated
         #
-        #   @param status [Symbol, SurgeAPI::Models::CallEndedWebhookEvent::Data::Status] The status of the call
+        #   @param status [Symbol, SurgeAPI::Models::CallEndedWebhookEvent::Data::Status] The status of the call. For inbound embedded-phone calls, `no_answer` means no e
         #
         #   @param from [String, nil] The E.164 phone number of the caller
         #
@@ -105,7 +109,8 @@ module SurgeAPI
         #
         #   @param to [String, nil] The E.164 phone number of the callee
 
-        # The status of the call
+        # The status of the call. For inbound embedded-phone calls, `no_answer` means no
+        # embedded user answered, even if the caller reached voicemail.
         #
         # @see SurgeAPI::Models::CallEndedWebhookEvent::Data#status
         module Status

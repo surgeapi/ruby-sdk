@@ -3,7 +3,7 @@
 module SurgeAPI
   module Resources
     class Accounts
-      # Creates a new Account within the calling Platform.
+      # Creates a new Account.
       sig do
         params(
           name: String,
@@ -79,7 +79,7 @@ module SurgeAPI
       )
       end
 
-      # List all accounts for the calling platform with cursor-based pagination.
+      # List all accounts with cursor-based pagination.
       sig do
         params(
           after: String,
