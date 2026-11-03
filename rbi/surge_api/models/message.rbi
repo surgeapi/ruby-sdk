@@ -6,6 +6,12 @@ module SurgeAPI
       OrHash =
         T.type_alias { T.any(SurgeAPI::Message, SurgeAPI::Internal::AnyHash) }
 
+      # When the message was added to the conversation, in ISO8601 UTC format. Null for
+      # scheduled messages until they are created. For imported messages, this is the
+      # original creation time.
+      sig { returns(T.nilable(Time)) }
+      attr_accessor :created_at
+
       # Unique identifier for the object.
       sig { returns(T.nilable(String)) }
       attr_reader :id
@@ -60,6 +66,7 @@ module SurgeAPI
       # A Message is a communication sent to a Contact.
       sig do
         params(
+          created_at: T.nilable(Time),
           id: String,
           attachments: T::Array[SurgeAPI::Message::Attachment::OrHash],
           blast_id: T.nilable(String),
@@ -71,6 +78,10 @@ module SurgeAPI
         ).returns(T.attached_class)
       end
       def self.new(
+        # When the message was added to the conversation, in ISO8601 UTC format. Null for
+        # scheduled messages until they are created. For imported messages, this is the
+        # original creation time.
+        created_at:,
         # Unique identifier for the object.
         id: nil,
         attachments: nil,
@@ -93,6 +104,7 @@ module SurgeAPI
       sig do
         override.returns(
           {
+            created_at: T.nilable(Time),
             id: String,
             attachments: T::Array[SurgeAPI::Message::Attachment],
             blast_id: T.nilable(String),

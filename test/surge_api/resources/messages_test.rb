@@ -18,6 +18,7 @@ class SurgeAPI::Test::Resources::MessagesTest < SurgeAPI::Test::ResourceTest
 
     assert_pattern do
       response => {
+        created_at: Time | nil,
         id: String | nil,
         attachments: ^(SurgeAPI::Internal::Type::ArrayOf[SurgeAPI::Message::Attachment]) | nil,
         blast_id: String | nil,
@@ -41,6 +42,7 @@ class SurgeAPI::Test::Resources::MessagesTest < SurgeAPI::Test::ResourceTest
 
     assert_pattern do
       response => {
+        created_at: Time | nil,
         id: String | nil,
         attachments: ^(SurgeAPI::Internal::Type::ArrayOf[SurgeAPI::Message::Attachment]) | nil,
         blast_id: String | nil,
@@ -71,6 +73,7 @@ class SurgeAPI::Test::Resources::MessagesTest < SurgeAPI::Test::ResourceTest
 
     assert_pattern do
       row => {
+        created_at: Time | nil,
         id: String | nil,
         attachments: ^(SurgeAPI::Internal::Type::ArrayOf[SurgeAPI::Message::Attachment]) | nil,
         blast_id: String | nil,

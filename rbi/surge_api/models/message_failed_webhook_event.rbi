@@ -94,6 +94,13 @@ module SurgeAPI
         end
         attr_writer :conversation
 
+        # When the message was added to the conversation, in ISO8601 UTC format. For
+        # scheduled messages, this is the actual creation time, which may be later than
+        # the requested send_at. For imported messages, this is the original creation
+        # time.
+        sig { returns(Time) }
+        attr_accessor :created_at
+
         # When the message failed
         sig { returns(Time) }
         attr_accessor :failed_at
@@ -150,6 +157,7 @@ module SurgeAPI
             body: T.nilable(String),
             conversation:
               SurgeAPI::MessageFailedWebhookEvent::Data::Conversation::OrHash,
+            created_at: Time,
             failed_at: Time,
             failure_reason: T.nilable(String),
             metadata: T::Hash[Symbol, String],
@@ -168,6 +176,11 @@ module SurgeAPI
           body:,
           # The conversation this message belongs to
           conversation:,
+          # When the message was added to the conversation, in ISO8601 UTC format. For
+          # scheduled messages, this is the actual creation time, which may be later than
+          # the requested send_at. For imported messages, this is the original creation
+          # time.
+          created_at:,
           # When the message failed
           failed_at:,
           # The reason the message failed to be delivered, or null if no failure reason is
@@ -192,6 +205,7 @@ module SurgeAPI
               body: T.nilable(String),
               conversation:
                 SurgeAPI::MessageFailedWebhookEvent::Data::Conversation,
+              created_at: Time,
               failed_at: Time,
               failure_reason: T.nilable(String),
               metadata: T::Hash[Symbol, String],
