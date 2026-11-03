@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.26.0](https://github.com/surgeapi/ruby-sdk/compare/v0.25.0...v0.26.0) (2026-11-03)
+
+
+### Features
+
+* **api:** add created_at to messages ([#29](https://github.com/surgeapi/ruby-sdk/issues/29)) ([e341842](https://github.com/surgeapi/ruby-sdk/commit/e34184256644bb4e6682f17571bf9c9a78705c8c))
+
 ## [0.25.0](https://github.com/surgeapi/ruby-sdk/compare/v0.24.0...v0.25.0) (2026-10-29)
 
 
