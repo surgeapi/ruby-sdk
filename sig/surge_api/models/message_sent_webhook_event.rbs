@@ -36,6 +36,7 @@ module SurgeAPI
           id: String,
           body: String?,
           conversation: SurgeAPI::MessageSentWebhookEvent::Data::Conversation,
+          created_at: Time,
           failure_reason: String?,
           metadata: ::Hash[Symbol, String],
           sent_at: Time,
@@ -50,6 +51,8 @@ module SurgeAPI
         attr_accessor body: String?
 
         attr_accessor conversation: SurgeAPI::MessageSentWebhookEvent::Data::Conversation
+
+        attr_accessor created_at: Time
 
         attr_accessor failure_reason: String?
 
@@ -73,6 +76,7 @@ module SurgeAPI
           id: String,
           body: String?,
           conversation: SurgeAPI::MessageSentWebhookEvent::Data::Conversation,
+          created_at: Time,
           failure_reason: String?,
           metadata: ::Hash[Symbol, String],
           sent_at: Time,
@@ -85,6 +89,7 @@ module SurgeAPI
           id: String,
           body: String?,
           conversation: SurgeAPI::MessageSentWebhookEvent::Data::Conversation,
+          created_at: Time,
           failure_reason: String?,
           metadata: ::Hash[Symbol, String],
           sent_at: Time,

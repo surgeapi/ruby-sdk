@@ -2,6 +2,7 @@ module SurgeAPI
   module Models
     type message =
       {
+        created_at: Time?,
         id: String,
         attachments: ::Array[SurgeAPI::Message::Attachment],
         blast_id: String?,
@@ -13,6 +14,8 @@ module SurgeAPI
       }
 
     class Message < SurgeAPI::Internal::Type::BaseModel
+      attr_accessor created_at: Time?
+
       attr_reader id: String?
 
       def id=: (String) -> String
@@ -46,6 +49,7 @@ module SurgeAPI
       ) -> SurgeAPI::Models::Message::status
 
       def initialize: (
+        created_at: Time?,
         ?id: String,
         ?attachments: ::Array[SurgeAPI::Message::Attachment],
         ?blast_id: String?,
@@ -57,6 +61,7 @@ module SurgeAPI
       ) -> void
 
       def to_hash: -> {
+        created_at: Time?,
         id: String,
         attachments: ::Array[SurgeAPI::Message::Attachment],
         blast_id: String?,

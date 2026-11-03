@@ -56,6 +56,15 @@ module SurgeAPI
         #   @return [SurgeAPI::Models::MessageSentWebhookEvent::Data::Conversation]
         required :conversation, -> { SurgeAPI::MessageSentWebhookEvent::Data::Conversation }
 
+        # @!attribute created_at
+        #   When the message was added to the conversation, in ISO8601 UTC format. For
+        #   scheduled messages, this is the actual creation time, which may be later than
+        #   the requested send_at. For imported messages, this is the original creation
+        #   time.
+        #
+        #   @return [Time]
+        required :created_at, Time
+
         # @!attribute failure_reason
         #   The reason the message failed, or null if no failure reason is set
         #
@@ -94,7 +103,7 @@ module SurgeAPI
         #   @return [String, nil]
         optional :blast_id, String
 
-        # @!method initialize(id:, body:, conversation:, failure_reason:, metadata:, sent_at:, status:, attachments: nil, blast_id: nil)
+        # @!method initialize(id:, body:, conversation:, created_at:, failure_reason:, metadata:, sent_at:, status:, attachments: nil, blast_id: nil)
         #   Some parameter documentations has been truncated, see
         #   {SurgeAPI::Models::MessageSentWebhookEvent::Data} for more details.
         #
@@ -105,6 +114,8 @@ module SurgeAPI
         #   @param body [String, nil] The content of the message
         #
         #   @param conversation [SurgeAPI::Models::MessageSentWebhookEvent::Data::Conversation] The conversation this message belongs to
+        #
+        #   @param created_at [Time] When the message was added to the conversation, in ISO8601 UTC format. For sched
         #
         #   @param failure_reason [String, nil] The reason the message failed, or null if no failure reason is set
         #

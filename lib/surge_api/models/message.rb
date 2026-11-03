@@ -4,6 +4,14 @@ module SurgeAPI
   module Models
     # @see SurgeAPI::Resources::Messages#create
     class Message < SurgeAPI::Internal::Type::BaseModel
+      # @!attribute created_at
+      #   When the message was added to the conversation, in ISO8601 UTC format. Null for
+      #   scheduled messages until they are created. For imported messages, this is the
+      #   original creation time.
+      #
+      #   @return [Time, nil]
+      required :created_at, Time, nil?: true
+
       # @!attribute id
       #   Unique identifier for the object.
       #
@@ -52,11 +60,13 @@ module SurgeAPI
       #   @return [Symbol, SurgeAPI::Models::Message::Status, nil]
       optional :status, enum: -> { SurgeAPI::Message::Status }
 
-      # @!method initialize(id: nil, attachments: nil, blast_id: nil, body: nil, conversation: nil, failure_reason: nil, metadata: nil, status: nil)
+      # @!method initialize(created_at:, id: nil, attachments: nil, blast_id: nil, body: nil, conversation: nil, failure_reason: nil, metadata: nil, status: nil)
       #   Some parameter documentations has been truncated, see
       #   {SurgeAPI::Models::Message} for more details.
       #
       #   A Message is a communication sent to a Contact.
+      #
+      #   @param created_at [Time, nil] When the message was added to the conversation, in ISO8601 UTC format. Null for
       #
       #   @param id [String] Unique identifier for the object.
       #
